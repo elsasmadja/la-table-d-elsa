@@ -837,6 +837,46 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
   .nav-links { display: flex !important; }
 }
 
+/* ===== À COURT D'INSPIRATION ===== */
+.inspi-wrap{max-width:680px;margin:0 auto;padding:0 1rem 5rem}
+.inspi-header{text-align:center;padding:2.4rem 0 1.4rem}
+.inspi-header h2{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:400;color:var(--text);margin-bottom:0.5rem}
+.inspi-header p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;max-width:460px;margin:0 auto}
+.inspi-chat{background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:1.2rem;min-height:280px;max-height:56vh;overflow-y:auto;display:flex;flex-direction:column;gap:0.9rem;margin-bottom:0.8rem}
+.inspi-msg{display:flex;gap:0.65rem;align-items:flex-start;animation:inspiFade 0.3s ease}
+@keyframes inspiFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.inspi-msg.moi{flex-direction:row-reverse}
+.inspi-ava{width:30px;height:30px;border-radius:50%;background:var(--sage-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.inspi-msg.moi .inspi-ava{background:var(--brown-light);color:var(--text)}
+.inspi-bulle{background:var(--cream);border-radius:12px;padding:0.75rem 0.95rem;font-size:0.86rem;color:var(--text);line-height:1.65;max-width:85%}
+.inspi-msg.moi .inspi-bulle{background:var(--sage-dark);color:var(--white)}
+.inspi-bulle strong{font-weight:600}
+.inspi-bulle em{font-style:normal;color:var(--sage-dark);font-weight:600}
+.inspi-carte{background:var(--white);border:1px solid var(--cream-dark);border-left:3px solid var(--sage);border-radius:8px;padding:0.8rem 0.9rem;margin-top:0.65rem}
+.inspi-carte-tag{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light);font-weight:500}
+.inspi-carte h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin:0.15rem 0 0.4rem}
+.inspi-score{font-size:0.74rem;color:var(--sage-dark);font-weight:500;margin-bottom:0.5rem}
+.inspi-manque{font-size:0.76rem;color:var(--text-muted);margin-bottom:0.5rem;line-height:1.9}
+.inspi-tag-manque{display:inline-block;background:rgba(196,168,130,0.16);border:1px solid rgba(196,168,130,0.5);color:var(--brown);border-radius:14px;padding:2px 9px;margin:2px 3px 2px 0;font-size:0.72rem;cursor:pointer;transition:all 0.2s}
+.inspi-tag-manque:hover{background:var(--brown);border-color:var(--brown);color:var(--white)}
+.inspi-voir{font-family:Jost,sans-serif;font-size:0.65rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:18px;padding:0.5rem 1rem;cursor:pointer;transition:opacity 0.2s}
+.inspi-voir:hover{opacity:0.85}
+.inspi-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.8rem}
+.inspi-chip{font-family:Jost,sans-serif;font-size:0.72rem;background:var(--white);border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.42rem 0.85rem;cursor:pointer;transition:all 0.2s}
+.inspi-chip:hover{border-color:var(--sage);color:var(--sage-dark);background:var(--cream)}
+.inspi-bar{display:flex;gap:0.5rem}
+.inspi-bar input{flex:1;padding:0.85rem 1rem;border:1px solid var(--cream-dark);border-radius:24px;background:var(--white);font-family:Jost,sans-serif;font-size:0.87rem;color:var(--text)}
+.inspi-bar input:focus{outline:none;border-color:var(--sage)}
+.inspi-send{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:24px;padding:0 1.4rem;cursor:pointer;transition:opacity 0.2s}
+.inspi-send:hover{opacity:0.85}
+.inspi-reset{background:none;border:none;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-decoration:underline;margin-top:0.7rem;display:block;margin-left:auto}
+.inspi-reset:hover{color:var(--brown)}
+@media(max-width:640px){
+  .inspi-chat{max-height:48vh;padding:0.9rem}
+  .inspi-bulle{max-width:88%;font-size:0.83rem}
+  .inspi-send{padding:0 1rem}
+}
+
 /* ===== FEED INSTAGRAM ===== */
 .feed-wrap { max-width: 600px; margin: 0 auto; padding: 0 1rem 5rem; }
 .feed-header { text-align: center; padding: 2rem 0 1.5rem; }
@@ -868,8 +908,8 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
 .feed-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* Feed posts — vraie grille insta */
-.feed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 1rem; }
-@media(max-width:640px) { .feed-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; } }
+.feed-grid { display: flex; flex-direction: column; gap: 1.6rem; margin-bottom: 1rem; }
+@media(max-width:640px) { .feed-grid { gap: 1.2rem; } }
 .feed-thumb { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: var(--cream); }
 .feed-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s; }
 .feed-thumb:hover img { transform: scale(1.04); }
@@ -983,6 +1023,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
         <li><a href="#" data-tab="viennoiserie">Viennoiserie</a></li>
       </ul>
     </li>
+    <li><a href="#" data-tab="inspiration">À court d'inspiration&nbsp;?</a></li>
     <li><a href="#" data-tab="feed">Partage ta réalisation</a></li>
     <li><a href="#" data-tab="calculateur" style="font-weight:600">Mon bilan calorique</a></li>
     <li class="nav-wishlist-li" style="margin-left:auto"><a href="#" data-tab="wishlist" id="wishlist-nav" title="Mes favoris">❤️ <span id="wishlist-count"></span></a></li>
@@ -1686,6 +1727,22 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
 </div><!-- end tab-calculateur -->
+
+<div class="tab-content" id="tab-inspiration">
+  <div class="inspi-wrap">
+    <div class="inspi-header">
+      <h2>À court d'inspiration&nbsp;?</h2>
+      <p>Vous ne savez pas quoi faire&nbsp;? Dites-moi ce que vous avez sous la main, je vous propose jusqu'à trois recettes du site. Et s'il vous manque un ingrédient, je vous donne de quoi le remplacer.</p>
+    </div>
+    <div class="inspi-chat" id="inspi-chat"></div>
+    <div class="inspi-chips" id="inspi-chips"></div>
+    <div class="inspi-bar">
+      <input type="text" id="inspi-input" placeholder="farine, beurre, œufs, chocolat..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();envoyerInspi();}">
+      <button class="inspi-send" onclick="envoyerInspi()">Envoyer</button>
+    </div>
+    <button class="inspi-reset" onclick="resetInspi()">Recommencer</button>
+  </div>
+</div>
 
 <div class="tab-content" id="tab-feed">
   <div class="feed-wrap">
@@ -3092,6 +3149,7 @@ function activateTab(t) {
   }
   if(t==='wishlist') renderWishlist();
   if(t==='feed') loadFeed();
+  if(t==='inspiration') initInspi();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3599,6 +3657,239 @@ function goHome() {
 }
 
 
+// ===== À COURT D'INSPIRATION =====
+// Moteur de suggestion 100 % local : croise les ingrédients saisis avec les
+// recettes du site, et propose des substituts pour ce qui manque.
+
+const INSPI_BASIQUES = ['sel','eau','poivre','pincee'];
+
+const INSPI_VIDES = new Set(['de','du','des','la','le','les','un','une','en','au','aux','ou','et','pour','dans','sur','avec','bien','environ','entier','entiers','entiere','entieres','froid','froide','froids','mou','molle','fondu','fondue','tiede','moulues','moulu','emiettees','emiette','coupe','coupee','coupes','sachet','sachets','gousse','gousses','feuille','feuilles','morceaux','morceau','des','entre','votre','vos','entiere','dés','pincee','pincees','facultatif','gout','choix','maison','nature','frais','fraiche','fraiches','surgeles','surgelees','petit','petits','petite','petites','grand','grande','moitie','demi','type','environ','possible','non','sans']);
+
+const INSPI_SUBSTITUTS = {
+  'sucre glace': ['du sucre en poudre mixé très finement au robot', 'un mélange sucre + fécule (10 pour 1), mixé ensemble'],
+  'lait concentre': ['de la crème entière réduite doucement avec du sucre', 'de la confiture de lait du commerce pour la version sucrée'],
+  'fleur de sel': ['du sel fin, mais moitié moins', 'du gros sel écrasé au rouleau'],
+  'poudre amande': ['de la poudre de noisettes', 'de la poudre de pistaches', 'des flocons d\u2019avoine mixés très finement'],
+  'creme liquide': ['du lait de coco entier, à volume égal', 'de la crème végétale avoine ou soja', 'du mascarpone détendu avec un peu de lait'],
+  'chocolat blanc': ['du chocolat au lait, en réduisant un peu le sucre de la recette'],
+  'beurre': ['de la margarine, au même poids', 'de l\u2019huile de coco désodorisée, à 80 % du poids', 'de la purée d\u2019amande ou de cacahuète, pour un résultat plus dense'],
+  'oeuf': ['60 g de compote de pommes par œuf', '1 c.à.s de graines de lin moulues + 3 c.à.s d\u2019eau, reposées 10 minutes', '60 g de yaourt nature par œuf'],
+  'lait': ['une boisson végétale avoine, amande ou soja, à volume égal', 'du lait de coco pour une note plus riche'],
+  'creme': ['du lait de coco entier, à volume égal', 'de la crème végétale', 'du mascarpone détendu avec un peu de lait'],
+  'mascarpone': ['de la ricotta bien égouttée + 2 c.à.s de crème', 'du fromage frais type Saint-Môret', 'de la crème épaisse très froide'],
+  'farine': ['de la farine d\u2019épeautre, au même poids', 'moitié farine de riz et moitié fécule pour une version sans gluten', 'T45 ou T65 indifféremment'],
+  'maizena': ['de la fécule de pomme de terre, au même poids', 'de la farine, mais le double du poids', 'de l\u2019arrow-root'],
+  'fecule': ['de la maïzena, au même poids'],
+  'sucre': ['de la cassonade ou de la vergeoise, au même poids', 'du miel ou du sirop d\u2019érable, à 75 % du poids en réduisant les liquides', 'du sucre de coco'],
+  'vergeoise': ['de la cassonade', 'du sucre roux', 'du sucre blanc + 1 c.à.c de mélasse'],
+  'cassonade': ['de la vergeoise brune', 'du sucre roux'],
+  'vanille': ['1 c.à.c d\u2019extrait de vanille par gousse', '2 sachets de sucre vanillé par gousse', 'un peu de fève tonka râpée, avec parcimonie'],
+  'levure': ['1/2 c.à.c de bicarbonate + 1 c.à.c de jus de citron par sachet'],
+  'bicarbonate': ['1 sachet de levure chimique'],
+  'gelatine': ['de l\u2019agar-agar : 2 g pour 6 g de gélatine, à faire bouillir 30 secondes'],
+  'xanthane': ['rien du tout : la texture sera juste un peu plus liquide'],
+  'chocolat': ['du chocolat au lait + 1 c.à.s de cacao non sucré', 'des pistoles ou une tablette, c\u2019est équivalent'],
+  'cacao': ['du chocolat noir fondu, en réduisant le sucre de la recette'],
+  'praline': ['de la pâte de noisette + un peu de sucre', 'du beurre de cacahuète pour une version express'],
+  'noisette': ['des amandes', 'des cacahuètes non salées', 'des noix de pécan'],
+  'cacahuete': ['des noisettes', 'des amandes', 'des noix de cajou'],
+  'amande': ['des noisettes', 'des noix de cajou'],
+  'pistache': ['des amandes', 'des noisettes'],
+  'miel': ['du sirop d\u2019érable', 'du sirop d\u2019agave', 'du sucre + un peu d\u2019eau'],
+  'yaourt': ['du fromage blanc', 'du skyr', 'un yaourt végétal'],
+  'fromage blanc': ['du yaourt grec bien égoutté', 'du skyr'],
+  'ricotta': ['du fromage blanc bien égoutté', 'de la brousse'],
+  'citron': ['du citron vert', '1 c.à.s de vinaigre blanc si c\u2019est pour faire tourner un lait'],
+  'feuillantine': ['des crêpes dentelles émiettées', 'des gavottes', 'des corn flakes non sucrés écrasés'],
+  'speculoos': ['des petits-beurre + 1/2 c.à.c de cannelle', 'des biscuits sablés'],
+  'myrtille': ['des mûres', 'du cassis', 'des framboises'],
+  'framboise': ['des fraises', 'des mûres', 'des myrtilles'],
+  'fraise': ['des framboises', 'des fraises surgelées bien égouttées'],
+  'abricot': ['des pêches', 'des nectarines', 'des abricots au sirop bien égouttés'],
+  'banane': ['de la compote de pommes', 'de la purée de patate douce'],
+  'pomme': ['des poires', 'des coings'],
+  'avoine': ['des flocons d\u2019épeautre', 'des flocons de sarrasin'],
+  'huile': ['du beurre fondu, au même poids'],
+  'rhum': ['de l\u2019extrait de vanille', 'du jus d\u2019orange pour une version sans alcool'],
+  'mais': ['de la fécule de pomme de terre']
+};
+
+function inspiNorm(txt){
+  return String(txt).toLowerCase()
+    .replace(/\u0153/g,'oe').replace(/\u00e6/g,'ae')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/['\u2019]/g,' ')
+    .replace(/[^a-z0-9\s]/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+
+function inspiRacine(mot){
+  if(mot.length > 4 && (mot.endsWith('s') || mot.endsWith('x'))) return mot.slice(0, -1);
+  return mot;
+}
+
+function inspiMots(texte){
+  let t = inspiNorm(texte);
+  t = t.replace(/\bcuilleres? a (cafe|soupe)\b/g, ' ');
+  t = t.replace(/\bc a [cs]\b/g, ' ');
+  t = t.replace(/\bca[sc]\b/g, ' ');
+  t = t.replace(/\b\d+([.,]\d+)?\b/g, ' ');
+  t = t.replace(/\b(g|kg|mg|ml|cl|dl|l|cs|cc|qs|mn|min|h|c|a|s)\b/g, ' ');
+  return t.split(' ')
+    .filter(m => m.length > 2 && !INSPI_VIDES.has(m))
+    .map(inspiRacine);
+}
+
+function estIntertitre(x){ return x.indexOf('\u2014 ') === 0 && x.lastIndexOf(' \u2014') === x.length - 2; }
+
+// index construit une seule fois
+let INSPI_INDEX = null;
+function inspiIndex(){
+  if(INSPI_INDEX) return INSPI_INDEX;
+  INSPI_INDEX = Object.keys(recipes).map(id => {
+    const lignes = recipes[id].ingredients.filter(x => !estIntertitre(x));
+    return { id: id, titre: recipes[id].title, tag: recipes[id].tag,
+             lignes: lignes.map(l => ({ texte: l, mots: inspiMots(l) })) };
+  });
+  return INSPI_INDEX;
+}
+
+function inspiChercher(saisie){
+  const possede = inspiMots(saisie);
+  if(!possede.length) return [];
+  return inspiIndex().map(r => {
+    const manque = [];
+    let ok = 0;
+    r.lignes.forEach(l => {
+      const basique = l.mots.some(m => INSPI_BASIQUES.indexOf(m) !== -1);
+      const trouve = l.mots.some(m => possede.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0));
+      if(trouve || basique) ok++; else manque.push(l.texte);
+    });
+    const total = r.lignes.length || 1;
+    const utilises = possede.filter(p => r.lignes.some(l => l.mots.some(m => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0))).length;
+    const ratio = ok / total;
+    const couverture = utilises / possede.length;
+    return { id: r.id, titre: r.titre, tag: r.tag,
+             score: 0.65 * ratio + 0.35 * couverture,
+             ratio: ratio, ok: ok, total: total, manque: manque, utilises: utilises };
+  })
+  .filter(r => r.utilises > 0)
+  .sort((a,b) => b.score - a.score || a.manque.length - b.manque.length)
+  .slice(0, 3);
+}
+
+function inspiSubstituts(texte){
+  const t = inspiNorm(texte);
+  const cles = Object.keys(INSPI_SUBSTITUTS).sort((a,b) => b.length - a.length);
+  for(let i=0;i<cles.length;i++){
+    const c = cles[i];
+    const mots = c.split(' ');
+    if(mots.every(m => t.indexOf(m) !== -1)) return { cle: c, liste: INSPI_SUBSTITUTS[c] };
+  }
+  return null;
+}
+
+// ---------- interface ----------
+function inspiEchapper(t){
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function inspiBulle(html, moi){
+  const chat = document.getElementById('inspi-chat');
+  if(!chat) return;
+  const d = document.createElement('div');
+  d.className = 'inspi-msg' + (moi ? ' moi' : '');
+  d.innerHTML = '<div class="inspi-ava">' + (moi ? '\u{1F464}' : '\u{1F33F}') + '</div><div class="inspi-bulle">' + html + '</div>';
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function inspiRepondre(html){ setTimeout(() => inspiBulle(html, false), 380); }
+
+const INSPI_CHIPS = ['Farine','Beurre','Œufs','Sucre','Chocolat','Lait','Bananes','Flocons d\u2019avoine','Mascarpone','Myrtilles','Abricots','Cacahuètes'];
+
+function initInspi(){
+  const chat = document.getElementById('inspi-chat');
+  if(!chat || chat.children.length) return;
+  inspiBulle('Bonjour&nbsp;! Dites-moi ce que vous avez dans vos placards, séparé par des virgules, et je vous sors jusqu\u2019à <strong>trois idées</strong> parmi mes recettes.<br><br>Vous pouvez aussi me demander directement <em>par quoi remplacer le beurre</em>, par exemple.', false);
+  const chips = document.getElementById('inspi-chips');
+  if(chips && !chips.children.length){
+    chips.innerHTML = INSPI_CHIPS.map(c => '<button class="inspi-chip" onclick="ajouterChipInspi(\'' + c.replace(/'/g,"\\'") + '\')">' + c + '</button>').join('');
+  }
+}
+
+function ajouterChipInspi(mot){
+  const input = document.getElementById('inspi-input');
+  if(!input) return;
+  const v = input.value.trim();
+  input.value = v ? v.replace(/,\s*$/,'') + ', ' + mot : mot;
+  input.focus();
+}
+
+function resetInspi(){
+  const chat = document.getElementById('inspi-chat');
+  if(chat) chat.innerHTML = '';
+  const input = document.getElementById('inspi-input');
+  if(input) input.value = '';
+  initInspi();
+}
+
+function envoyerInspi(){
+  const input = document.getElementById('inspi-input');
+  if(!input) return;
+  const saisie = input.value.trim();
+  if(!saisie) return;
+  inspiBulle(inspiEchapper(saisie), true);
+  input.value = '';
+
+  // demande de substitution ?
+  if(/remplac|a la place|substitu|j ?ai pas|je n ?ai pas|manque/i.test(inspiNorm(saisie))){
+    return inspiRepondre(reponseSubstitut(saisie));
+  }
+
+  const res = inspiChercher(saisie);
+  if(!res.length){
+    return inspiRepondre('Je ne trouve rien avec ça pour l\u2019instant. Essayez avec des ingrédients plus courants&nbsp;: farine, beurre, œufs, chocolat, bananes, flocons d\u2019avoine...');
+  }
+
+  let html = res[0].ratio >= 0.75
+    ? 'Avec ça, vous êtes bien parti&nbsp;! Voici ' + (res.length > 1 ? 'mes ' + res.length + ' idées' : 'mon idée') + '&nbsp;:'
+    : 'Il vous manquera quelques bricoles, mais voici ce qui s\u2019en rapproche le plus&nbsp;:';
+
+  res.forEach(r => {
+    html += '<div class="inspi-carte">'+
+      '<div class="inspi-carte-tag">' + inspiEchapper(r.tag) + '</div>'+
+      '<h4>' + inspiEchapper(r.titre) + '</h4>'+
+      '<div class="inspi-score">Vous avez ' + r.ok + ' ingrédient' + (r.ok > 1 ? 's' : '') + ' sur ' + r.total + '</div>';
+    if(r.manque.length){
+      const aff = r.manque.slice(0, 6);
+      html += '<div class="inspi-manque">Il vous manque&nbsp;: ' +
+        aff.map(m => '<span class="inspi-tag-manque" onclick="demanderSubstitut(\'' + inspiEchapper(m).replace(/'/g,'&#39;') + '\')">' + inspiEchapper(m) + '</span>').join('') +
+        (r.manque.length > 6 ? ' <em>et ' + (r.manque.length - 6) + ' autre' + (r.manque.length - 6 > 1 ? 's' : '') + '</em>' : '') +
+        '<br><span style="font-size:0.72rem">Touchez un ingrédient pour un substitut.</span></div>';
+    } else {
+      html += '<div class="inspi-manque">Vous avez tout&nbsp;! Plus qu\u2019à vous lancer.</div>';
+    }
+    html += '<button class="inspi-voir" onclick="openModal(\'' + r.id + '\')">Voir la recette</button></div>';
+  });
+  inspiRepondre(html);
+}
+
+function demanderSubstitut(ingredient){
+  inspiBulle('Par quoi remplacer&nbsp;: ' + inspiEchapper(ingredient) + '&nbsp;?', true);
+  inspiRepondre(reponseSubstitut(ingredient));
+}
+
+function reponseSubstitut(texte){
+  const s = inspiSubstituts(texte);
+  if(!s){
+    return 'Je n\u2019ai pas de substitut fiable pour celui-là. C\u2019est souvent un ingrédient difficile à remplacer sans changer le résultat &mdash; mieux vaut l\u2019acheter, ou choisir une autre recette&nbsp;!';
+  }
+  return 'À la place, vous pouvez utiliser&nbsp;:<br>' +
+    s.liste.map(x => '&bull;&nbsp;' + x).join('<br>') +
+    '<br><br><span style="font-size:0.76rem;color:var(--text-muted)">Le rendu sera légèrement différent, mais la recette tiendra.</span>';
+}
+
 // ===== FEED SUPABASE =====
 const SUPA_URL = 'https://xhztlskuznrjenjrcwot.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhoenRsc2t1em5yamVuanJjd290Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5Nzk1NDUsImV4cCI6MjA5NjU1NTU0NX0.Rcq7HlvfE1y1uqxS6mdafW4p_aRusCCfwzSm0DtLQeQ';
@@ -3615,7 +3906,14 @@ async function supaFetch(path, method='GET', body=null) {
   };
   if (body) opts.body = JSON.stringify(body);
   const res = await fetch(SUPA_URL + path, opts);
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const brut = await res.text();
+    let detail = brut;
+    try { const j = JSON.parse(brut); detail = j.message || j.error_description || j.error || brut; } catch(e) {}
+    const err = new Error(detail || ('HTTP ' + res.status));
+    err.status = res.status;
+    throw err;
+  }
   const txt = await res.text();
   return txt ? JSON.parse(txt) : null;
 }
@@ -3633,7 +3931,14 @@ async function uploadFeedImage(file) {
     },
     body: file
   });
-  if (!res.ok) return null;
+  if (!res.ok) {
+    const brut = await res.text();
+    let detail = brut;
+    try { const j = JSON.parse(brut); detail = j.message || j.error || brut; } catch(e) {}
+    const err = new Error('Photo : ' + (detail || ('HTTP ' + res.status)));
+    err.status = res.status;
+    throw err;
+  }
   return SUPA_URL + '/storage/v1/object/public/feed/' + name;
 }
 
@@ -3645,6 +3950,20 @@ function previewFeedImg(input) {
   preview.style.display = 'block';
   const label = input.closest('.feed-upload-label');
   label.querySelector('svg + text, svg ~ *:not(input)');
+}
+
+function messageErreurFeed(e){
+  const txt = (e && e.message) ? String(e.message) : '';
+  const st = e && e.status;
+  if (st === 401 || st === 403 || /row-level security|permission|not authorized/i.test(txt))
+    return 'Publication refus\u00E9e par le serveur (autorisations).\n\nD\u00E9tail : ' + txt;
+  if (st === 404 || /does not exist|not found/i.test(txt))
+    return 'La table du mur des r\u00E9alisations est introuvable c\u00F4t\u00E9 serveur.\n\nD\u00E9tail : ' + txt;
+  if (st === 413 || /too large|payload/i.test(txt))
+    return 'La photo est trop lourde. Essaie avec une image plus l\u00E9g\u00E8re.';
+  if (!navigator.onLine || /failed to fetch|networkerror/i.test(txt))
+    return 'Connexion impossible. V\u00E9rifie ton r\u00E9seau et r\u00E9essaie.';
+  return 'Erreur lors de la publication \uD83D\uDE15\n\nD\u00E9tail : ' + (txt || 'inconnue');
 }
 
 async function submitFeedPost() {
@@ -3668,7 +3987,7 @@ async function submitFeedPost() {
     loadFeed();
   } catch(e) {
     console.error(e);
-    alert('Erreur lors de la publication 😕');
+    alert(messageErreurFeed(e));
     btn.disabled = false; btn.textContent = 'Publier 🌿';
   }
 }
@@ -3703,42 +4022,19 @@ function closeFeedModalOutside(e) {
   if (e.target === document.getElementById('feed-modal-overlay')) closeFeedModal();
 }
 
-function createFeedCard(post) {
-  const thumb = document.createElement('div');
-  thumb.className = 'feed-thumb';
-  const comments = post.feed_comments || [];
-  if (post.image_url) {
-    thumb.innerHTML = `<img src="${post.image_url}" alt="">
-      <div class="feed-thumb-overlay">
-        <span>❤️ ${post.likes}</span>
-        <span>💬 ${comments.length}</span>
-      </div>`;
-  } else {
-    thumb.innerHTML = `<div class="feed-thumb-placeholder">🍳</div>
-      <div class="feed-thumb-overlay">
-        <span>❤️ ${post.likes}</span>
-        <span>💬 ${comments.length}</span>
-      </div>`;
-  }
-  thumb.onclick = () => openFeedDetail(post);
-  return thumb;
-}
-
-function openFeedDetail(post) {
-  const detail = document.getElementById('feed-detail');
+function feedPostHtml(post) {
   const date = new Date(post.created_at).toLocaleDateString('fr-FR', {day:'numeric', month:'long'});
   const comments = post.feed_comments || [];
   const initials = post.pseudo.charAt(0).toUpperCase();
-  detail.innerHTML = `
+  return `
     <div class="feed-post-header">
       <div class="feed-post-avatar">${initials}</div>
       <div>
         <div class="feed-post-pseudo">${post.pseudo}</div>
         <div class="feed-post-date">${date}</div>
       </div>
-      <button class="feed-close-detail" onclick="closeFeedDetail()" style="margin-left:auto">✕</button>
     </div>
-    ${post.image_url ? `<img class="feed-post-img" src="${post.image_url}" alt="">` : ''}
+    ${post.image_url ? `<img class="feed-post-img" src="${post.image_url}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}
     <div class="feed-post-actions">
       <button class="feed-like-btn" id="like-btn-${post.id}" onclick="likePost('${post.id}',this)">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -3755,9 +4051,16 @@ function openFeedDetail(post) {
         <button onclick="submitComment('${post.id}')">Publier</button>
       </div>
     </div>`;
-  detail.classList.add('open');
-  detail.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
+
+function createFeedCard(post) {
+  const art = document.createElement('div');
+  art.className = 'feed-post-detail open';
+  art.innerHTML = feedPostHtml(post);
+  return art;
+}
+
+function openFeedDetail(post) { /* le fil affiche désormais les posts en entier */ }
 
 function closeFeedDetail() {
   document.getElementById('feed-detail').classList.remove('open');
