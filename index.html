@@ -171,7 +171,18 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .ingredient-list li{font-size:0.86rem;color:var(--text-muted);display:flex;align-items:baseline;gap:0.6rem;line-height:1.55}
 .ingredient-list li::before{content:'—';color:var(--brown-light);font-size:0.7rem;flex-shrink:0}
 /* ── Onglets par jour (recettes multi-jours) ── */
-.day-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin:0.2rem 0 1.1rem}
+.day-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin:0.2rem 0 1.1rem}/* ── Planificateur de dates ── */
+.plan-wrap{background:var(--cream);border:1px solid var(--cream-dark);border-radius:6px;padding:0.9rem 1rem;margin:0.2rem 0 1rem;display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap}
+.plan-label{font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark);display:flex;align-items:center;gap:0.4rem}
+.plan-date{font-family:Jost,sans-serif;font-size:0.85rem;color:var(--text);background:var(--white);border:1px solid var(--cream-dark);border-radius:5px;padding:0.45rem 0.6rem;cursor:pointer;flex:1;min-width:150px}
+.plan-date:focus{outline:none;border-color:var(--sage)}
+.plan-reset{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:none;color:var(--text-muted);cursor:pointer;text-decoration:underline;padding:0.3rem}
+.plan-reset:hover{color:var(--brown)}
+.plan-info{width:100%;font-size:0.8rem;color:var(--text-muted);line-height:1.6;margin-top:0.2rem}
+.plan-info strong{color:var(--sage-dark);font-weight:600}
+.day-tab{display:flex;flex-direction:column;align-items:center;gap:0.15rem;line-height:1.25}
+.day-tab-date{font-size:0.6rem;letter-spacing:0.04em;text-transform:none;opacity:0.85;font-weight:400}
+.day-tab-date:empty{display:none}
 .day-tab{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;padding:0.5rem 1rem;border-radius:20px;border:1px solid var(--cream-dark);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
 .day-tab:hover{border-color:var(--sage);color:var(--sage-dark)}
 .day-tab.active{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
@@ -2759,14 +2770,16 @@ function openModal(id) {
   const days = [];
   stepData.forEach(x => { if (x.day && days.indexOf(x.day) === -1) days.push(x.day); });
   const multiDay = days.length > 1;
+  const planSaved = planningDates[id] || '';
   const dayTabsHtml = multiDay
-    ? '<div class="day-tabs"><button class="day-tab active" onclick="filterDay(this,\'all\')">Tout voir</button>'
-      + days.map(d => '<button class="day-tab" onclick="filterDay(this,\''+d+'\')">'+d+'</button>').join('')
+    ? planWrapHtml(id, days)
+      + '<div class="day-tabs"><button class="day-tab active" onclick="filterDay(this,\'all\')"><span>Tout voir</span></button>'
+      + days.map(d => '<button class="day-tab" data-day="'+d+'" onclick="filterDay(this,\''+d+'\')"><span>'+d+'</span><span class="day-tab-date"></span></button>').join('')
       + '</div>'
     : '';
   const steps = stepData.map((x,idx) => {
     const photosHtml = x.photos.length ? '<div class="step-photos">'+x.photos.map(src=>'<img class="step-img" src="'+src+'" alt="" loading="lazy">').join('')+'</div>' : '';
-    const badge = (multiDay && x.day) ? '<div class="day-badge">'+x.day+'</div>' : '';
+    const badge = (multiDay && x.day) ? '<div class="day-badge" data-daylabel="'+x.day+'">'+x.day+'</div>' : '';
     return '<li class="step" data-day="'+(x.day||'')+'"><span class="step-num">'+(idx+1)+'</span><div class="step-content">'+badge+'<p>'+x.text+'</p>'+photosHtml+'</div></li>';
   }).join('');
   const communauteHtml = '';
@@ -2785,6 +2798,8 @@ function openModal(id) {
     '<div class="astuce">'+r.astuce+'</div>'+(communitySection[id]||'')+'</div>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
+  currentRecipeId = id;
+  if (multiDay && planSaved) applyPlanning(planSaved);
 }
 
 function openModalComing(id, name) {
@@ -2835,6 +2850,79 @@ function openModalComingPhotos(id, name) {
     probe.src = candidats[i];
   })(0);
 })();
+
+// ===== PLANIFICATEUR : "je le veux prêt le..." =====
+let currentRecipeId = null;
+let planningDates = {};
+try { planningDates = JSON.parse(localStorage.getItem('elsa_planning') || '{}'); } catch(e) { planningDates = {}; }
+
+const JOURS_FR = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+const MOIS_FR  = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+
+function dayOffset(label){
+  if(label === 'Jour J') return 0;
+  const m = /^J-(\d+)$/.exec(label);
+  return m ? parseInt(m[1], 10) : null;
+}
+function parseISO(v){ const p = v.split('-'); return new Date(+p[0], +p[1]-1, +p[2], 12, 0, 0); }
+function addDays(d, n){ const c = new Date(d.getTime()); c.setDate(c.getDate() + n); return c; }
+function dateLongue(d){ return JOURS_FR[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS_FR[d.getMonth()]; }
+function dateCourte(d){ return JOURS_FR[d.getDay()].slice(0,3) + '. ' + d.getDate() + '/' + (d.getMonth()+1); }
+function aujourdhuiISO(){
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function planWrapHtml(id, days){
+  const saved = planningDates[id] || '';
+  return '<div class="plan-wrap">'+
+    '<span class="plan-label">&#128197; Je le veux pr\u00EAt le</span>'+
+    '<input type="date" class="plan-date" id="plan-date" min="'+aujourdhuiISO()+'" value="'+saved+'" onchange="applyPlanning(this.value)">'+
+    '<button class="plan-reset" onclick="applyPlanning(\'\')">Effacer</button>'+
+    '<div class="plan-info" id="plan-info"></div>'+
+  '</div>';
+}
+
+function applyPlanning(val){
+  const box = document.getElementById('modal-content');
+  if(!box) return;
+  if(currentRecipeId){
+    if(val) planningDates[currentRecipeId] = val; else delete planningDates[currentRecipeId];
+    try { localStorage.setItem('elsa_planning', JSON.stringify(planningDates)); } catch(e) {}
+  }
+  const cible = val ? parseISO(val) : null;
+
+  box.querySelectorAll('.day-tab[data-day]').forEach(btn => {
+    const el = btn.querySelector('.day-tab-date');
+    const off = dayOffset(btn.dataset.day);
+    el.textContent = (cible && off !== null) ? dateCourte(addDays(cible, -off)) : '';
+  });
+
+  box.querySelectorAll('.steps-list .step .day-badge').forEach(b => {
+    const lbl = b.dataset.daylabel;
+    const off = dayOffset(lbl);
+    b.textContent = (cible && off !== null) ? lbl + ' \u00B7 ' + dateLongue(addDays(cible, -off)) : lbl;
+  });
+
+  const info = document.getElementById('plan-info');
+  if(info){
+    if(cible){
+      let maxOff = 0;
+      box.querySelectorAll('.day-tab[data-day]').forEach(btn => {
+        const o = dayOffset(btn.dataset.day);
+        if(o !== null && o > maxOff) maxOff = o;
+      });
+      const debut = addDays(cible, -maxOff);
+      info.innerHTML = maxOff > 0
+        ? 'Il faut vous y mettre d\u00E8s le <strong>' + dateLongue(debut) + '</strong>, pour une d\u00E9gustation le ' + dateLongue(cible) + '.'
+        : 'Tout se fait le jour m\u00EAme, le <strong>' + dateLongue(cible) + '</strong>.';
+    } else {
+      info.innerHTML = '';
+    }
+  }
+  const input = document.getElementById('plan-date');
+  if(input && input.value !== (val || '')) input.value = val || '';
+}
 
 // ===== FILTRE PAR JOUR =====
 function filterDay(btn, day){
