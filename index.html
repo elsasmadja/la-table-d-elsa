@@ -169,6 +169,48 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .ingredient-list{list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-bottom:0.5rem}
 .ingredient-list li{font-size:0.86rem;color:var(--text-muted);display:flex;align-items:baseline;gap:0.6rem;line-height:1.55}
 .ingredient-list li::before{content:'—';color:var(--brown-light);font-size:0.7rem;flex-shrink:0}
+/* ── Onglets par jour (recettes multi-jours) ── */
+.day-tabs{display:flex;gap:0.4rem;flex-wrap:wrap;margin:0.2rem 0 1.1rem}
+.day-tab{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;padding:0.5rem 1rem;border-radius:20px;border:1px solid var(--cream-dark);background:transparent;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.day-tab:hover{border-color:var(--sage);color:var(--sage-dark)}
+.day-tab.active{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.day-badge{display:inline-block;font-family:Jost,sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);background:rgba(122,158,126,0.16);padding:2px 8px;border-radius:20px;margin-bottom:0.4rem}
+
+/* ── Liste de courses ── */
+.modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}
+.modal-section-head .modal-section-title{margin:0;padding:0;border:none}
+.shop-btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark);background:rgba(122,158,126,0.12);border:1px solid rgba(122,158,126,0.35);padding:0.45rem 0.9rem;border-radius:20px;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.shop-btn:hover{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.shop-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.6);z-index:1700;align-items:flex-start;justify-content:center;padding:1.5rem;overflow-y:auto}
+.shop-overlay.open{display:flex}
+body.shop-open .modal-close{display:none}
+.shop-box{background:var(--white);border-radius:6px;max-width:520px;width:100%;margin:auto;position:relative;padding:2rem 1.8rem}
+.shop-close{position:fixed;top:1.1rem;right:1.1rem;background:rgba(46,42,37,0.78);border:none;width:38px;height:38px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--white);display:flex;align-items:center;justify-content:center;z-index:1800;box-shadow:0 2px 10px rgba(0,0,0,0.25)}
+.shop-head h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--text)}
+.shop-sub{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown-light);margin-top:0.2rem}
+.shop-hint{font-size:0.8rem;color:var(--text-muted);line-height:1.6;margin:1rem 0 1.2rem;padding:0.7rem 0.9rem;background:var(--cream);border-radius:5px}
+.shop-list{display:flex;flex-direction:column;gap:0.15rem;max-height:46vh;overflow-y:auto;padding-right:0.3rem}
+.shop-group{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);margin:0.9rem 0 0.35rem;padding-top:0.5rem;border-top:1px solid var(--cream-dark)}
+.shop-group:first-child{border-top:none;padding-top:0;margin-top:0}
+.shop-item{display:flex;align-items:flex-start;gap:0.65rem;font-size:0.85rem;color:var(--text-muted);line-height:1.5;padding:0.4rem 0.3rem;border-radius:4px;cursor:pointer;transition:background 0.15s}
+.shop-item:hover{background:var(--cream)}
+.shop-item input{margin-top:0.2rem;width:16px;height:16px;accent-color:var(--sage-dark);flex-shrink:0;cursor:pointer}
+.shop-item input:not(:checked)+span{opacity:0.4;text-decoration:line-through}
+.shop-actions{display:flex;gap:0.6rem;margin-top:1.4rem;flex-wrap:wrap}
+.shop-validate{flex:1;font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;padding:0.85rem 1.4rem;border-radius:25px;cursor:pointer;transition:opacity 0.2s}
+.shop-validate:hover{opacity:0.85}
+.shop-ghost{font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;background:transparent;color:var(--text-muted);border:1px solid var(--cream-dark);padding:0.85rem 1.4rem;border-radius:25px;cursor:pointer}
+.shop-ghost:hover{border-color:var(--brown-light);color:var(--text)}
+.shop-final{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem;max-height:52vh;overflow-y:auto}
+.shop-final li{font-size:0.87rem;color:var(--text);line-height:1.5;display:flex;align-items:baseline;gap:0.6rem;padding:0.45rem 0.2rem;border-bottom:1px dashed var(--cream-dark)}
+.shop-final li::before{content:'\25A2';color:var(--brown-light);font-size:0.85rem;flex-shrink:0}
+.shop-empty{font-size:0.9rem;color:var(--text-muted);text-align:center;padding:2rem 1rem;line-height:1.7}
+.shop-count{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:0.9rem}
+@media(max-width:640px){
+  .shop-box{padding:1.6rem 1.2rem}
+  .modal-section-head{align-items:flex-start;flex-direction:column;gap:0.6rem}
+  .shop-list{max-height:40vh}
+}
 .steps-list{list-style:none;display:flex;flex-direction:column;gap:0.9rem;margin-bottom:1.4rem}
 .step{display:flex;gap:0.9rem;align-items:flex-start}
 .step-num{width:26px;height:26px;border-radius:50%;background:var(--sage-dark);color:var(--white);font-size:0.68rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:500}
@@ -1744,6 +1786,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿</footer>
 
+<div class="shop-overlay" id="shop-overlay" onclick="handleShopOverlayClick(event)">
+  <div class="shop-box" id="shop-box">
+    <button class="shop-close" onclick="closeShoppingList()">&#10005;</button>
+    <div id="shop-content"></div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal" id="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -2018,21 +2067,21 @@ const recipes = {
       "Xanthane (QS, environ 1 g)"
     ],
     steps:[
-      "Praliné cacahuète : torréfiez les cacahuètes puis laissez-les refroidir. Réalisez un caramel à sec avec le sucre et laissez-le refroidir également. Mixez le tout jusqu'à obtenir une pâte lisse, puis ajoutez la fleur de sel et la vanille torréfiée. Il en restera pour d'autres desserts.",
-      "Confiture de lait : faites cuire les deux boîtes de lait concentré à la cocotte, ou immergées dans l'eau bouillante, pendant 4 heures. Versez dans un mixeur, ajoutez la vanille puis la xanthane avec parcimonie (gramme par gramme), et mixez jusqu'à obtenir une texture moins liquide.",
-      "Chantache (J-1 obligatoire) : faites chauffer une partie de la crème. Dans un grand cul-de-poule, déposez le chocolat blanc, le sucre glace, la vanille et la gélatine égouttée. Versez la crème chaude dessus et mixez. Ajoutez ensuite la crème froide et laissez refroidir 12 heures minimum avant de la monter en texture mousse à raser. Si votre crème est à 30% MG, ajoutez 1 g de gélatine.",
-      "Caramel salé : réalisez un caramel à sec bien lisse. Faites chauffer la crème en parallèle, puis ajoutez-la progressivement au caramel. Mélangez à la spatule une bonne minute. Hors du feu, ajoutez le beurre, la vanille et la fleur de sel, mélangez puis mixez pour homogénéiser.",
-      "Crémeux vanille : réalisez une crème anglaise avec la crème, les jaunes et la vergeoise, puis versez-la sur le beurre, la gélatine et la vanille. Mixez et laissez refroidir avant utilisation.",
-      "Crème pâtissière : portez le lait et la vanille à petite ébullition. Versez sur les jaunes, le sucre et la maïzena préalablement mélangés, puis remettez sur le feu en fouettant vivement. Pasteurisez en veillant à ce que la crème bouille au moins 2 minutes. Hors du feu, ajoutez le beurre en morceaux et la gélatine hydratée. Mixez, refroidissez rapidement puis conservez au frigo (3 jours maximum).",
-      "Biscuit moelleux : réalisez un beurre noisette. Concassez les amandes et mélangez-les à tous les ingrédients du mélange 1, puis incorporez le beurre noisette.",
-      "Montez les blancs du mélange 2 bien mousseux, en ajoutant le sucre petit à petit pour obtenir une texture meringuée. Incorporez délicatement le mélange 1 aux blancs montés.",
-      "Versez la préparation dans un cercle à entremets de 16 cm et enfournez 13 à 15 minutes à 180°C. Laissez refroidir.",
-      "Praliné croustillant : mélangez le praliné cacahuète avec la feuillantine.",
-      "Crème bonbon : lissez la crème pâtissière avec le praliné cacahuète au mixeur. En parallèle, montez la chantache dans une cuve bien froide. Mélangez délicatement les deux masses.",
-      "Montage : chemisez un cercle de 16 cm et 6 cm de haut avec un rhodoïd épais. Pochez la crème bonbon sur tout le tour, sur une épaisseur d'1 cm.",
-      "Tapissez le fond de praliné croustillant, déposez le biscuit bien épais par-dessus, puis pochez des points de caramel, de praliné et de confiture de lait. Marbrez le tout.",
-      "Pochez enfin le crémeux vanille pour combler et lisser. Réservez au congélateur.",
-      "Finition : montez la chantache lisse et soyeuse, puis pochez-la sur le gâteau décerclé. Laissez décongeler au réfrigérateur avant dégustation."
+      "J-2 — Praliné cacahuète : torréfiez les cacahuètes puis laissez-les refroidir. Réalisez un caramel à sec avec le sucre et laissez-le refroidir également. Mixez le tout jusqu'à obtenir une pâte lisse, puis ajoutez la fleur de sel et la vanille torréfiée. Il en restera pour d'autres desserts.",
+      "J-2 — Confiture de lait : faites cuire les deux boîtes de lait concentré à la cocotte, ou immergées dans l'eau bouillante, pendant 4 heures. Versez dans un mixeur, ajoutez la vanille puis la xanthane avec parcimonie (gramme par gramme), et mixez jusqu'à obtenir une texture moins liquide.",
+      "J-1 — Chantache : faites chauffer une partie de la crème. Dans un grand cul-de-poule, déposez le chocolat blanc, le sucre glace, la vanille et la gélatine égouttée. Versez la crème chaude dessus et mixez. Ajoutez ensuite la crème froide et laissez refroidir 12 heures minimum avant de la monter en texture mousse à raser. Si votre crème est à 30% MG, ajoutez 1 g de gélatine.",
+      "J-1 — Caramel salé : réalisez un caramel à sec bien lisse. Faites chauffer la crème en parallèle, puis ajoutez-la progressivement au caramel. Mélangez à la spatule une bonne minute. Hors du feu, ajoutez le beurre, la vanille et la fleur de sel, mélangez puis mixez pour homogénéiser.",
+      "J-1 — Crémeux vanille : réalisez une crème anglaise avec la crème, les jaunes et la vergeoise, puis versez-la sur le beurre, la gélatine et la vanille. Mixez et laissez refroidir avant utilisation.",
+      "J-1 — Crème pâtissière : portez le lait et la vanille à petite ébullition. Versez sur les jaunes, le sucre et la maïzena préalablement mélangés, puis remettez sur le feu en fouettant vivement. Pasteurisez en veillant à ce que la crème bouille au moins 2 minutes. Hors du feu, ajoutez le beurre en morceaux et la gélatine hydratée. Mixez, refroidissez rapidement puis conservez au frigo (3 jours maximum).",
+      "J-1 — Biscuit moelleux : réalisez un beurre noisette. Concassez les amandes et mélangez-les à tous les ingrédients du mélange 1, puis incorporez le beurre noisette.",
+      "J-1 — Montez les blancs du mélange 2 bien mousseux, en ajoutant le sucre petit à petit pour obtenir une texture meringuée. Incorporez délicatement le mélange 1 aux blancs montés.",
+      "J-1 — Versez la préparation dans un cercle à entremets de 16 cm et enfournez 13 à 15 minutes à 180°C. Laissez refroidir.",
+      "Jour J — Praliné croustillant : mélangez le praliné cacahuète avec la feuillantine.",
+      "Jour J — Crème bonbon : lissez la crème pâtissière avec le praliné cacahuète au mixeur. En parallèle, montez la chantache dans une cuve bien froide. Mélangez délicatement les deux masses.",
+      "Jour J — Montage : chemisez un cercle de 16 cm et 6 cm de haut avec un rhodoïd épais. Pochez la crème bonbon sur tout le tour, sur une épaisseur d'1 cm.",
+      "Jour J — Tapissez le fond de praliné croustillant, déposez le biscuit bien épais par-dessus, puis pochez des points de caramel, de praliné et de confiture de lait. Marbrez le tout.",
+      "Jour J — Pochez enfin le crémeux vanille pour combler et lisser. Réservez au congélateur.",
+      "Jour J — Finition : montez la chantache lisse et soyeuse, puis pochez-la sur le gâteau décerclé. Laissez décongeler au réfrigérateur avant dégustation."
     ],
     astuce:"C'est un entremets d'atelier, à organiser sur 3 jours : praliné et confiture de lait en amont, chantache et insert la veille (les 12h de repos de la chantache ne se négocient pas), montage et finition le jour J. La chantache se congèle très bien, montée ou non : il suffit de la décongeler la veille, puis de la mixer et de la monter le jour même. Recette adaptée de L'Atelier de Chiara, avec un praliné cacahuète à la place du praliné amande 🥜"
   },
@@ -2689,12 +2738,35 @@ function openModal(id) {
     }
     return '<li>'+x+'</li>';
   }).join('');
-  const steps=r.steps.map((s,idx)=>{
-    const txt = (typeof s === 'string') ? s : s.text;
+  // Découpage des étapes par jour (J-2, J-1, Jour J...). Une étape sans préfixe
+  // hérite du jour de l'étape précédente.
+  const DAY_RE = /^\s*(Jour J|J-\d)\s*[\u2014\u2013-]\s*/;
+  let curDay = null;
+  const stepData = r.steps.map(s => {
+    const raw = (typeof s === 'string') ? s : s.text;
+    let m = raw.match(DAY_RE);
+    let body = raw;
+    if (m) { curDay = m[1]; body = raw.slice(m[0].length); }
+    else {
+      const par = raw.match(/^(.{1,60}?)\s*\((Jour J|J-\d)\)\s*:\s*/);
+      if (par) { curDay = par[2]; body = par[1] + ' : ' + raw.slice(par[0].length); m = par; }
+    }
     let photos = [];
     if (typeof s === 'object' && s.img) photos = Array.isArray(s.img) ? s.img : [s.img];
-    const photosHtml = photos.length ? '<div class="step-photos">'+photos.map(src=>'<img class="step-img" src="'+src+'" alt="" loading="lazy">').join('')+'</div>' : '';
-    return '<li class="step"><span class="step-num">'+(idx+1)+'</span><div class="step-content"><p>'+txt+'</p>'+photosHtml+'</div></li>';
+    return { day: curDay, text: body, photos: photos };
+  });
+  const days = [];
+  stepData.forEach(x => { if (x.day && days.indexOf(x.day) === -1) days.push(x.day); });
+  const multiDay = days.length > 1;
+  const dayTabsHtml = multiDay
+    ? '<div class="day-tabs"><button class="day-tab active" onclick="filterDay(this,\'all\')">Tout voir</button>'
+      + days.map(d => '<button class="day-tab" onclick="filterDay(this,\''+d+'\')">'+d+'</button>').join('')
+      + '</div>'
+    : '';
+  const steps = stepData.map((x,idx) => {
+    const photosHtml = x.photos.length ? '<div class="step-photos">'+x.photos.map(src=>'<img class="step-img" src="'+src+'" alt="" loading="lazy">').join('')+'</div>' : '';
+    const badge = (multiDay && x.day) ? '<div class="day-badge">'+x.day+'</div>' : '';
+    return '<li class="step" data-day="'+(x.day||'')+'"><span class="step-num">'+(idx+1)+'</span><div class="step-content">'+badge+'<p>'+x.text+'</p>'+photosHtml+'</div></li>';
   }).join('');
   const communauteHtml = '';
   const nutritionHtml = r.kcal ? 
@@ -2705,8 +2777,10 @@ function openModal(id) {
   document.getElementById('modal-content').innerHTML=
     photosHtml+'<div class="modal-body"><div class="modal-tag">'+r.tag+'</div><h2 class="modal-title">'+r.title+'</h2>'+
     nutritionHtml+
-    '<div class="modal-section-title">Ingrédients</div><ul class="ingredient-list">'+ing+'</ul>'+
-    '<div class="modal-section-title">Préparation</div><ol class="steps-list">'+steps+'</ol>'+
+    '<div class="modal-section-head"><div class="modal-section-title">Ingrédients</div>'+
+    '<button class="shop-btn" onclick="openShoppingList(\''+id+'\')" title="Générer ma liste de courses">&#128722; Liste de courses</button></div>'+
+    '<ul class="ingredient-list">'+ing+'</ul>'+
+    '<div class="modal-section-title">Préparation</div>'+dayTabsHtml+'<ol class="steps-list">'+steps+'</ol>'+
     '<div class="astuce">'+r.astuce+'</div>'+(communitySection[id]||'')+'</div>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -2742,7 +2816,92 @@ function openModalComingPhotos(id, name) {
   document.body.style.overflow='hidden';
 }
 
+// ===== FILTRE PAR JOUR =====
+function filterDay(btn, day){
+  const box = document.getElementById('modal-content');
+  if(!box) return;
+  box.querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  box.querySelectorAll('.steps-list .step').forEach(li => {
+    li.style.display = (day === 'all' || li.dataset.day === day) ? '' : 'none';
+  });
+}
+
+// ===== LISTE DE COURSES =====
+let shopRecipeId = null;
+let shopFinalList = [];
+
+function isSectionHeader(x){ return x.indexOf('\u2014 ') === 0 && x.lastIndexOf(' \u2014') === x.length - 2; }
+
+function openShoppingList(id){
+  shopRecipeId = id;
+  const r = recipes[id];
+  if(!r) return;
+  const rows = r.ingredients.map((x,i) => {
+    if(isSectionHeader(x)) return '<div class="shop-group">'+x.replace(/\u2014/g,'').trim()+'</div>';
+    return '<label class="shop-item"><input type="checkbox" checked data-i="'+i+'"><span>'+x+'</span></label>';
+  }).join('');
+  document.getElementById('shop-content').innerHTML =
+    '<div class="shop-head"><h3>Liste de courses</h3><div class="shop-sub">'+r.title+'</div></div>'+
+    '<p class="shop-hint">Tout est coché par défaut. D\u00e9cochez ce que vous avez d\u00e9j\u00e0 dans vos placards, puis validez.</p>'+
+    '<div class="shop-list">'+rows+'</div>'+
+    '<div class="shop-actions"><button class="shop-validate" onclick="validateShoppingList()">Valider ma liste</button></div>';
+  document.getElementById('shop-overlay').classList.add('open');
+  document.body.classList.add('shop-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function validateShoppingList(){
+  const boxes = document.querySelectorAll('#shop-content .shop-item input:checked');
+  shopFinalList = Array.prototype.map.call(boxes, cb => cb.nextElementSibling.textContent);
+  const r = recipes[shopRecipeId];
+  const body = shopFinalList.length
+    ? '<ul class="shop-final">'+shopFinalList.map(t => '<li>'+t+'</li>').join('')+'</ul>'+
+      '<div class="shop-count">'+shopFinalList.length+' article'+(shopFinalList.length>1?'s':'')+' \u00e0 acheter</div>'
+    : '<p class="shop-empty">Vous avez d\u00e9j\u00e0 tout ce qu\'il faut !<br>Plus qu\'\u00e0 se mettre aux fourneaux \ud83c\udf3f</p>';
+  document.getElementById('shop-content').innerHTML =
+    '<div class="shop-head"><h3>Ma liste de courses</h3><div class="shop-sub">'+r.title+'</div></div>'+
+    body+
+    '<div class="shop-actions"><button class="shop-ghost" onclick="openShoppingList(shopRecipeId)">Modifier</button>'+
+    (shopFinalList.length ? '<button class="shop-validate" id="shop-copy" onclick="copyShoppingList()">Copier la liste</button>' : '')+
+    '</div>';
+}
+
+function copyShoppingList(){
+  const r = recipes[shopRecipeId];
+  const txt = 'Liste de courses \u2014 '+r.title+'\n\n'+shopFinalList.map(t => '\u2022 '+t).join('\n');
+  const done = () => {
+    const b = document.getElementById('shop-copy');
+    if(b){ const old = b.textContent; b.textContent = 'Copi\u00e9e !'; setTimeout(()=>{ b.textContent = old; }, 1800); }
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt, done));
+  } else { fallbackCopy(txt, done); }
+}
+
+function fallbackCopy(txt, done){
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function closeShoppingList(){
+  document.getElementById('shop-overlay').classList.remove('open');
+  document.body.classList.remove('shop-open');
+  // la fiche recette reste ouverte derri\u00e8re : on ne rend le scroll que si elle est ferm\u00e9e
+  const modal = document.getElementById('modal-overlay');
+  if(!modal || !modal.classList.contains('open')) document.body.style.overflow = '';
+}
+
+function handleShopOverlayClick(e){
+  if(e.target === document.getElementById('shop-overlay')) closeShoppingList();
+}
+
 function closeModal() {
+  const shop = document.getElementById('shop-overlay');
+  if(shop){ shop.classList.remove('open'); document.body.classList.remove('shop-open'); }
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
