@@ -861,6 +861,12 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
 .inspi-tag-manque:hover{background:var(--brown);border-color:var(--brown);color:var(--white)}
 .inspi-voir{font-family:Jost,sans-serif;font-size:0.65rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:18px;padding:0.5rem 1rem;cursor:pointer;transition:opacity 0.2s}
 .inspi-voir:hover{opacity:0.85}
+.inspi-sep{font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light);font-weight:600;margin:1.1rem 0 0.3rem;padding-top:0.8rem;border-top:1px dashed var(--cream-dark)}
+.inspi-carte-bonus{border-left-color:var(--brown-light)}
+.inspi-methode-btn{font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;background:transparent;border:1px solid var(--brown-light);color:var(--brown);border-radius:18px;padding:0.45rem 0.95rem;cursor:pointer;transition:all 0.2s}
+.inspi-methode-btn:hover{background:var(--brown);border-color:var(--brown);color:var(--white)}
+.inspi-methode{display:none;margin-top:0.6rem;padding:0.7rem 0.8rem;background:var(--cream);border-radius:6px;font-size:0.78rem;color:var(--text-muted);line-height:1.7}
+.inspi-methode strong{color:var(--sage-dark);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase}
 .inspi-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.8rem}
 .inspi-chip{font-family:Jost,sans-serif;font-size:0.72rem;background:var(--white);border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.42rem 0.85rem;cursor:pointer;transition:all 0.2s}
 .inspi-chip:hover{border-color:var(--sage);color:var(--sage-dark);background:var(--cream)}
@@ -1023,7 +1029,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
         <li><a href="#" data-tab="viennoiserie">Viennoiserie</a></li>
       </ul>
     </li>
-    <li><a href="#" data-tab="inspiration">À court d'inspiration&nbsp;?</a></li>
+    <li><a href="#" data-tab="inspiration">SOS Cuisine</a></li>
     <li><a href="#" data-tab="feed">Partage ta réalisation</a></li>
     <li><a href="#" data-tab="calculateur" style="font-weight:600">Mon bilan calorique</a></li>
     <li class="nav-wishlist-li" style="margin-left:auto"><a href="#" data-tab="wishlist" id="wishlist-nav" title="Mes favoris">❤️ <span id="wishlist-count"></span></a></li>
@@ -1731,13 +1737,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="tab-content" id="tab-inspiration">
   <div class="inspi-wrap">
     <div class="inspi-header">
-      <h2>À court d'inspiration&nbsp;?</h2>
-      <p>Vous ne savez pas quoi faire&nbsp;? Dites-moi ce que vous avez sous la main, je vous propose jusqu'à trois recettes du site. Et s'il vous manque un ingrédient, je vous donne de quoi le remplacer.</p>
+      <h2>SOS Cuisine</h2>
+      <p>Basile répond aux questions qu'on se pose une fois les mains dans la farine&nbsp;: quoi faire à manger ce soir, par quoi remplacer ce qui manque, et ce que veut bien dire ce mot dans la recette.</p>
     </div>
     <div class="inspi-chat" id="inspi-chat"></div>
     <div class="inspi-chips" id="inspi-chips"></div>
     <div class="inspi-bar">
-      <input type="text" id="inspi-input" placeholder="farine, beurre, œufs, chocolat..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();envoyerInspi();}">
+      <input type="text" id="inspi-input" placeholder="pâtes, viande hachée, tomates..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();envoyerInspi();}">
       <button class="inspi-send" onclick="envoyerInspi()">Envoyer</button>
     </div>
     <button class="inspi-reset" onclick="resetInspi()">Recommencer</button>
@@ -3672,6 +3678,72 @@ const INSPI_SUBSTITUTS = {
   'poudre amande': ['de la poudre de noisettes', 'de la poudre de pistaches', 'des flocons d\u2019avoine mixés très finement'],
   'creme liquide': ['du lait de coco entier, à volume égal', 'de la crème végétale avoine ou soja', 'du mascarpone détendu avec un peu de lait'],
   'chocolat blanc': ['du chocolat au lait, en réduisant un peu le sucre de la recette'],
+  'sirop agave': ['de la stévia (quelques gouttes suffisent, c’est 200 fois plus sucrant)', 'du miel, au même poids', 'du sucre en poudre, environ 25 % de plus'],
+  'stevia': ['du sucre en poudre, en dosant à votre goût', 'du sirop d’agave', 'du miel'],
+  'sirop erable': ['du miel', 'du sirop d’agave', 'de la cassonade fondue dans un peu d’eau'],
+  'melasse': ['du miel + 1 c.à.c de cacao', 'du sirop d’érable foncé'],
+  'sirop glucose': ['du miel', 'du sirop d’agave', 'du sucre inverti'],
+  'lait coco': ['de la crème entière + 1 c.à.c d’huile de coco', 'de la purée de coco détendue à l’eau chaude'],
+  'huile olive': ['de l’huile de tournesol ou de colza', 'du beurre fondu pour les cuissons'],
+  'vinaigre': ['du jus de citron', 'du vinaigre de cidre ou balsamique selon le plat'],
+  'moutarde': ['1 c.à.c de moutarde en poudre + un peu d’eau', 'du raifort pour une note plus vive'],
+  'creme fraiche': ['du yaourt grec', 'du fromage blanc épais', 'de la crème végétale'],
+  'parmesan': ['du pecorino', 'du grana padano', 'du comté vieux râpé'],
+  'gruyere': ['de l’emmental', 'du comté', 'du cheddar pour un goût plus marqué'],
+  'feta': ['de la brousse salée', 'du chèvre frais émietté'],
+  'mozzarella': ['de la scamorza', 'de l’emmental pour un gratin'],
+  'tahini': ['de la purée de sésame', 'de la purée d’amande blanche'],
+  'beurre cacahuete': ['de la purée d’amande', 'de la purée de noisette'],
+  'whey': ['de la poudre d’amande + un peu de lait en poudre', 'du fromage blanc pour un apport protéiné'],
+  'chapelure': ['du pain sec mixé', 'des biscottes écrasées', 'des flocons d’avoine mixés'],
+  'semoule': ['du boulgour', 'du quinoa'],
+  'boulgour': ['de la semoule', 'du quinoa', 'du riz'],
+  'quinoa': ['du boulgour', 'du riz complet'],
+  'riz': ['des pâtes', 'du boulgour', 'du quinoa'],
+  'pate brisee': ['une pâte feuilletée', 'une pâte maison : 250 g de farine, 125 g de beurre, 5 cl d’eau, 1 pincée de sel'],
+  'lentille': ['des pois cassés', 'des haricots blancs'],
+  'pois chiche': ['des haricots blancs', 'des lentilles cuites'],
+  'haricot rouge': ['des pois chiches', 'des haricots blancs'],
+  'tofu': ['du tempeh', 'des pois chiches pour l’apport protéiné'],
+  'oignon': ['une échalote', 'du blanc de poireau', 'de la ciboule'],
+  'echalote': ['un demi-oignon', 'de la ciboule'],
+  'ail': ['de l’ail semoule, 1/4 de c.à.c par gousse', 'de l’ail des ours'],
+  'gingembre': ['du gingembre en poudre, 1/4 de c.à.c par cm de racine'],
+  'bouillon': ['de l’eau + un cube de bouillon', 'de l’eau de cuisson de légumes'],
+  'tomate concassee': ['des tomates fraîches pelées et mijotées', 'du coulis de tomate'],
+  'concentre tomate': ['du coulis réduit', 'du ketchup, en dernier recours'],
+  'poivron': ['de la courgette', 'de l’aubergine'],
+  'courgette': ['de l’aubergine', 'du brocoli'],
+  'brocoli': ['du chou-fleur', 'des haricots verts'],
+  'epinard': ['de la roquette', 'des blettes'],
+  'champignon': ['des champignons en conserve bien égouttés', 'des aubergines pour le fondant'],
+  'lardon': ['des dés de jambon', 'du tofu fumé', 'des champignons pour une version sans viande'],
+  'jambon': ['du blanc de poulet', 'de la dinde fumée'],
+  'poulet': ['de la dinde', 'du tofu ferme mariné'],
+  'thon': ['du maquereau', 'du saumon en conserve'],
+  'saumon': ['de la truite', 'du cabillaud'],
+  'basilic': ['de la roquette', 'du persil plat'],
+  'persil': ['de la coriandre', 'du cerfeuil'],
+  'menthe': ['du basilic', 'de la verveine fraîche'],
+  'cannelle': ['du mélange quatre-épices', 'de la cardamome'],
+  'curry': ['du garam masala', 'du curcuma + cumin + coriandre'],
+  'cumin': ['du carvi', 'du curry'],
+  'paprika': ['du piment doux', 'du paprika fumé pour plus de caractère'],
+  'muscade': ['du macis', 'un peu de poivre blanc'],
+  'safran': ['du curcuma pour la couleur, mais le goût sera différent'],
+  'sesame': ['des graines de lin', 'des graines de pavot'],
+  'chia': ['des graines de lin moulues'],
+  'noix': ['des noix de pécan', 'des noisettes'],
+  'pignon': ['des amandes effilées', 'des noix concassées'],
+  'raisin sec': ['des cranberries séchées', 'des dattes coupées'],
+  'datte': ['des figues séchées', 'des pruneaux'],
+  'pruneau': ['des dattes', 'des abricots secs'],
+  'coco rape': ['de la poudre d’amande', 'des flocons d’avoine mixés'],
+  'agar': ['de la gélatine : 6 g pour 2 g d’agar-agar'],
+  'colorant': ['du jus de betterave pour le rose, du curcuma pour le jaune, de la spiruline pour le vert'],
+  'sucre vanille': ['1 c.à.c d’extrait de vanille + 1 c.à.s de sucre'],
+  'vin blanc': ['du bouillon + 1 c.à.s de vinaigre', 'du jus de raisin blanc'],
+  'pain mie': ['du pain de campagne en tranches fines', 'des tortillas pour une version express'],
   'beurre': ['de la margarine, au même poids', 'de l\u2019huile de coco désodorisée, à 80 % du poids', 'de la purée d\u2019amande ou de cacahuète, pour un résultat plus dense'],
   'oeuf': ['60 g de compote de pommes par œuf', '1 c.à.s de graines de lin moulues + 3 c.à.s d\u2019eau, reposées 10 minutes', '60 g de yaourt nature par œuf'],
   'lait': ['une boisson végétale avoine, amande ou soja, à volume égal', 'du lait de coco pour une note plus riche'],
@@ -3740,6 +3812,41 @@ function inspiMots(texte){
     .map(inspiRacine);
 }
 
+// familles d'ingrédients : « pâtes » doit reconnaître « lasagnes », « viande » doit reconnaître « bœuf »...
+const INSPI_SYNONYMES = {
+  'pate':['pate','spaghetti','tagliatelle','lasagne','penne','macaroni','nouille','coquillette','farfalle','fusilli'],
+  'nouille':['nouille','pate','spaghetti','tagliatelle'],
+  'spaghetti':['spaghetti','pate'],
+  'lasagne':['lasagne','pate'],
+  'viande':['viande','boeuf','steak','hache','hachee'],
+  'hache':['hache','hachee','viande','boeuf'],
+  'hachee':['hachee','hache','viande','boeuf'],
+  'boeuf':['boeuf','viande','hache','hachee','steak'],
+  'steak':['steak','viande','boeuf','hachee'],
+  'poulet':['poulet','volaille','escalope','blanc','nugget'],
+  'volaille':['volaille','poulet','dinde'],
+  'dinde':['dinde','poulet','volaille','escalope'],
+  'lardon':['lardon','jambon','porc','bacon'],
+  'jambon':['jambon','lardon','porc'],
+  'patate':['patate','pomme','terre'],
+  'fromage':['fromage','gruyere','parmesan','emmental','cheddar','mozzarella','feta','comte'],
+  'gruyere':['gruyere','fromage','emmental','comte'],
+  'parmesan':['parmesan','fromage','pecorino'],
+  'oignon':['oignon','echalote','ciboule'],
+  'echalote':['echalote','oignon'],
+  'tomate':['tomate','concassee','concasse','coulis'],
+  'crevette':['crevette','gamba','scampi'],
+  'poisson':['poisson','saumon','thon','cabillaud','colin','truite'],
+  'saumon':['saumon','poisson','truite'],
+  'thon':['thon','poisson','maquereau'],
+  'legume':['legume','carotte','courgette','poireau','navet','poivron'],
+  'salade':['salade','laitue','roquette','mache']
+};
+
+function inspiGroupes(mots){
+  return mots.map(m => INSPI_SYNONYMES[m] || [m]);
+}
+
 function estIntertitre(x){ return x.indexOf('\u2014 ') === 0 && x.lastIndexOf(' \u2014') === x.length - 2; }
 
 // index construit une seule fois
@@ -3757,25 +3864,31 @@ function inspiIndex(){
 function inspiChercher(saisie){
   const possede = inspiMots(saisie);
   if(!possede.length) return [];
-  return inspiIndex().map(r => {
+  const groupes = inspiGroupes(possede);
+  const liste = inspiIndex().map(r => {
     const manque = [];
     let ok = 0;
     r.lignes.forEach(l => {
       const basique = l.mots.some(m => INSPI_BASIQUES.indexOf(m) !== -1);
-      const trouve = l.mots.some(m => possede.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0));
+      const trouve = l.mots.some(m => groupes.some(g => g.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0)));
       if(trouve || basique) ok++; else manque.push(l.texte);
     });
     const total = r.lignes.length || 1;
-    const utilises = possede.filter(p => r.lignes.some(l => l.mots.some(m => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0))).length;
+    const utilises = groupes.filter(g => r.lignes.some(l => l.mots.some(m => g.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0)))).length;
     const ratio = ok / total;
     const couverture = utilises / possede.length;
     return { id: r.id, titre: r.titre, tag: r.tag,
-             score: 0.65 * ratio + 0.35 * couverture,
+             score: 0.42 * ratio + 0.58 * couverture,
              ratio: ratio, ok: ok, total: total, manque: manque, utilises: utilises };
   })
   .filter(r => r.utilises > 0)
-  .sort((a,b) => b.score - a.score || a.manque.length - b.manque.length)
-  .slice(0, 3);
+  .sort((a,b) => b.score - a.score || a.manque.length - b.manque.length);
+  return inspiFiltrerBruit(liste).slice(0, 3);
+}
+
+function inspiFiltrerBruit(liste){
+  const solides = liste.filter(r => r.utilises >= 2 || r.ratio >= 0.4);
+  return solides.length ? solides : liste;
 }
 
 function inspiSubstituts(texte){
@@ -3787,6 +3900,308 @@ function inspiSubstituts(texte){
     if(mots.every(m => t.indexOf(m) !== -1)) return { cle: c, liste: INSPI_SUBSTITUTS[c] };
   }
   return null;
+}
+
+// ===== BIBLIOTHÈQUE DE RECETTES CLASSIQUES (hors site) =====
+// Proposées en complément des recettes d'Elsa, avec méthode résumée.
+const INSPI_AUTRES = [
+  {t:'Pancakes moelleux', g:'Petit-déjeuner', i:['200 g de farine','2 œufs','250 ml de lait','30 g de sucre','1 sachet de levure chimique','20 g de beurre fondu','1 pincée de sel'],
+   m:'Mélangez les ingrédients secs, ajoutez les œufs, le lait puis le beurre fondu. Laissez reposer 20 minutes. Versez une petite louche dans une poêle chaude légèrement beurrée et retournez dès que des bulles apparaissent en surface.'},
+  {t:'Crêpes classiques', g:'Petit-déjeuner', i:['250 g de farine','3 œufs','500 ml de lait','2 c.à.s de sucre','30 g de beurre fondu','1 pincée de sel'],
+   m:'Fouettez la farine avec les œufs, délayez peu à peu avec le lait pour éviter les grumeaux, ajoutez le sucre, le sel et le beurre fondu. Laissez reposer 1 heure avant de cuire dans une poêle bien chaude.'},
+  {t:'Gâteau au yaourt', g:'Gâteau', i:['1 yaourt nature','2 pots de sucre','3 pots de farine','3 œufs','1/2 pot d’huile','1 sachet de levure chimique'],
+   m:'Le pot de yaourt sert de mesure. Mélangez le yaourt, le sucre et les œufs, ajoutez la farine et la levure, puis l’huile. Enfournez 30 minutes à 180°C dans un moule beurré.'},
+  {t:'Quatre-quarts', g:'Gâteau', i:['200 g de beurre','200 g de sucre','200 g de farine','4 œufs','1 sachet de levure chimique'],
+   m:'Le même poids pour tout, d’où son nom. Faites fondre le beurre, mélangez-le au sucre puis aux œufs un à un. Ajoutez la farine et la levure. Enfournez 45 minutes à 160°C.'},
+  {t:'Muffins aux pépites', g:'Goûter', i:['250 g de farine','100 g de sucre','1 œuf','200 ml de lait','80 g de beurre fondu','1 sachet de levure chimique','100 g de pépites de chocolat'],
+   m:'Mélangez rapidement le sec et le liquide, sans insister : une pâte grumeleuse donne des muffins plus aérés. Ajoutez les pépites, remplissez les moules aux deux tiers, 20 minutes à 180°C.'},
+  {t:'Clafoutis aux cerises', g:'Dessert', i:['500 g de cerises','100 g de farine','100 g de sucre','3 œufs','300 ml de lait','1 pincée de sel'],
+   m:'Fouettez les œufs et le sucre, ajoutez la farine puis le lait. Disposez les cerises dans un plat beurré, versez l’appareil dessus et enfournez 40 minutes à 180°C.'},
+  {t:'Riz au lait', g:'Dessert', i:['150 g de riz rond','1 l de lait','80 g de sucre','1 gousse de vanille'],
+   m:'Portez le lait à ébullition avec la vanille fendue. Versez le riz et laissez cuire 35 minutes à feu très doux en remuant souvent. Ajoutez le sucre en fin de cuisson.'},
+  {t:'Pain perdu', g:'Goûter', i:['6 tranches de pain rassis','2 œufs','300 ml de lait','40 g de sucre','20 g de beurre','1 c.à.c de cannelle'],
+   m:'Battez les œufs avec le lait, le sucre et la cannelle. Trempez les tranches quelques secondes de chaque côté, puis dorez-les à la poêle dans le beurre mousseux.'},
+  {t:'Mousse au chocolat', g:'Dessert', i:['200 g de chocolat noir','6 œufs','1 pincée de sel'],
+   m:'Faites fondre le chocolat, incorporez les jaunes hors du feu. Montez les blancs en neige ferme avec le sel et incorporez-les en trois fois, délicatement. Réservez 4 heures au frais.'},
+  {t:'Crumble aux pommes', g:'Dessert', i:['6 pommes','150 g de farine','100 g de beurre froid','100 g de sucre','1 c.à.c de cannelle'],
+   m:'Sablez la farine, le sucre et le beurre froid entre vos doigts. Disposez les pommes coupées dans un plat, couvrez de pâte émiettée et enfournez 35 minutes à 180°C.'},
+  {t:'Compote maison', g:'Dessert', i:['1 kg de pommes','50 g de sucre','1 c.à.s d’eau','1 c.à.c de cannelle'],
+   m:'Coupez les pommes en morceaux, ajoutez l’eau et faites compoter à couvert 20 minutes à feu doux. Écrasez à la fourchette pour une texture rustique, mixez pour une texture lisse.'},
+  {t:'Cookies express', g:'Goûter', i:['250 g de farine','125 g de beurre mou','100 g de cassonade','1 œuf','1/2 sachet de levure chimique','150 g de chocolat en morceaux'],
+   m:'Crémez le beurre et la cassonade, ajoutez l’œuf puis la farine et la levure. Incorporez le chocolat. Formez des boules et enfournez 11 minutes à 180°C : le centre doit rester souple.'},
+  {t:'Mug cake au chocolat', g:'Express', i:['4 c.à.s de farine','3 c.à.s de sucre','2 c.à.s de cacao','1 œuf','3 c.à.s de lait','2 c.à.s d’huile'],
+   m:'Mélangez tout directement dans le mug jusqu’à obtenir une pâte lisse. Passez 1 minute 30 au micro-ondes à pleine puissance. À manger tiède, à la cuillère.'},
+  {t:'Energy balls', g:'En-cas', i:['200 g de dattes','100 g de flocons d’avoine','60 g de beurre de cacahuète','30 g de cacao'],
+   m:'Mixez les dattes jusqu’à obtenir une pâte, ajoutez le reste et mixez encore. Formez des boules avec les mains légèrement humides, puis réservez 1 heure au frais.'},
+  {t:'Granola maison', g:'Petit-déjeuner', i:['300 g de flocons d’avoine','80 g de miel','60 g d’huile','100 g de fruits secs','1 c.à.c de cannelle'],
+   m:'Mélangez les flocons avec le miel tiédi et l’huile. Étalez sur une plaque et enfournez 25 minutes à 150°C en remuant à mi-cuisson. Ajoutez les fruits secs à la sortie du four.'},
+  {t:'Omelette aux herbes', g:'Salé', i:['6 œufs','20 g de beurre','1 bouquet d’herbes fraîches','sel','poivre'],
+   m:'Battez les œufs sans excès, salez. Versez dans une poêle chaude et beurrée, ramenez les bords vers le centre à la spatule. Retirez du feu quand le centre est encore baveux.'},
+  {t:'Quiche lorraine', g:'Salé', i:['1 pâte brisée','200 g de lardons','3 œufs','200 ml de crème','100 ml de lait','100 g de gruyère râpé','1 pincée de muscade'],
+   m:'Faites revenir les lardons sans matière grasse. Battez les œufs avec la crème, le lait et la muscade. Garnissez la pâte, versez l’appareil, parsemez de gruyère. 35 minutes à 180°C.'},
+  {t:'Gratin dauphinois', g:'Salé', i:['1 kg de pommes de terre','400 ml de crème','200 ml de lait','2 gousses d’ail','1 pincée de muscade'],
+   m:'Coupez les pommes de terre en fines rondelles sans les rincer, l’amidon lie le gratin. Frottez le plat à l’ail, alternez les couches, couvrez de crème et de lait. 1 heure à 160°C.'},
+  {t:'Ratatouille', g:'Salé', i:['2 courgettes','1 aubergine','2 poivrons','4 tomates','1 oignon','2 gousses d’ail','huile d’olive','thym'],
+   m:'Faites revenir chaque légume séparément pour qu’il garde sa tenue, puis réunissez-les avec l’ail et le thym. Laissez mijoter 30 minutes à découvert pour concentrer les saveurs.'},
+  {t:'Soupe de légumes', g:'Salé', i:['3 carottes','2 pommes de terre','1 poireau','1 oignon','1 l de bouillon'],
+   m:'Faites suer l’oignon et le poireau, ajoutez les légumes coupés et le bouillon. Laissez cuire 25 minutes, puis mixez plus ou moins finement selon la texture voulue.'},
+  {t:'Dahl de lentilles corail', g:'Salé', i:['250 g de lentilles corail','400 ml de lait de coco','1 oignon','2 gousses d’ail','1 morceau de gingembre','2 c.à.c de curry','500 ml de bouillon'],
+   m:'Faites revenir l’oignon, l’ail et le gingembre avec les épices. Ajoutez les lentilles rincées, le bouillon et le lait de coco. Laissez mijoter 20 minutes : les lentilles doivent se défaire.'},
+  {t:'Curry de pois chiches', g:'Salé', i:['400 g de pois chiches','400 ml de lait de coco','1 oignon','2 tomates','2 c.à.c de curry','2 gousses d’ail','riz'],
+   m:'Faites revenir l’oignon et l’ail, ajoutez les épices puis les tomates. Versez les pois chiches égouttés et le lait de coco, laissez réduire 20 minutes. Servez avec du riz.'},
+  {t:'Chili sin carne', g:'Salé', i:['400 g de haricots rouges','400 g de tomates concassées','1 oignon','1 poivron','1 c.à.c de cumin','1 c.à.c de paprika','riz'],
+   m:'Faites revenir l’oignon et le poivron, ajoutez les épices, les tomates et les haricots. Laissez mijoter 30 minutes à feu doux. Meilleur réchauffé le lendemain.'},
+  {t:'Risotto aux champignons', g:'Salé', i:['300 g de riz arborio','300 g de champignons','1 oignon','1 l de bouillon','100 ml de vin blanc','60 g de parmesan','30 g de beurre'],
+   m:'Nacrez le riz avec l’oignon, déglacez au vin blanc. Ajoutez le bouillon chaud louche par louche en remuant, 18 minutes. Hors du feu, liez avec le beurre et le parmesan.'},
+  {t:'Pâtes à la carbonara', g:'Salé', i:['400 g de pâtes','150 g de lardons','3 jaunes d’œufs','80 g de parmesan','poivre'],
+   m:'Mélangez les jaunes et le parmesan. Faites revenir les lardons. Hors du feu, versez les pâtes égouttées, la préparation aux œufs et un peu d’eau de cuisson. Aucune crème, jamais.'},
+  {t:'Pesto maison', g:'Salé', i:['60 g de basilic','50 g de parmesan','30 g de pignons','1 gousse d’ail','100 ml d’huile d’olive'],
+   m:'Mixez le basilic avec l’ail et les pignons, ajoutez le parmesan puis l’huile en filet. Se conserve une semaine au frais sous une fine couche d’huile.'},
+  {t:'Taboulé libanais', g:'Salé', i:['100 g de boulgour','3 tomates','1 bouquet de persil','quelques feuilles de menthe','1 citron','huile d’olive','1 oignon'],
+   m:'Réhydratez le boulgour 15 minutes. Hachez très finement le persil et la menthe : ici l’herbe domine, pas la semoule. Mélangez avec les tomates en dés, le citron et l’huile.'},
+  {t:'Houmous', g:'Salé', i:['400 g de pois chiches','60 g de tahini','1 citron','1 gousse d’ail','1 c.à.c de cumin','huile d’olive'],
+   m:'Mixez longuement les pois chiches avec le tahini, le citron, l’ail et le cumin, en ajoutant un peu d’eau glacée pour obtenir une texture crémeuse. Arrosez d’huile au moment de servir.'},
+  {t:'Shakshuka', g:'Salé', i:['4 œufs','400 g de tomates concassées','1 poivron','1 oignon','2 gousses d’ail','1 c.à.c de cumin','1 c.à.c de paprika'],
+   m:'Faites compoter l’oignon, le poivron et les tomates avec les épices 20 minutes. Creusez des puits, cassez-y les œufs, couvrez et laissez prendre 6 minutes : le jaune doit rester coulant.'},
+  {t:'Salade de lentilles', g:'Salé', i:['250 g de lentilles vertes','1 échalote','1 c.à.c de moutarde','2 c.à.s de vinaigre','huile d’olive','persil'],
+   m:'Cuisez les lentilles 25 minutes dans l’eau non salée. Égouttez et assaisonnez encore tièdes, elles absorbent bien mieux la vinaigrette. Ajoutez l’échalote ciselée et le persil.'},
+  {t:'Croque-monsieur', g:'Express', i:['8 tranches de pain de mie','4 tranches de jambon','100 g de gruyère râpé','20 g de beurre','20 g de farine','200 ml de lait'],
+   m:'Préparez une béchamel épaisse. Tartinez le pain, ajoutez jambon et fromage, refermez, couvrez encore de béchamel et de gruyère. 12 minutes à 200°C.'},
+  {t:'Galettes de pommes de terre', g:'Salé', i:['4 pommes de terre','1 œuf','2 c.à.s de farine','1 oignon','sel','poivre'],
+   m:'Râpez les pommes de terre et pressez-les fort dans un torchon : c’est l’eau retirée qui fait le croustillant. Mélangez au reste et dorez à la poêle 4 minutes par face.'},
+  {t:'Velouté de courgettes', g:'Salé', i:['4 courgettes','1 oignon','1 pomme de terre','200 ml de crème','1 l de bouillon'],
+   m:'Faites suer l’oignon, ajoutez les courgettes et la pomme de terre coupées, couvrez de bouillon. 20 minutes de cuisson, puis mixez avec la crème.'},
+  {t:'Poulet rôti au citron', g:'Salé', i:['1 poulet','2 citrons','4 gousses d’ail','thym','huile d’olive','pommes de terre'],
+   m:'Glissez un citron coupé et l’ail dans le poulet, frottez la peau d’huile et de thym. Enfournez 1 h 15 à 180°C en arrosant toutes les 20 minutes, avec les pommes de terre autour.'},
+  {t:'Tarte aux pommes', g:'Dessert', i:['1 pâte brisée','6 pommes','60 g de sucre','30 g de beurre','1 c.à.c de cannelle'],
+   m:'Étalez la pâte, piquez le fond. Disposez les pommes en rosace bien serrée, saupoudrez de sucre et de cannelle, parsemez de beurre. 40 minutes à 180°C.'}
+];
+
+const INSPI_AUTRES_SALE = [
+  {t:'Pâtes à la bolognaise', g:'Salé', i:['400 g de pâtes','500 g de viande hachée','400 g de tomates concassées','1 oignon','2 gousses d’ail','1 carotte','huile d’olive','thym'],
+   m:'Faites revenir l’oignon, l’ail et la carotte en petits dés. Ajoutez la viande hachée et laissez-la bien colorer avant d’ajouter les tomates. Laissez mijoter 45 minutes à feu doux : c’est le temps qui fait la sauce, pas les ingrédients.'},
+  {t:'Lasagnes à la bolognaise', g:'Salé', i:['12 plaques de lasagnes','500 g de viande hachée','400 g de tomates concassées','1 oignon','50 g de beurre','50 g de farine','500 ml de lait','100 g de gruyère râpé'],
+   m:'Préparez une bolognaise et une béchamel. Alternez sauce, plaques et béchamel en terminant par de la béchamel et du gruyère. Enfournez 40 minutes à 180°C et laissez reposer 10 minutes avant de couper.'},
+  {t:'Boulettes de viande sauce tomate', g:'Salé', i:['500 g de viande hachée','1 œuf','50 g de chapelure','1 oignon','400 g de tomates concassées','2 gousses d’ail','persil'],
+   m:'Mélangez la viande avec l’œuf, la chapelure, l’oignon râpé et le persil. Formez des boulettes, dorez-les à la poêle, puis laissez-les finir de cuire 20 minutes dans la sauce tomate.'},
+  {t:'Hachis parmentier', g:'Salé', i:['800 g de pommes de terre','500 g de viande hachée','1 oignon','100 ml de lait','30 g de beurre','80 g de gruyère râpé'],
+   m:'Écrasez les pommes de terre avec le lait et le beurre. Faites revenir la viande avec l’oignon. Étalez la viande, couvrez de purée, parsemez de gruyère et passez 25 minutes à 200°C.'},
+  {t:'Chili con carne', g:'Salé', i:['500 g de viande hachée','400 g de haricots rouges','400 g de tomates concassées','1 oignon','1 poivron','1 c.à.c de cumin','1 c.à.c de paprika','riz'],
+   m:'Colorez la viande, ajoutez l’oignon, le poivron et les épices, puis les tomates et les haricots. Mijotez 40 minutes. Servez avec du riz : c’est encore meilleur réchauffé.'},
+  {t:'Burger maison', g:'Salé', i:['4 pains à burger','500 g de viande hachée','4 tranches de cheddar','1 oignon','salade','1 tomate','ketchup'],
+   m:'Formez des steaks sans trop tasser la viande, salez uniquement au moment de la cuisson. Saisissez 2 minutes par face, posez le fromage à la fin pour qu’il fonde, et toastez les pains.'},
+  {t:'Moussaka', g:'Salé', i:['2 aubergines','500 g de viande hachée','400 g de tomates concassées','1 oignon','50 g de beurre','50 g de farine','500 ml de lait','100 g de fromage râpé','1 pincée de cannelle'],
+   m:'Faites dorer les tranches d’aubergine, préparez une viande à la tomate relevée d’une pointe de cannelle. Alternez les couches, couvrez de béchamel et enfournez 40 minutes à 180°C.'},
+  {t:'Keftas et semoule', g:'Salé', i:['500 g de viande hachée','1 oignon','persil','coriandre','1 c.à.c de cumin','1 c.à.c de paprika','250 g de semoule'],
+   m:'Mélangez la viande avec l’oignon râpé, les herbes hachées et les épices. Laissez reposer 30 minutes au frais, formez des boudins autour de brochettes et grillez-les 8 minutes en les retournant.'},
+  {t:'Pain de viande', g:'Salé', i:['600 g de viande hachée','1 œuf','60 g de chapelure','1 oignon','100 ml de lait','herbes de Provence'],
+   m:'Trempez la chapelure dans le lait, mélangez à la viande, l’œuf, l’oignon et les herbes. Tassez dans un moule à cake et enfournez 45 minutes à 180°C. Se mange chaud ou froid en tranches.'},
+  {t:'Gratin de pâtes au jambon', g:'Salé', i:['400 g de pâtes','200 g de jambon','50 g de beurre','50 g de farine','500 ml de lait','100 g de gruyère râpé','1 pincée de muscade'],
+   m:'Cuisez les pâtes très al dente, elles finiront au four. Mélangez-les à la béchamel et au jambon en dés, couvrez de gruyère et gratinez 20 minutes à 200°C.'},
+  {t:'Riz cantonais', g:'Salé', i:['300 g de riz','2 œufs','150 g de jambon','100 g de petits pois','1 oignon','2 c.à.s de sauce soja'],
+   m:'Utilisez du riz cuit la veille, c’est indispensable pour qu’il ne colle pas. Faites une omelette fine, découpez-la en lanières, puis sautez le tout à feu vif avec la sauce soja.'},
+  {t:'Wok de nouilles au poulet', g:'Salé', i:['250 g de nouilles','2 blancs de poulet','1 poivron','1 carotte','3 c.à.s de sauce soja','1 morceau de gingembre','2 gousses d’ail'],
+   m:'Découpez tout en fines lanières avant d’allumer le feu, la cuisson est très rapide. Saisissez le poulet, réservez, faites sauter les légumes, puis réunissez avec les nouilles et la sauce.'},
+  {t:'Poulet au curry et lait de coco', g:'Salé', i:['4 blancs de poulet','400 ml de lait de coco','1 oignon','2 c.à.c de curry','300 g de riz'],
+   m:'Dorez le poulet en morceaux, réservez. Faites suer l’oignon avec le curry pour réveiller les épices, remettez le poulet, versez le lait de coco et laissez réduire 20 minutes.'},
+  {t:'Blanquette de veau', g:'Salé', i:['800 g de veau','2 carottes','1 oignon','1 poireau','200 ml de crème','30 g de beurre','30 g de farine','300 g de riz'],
+   m:'Cuisez la viande 1 h 30 dans un bouillon avec les légumes. Préparez un roux avec le beurre et la farine, mouillez avec le bouillon filtré, puis liez à la crème hors du feu.'},
+  {t:'Tajine de poulet aux olives', g:'Salé', i:['1 poulet en morceaux','1 citron confit','150 g d’olives vertes','1 oignon','1 c.à.c de gingembre','safran','250 g de semoule'],
+   m:'Faites revenir le poulet avec l’oignon et les épices, couvrez d’eau à mi-hauteur et laissez mijoter 45 minutes. Ajoutez olives et citron confit en fin de cuisson seulement.'},
+  {t:'Poulet basquaise', g:'Salé', i:['4 cuisses de poulet','2 poivrons','400 g de tomates concassées','1 oignon','2 gousses d’ail','1 c.à.c de paprika','300 g de riz'],
+   m:'Colorez les cuisses de tous les côtés, réservez. Faites compoter poivrons, oignon et tomates avec le paprika, remettez le poulet et laissez mijoter 35 minutes à couvert.'},
+  {t:'Escalopes milanaises', g:'Salé', i:['4 escalopes de veau ou de poulet','1 œuf','100 g de chapelure','50 g de parmesan','50 g de farine','1 citron'],
+   m:'Passez les escalopes dans la farine, puis l’œuf battu, puis la chapelure mélangée au parmesan. Dorez 3 minutes par face dans un corps gras bien chaud et servez avec du citron.'},
+  {t:'Nuggets maison', g:'Salé', i:['3 blancs de poulet','1 œuf','100 g de chapelure','50 g de farine','1 c.à.c de paprika'],
+   m:'Découpez le poulet en morceaux réguliers, panez-les en trois temps : farine, œuf, chapelure paprikée. Enfournez 18 minutes à 200°C en les retournant à mi-cuisson.'},
+  {t:'Saucisses lentilles', g:'Salé', i:['6 saucisses','300 g de lentilles vertes','1 oignon','2 carottes','1 bouquet garni'],
+   m:'Faites revenir l’oignon et les carottes, ajoutez les lentilles et couvrez d’eau avec le bouquet garni. Posez les saucisses dessus à mi-cuisson et laissez mijoter 25 minutes.'},
+  {t:'Poêlée pommes de terre lardons', g:'Salé', i:['800 g de pommes de terre','200 g de lardons','1 oignon','persil'],
+   m:'Précuisez les pommes de terre 10 minutes à l’eau, égouttez-les bien. Faites-les dorer à feu vif avec les lardons et l’oignon, sans remuer trop souvent pour qu’elles croustillent.'},
+  {t:'Pâtes au thon', g:'Salé', i:['400 g de pâtes','200 g de thon','400 g de tomates concassées','1 oignon','2 gousses d’ail','olives','câpres'],
+   m:'Faites revenir l’oignon et l’ail, ajoutez les tomates, les olives et les câpres. Mijotez 15 minutes, puis ajoutez le thon égoutté hors du feu pour qu’il ne se dessèche pas.'},
+  {t:'Pâtes crémeuses au saumon', g:'Salé', i:['400 g de pâtes','200 g de saumon fumé','200 ml de crème','1 échalote','aneth','1 citron'],
+   m:'Faites suer l’échalote, versez la crème et laissez épaissir 3 minutes. Ajoutez le saumon en lanières hors du feu, un zeste de citron et l’aneth. Mélangez aux pâtes chaudes.'},
+  {t:'Pâtes crémeuses aux champignons', g:'Salé', i:['400 g de pâtes','300 g de champignons','200 ml de crème','1 échalote','2 gousses d’ail','60 g de parmesan'],
+   m:'Saisissez les champignons à feu vif sans les saler tout de suite, sinon ils rendent leur eau. Ajoutez l’échalote et l’ail, puis la crème et le parmesan.'},
+  {t:'Gratin de courgettes', g:'Salé', i:['4 courgettes','3 œufs','200 ml de crème','100 g de gruyère râpé','1 oignon'],
+   m:'Faites revenir les courgettes en rondelles pour évacuer leur eau. Battez les œufs avec la crème, mélangez, versez dans un plat et gratinez 30 minutes à 180°C.'},
+  {t:'Quiche au thon', g:'Salé', i:['1 pâte brisée','200 g de thon','3 œufs','200 ml de crème','2 tomates','2 c.à.s de moutarde','80 g de gruyère râpé'],
+   m:'Tartinez le fond de pâte de moutarde, c’est ce qui réveille l’ensemble. Répartissez le thon et les tomates, versez l’appareil œufs-crème et enfournez 35 minutes à 180°C.'},
+  {t:'Tarte tomate moutarde', g:'Salé', i:['1 pâte feuilletée','5 tomates','2 c.à.s de moutarde','100 g de gruyère râpé','herbes de Provence'],
+   m:'Étalez la moutarde sur la pâte, parsemez de gruyère puis disposez les rondelles de tomates en rosace. Salez, herbez, et enfournez 30 minutes à 200°C.'},
+  {t:'Wraps au poulet', g:'Express', i:['4 tortillas','2 blancs de poulet','salade','1 tomate','2 c.à.s de yaourt','1 c.à.c de curry'],
+   m:'Faites dorer le poulet en lanières avec le curry. Mélangez le yaourt avec un peu de citron pour la sauce, garnissez les tortillas et roulez-les serré avant de couper en deux.'},
+  {t:'Paëlla express', g:'Salé', i:['300 g de riz','200 g de crevettes','2 blancs de poulet','1 poivron','100 g de petits pois','safran','800 ml de bouillon'],
+   m:'Dorez le poulet, ajoutez le poivron puis le riz que vous nacrez. Versez le bouillon safrané et laissez cuire 18 minutes sans remuer. Ajoutez crevettes et petits pois en fin de cuisson.'},
+  {t:'Couscous de légumes', g:'Salé', i:['250 g de semoule','400 g de pois chiches','2 courgettes','3 carottes','1 navet','1 oignon','2 c.à.c de ras el-hanout','1 l de bouillon'],
+   m:'Faites mijoter les légumes coupés gros dans le bouillon épicé, 40 minutes. Versez le bouillon chaud sur la semoule à hauteur, couvrez 5 minutes et égrenez à la fourchette.'},
+  {t:'Crevettes ail et persil', g:'Express', i:['500 g de crevettes','4 gousses d’ail','persil','huile d’olive','1 citron','piment'],
+   m:'Chauffez l’huile avec l’ail émincé sans le brûler, jetez les crevettes et saisissez-les 2 minutes par face. Hors du feu, persil, citron et une pointe de piment.'},
+  {t:'Soupe de nouilles au poulet', g:'Salé', i:['200 g de nouilles','2 blancs de poulet','1 l de bouillon','1 morceau de gingembre','2 gousses d’ail','ciboule','2 c.à.s de sauce soja'],
+   m:'Infusez le bouillon avec le gingembre et l’ail 15 minutes. Pochez le poulet dedans, émincez-le, puis versez le bouillon brûlant sur les nouilles cuites et la ciboule.'},
+  {t:'Omelette espagnole', g:'Salé', i:['6 œufs','4 pommes de terre','1 oignon','huile d’olive'],
+   m:'Cuisez doucement les pommes de terre en fines rondelles avec l’oignon dans l’huile, sans les colorer. Mélangez aux œufs battus, remettez à la poêle et retournez à l’aide d’une assiette.'},
+  {t:'Gratin de chou-fleur', g:'Salé', i:['1 chou-fleur','50 g de beurre','50 g de farine','500 ml de lait','100 g de gruyère râpé','1 pincée de muscade'],
+   m:'Cuisez le chou-fleur en bouquets 12 minutes à l’eau bouillante et égouttez-le très soigneusement. Nappez de béchamel muscadée, couvrez de gruyère et gratinez 20 minutes.'},
+  {t:'Boulettes de poulet au four', g:'Salé', i:['500 g de poulet haché','1 œuf','50 g de chapelure','40 g de parmesan','2 gousses d’ail','persil'],
+   m:'Mélangez tout, formez des boulettes et enfournez 20 minutes à 200°C. Plus légères que les boulettes de bœuf, elles se marient très bien avec des pâtes ou une salade.'}
+];
+
+INSPI_AUTRES.push.apply(INSPI_AUTRES, INSPI_AUTRES_SALE);
+
+let INSPI_INDEX_AUTRES = null;
+function inspiIndexAutres(){
+  if(INSPI_INDEX_AUTRES) return INSPI_INDEX_AUTRES;
+  INSPI_INDEX_AUTRES = INSPI_AUTRES.map((r, n) => ({
+    n: n, titre: r.t, tag: r.g, methode: r.m,
+    lignes: r.i.map(l => ({ texte: l, mots: inspiMots(l) }))
+  }));
+  return INSPI_INDEX_AUTRES;
+}
+
+function inspiChercherAutres(saisie, limite){
+  const possede = inspiMots(saisie);
+  if(!possede.length) return [];
+  const groupes = inspiGroupes(possede);
+  const liste = inspiIndexAutres().map(r => {
+    const manque = [];
+    let ok = 0;
+    r.lignes.forEach(l => {
+      const basique = l.mots.some(m => INSPI_BASIQUES.indexOf(m) !== -1);
+      const trouve = l.mots.some(m => groupes.some(g => g.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0)));
+      if(trouve || basique) ok++; else manque.push(l.texte);
+    });
+    const total = r.lignes.length || 1;
+    const utilises = groupes.filter(g => r.lignes.some(l => l.mots.some(m => g.some(p => m === p || m.indexOf(p) === 0 || p.indexOf(m) === 0)))).length;
+    return { n: r.n, titre: r.titre, tag: r.tag, methode: r.methode,
+             score: 0.42 * (ok / total) + 0.58 * (utilises / possede.length),
+             ratio: ok / total, ok: ok, total: total, manque: manque, utilises: utilises };
+  })
+  .filter(r => r.utilises > 0)
+  .sort((a,b) => b.score - a.score || a.manque.length - b.manque.length);
+  return inspiFiltrerBruit(liste).slice(0, limite || 2);
+}
+
+function basculerMethode(btn){
+  const bloc = btn.nextElementSibling;
+  if(!bloc) return;
+  const ouvert = bloc.style.display === 'block';
+  bloc.style.display = ouvert ? 'none' : 'block';
+  btn.textContent = ouvert ? 'Voir comment faire' : 'Masquer';
+}
+
+// ===== GLOSSAIRE TECHNIQUE =====
+// Chaque entrée : plusieurs formulations possibles -> une définition.
+const INSPI_GLOSSAIRE = [
+  {m:['foncage','foncer','fonce','foncez'], d:'Foncer, c’est garnir un moule ou un cercle avec une pâte : on l’étale, on la dépose dedans, on l’applique bien contre le fond et les bords, puis on coupe ce qui dépasse. C’est cette étape qui donne à la tarte ses bords nets et sa tenue.'},
+  {m:['abaisser','abaisse'], d:'Étaler une pâte au rouleau à l’épaisseur voulue. Le résultat s’appelle une abaisse. Pour une tarte, on vise 2 à 3 mm.'},
+  {m:['blanchir les oeufs','blanchir les jaunes','blanchir'], d:'Fouetter des jaunes d’œufs avec du sucre jusqu’à ce que le mélange pâlisse et devienne mousseux. Le sucre se dissout et cesse d’attaquer les jaunes, qui grainerait sinon.'},
+  {m:['blanchir un legume','blanchir les legumes'], d:'Plonger un légume quelques minutes dans l’eau bouillante, puis le refroidir aussitôt dans l’eau glacée. Il garde sa couleur vive et arrête de cuire net.'},
+  {m:['chemiser'], d:'Tapisser l’intérieur d’un moule — papier cuisson, rhodoïd, ou beurre et farine — pour que la préparation se démoule sans accroc.'},
+  {m:['cremer','cremez'], d:'Travailler du beurre pommade avec du sucre jusqu’à obtenir une texture claire et aérée. C’est ce qui donne du moelleux aux cookies et aux quatre-quarts.'},
+  {m:['sabler','sablage'], d:'Frotter la farine et le beurre froid entre les doigts jusqu’à obtenir une texture de sable grossier. C’est la base de la pâte sucrée et du crumble : le gras enrobe la farine et empêche le gluten de se développer.'},
+  {m:['detendre'], d:'Assouplir une préparation trop ferme en la fouettant, parfois avec un peu de liquide. On détend une crème pâtissière sortie du frigo avant de l’utiliser.'},
+  {m:['monter en neige','monter les blancs','blancs en neige'], d:'Fouetter des blancs d’œufs jusqu’à ce qu’ils emprisonnent l’air et deviennent fermes. Commencez lentement, accélérez progressivement : ils seront plus stables.'},
+  {m:['serrer les blancs','serrer'], d:'Ajouter un peu de sucre en fin de montage des blancs. Ils deviennent lisses, brillants et ne retombent plus.'},
+  {m:['macaronner'], d:'Écraser la pâte à macarons contre le bord du bol pour lui faire perdre juste ce qu’il faut d’air. Elle doit former un ruban qui s’efface lentement.'},
+  {m:['pocher une preparation','poche a douille','pocher a la douille'], d:'Déposer une préparation en pressant une poche munie d’une douille. On poche une chantilly, une meringue, une crème.'},
+  {m:['pocher','pochage'], d:'Cuire doucement dans un liquide frémissant, jamais bouillant. On poche un œuf, un poisson, un fruit dans un sirop.'},
+  {m:['bain marie'], d:'Poser un récipient dans ou au-dessus d’un autre contenant de l’eau chaude. La chaleur devient douce et régulière — indispensable pour le chocolat et les crèmes délicates.'},
+  {m:['temperage','temperer le chocolat','temperer'], d:'Faire monter, descendre puis remonter la température du chocolat selon une courbe précise. C’est ce qui lui donne son brillant et son cassant net.'},
+  {m:['ganache'], d:'Un mélange de chocolat et de crème chaude, émulsionné. Plus il y a de chocolat, plus elle est ferme.'},
+  {m:['chantache'], d:'Une ganache montée : chocolat blanc et crème, reposée 12 heures au frais puis fouettée. Texture de chantilly, tenue d’une ganache.'},
+  {m:['cremeux'], d:'Une crème anglaise enrichie et gélifiée, coulante mais qui se tient. Elle sert d’insert au cœur des entremets.'},
+  {m:['praline'], d:'Des fruits secs torréfiés et du caramel, mixés ensemble jusqu’à obtenir une pâte lisse et coulante. Rien d’autre.'},
+  {m:['feuillantine','gavotte'], d:'Des crêpes dentelles émiettées, mélangées à du praliné pour faire un croustillant. À incorporer au dernier moment, sinon ça ramollit.'},
+  {m:['streusel'], d:'Une pâte sablée émiettée qu’on cuit à part pour obtenir des miettes croustillantes.'},
+  {m:['nappage','napper'], d:'Recouvrir d’une fine couche brillante — gelée, miel, chocolat — pour protéger et faire briller.'},
+  {m:['a la nappe','cuire a la nappe'], d:'Cuire une crème anglaise jusqu’à 83°C : elle doit napper la cuillère, et le trait laissé par le doigt doit rester net.'},
+  {m:['ruban','faire un ruban'], d:'Quand le mélange fouetté retombe du fouet en formant un ruban qui reste visible quelques secondes en surface. Signe que l’air est bien incorporé.'},
+  {m:['appareil'], d:'Le nom du mélange de base d’une préparation avant cuisson : appareil à flan, appareil à quiche.'},
+  {m:['qs'], d:'Quantité suffisante. Le chef vous laisse juger — on en met ce qu’il faut, au goût.'},
+  {m:['sabayon'], d:'Des jaunes fouettés avec un liquide au bain-marie jusqu’à tripler de volume. Base de la mousse au chocolat et du tiramisu.'},
+  {m:['meringue francaise'], d:'Blancs montés avec du sucre en poudre, à froid. La plus simple, mais la moins stable.'},
+  {m:['meringue italienne'], d:'Blancs montés sur lesquels on verse un sirop cuit à 118°C. Très stable, c’est celle des tartes citron.'},
+  {m:['meringue suisse'], d:'Blancs et sucre chauffés ensemble au bain-marie avant d’être montés. Dense et brillante, idéale pour les décors.'},
+  {m:['tant pour tant'], d:'Autant de poudre d’amande que de sucre glace, au poids. Base des macarons et de la pâte d’amande.'},
+  {m:['beurre noisette'], d:'Du beurre fondu qu’on laisse colorer jusqu’à ce qu’il sente la noisette. Filtrez-le pour retirer les dépôts, et arrêtez la cuisson dès qu’il brunit.'},
+  {m:['beurre pommade'], d:'Du beurre laissé à température ambiante jusqu’à devenir souple comme une pommade, sans jamais fondre.'},
+  {m:['filmer au contact'], d:'Poser le film alimentaire directement sur la surface de la crème, sans bulle d’air. Ça évite qu’une peau se forme en refroidissant.'},
+  {m:['crouter','faire crouter'], d:'Laisser sécher une surface à l’air libre. Une pâte foncée qui croûte au frigo se rétracte moins à la cuisson.'},
+  {m:['cuire a blanc','cuisson a blanc'], d:'Cuire un fond de tarte vide, lesté de billes ou de légumes secs, avant de le garnir. Indispensable pour les garnitures qui ne cuisent pas.'},
+  {m:['piquer la pate','piquer'], d:'Percer le fond de pâte à la fourchette pour laisser la vapeur s’échapper et éviter qu’il gonfle.'},
+  {m:['fraiser','fraisage'], d:'Écraser la pâte devant soi avec la paume, une ou deux fois seulement, pour la rendre homogène sans la corser.'},
+  {m:['chiqueter'], d:'Pincer le bord d’une pâte entre les doigts ou avec une pince pour le décorer et le souder.'},
+  {m:['dorer','dorure'], d:'Badigeonner d’œuf battu avant cuisson pour obtenir une belle couleur brillante.'},
+  {m:['debarrasser'], d:'Transvaser une préparation dans un autre récipient pour arrêter sa cuisson ou la refroidir plus vite.'},
+  {m:['maryse'], d:'La spatule souple en silicone. Elle racle les bords et permet d’incorporer sans casser les blancs.'},
+  {m:['corner'], d:'Une petite spatule plate et rigide, sans manche, pour racler un cul-de-poule jusqu’à la dernière goutte.'},
+  {m:['chinois','passer au chinois'], d:'Une passoire fine et conique. On y passe les crèmes pour retirer grumeaux et morceaux de vanille.'},
+  {m:['rhodoid'], d:'Une bande de plastique alimentaire qui chemise les cercles à entremets. Elle donne des bords parfaitement lisses au démoulage.'},
+  {m:['cul de poule'], d:'Le grand bol rond à fond arrondi. Sa forme facilite le fouettage.'},
+  {m:['deglacer'], d:'Verser un liquide dans une poêle chaude pour dissoudre les sucs collés au fond. C’est là qu’est le goût.'},
+  {m:['suer','faire suer'], d:'Cuire doucement à couvert, sans coloration, pour que les légumes rendent leur eau et s’attendrissent.'},
+  {m:['revenir','faire revenir'], d:'Colorer légèrement dans un corps gras à feu moyen, en remuant.'},
+  {m:['saisir'], d:'Poser sur un feu très vif pour créer une croûte immédiate qui retient les jus à l’intérieur.'},
+  {m:['mijoter'], d:'Cuire longtemps à feu très doux, en dessous de l’ébullition. Le liquide doit à peine frémir.'},
+  {m:['braiser'], d:'Saisir puis cuire longuement à couvert dans peu de liquide. La viande devient fondante.'},
+  {m:['reduire','faire reduire'], d:'Laisser évaporer un liquide à découvert pour concentrer le goût et épaissir.'},
+  {m:['lier','liaison'], d:'Épaissir une sauce, avec de la farine, de la maïzena, un jaune d’œuf ou de la crème.'},
+  {m:['roux'], d:'Un mélange à parts égales de beurre fondu et de farine, cuit quelques minutes. Base de la béchamel.'},
+  {m:['nacrer'], d:'Faire revenir le riz dans le gras jusqu’à ce que les grains deviennent translucides sur les bords. Première étape du risotto.'},
+  {m:['monder','emonder'], d:'Retirer la peau d’un fruit ou d’un légume après un passage rapide dans l’eau bouillante.'},
+  {m:['ciseler'], d:'Couper en tout petits dés réguliers, pour un oignon ou une échalote.'},
+  {m:['emincer'], d:'Couper en tranches fines et régulières.'},
+  {m:['julienne'], d:'Des bâtonnets très fins, de la taille d’une allumette.'},
+  {m:['brunoise'], d:'Des dés minuscules, 2 à 3 mm de côté.'},
+  {m:['mirepoix'], d:'Un mélange de carotte, oignon et céleri en gros dés, qui parfume les fonds et les mijotés.'},
+  {m:['degorger'], d:'Faire rendre son eau à un légume en le salant et en le laissant reposer. Classique pour les concombres et les aubergines.'},
+  {m:['paner a l anglaise','paner'], d:'Passer successivement dans la farine, l’œuf battu puis la chapelure. Les trois couches sont nécessaires pour que la panure tienne.'},
+  {m:['clarifier'], d:'Séparer les blancs des jaunes, ou rendre un beurre limpide en retirant le petit-lait.'},
+  {m:['zester'], d:'Prélever la partie colorée de la peau d’un agrume, sans le blanc qui est amer.'},
+  {m:['ecumer'], d:'Retirer la mousse qui remonte à la surface d’un bouillon ou d’une confiture, pour un résultat plus limpide.'},
+  {m:['al dente'], d:'Cuit mais encore ferme sous la dent. Comptez une minute de moins que le paquet si les pâtes finissent au four.'},
+  {m:['bouquet garni'], d:'Thym, laurier et queues de persil liés ensemble, plongés dans un bouillon puis retirés en fin de cuisson.'},
+  {m:['petrir','petrissage'], d:'Travailler une pâte pour développer le gluten et lui donner de l’élasticité. Une pâte bien pétrie est lisse et ne colle plus.'},
+  {m:['autolyse'], d:'Mélanger farine et eau, puis laisser reposer avant d’ajouter sel et levure. La pâte se travaille ensuite beaucoup plus facilement.'},
+  {m:['pointage','premiere pousse'], d:'La première levée de la pâte, juste après le pétrissage.'},
+  {m:['rabattre'], d:'Dégazer la pâte en la repliant sur elle-même. Elle repart plus vigoureusement.'},
+  {m:['appret','deuxieme pousse'], d:'La dernière levée, une fois la pâte façonnée et avant l’enfournement.'},
+  {m:['faconner','faconnage'], d:'Donner sa forme définitive à la pâte : boule, bâtard, tresse.'},
+  {m:['grigne','lamer','coup de lame'], d:'L’entaille faite à la lame juste avant d’enfourner. Elle guide le développement du pain et donne cette belle ouverture dorée.'},
+  {m:['tourage','tourer'], d:'Plier et étaler successivement une pâte enfermant du beurre, pour créer les feuillets. C’est le principe du feuilletage et des croissants.'},
+  {m:['detrempe'], d:'La pâte de base — farine, eau, sel — dans laquelle on enferme le beurre pour un feuilletage.'},
+  {m:['caramel a sec','caramel sec'], d:'Faire fondre le sucre seul dans une casserole, sans eau, sans remuer. Plus rapide et plus parfumé, mais il faut surveiller la couleur de près.'},
+  {m:['decuire'], d:'Arrêter la cuisson d’un caramel en y ajoutant un liquide chaud. Attention aux projections.'},
+  {m:['emulsionner','emulsion'], d:'Mélanger deux éléments qui ne se lient pas naturellement, gras et liquide, jusqu’à obtenir une texture homogène et brillante.'},
+  {m:['incorporer delicatement','macaronner delicatement','incorporer'], d:'Mélanger en soulevant la masse du bas vers le haut, à la maryse, pour ne pas chasser l’air.'},
+  {m:['torrefier','torrefaction'], d:'Passer des fruits secs au four pour développer leur parfum. Comptez 10 à 15 minutes à 150-160°C, jusqu’à ce que ça sente bon.'},
+  {m:['pasteuriser'], d:'Chauffer une préparation à une température précise assez longtemps pour éliminer les bactéries. Une crème pâtissière doit bouillir 2 minutes.'},
+  {m:['degazer'], d:'Chasser le gaz carbonique d’une pâte levée en appuyant dessus.'},
+  {m:['confire'], d:'Cuire très lentement dans un corps gras ou un sirop, jusqu’à ce que l’aliment devienne fondant et se conserve.'},
+  {m:['flamber'], d:'Verser un alcool dans une poêle chaude et l’enflammer pour brûler l’alcool en gardant l’arôme.'},
+  {m:['marbrer'], d:'Mélanger à peine deux préparations pour laisser des veines visibles, sans les fondre l’une dans l’autre.'},
+  {m:['insert'], d:'Un élément congelé à part — compotée, crémeux — qu’on glisse au cœur d’un entremets pour créer la surprise à la découpe.'},
+  {m:['dresser','dressage'], d:'Disposer une préparation sur l’assiette ou dans le moule, avec soin. La dernière étape, celle qui se voit.'}
+];
+
+function inspiDefinition(question){
+  const q = inspiNorm(question);
+  let meilleur = null;
+  INSPI_GLOSSAIRE.forEach(e => {
+    e.m.forEach(mot => {
+      if(q.indexOf(mot) !== -1 && (!meilleur || mot.length > meilleur.mot.length)){
+        meilleur = { mot: mot, def: e.d };
+      }
+    });
+  });
+  return meilleur;
+}
+
+function estQuestionTechnique(texte){
+  const q = inspiNorm(texte);
+  return /(que signifie|qu est ce|c est quoi|quest ce|definition|comment (fait|faire|on)|ca veut dire|explique|pourquoi)/.test(q) || q.indexOf('?') !== -1;
 }
 
 // ---------- interface ----------
@@ -3806,12 +4221,12 @@ function inspiBulle(html, moi){
 
 function inspiRepondre(html){ setTimeout(() => inspiBulle(html, false), 380); }
 
-const INSPI_CHIPS = ['Farine','Beurre','Œufs','Sucre','Chocolat','Lait','Bananes','Flocons d\u2019avoine','Mascarpone','Myrtilles','Abricots','Cacahuètes'];
+const INSPI_CHIPS = ['Pâtes','Viande hachée','Riz','Poulet','Pommes de terre','Tomates','Œufs','Courgettes','Lentilles','Farine','Beurre','Chocolat'];
 
 function initInspi(){
   const chat = document.getElementById('inspi-chat');
   if(!chat || chat.children.length) return;
-  inspiBulle('Bonjour&nbsp;! Dites-moi ce que vous avez dans vos placards, séparé par des virgules, et je vous sors jusqu\u2019à <strong>trois idées</strong> parmi mes recettes.<br><br>Vous pouvez aussi me demander directement <em>par quoi remplacer le beurre</em>, par exemple.', false);
+  inspiBulle('Bonsoir, moi c\u2019est <strong>Basile</strong>&nbsp;\uD83C\uDF3F<br>Le petit assistant de cette cuisine, de garde à toute heure.<br><br>Un mot de la recette que tu ne comprends pas&nbsp;? Un ingrédient qui manque à l\u2019appel&nbsp;? Ou simplement aucune idée pour ce soir&nbsp;?<br><br>Dis-moi ce qu\u2019il reste dans ton frigo, séparé par des virgules, et je te trouve de quoi cuisiner. Tu peux aussi me demander <em>par quoi remplacer le beurre</em>, ou <em>que signifie un fonçage</em>.', false);
   const chips = document.getElementById('inspi-chips');
   if(chips && !chips.children.length){
     chips.innerHTML = INSPI_CHIPS.map(c => '<button class="inspi-chip" onclick="ajouterChipInspi(\'' + c.replace(/'/g,"\\'") + '\')">' + c + '</button>').join('');
@@ -3847,31 +4262,66 @@ function envoyerInspi(){
     return inspiRepondre(reponseSubstitut(saisie));
   }
 
-  const res = inspiChercher(saisie);
-  if(!res.length){
-    return inspiRepondre('Je ne trouve rien avec ça pour l\u2019instant. Essayez avec des ingrédients plus courants&nbsp;: farine, beurre, œufs, chocolat, bananes, flocons d\u2019avoine...');
+  // question technique : « que signifie un fonçage ? », ou simplement « fonçage »
+  const motsSaisie = inspiNorm(saisie).split(' ').filter(Boolean);
+  const def = inspiDefinition(saisie);
+  if(def && (estQuestionTechnique(saisie) || motsSaisie.length <= 3)){
+    return inspiRepondre('<strong>' + def.mot.charAt(0).toUpperCase() + def.mot.slice(1) + '</strong><br>' + def.def);
+  }
+  if(!def && estQuestionTechnique(saisie) && motsSaisie.length <= 8){
+    return inspiRepondre('Celui-là, je ne le connais pas encore. Je sais expliquer foncer, sabler, blanchir, crémer, monter des blancs, cuire à blanc, déglacer, nacrer, tempérer le chocolat, filmer au contact et bien d\u2019autres&nbsp;: essaie avec l\u2019un d\u2019eux.');
   }
 
-  let html = res[0].ratio >= 0.75
-    ? 'Avec ça, vous êtes bien parti&nbsp;! Voici ' + (res.length > 1 ? 'mes ' + res.length + ' idées' : 'mon idée') + '&nbsp;:'
-    : 'Il vous manquera quelques bricoles, mais voici ce qui s\u2019en rapproche le plus&nbsp;:';
+  let res = inspiChercher(saisie);
+  let autres = inspiChercherAutres(saisie, 3);
+  // si mes recettes ne collent vraiment pas et qu'un classique correspond mieux, on ne les affiche pas
+  if(autres.length && res.length && (
+       (res[0].utilises < 2 && res[0].ratio < 0.4) ||
+       autres[0].score > res[0].score * 1.5)) res = [];
+  if(res.length) autres = autres.slice(0, 2);
+  if(!res.length && !autres.length){
+    return inspiRepondre('Là, je sèche. Redonne-moi des ingrédients un peu plus courants&nbsp;: pâtes, riz, viande hachée, poulet, tomates, pommes de terre, œufs, farine...');
+  }
+
+  let html = !res.length
+    ? 'Rien de tel dans les recettes d\u2019Elsa, mais voilà ce que je ferais&nbsp;:'
+    : res[0].ratio >= 0.75
+    ? 'Avec ça, tu es bien parti&nbsp;! Voici ' + (res.length > 1 ? 'mes ' + res.length + ' idées' : 'mon idée') + '&nbsp;:'
+    : 'Il te manquera deux ou trois bricoles, mais voilà ce qui s\u2019en rapproche le plus&nbsp;:';
 
   res.forEach(r => {
     html += '<div class="inspi-carte">'+
       '<div class="inspi-carte-tag">' + inspiEchapper(r.tag) + '</div>'+
       '<h4>' + inspiEchapper(r.titre) + '</h4>'+
-      '<div class="inspi-score">Vous avez ' + r.ok + ' ingrédient' + (r.ok > 1 ? 's' : '') + ' sur ' + r.total + '</div>';
+      '<div class="inspi-score">Tu as ' + r.ok + ' ingrédient' + (r.ok > 1 ? 's' : '') + ' sur ' + r.total + '</div>';
     if(r.manque.length){
       const aff = r.manque.slice(0, 6);
-      html += '<div class="inspi-manque">Il vous manque&nbsp;: ' +
+      html += '<div class="inspi-manque">Il te manque&nbsp;: ' +
         aff.map(m => '<span class="inspi-tag-manque" onclick="demanderSubstitut(\'' + inspiEchapper(m).replace(/'/g,'&#39;') + '\')">' + inspiEchapper(m) + '</span>').join('') +
         (r.manque.length > 6 ? ' <em>et ' + (r.manque.length - 6) + ' autre' + (r.manque.length - 6 > 1 ? 's' : '') + '</em>' : '') +
-        '<br><span style="font-size:0.72rem">Touchez un ingrédient pour un substitut.</span></div>';
+        '<br><span style="font-size:0.72rem">Touche un ingrédient et je te trouve un substitut.</span></div>';
     } else {
-      html += '<div class="inspi-manque">Vous avez tout&nbsp;! Plus qu\u2019à vous lancer.</div>';
+      html += '<div class="inspi-manque">Tu as tout&nbsp;! Plus qu\u2019à te lancer.</div>';
     }
     html += '<button class="inspi-voir" onclick="openModal(\'' + r.id + '\')">Voir la recette</button></div>';
   });
+  if(autres.length){
+    if(res.length) html += '<div class="inspi-sep">Et si tu sortais des recettes d\u2019Elsa&nbsp;?</div>';
+    autres.forEach(r => {
+      html += '<div class="inspi-carte inspi-carte-bonus">'+
+        '<div class="inspi-carte-tag">Id\u00E9e d\u2019ailleurs \u00B7 ' + inspiEchapper(r.tag) + '</div>'+
+        '<h4>' + inspiEchapper(r.titre) + '</h4>'+
+        '<div class="inspi-score">Tu as ' + r.ok + ' ingr\u00E9dient' + (r.ok > 1 ? 's' : '') + ' sur ' + r.total + '</div>';
+      if(r.manque.length){
+        html += '<div class="inspi-manque">Il te manque&nbsp;: ' +
+          r.manque.slice(0, 5).map(m => '<span class="inspi-tag-manque" onclick="demanderSubstitut(\'' + inspiEchapper(m).replace(/'/g,'&#39;') + '\')">' + inspiEchapper(m) + '</span>').join('') + '</div>';
+      }
+      html += '<button class="inspi-methode-btn" onclick="basculerMethode(this)">Voir comment faire</button>'+
+        '<div class="inspi-methode"><strong>Ingr\u00E9dients</strong><br>' +
+        r.total + ' au total, dont&nbsp;: ' + inspiEchapper(INSPI_AUTRES[r.n].i.join(' \u00B7 ')) +
+        '<br><br><strong>M\u00E9thode</strong><br>' + inspiEchapper(r.methode) + '</div></div>';
+    });
+  }
   inspiRepondre(html);
 }
 
@@ -3883,11 +4333,11 @@ function demanderSubstitut(ingredient){
 function reponseSubstitut(texte){
   const s = inspiSubstituts(texte);
   if(!s){
-    return 'Je n\u2019ai pas de substitut fiable pour celui-là. C\u2019est souvent un ingrédient difficile à remplacer sans changer le résultat &mdash; mieux vaut l\u2019acheter, ou choisir une autre recette&nbsp;!';
+    return 'Pour celui-là, je n\u2019ai rien de fiable à te proposer. C\u2019est souvent le signe d\u2019un ingrédient difficile à remplacer sans dénaturer la recette &mdash; mieux vaut l\u2019acheter, ou viser autre chose&nbsp;!';
   }
-  return 'À la place, vous pouvez utiliser&nbsp;:<br>' +
+  return 'À la place, tu peux prendre&nbsp;:<br>' +
     s.liste.map(x => '&bull;&nbsp;' + x).join('<br>') +
-    '<br><br><span style="font-size:0.76rem;color:var(--text-muted)">Le rendu sera légèrement différent, mais la recette tiendra.</span>';
+    '<br><br><span style="font-size:0.76rem;color:var(--text-muted)">Le rendu sera un peu différent, mais la recette tiendra.</span>';
 }
 
 // ===== FEED SUPABASE =====
