@@ -202,6 +202,12 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .cuisine-compteur{font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--brown-light);margin-top:0.25rem}
 .cuisine-close{background:var(--cream-dark);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--text);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .cuisine-close:hover{background:var(--text);color:var(--white)}
+.cuisine-actions{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.cuisine-voix{display:none;align-items:center;gap:0.4rem;font-family:Jost,sans-serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;background:var(--cream-dark);border:1.5px solid transparent;color:var(--text-muted);border-radius:22px;padding:0.55rem 0.9rem;cursor:pointer;transition:all 0.2s;line-height:1}
+.cuisine-voix:hover{border-color:var(--sage);color:var(--sage-dark)}
+.cuisine-voix.actif{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.cuisine-relire{display:none;align-items:center;align-self:flex-start;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:20px;padding:0.5rem 1rem;cursor:pointer;margin-top:1.1rem}
+.cuisine-relire:hover{border-color:var(--sage);color:var(--sage-dark)}
 .cuisine-corps{flex:1;overflow-y:auto;padding:1rem 1.5rem 1.5rem;display:flex;flex-direction:column;justify-content:center;max-width:720px;width:100%;margin:0 auto}
 .cuisine-jour{display:none;align-self:flex-start;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);background:rgba(122,158,126,0.18);padding:4px 12px;border-radius:20px;margin-bottom:1rem}
 .cuisine-texte{font-size:1.35rem;line-height:1.75;color:var(--text);font-weight:300}
@@ -1918,11 +1924,18 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="cuisine-titre" id="cuisine-titre"></div>
       <div class="cuisine-compteur" id="cuisine-compteur"></div>
     </div>
-    <button class="cuisine-close" onclick="fermerCuisine()">&#10005;</button>
+    <div class="cuisine-actions">
+      <button class="cuisine-voix" id="voix-btn" onclick="basculerVoix()" aria-pressed="false" title="Lire les étapes à voix haute">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5a9 9 0 0 1 0 14"></path></svg>
+        <span>Voix</span>
+      </button>
+      <button class="cuisine-close" onclick="fermerCuisine()">&#10005;</button>
+    </div>
   </div>
   <div class="cuisine-corps">
     <span class="cuisine-jour" id="cuisine-jour"></span>
     <p class="cuisine-texte" id="cuisine-texte"></p>
+    <button class="cuisine-relire" id="voix-relire" onclick="lireEtape()">&#9654;&nbsp; Relire l'étape</button>
     <div class="cuisine-photos" id="cuisine-photos"></div>
     <div id="cuisine-minuteur"></div>
   </div>
@@ -2998,6 +3011,61 @@ function openModalComingPhotos(id, name) {
   })(0);
 })();
 
+// ===== LECTURE VOCALE DES ÉTAPES =====
+let voixActive = false;
+let voixFr = null;
+
+function voixDisponible(){ return typeof window !== 'undefined' && 'speechSynthesis' in window; }
+
+function choisirVoix(){
+  if(!voixDisponible()) return;
+  const dispo = window.speechSynthesis.getVoices();
+  if(!dispo.length) return;
+  voixFr = dispo.find(v => /fr[-_]FR/i.test(v.lang) && /google|am[eé]lie|thomas|audrey|virginie/i.test(v.name))
+        || dispo.find(v => /^fr/i.test(v.lang))
+        || null;
+}
+if(voixDisponible()){
+  choisirVoix();
+  window.speechSynthesis.onvoiceschanged = choisirVoix;
+  try { voixActive = localStorage.getItem('elsa_voix') === '1'; } catch(e) {}
+}
+
+function lireEtape(){
+  if(!voixDisponible() || !voixActive) return;
+  const e = cuisineEtapes[cuisineIndex];
+  if(!e) return;
+  window.speechSynthesis.cancel();
+  const intro = e.day ? e.day + '. ' : '';
+  const u = new SpeechSynthesisUtterance(intro + 'Étape ' + (cuisineIndex + 1) + '. ' + e.text);
+  u.lang = 'fr-FR';
+  u.rate = 0.95;
+  if(voixFr) u.voice = voixFr;
+  window.speechSynthesis.speak(u);
+}
+
+function stopperVoix(){
+  if(voixDisponible()) window.speechSynthesis.cancel();
+}
+
+function basculerVoix(){
+  voixActive = !voixActive;
+  try { localStorage.setItem('elsa_voix', voixActive ? '1' : '0'); } catch(e) {}
+  majBoutonVoix();
+  if(voixActive) lireEtape(); else stopperVoix();
+}
+
+function majBoutonVoix(){
+  const b = document.getElementById('voix-btn');
+  if(b){
+    b.classList.toggle('actif', voixActive);
+    b.setAttribute('aria-pressed', voixActive ? 'true' : 'false');
+    b.title = voixActive ? 'Couper la lecture à voix haute' : 'Lire les étapes à voix haute';
+  }
+  const r = document.getElementById('voix-relire');
+  if(r) r.style.display = voixActive ? 'inline-flex' : 'none';
+}
+
 // ===== MODE CUISINE PLEIN ÉCRAN =====
 let cuisineEtapes = [];
 let cuisineIndex = 0;
@@ -3042,6 +3110,9 @@ async function ouvrirCuisine(){
   document.getElementById('cuisine-titre').textContent = cuisineTitre;
   document.getElementById('cuisine-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  const bv = document.getElementById('voix-btn');
+  if(bv) bv.style.display = voixDisponible() ? 'flex' : 'none';
+  majBoutonVoix();
   afficherEtape();
   try {
     if('wakeLock' in navigator) cuisineWakeLock = await navigator.wakeLock.request('screen');
@@ -3051,6 +3122,7 @@ async function ouvrirCuisine(){
 
 function fermerCuisine(){
   arreterMinuteur();
+  stopperVoix();
   document.getElementById('cuisine-overlay').classList.remove('open');
   document.removeEventListener('keydown', clavierCuisine);
   const modal = document.getElementById('modal-overlay');
@@ -3092,6 +3164,7 @@ function afficherEtape(){
     zone.innerHTML = '';
   }
 
+  lireEtape();
   document.getElementById('cuisine-prec').disabled = (cuisineIndex === 0);
   const suiv = document.getElementById('cuisine-suiv');
   suiv.textContent = (cuisineIndex === n - 1) ? 'Terminé' : 'Suivant';
