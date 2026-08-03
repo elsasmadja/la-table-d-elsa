@@ -189,7 +189,54 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .day-badge{display:inline-block;font-family:Jost,sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);background:rgba(122,158,126,0.16);padding:2px 8px;border-radius:20px;margin-bottom:0.4rem}
 
 /* ── Liste de courses ── */
-.modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}.ing-toggle-bar{width:100%;display:flex;align-items:center;justify-content:space-between;gap:0.9rem;background:var(--cream);border:1.5px solid var(--sage);border-radius:8px;padding:0.95rem 1.15rem;cursor:pointer;font-family:Jost,sans-serif;font-size:0.75rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;color:var(--sage-dark);transition:background 0.2s,color 0.2s,border-color 0.2s;margin:0.2rem 0 0.7rem;text-align:left}
+.modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}/* ── Nombre de parts ── */
+/* ── Mode cuisine plein écran ── */
+.cuisine-start{width:100%;display:flex;align-items:center;justify-content:center;gap:0.4rem;font-family:Jost,sans-serif;font-size:0.72rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:0.9rem 1.2rem;cursor:pointer;margin:0.2rem 0 1.1rem;transition:opacity 0.2s}
+.cuisine-start:hover{opacity:0.87}
+.cuisine-overlay{display:none;position:fixed;inset:0;background:var(--cream);z-index:2000;flex-direction:column}
+.cuisine-overlay.open{display:flex}
+.cuisine-barre{height:4px;background:var(--cream-dark);flex-shrink:0}
+.cuisine-progression{height:100%;background:var(--sage-dark);width:0;transition:width 0.3s ease}
+.cuisine-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1.3rem 1.5rem 0.8rem;flex-shrink:0}
+.cuisine-titre{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--text);line-height:1.2}
+.cuisine-compteur{font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--brown-light);margin-top:0.25rem}
+.cuisine-close{background:var(--cream-dark);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--text);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cuisine-close:hover{background:var(--text);color:var(--white)}
+.cuisine-corps{flex:1;overflow-y:auto;padding:1rem 1.5rem 1.5rem;display:flex;flex-direction:column;justify-content:center;max-width:720px;width:100%;margin:0 auto}
+.cuisine-jour{display:none;align-self:flex-start;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);background:rgba(122,158,126,0.18);padding:4px 12px;border-radius:20px;margin-bottom:1rem}
+.cuisine-texte{font-size:1.35rem;line-height:1.75;color:var(--text);font-weight:300}
+.cuisine-photos{display:flex;gap:0.7rem;margin-top:1.4rem;flex-wrap:wrap}
+.cuisine-photos img{width:calc(50% - 0.35rem);max-width:240px;aspect-ratio:3/4;object-fit:cover;border-radius:8px}
+#cuisine-minuteur{margin-top:1.6rem}
+.cuisine-timer-btn{font-family:Jost,sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;background:transparent;border:1.5px solid var(--sage);color:var(--sage-dark);border-radius:26px;padding:0.85rem 1.5rem;cursor:pointer;transition:all 0.2s}
+.cuisine-timer-btn:hover{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.cuisine-timer{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:1rem 1.2rem}
+.cuisine-timer-val{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--sage-dark);line-height:1;font-variant-numeric:tabular-nums}
+.cuisine-timer-mini{font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.45rem 0.9rem;cursor:pointer}
+.cuisine-timer-mini:hover{border-color:var(--brown-light);color:var(--text)}
+.cuisine-timer.fini{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.8rem;animation:cuisineFlash 0.9s ease-in-out 4}
+@keyframes cuisineFlash{0%,100%{opacity:1}50%{opacity:0.55}}
+.cuisine-nav{display:flex;gap:0.7rem;padding:1rem 1.5rem calc(1.2rem + env(safe-area-inset-bottom));border-top:1px solid var(--cream-dark);background:var(--cream);flex-shrink:0;max-width:720px;width:100%;margin:0 auto}
+.cuisine-nav-btn{flex:1;font-family:Jost,sans-serif;font-size:0.72rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:1rem;cursor:pointer;transition:opacity 0.2s}
+.cuisine-nav-btn.ghost{background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted);flex:0 0 38%}
+.cuisine-nav-btn:disabled{opacity:0.35;cursor:default}
+@media(max-width:640px){
+  .cuisine-texte{font-size:1.18rem}
+  .cuisine-titre{font-size:1.25rem}
+  .cuisine-corps{padding:0.8rem 1.2rem 1.2rem}
+  .cuisine-timer-val{font-size:2.2rem}
+}
+.portion-ctrl{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;background:var(--cream);border:1px solid var(--cream-dark);border-radius:8px;padding:0.75rem 0.95rem;margin:1.6rem 0 0.2rem;transition:border-color 0.25s}
+.portion-ctrl.modifie{border-color:var(--sage);background:rgba(122,158,126,0.09)}
+.portion-label{font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark)}
+.portion-stepper{display:flex;align-items:center;background:var(--white);border:1px solid var(--cream-dark);border-radius:20px;overflow:hidden}
+.portion-stepper button{width:34px;height:34px;border:none;background:transparent;color:var(--sage-dark);font-size:1.05rem;cursor:pointer;line-height:1;transition:background 0.2s}
+.portion-stepper button:hover{background:var(--sage-dark);color:var(--white)}
+.portion-val{min-width:34px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--text)}
+.portion-unite{font-size:0.83rem;color:var(--text-muted)}
+.portion-reset{display:none;margin-left:auto;background:none;border:none;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-decoration:underline}
+.portion-reset:hover{color:var(--brown)}
+.ing-toggle-bar{width:100%;display:flex;align-items:center;justify-content:space-between;gap:0.9rem;background:var(--cream);border:1.5px solid var(--sage);border-radius:8px;padding:0.95rem 1.15rem;cursor:pointer;font-family:Jost,sans-serif;font-size:0.75rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;color:var(--sage-dark);transition:background 0.2s,color 0.2s,border-color 0.2s;margin:0.2rem 0 0.7rem;text-align:left}
 .ing-toggle-bar:hover{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
 .ing-chevron{font-size:1rem;line-height:1;transition:transform 0.35s ease;display:inline-block;flex-shrink:0}
 .ing-toggle-bar.open .ing-chevron{transform:rotate(180deg)}
@@ -1864,6 +1911,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿</footer>
 
+<div class="cuisine-overlay" id="cuisine-overlay">
+  <div class="cuisine-barre"><div class="cuisine-progression" id="cuisine-progression"></div></div>
+  <div class="cuisine-top">
+    <div>
+      <div class="cuisine-titre" id="cuisine-titre"></div>
+      <div class="cuisine-compteur" id="cuisine-compteur"></div>
+    </div>
+    <button class="cuisine-close" onclick="fermerCuisine()">&#10005;</button>
+  </div>
+  <div class="cuisine-corps">
+    <span class="cuisine-jour" id="cuisine-jour"></span>
+    <p class="cuisine-texte" id="cuisine-texte"></p>
+    <div class="cuisine-photos" id="cuisine-photos"></div>
+    <div id="cuisine-minuteur"></div>
+  </div>
+  <div class="cuisine-nav">
+    <button class="cuisine-nav-btn ghost" id="cuisine-prec" onclick="etapePrecedente()">Précédent</button>
+    <button class="cuisine-nav-btn" id="cuisine-suiv" onclick="etapeSuivante()">Suivant</button>
+  </div>
+</div>
+
 <div class="shop-overlay" id="shop-overlay" onclick="handleShopOverlayClick(event)">
   <div class="shop-box" id="shop-box">
     <button class="shop-close" onclick="closeShoppingList()">&#10005;</button>
@@ -2810,12 +2878,16 @@ function openModal(id) {
     const imgs=modalPhotos.map(s=>'<img src="'+s+'" alt="">').join('');
     photosHtml='<div class="modal-carousel" id="modal-carousel"><div class="modal-carousel-track" id="carousel-track">'+imgs+'</div><button class="carousel-btn carousel-prev" onclick="carouselPrev()">&#8592;</button><button class="carousel-btn carousel-next" onclick="carouselNext()">&#8594;</button><div class="carousel-dots" id="carousel-dots">'+dots+'</div></div>';
   }
+  portionsTexteBase = r.portions || '';
+  portionsBase = parsePortionsBase(portionsTexteBase);
+  portionsActuel = portionsBase;
+  portionsUnite = parsePortionsUnite(portionsTexteBase);
   const nbIngredients = r.ingredients.filter(x => !(x.startsWith('\u2014 ') && x.endsWith(' \u2014'))).length;
   const ing=r.ingredients.map(x=>{
     if(x.startsWith('— ')&&x.endsWith(' —')){
       return '<li style="list-style:none;padding:0.6rem 0 0.2rem;border-top:1px solid var(--cream-dark);margin-top:0.4rem"><span style="color:var(--sage-dark);font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-family:Jost,sans-serif">'+x.replace(/—/g,'').trim()+'</span></li>';
     }
-    return '<li>'+x+'</li>';
+    return '<li data-brut="'+x.replace(/"/g,'&quot;')+'">'+x+'</li>';
   }).join('');
   // Découpage des étapes par jour (J-2, J-1, Jour J...). Une étape sans préfixe
   // hérite du jour de l'étape précédente.
@@ -2836,6 +2908,8 @@ function openModal(id) {
   });
   const days = [];
   stepData.forEach(x => { if (x.day && days.indexOf(x.day) === -1) days.push(x.day); });
+  cuisineEtapes = stepData;
+  cuisineTitre = r.title;
   const multiDay = days.length > 1;
   const planSaved = planningDates[id] || '';
   const dayTabsHtml = multiDay
@@ -2851,20 +2925,23 @@ function openModal(id) {
   }).join('');
   const communauteHtml = '';
   const nutritionHtml = r.kcal ? 
-    '<div class="nutrition-bar"><div class="kcal-block"><div class="kcal-num">'+r.kcal+'</div><div class="kcal-unit">kcal · '+r.portions+'</div></div>'+
+    '<div class="nutrition-bar"><div class="kcal-block"><div class="kcal-num">'+r.kcal+'</div><div class="kcal-unit">kcal · <span id="kcal-portions">'+r.portions+'</span></div></div>'+
     '<div class="macro-row"><div class="macro"><div class="macro-val">'+r.proteines+' g</div><div class="macro-label">Protéines</div></div>'+
     '<div class="macro"><div class="macro-val">'+r.glucides+' g</div><div class="macro-label">Glucides</div></div>'+
     '<div class="macro"><div class="macro-val">'+r.lipides+' g</div><div class="macro-label">Lipides</div></div></div></div>' : '';
   document.getElementById('modal-content').innerHTML=
     photosHtml+'<div class="modal-body"><div class="modal-tag">'+r.tag+'</div><h2 class="modal-title">'+r.title+'</h2>'+
     nutritionHtml+
+    portionsHtml()+
     '<div class="modal-section-title">Ingr\u00E9dients</div>'+
-    '<button class="ing-toggle-bar" data-nb="'+nbIngredients+'" onclick="toggleIngredients(this)">'+
+    '<button class="ing-toggle-bar" id="ing-toggle-bar" data-nb="'+nbIngredients+'" onclick="toggleIngredients(this)">'+
       '<span class="ing-toggle-label">Voir les '+nbIngredients+' ingr\u00E9dients</span>'+
       '<span class="ing-chevron">&#9662;</span></button>'+
     '<div class="ing-collapse"><ul class="ingredient-list">'+ing+'</ul></div>'+
     '<button class="shop-btn shop-btn-block" onclick="openShoppingList(\''+id+'\')">&#128722;&nbsp; G\u00E9n\u00E9rer ma liste de courses</button>'+
-    '<div class="modal-section-title">Préparation</div>'+dayTabsHtml+'<ol class="steps-list">'+steps+'</ol>'+
+    '<div class="modal-section-title">Préparation</div>'+
+    '<button class="cuisine-start" onclick="ouvrirCuisine()">&#127859;&nbsp; Lancer le mode cuisine</button>'+
+    dayTabsHtml+'<ol class="steps-list">'+steps+'</ol>'+
     '<div class="astuce">'+r.astuce+'</div>'+(communitySection[id]||'')+'</div>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -2920,6 +2997,274 @@ function openModalComingPhotos(id, name) {
     probe.src = candidats[i];
   })(0);
 })();
+
+// ===== MODE CUISINE PLEIN ÉCRAN =====
+let cuisineEtapes = [];
+let cuisineIndex = 0;
+let cuisineTitre = '';
+let cuisineWakeLock = null;
+let minuteurId = null;
+let minuteurRestant = 0;
+let minuteurTotal = 0;
+let minuteurEnPause = false;
+
+// Repère une durée dans le texte d'une étape : « 40 minutes », « 1 h 30 »,
+// « 18 à 22 minutes » (on retient la borne basse), « 30 secondes ».
+function detecterDuree(texte){
+  const t = texte.toLowerCase().replace(/\u00a0/g, ' ');
+  let m = /(\d+)\s*h\s*(\d{1,2})\b/.exec(t);
+  if(m) return parseInt(m[1],10) * 3600 + parseInt(m[2],10) * 60;
+  m = /(\d+)(?:\s*\u00e0\s*\d+)?\s*(?:heures?|h)\b/.exec(t);
+  if(m) return parseInt(m[1],10) * 3600;
+  m = /(\d+)(?:\s*\u00e0\s*\d+)?\s*(?:minutes?|min)\b/.exec(t);
+  if(m) return parseInt(m[1],10) * 60;
+  m = /(\d+)(?:\s*\u00e0\s*\d+)?\s*secondes?\b/.exec(t);
+  if(m) return parseInt(m[1],10);
+  return null;
+}
+
+function formatDuree(sec){
+  const h = Math.floor(sec / 3600), mn = Math.floor((sec % 3600) / 60), s = sec % 60;
+  if(h) return h + ' h ' + String(mn).padStart(2,'0');
+  return String(mn).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+function libelleDuree(sec){
+  const h = Math.floor(sec / 3600), mn = Math.round((sec % 3600) / 60);
+  if(h) return h + ' h' + (mn ? ' ' + mn : '');
+  if(sec < 60) return sec + ' s';
+  return mn + ' min';
+}
+
+async function ouvrirCuisine(){
+  if(!cuisineEtapes.length) return;
+  cuisineIndex = 0;
+  document.getElementById('cuisine-titre').textContent = cuisineTitre;
+  document.getElementById('cuisine-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  afficherEtape();
+  try {
+    if('wakeLock' in navigator) cuisineWakeLock = await navigator.wakeLock.request('screen');
+  } catch(e) {}
+  document.addEventListener('keydown', clavierCuisine);
+}
+
+function fermerCuisine(){
+  arreterMinuteur();
+  document.getElementById('cuisine-overlay').classList.remove('open');
+  document.removeEventListener('keydown', clavierCuisine);
+  const modal = document.getElementById('modal-overlay');
+  if(!modal || !modal.classList.contains('open')) document.body.style.overflow = '';
+  try { if(cuisineWakeLock){ cuisineWakeLock.release(); cuisineWakeLock = null; } } catch(e) {}
+}
+
+function clavierCuisine(e){
+  if(e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); etapeSuivante(); }
+  if(e.key === 'ArrowLeft') { e.preventDefault(); etapePrecedente(); }
+  if(e.key === 'Escape') fermerCuisine();
+}
+
+function afficherEtape(){
+  const e = cuisineEtapes[cuisineIndex];
+  const n = cuisineEtapes.length;
+  arreterMinuteur();
+
+  document.getElementById('cuisine-progression').style.width = ((cuisineIndex + 1) / n * 100) + '%';
+  document.getElementById('cuisine-compteur').textContent = 'Étape ' + (cuisineIndex + 1) + ' sur ' + n;
+
+  const badge = document.getElementById('cuisine-jour');
+  badge.textContent = e.day || '';
+  badge.style.display = e.day ? 'inline-block' : 'none';
+
+  document.getElementById('cuisine-texte').textContent = e.text;
+
+  const photos = document.getElementById('cuisine-photos');
+  photos.innerHTML = (e.photos || []).map(src => '<img src="' + src + '" alt="">').join('');
+
+  const sec = detecterDuree(e.text);
+  const zone = document.getElementById('cuisine-minuteur');
+  if(sec){
+    minuteurTotal = sec;
+    zone.style.display = 'block';
+    zone.innerHTML = '<button class="cuisine-timer-btn" onclick="lancerMinuteur(' + sec + ')">\u23F1 Lancer le minuteur \u00b7 ' + libelleDuree(sec) + '</button>';
+  } else {
+    zone.style.display = 'none';
+    zone.innerHTML = '';
+  }
+
+  document.getElementById('cuisine-prec').disabled = (cuisineIndex === 0);
+  const suiv = document.getElementById('cuisine-suiv');
+  suiv.textContent = (cuisineIndex === n - 1) ? 'Terminé' : 'Suivant';
+}
+
+function etapeSuivante(){
+  if(cuisineIndex === cuisineEtapes.length - 1) return fermerCuisine();
+  cuisineIndex++;
+  afficherEtape();
+}
+
+function etapePrecedente(){
+  if(cuisineIndex === 0) return;
+  cuisineIndex--;
+  afficherEtape();
+}
+
+function lancerMinuteur(sec){
+  minuteurRestant = sec;
+  minuteurEnPause = false;
+  dessinerMinuteur();
+  clearInterval(minuteurId);
+  minuteurId = setInterval(() => {
+    if(minuteurEnPause) return;
+    minuteurRestant--;
+    if(minuteurRestant <= 0){
+      clearInterval(minuteurId);
+      minuteurId = null;
+      sonnerie();
+      const z = document.getElementById('cuisine-minuteur');
+      z.innerHTML = '<div class="cuisine-timer fini">C\u2019est pr\u00eat&nbsp;!<button class="cuisine-timer-btn" onclick="lancerMinuteur(' + minuteurTotal + ')">Relancer</button></div>';
+      return;
+    }
+    dessinerMinuteur();
+  }, 1000);
+}
+
+function dessinerMinuteur(){
+  const z = document.getElementById('cuisine-minuteur');
+  if(!z) return;
+  z.innerHTML = '<div class="cuisine-timer">' +
+    '<span class="cuisine-timer-val">' + formatDuree(minuteurRestant) + '</span>' +
+    '<button class="cuisine-timer-mini" onclick="basculerPause(this)">' + (minuteurEnPause ? 'Reprendre' : 'Pause') + '</button>' +
+    '<button class="cuisine-timer-mini" onclick="arreterMinuteur();afficherEtape()">Annuler</button>' +
+    '</div>';
+}
+
+function basculerPause(btn){
+  minuteurEnPause = !minuteurEnPause;
+  btn.textContent = minuteurEnPause ? 'Reprendre' : 'Pause';
+}
+
+function arreterMinuteur(){
+  clearInterval(minuteurId);
+  minuteurId = null;
+  minuteurEnPause = false;
+}
+
+function sonnerie(){
+  try {
+    if(navigator.vibrate) navigator.vibrate([300, 150, 300, 150, 300]);
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.45, 0.9].forEach(d => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = 880;
+      g.gain.setValueAtTime(0.0001, ctx.currentTime + d);
+      g.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + d + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + d + 0.3);
+      o.start(ctx.currentTime + d);
+      o.stop(ctx.currentTime + d + 0.32);
+    });
+  } catch(e) {}
+}
+
+// ===== QUANTITÉS SELON LE NOMBRE DE PARTS =====
+let portionsBase = null;   // nombre de parts d'origine de la recette
+let portionsActuel = null; // nombre choisi par la personne
+let portionsUnite = 'part';
+let portionsTexteBase = '';
+
+function parsePortionsBase(txt){
+  if(!txt) return null;
+  let m = /\/\s*(\d+)/.exec(txt);
+  if(m) return parseInt(m[1], 10);
+  m = /^\s*(\d+)/.exec(txt);
+  if(m) return parseInt(m[1], 10);
+  return null;
+}
+
+function parsePortionsUnite(txt){
+  if(!txt) return 'part';
+  if(txt.indexOf('/') !== -1){
+    const avant = txt.split('/')[0].replace(/[\d\s]/g, ' ').trim();
+    return avant || 'part';
+  }
+  const apres = txt.replace(/^\s*\d+\s*(?:\u00e0\s*\d+\s*)?/, '').trim();
+  return apres || 'part';
+}
+
+function formatPortions(base, n){
+  if(base.indexOf('/') !== -1) return base.replace(/\/\s*[\d\-\u00e0\s]+/, '/ ' + n);
+  return base.replace(/^\s*\d+(\s*\u00e0\s*\d+)?/, String(n));
+}
+
+function pluriel(mot, n){
+  if(n <= 1) return mot;
+  if(/s$/.test(mot)) return mot;
+  return mot + 's';
+}
+
+function fmtNombre(v){
+  let s;
+  if(v >= 20) s = String(Math.round(v));
+  else if(v >= 1) s = String(Math.round(v * 10) / 10);
+  else s = String(Math.round(v * 100) / 100);
+  return s.replace('.', ',');
+}
+
+// Ne recalcule que la quantité en tête de ligne : les pourcentages, les
+// températures et les mentions type « T55 » ou « 200 bloom » restent intacts.
+function scaleIngredient(txt, f){
+  if(!f || f === 1) return txt;
+  let m = /^(\d+)\s*\/\s*(\d+)(\s+)/.exec(txt);
+  if(m) return fmtNombre((parseInt(m[1],10) / parseInt(m[2],10)) * f) + m[3] + txt.slice(m[0].length);
+  m = /^(\d+(?:[.,]\d+)?)\s*\u00e0\s*(\d+(?:[.,]\d+)?)(\s+)/.exec(txt);
+  if(m) return fmtNombre(parseFloat(m[1].replace(',','.')) * f) + ' \u00e0 ' + fmtNombre(parseFloat(m[2].replace(',','.')) * f) + m[3] + txt.slice(m[0].length);
+  m = /^(\d+(?:[.,]\d+)?)(\s+)/.exec(txt);
+  if(m) return fmtNombre(parseFloat(m[1].replace(',','.')) * f) + m[2] + txt.slice(m[0].length);
+  return txt;
+}
+
+function portionsHtml(){
+  if(!portionsBase) return '';
+  return '<div class="portion-ctrl">'+
+    '<span class="portion-label">Je cuisine pour</span>'+
+    '<div class="portion-stepper">'+
+      '<button onclick="changerPortions(-1)" aria-label="moins">\u2212</button>'+
+      '<span class="portion-val" id="portion-val">' + portionsBase + '</span>'+
+      '<button onclick="changerPortions(1)" aria-label="plus">+</button>'+
+    '</div>'+
+    '<span class="portion-unite" id="portion-unite">' + pluriel(portionsUnite, portionsBase) + '</span>'+
+    '<button class="portion-reset" id="portion-reset" onclick="changerPortions(0)">Quantit\u00e9s d\u2019origine</button>'+
+  '</div>';
+}
+
+function changerPortions(delta){
+  if(!portionsBase) return;
+  portionsActuel = (delta === 0) ? portionsBase : Math.max(1, Math.min(60, portionsActuel + delta));
+  const f = portionsActuel / portionsBase;
+
+  const val = document.getElementById('portion-val');
+  if(val) val.textContent = portionsActuel;
+  const uni = document.getElementById('portion-unite');
+  if(uni) uni.textContent = pluriel(portionsUnite, portionsActuel);
+
+  document.querySelectorAll('#modal-content .ingredient-list li').forEach(li => {
+    const brut = li.dataset.brut;
+    if(brut === undefined) return;
+    li.textContent = scaleIngredient(brut, f);
+  });
+
+  const kcalUnit = document.getElementById('kcal-portions');
+  if(kcalUnit) kcalUnit.textContent = formatPortions(portionsTexteBase, portionsActuel);
+
+  const ctrl = document.querySelector('.portion-ctrl');
+  if(ctrl) ctrl.classList.toggle('modifie', f !== 1);
+  const reset = document.getElementById('portion-reset');
+  if(reset) reset.style.display = (f === 1) ? 'none' : 'inline';
+
+  const bar = document.getElementById('ing-toggle-bar');
+  if(bar && f !== 1 && !bar.classList.contains('open')) toggleIngredients(bar);
+}
 
 // ===== INGRÉDIENTS DÉROULANTS =====
 function toggleIngredients(bar){
@@ -3089,6 +3434,8 @@ function handleShopOverlayClick(e){
 }
 
 function closeModal() {
+  const cui = document.getElementById('cuisine-overlay');
+  if(cui && cui.classList.contains('open')) fermerCuisine();
   const shop = document.getElementById('shop-overlay');
   if(shop){ shop.classList.remove('open'); document.body.classList.remove('shop-open'); }
   document.getElementById('modal-overlay').classList.remove('open');
