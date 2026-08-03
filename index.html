@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Table d'Elsa</title>
+<meta name="description" content="Des recettes testées, retestées, et partagées avec ceux que j'aime. Du bon, du vrai, du fait maison.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4E6E52">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Table d'Elsa">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="icon" href="images/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -191,6 +200,17 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 /* ── Liste de courses ── */
 .modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}/* ── Nombre de parts ── */
 /* ── Mode cuisine plein écran ── */
+/* ── Installation sur l'écran d'accueil ── */
+.install-banniere{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1400;background:var(--white);border-top:1px solid var(--cream-dark);box-shadow:0 -4px 24px rgba(46,42,37,0.1);padding:1rem 1.2rem calc(1rem + env(safe-area-inset-bottom));gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.install-banniere.open{display:flex}
+.install-txt{display:flex;flex-direction:column;gap:0.2rem;min-width:200px;flex:1}
+.install-txt strong{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--text)}
+.install-txt span{font-size:0.78rem;color:var(--text-muted);line-height:1.5}
+.install-actions{display:flex;gap:0.5rem;align-items:center}
+.install-oui{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:22px;padding:0.75rem 1.3rem;cursor:pointer}
+.install-oui:hover{opacity:0.87}
+.install-non{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;color:var(--text-muted);cursor:pointer;text-decoration:underline}
+@media(max-width:520px){.install-banniere{flex-direction:column;align-items:stretch}.install-actions{justify-content:space-between}}
 .cuisine-start{width:100%;display:flex;align-items:center;justify-content:center;gap:0.4rem;font-family:Jost,sans-serif;font-size:0.72rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:0.9rem 1.2rem;cursor:pointer;margin:0.2rem 0 1.1rem;transition:opacity 0.2s}
 .cuisine-start:hover{opacity:0.87}
 .cuisine-overlay{display:none;position:fixed;inset:0;background:var(--cream);z-index:2000;flex-direction:column}
@@ -1917,6 +1937,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿</footer>
 
+<div class="install-banniere" id="install-banniere">
+  <div class="install-txt">
+    <strong id="install-titre">Installer La Table d'Elsa</strong>
+    <span id="install-sous">Un accès direct depuis l'écran d'accueil, même sans connexion.</span>
+  </div>
+  <div class="install-actions">
+    <button class="install-oui" id="install-oui" onclick="lancerInstallation()">Installer</button>
+    <button class="install-non" onclick="masquerInstall(true)">Plus tard</button>
+  </div>
+</div>
+
 <div class="cuisine-overlay" id="cuisine-overlay">
   <div class="cuisine-barre"><div class="cuisine-progression" id="cuisine-progression"></div></div>
   <div class="cuisine-top">
@@ -3010,6 +3041,66 @@ function openModalComingPhotos(id, name) {
     probe.src = candidats[i];
   })(0);
 })();
+
+// ===== INSTALLATION SUR L'ÉCRAN D'ACCUEIL =====
+let invitationInstall = null;
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+function dejaInstalle(){
+  return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+}
+function estIOS(){
+  return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+}
+function installRefuse(){
+  try { return localStorage.getItem('elsa_install_refus') === '1'; } catch(e) { return false; }
+}
+
+function afficherInstall(mode){
+  if(dejaInstalle() || installRefuse()) return;
+  const b = document.getElementById('install-banniere');
+  if(!b) return;
+  if(mode === 'ios'){
+    document.getElementById('install-sous').textContent = "Appuyez sur Partager, puis « Sur l'écran d'accueil ».";
+    document.getElementById('install-oui').style.display = 'none';
+  }
+  b.classList.add('open');
+}
+
+function masquerInstall(definitif){
+  const b = document.getElementById('install-banniere');
+  if(b) b.classList.remove('open');
+  if(definitif){ try { localStorage.setItem('elsa_install_refus', '1'); } catch(e) {} }
+}
+
+async function lancerInstallation(){
+  if(!invitationInstall) return masquerInstall(false);
+  invitationInstall.prompt();
+  try { await invitationInstall.userChoice; } catch(e) {}
+  invitationInstall = null;
+  masquerInstall(false);
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  invitationInstall = e;
+  setTimeout(() => afficherInstall('auto'), 4000);
+});
+
+window.addEventListener('appinstalled', () => {
+  masquerInstall(true);
+  invitationInstall = null;
+});
+
+// iOS ne propose pas d'invitation automatique : on explique le geste.
+if(estIOS() && !dejaInstalle()){
+  window.addEventListener('load', () => setTimeout(() => afficherInstall('ios'), 5000));
+}
 
 // ===== LECTURE VOCALE DES ÉTAPES =====
 let voixActive = false;
