@@ -3148,38 +3148,71 @@ async function majBoutonNotif(){
 }
 
 async function basculerNotif(){
-  if(!pushDisponible()) return;
-  const reg = await navigator.serviceWorker.ready;
-  const existante = await reg.pushManager.getSubscription();
+  if(!pushDisponible()){
+    return alert('Ce navigateur ne gère pas les notifications.');
+  }
+  // Apple n'autorise les notifications que depuis l'app installée
+  if(estIOS() && !dejaInstalle()){
+    return alert('Sur iPhone, les notifications ne fonctionnent que depuis l\u2019application installée.\n\nAppuyez sur Partager, puis « Sur l\u2019écran d\u2019accueil », et rouvrez le site depuis son icône.');
+  }
 
+  let reg;
+  try {
+    reg = await avecDelai(navigator.serviceWorker.ready, 5000, null);
+  } catch(e) { reg = null; }
+  if(!reg || !reg.pushManager){
+    return alert('Le service de notifications n\u2019est pas encore prêt. Rechargez la page et réessayez.');
+  }
+
+  const existante = await reg.pushManager.getSubscription();
   if(existante){
     try { await supaFetch('/rest/v1/push_abonnes?endpoint=eq.' + encodeURIComponent(existante.endpoint), 'DELETE'); } catch(e) {}
     await existante.unsubscribe();
     return majBoutonNotif();
   }
 
-  const perm = await Notification.requestPermission();
-  if(perm !== 'granted') return majBoutonNotif();
+  let perm;
+  try { perm = await Notification.requestPermission(); } catch(e) { perm = Notification.permission; }
+  if(perm !== 'granted'){
+    majBoutonNotif();
+    return alert(perm === 'denied'
+      ? 'Les notifications sont bloquées pour ce site. Réactivez-les dans les réglages de votre navigateur.'
+      : 'Autorisation non accordée.');
+  }
 
+  // 1) abonnement auprès du navigateur
+  let sub;
   try {
-    const sub = await reg.pushManager.subscribe({
+    sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: b64ToUint8(VAPID_PUBLIC)
     });
+  } catch(e) {
+    console.error('subscribe', e);
+    majBoutonNotif();
+    return alert('Abonnement refusé par le navigateur.\n\nDétail : ' + (e && (e.message || e.name) || 'inconnu'));
+  }
+
+  // 2) enregistrement côté Supabase
+  try {
     const j = sub.toJSON();
     await supaFetch('/rest/v1/push_abonnes', 'POST', {
-      endpoint: j.endpoint,
-      p256dh: j.keys.p256dh,
-      auth: j.keys.auth
+      endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth
     });
+  } catch(e) {
+    console.error('enregistrement', e);
+    try { await sub.unsubscribe(); } catch(err) {}
+    majBoutonNotif();
+    return alert('Enregistrement impossible côté serveur.\n\nDétail : ' + (e && (e.message || e.status) || 'inconnu'));
+  }
+
+  try {
     await reg.showNotification('C\u2019est noté !', {
       body: 'Vous serez prévenue dès qu\u2019une nouvelle recette arrive.',
       icon: 'images/icon-192.png'
     });
-  } catch(e) {
-    console.error(e);
-    alert('Impossible d\u2019activer les notifications pour le moment.');
-  }
+  } catch(e) {}
+
   majBoutonNotif();
   const pop = document.getElementById('notif-pop');
   if(pop) pop.classList.remove('open');
