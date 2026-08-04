@@ -1,7 +1,7 @@
 /* La Table d'Elsa — fonctionnement hors ligne
    Pour publier une mise à jour du site, incrémentez le numéro de version
    ci-dessous : les anciens fichiers mis en cache seront alors supprimés. */
-const VERSION = 'elsa-v1';
+const VERSION = 'elsa-v2';
 const BASE = new URL('./', self.location).pathname;
 
 self.addEventListener('install', e => {
@@ -55,5 +55,45 @@ self.addEventListener('fetch', e => {
       }
       return rep;
     }))
+  );
+});
+
+
+/* ── Notifications : nouvelle recette ─────────────────────────────
+   Le push arrive sans contenu. Le service worker va lire le fichier
+   derniere-recette.json du site pour savoir quoi annoncer. */
+self.addEventListener('push', e => {
+  e.waitUntil((async () => {
+    let titre = 'La Table d\u2019Elsa';
+    let corps = 'Une nouvelle recette vient d\u2019arriver.';
+    try {
+      const rep = await fetch(BASE + 'derniere-recette.json?t=' + Date.now(), { cache: 'no-store' });
+      if (rep.ok) {
+        const info = await rep.json();
+        if (info.titre) titre = info.titre;
+        if (info.texte) corps = info.texte;
+      }
+    } catch (err) {}
+    await self.registration.showNotification(titre, {
+      body: corps,
+      icon: BASE + 'images/icon-192.png',
+      badge: BASE + 'images/icon-192.png',
+      tag: 'nouvelle-recette',
+      renotify: true,
+      data: { url: BASE }
+    });
+  })());
+});
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const cible = (e.notification.data && e.notification.data.url) || BASE;
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(liste => {
+      for (const c of liste) {
+        if (c.url.indexOf(cible) !== -1 && 'focus' in c) return c.focus();
+      }
+      return self.clients.openWindow(cible);
+    })
   );
 });

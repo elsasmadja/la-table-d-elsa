@@ -201,6 +201,16 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}/* ── Nombre de parts ── */
 /* ── Mode cuisine plein écran ── */
 /* ── Installation sur l'écran d'accueil ── */
+/* ── Abonnement aux nouvelles recettes ── */
+.notif-bloc{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;max-width:680px;margin:0 auto 4rem;padding:1.3rem 1.5rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:10px}
+.notif-txt{display:flex;flex-direction:column;gap:0.25rem;flex:1;min-width:220px}
+.notif-txt strong{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--text)}
+.notif-txt span{font-size:0.8rem;color:var(--text-muted);line-height:1.5}
+.notif-btn{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:1.5px solid var(--sage-dark);border-radius:24px;padding:0.8rem 1.4rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.notif-btn:hover{opacity:0.87}
+.notif-btn.actif{background:transparent;color:var(--text-muted);border-color:var(--cream-dark)}
+.notif-btn.actif:hover{border-color:var(--brown-light);color:var(--brown)}
+@media(max-width:560px){.notif-bloc{margin:0 1rem 3rem;flex-direction:column;align-items:stretch}.notif-btn{width:100%}}
 .install-banniere{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1400;background:var(--white);border-top:1px solid var(--cream-dark);box-shadow:0 -4px 24px rgba(46,42,37,0.1);padding:1rem 1.2rem calc(1rem + env(safe-area-inset-bottom));gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .install-banniere.open{display:flex}
 .install-txt{display:flex;flex-direction:column;gap:0.2rem;min-width:200px;flex:1}
@@ -1160,6 +1170,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Pas de prise de tête, pas de discours compliqué. Juste des recettes testées et approuvées, avec les vraies quantités, les vrais temps, et les vraies astuces.</p>
     <p>Bonne cuisine 🌿</p>
     <div class="concept-signature">— Elsa</div>
+  </div>
+
+  <div class="notif-bloc" id="notif-bloc">
+    <div class="notif-txt">
+      <strong>Ne rien manquer</strong>
+      <span id="notif-etat">Une notification, uniquement quand une recette est ajoutée.</span>
+    </div>
+    <button class="notif-btn" id="notif-btn" onclick="basculerNotif()">Me prévenir</button>
   </div>
 </div>
 
@@ -3042,6 +3060,86 @@ function openModalComingPhotos(id, name) {
   })(0);
 })();
 
+// ===== NOTIFICATIONS : NOUVELLES RECETTES =====
+const VAPID_PUBLIC = 'BFx1RhtNOXQ15q2cvkZC-SavtDq5o46gW1rxJQ-3BSsN1OzcWQ1suBbl8ZWIRgd8D9oihqrxyhFlwywr0-Wc4-s';
+
+function pushDisponible(){
+  return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+}
+
+function b64ToUint8(base64){
+  const p = '='.repeat((4 - base64.length % 4) % 4);
+  const b = (base64 + p).replace(/-/g, '+').replace(/_/g, '/');
+  const brut = atob(b);
+  return Uint8Array.from([...brut].map(c => c.charCodeAt(0)));
+}
+
+async function etatNotif(){
+  if(!pushDisponible()) return 'indisponible';
+  if(Notification.permission === 'denied') return 'refuse';
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    return sub ? 'actif' : 'inactif';
+  } catch(e) { return 'inactif'; }
+}
+
+async function majBoutonNotif(){
+  const b = document.getElementById('notif-btn');
+  const t = document.getElementById('notif-etat');
+  if(!b) return;
+  const etat = await etatNotif();
+  const bloc = document.getElementById('notif-bloc');
+  if(etat === 'indisponible'){ if(bloc) bloc.style.display = 'none'; return; }
+  b.classList.toggle('actif', etat === 'actif');
+  if(etat === 'actif'){
+    b.textContent = 'Me désabonner';
+    if(t) t.textContent = 'Vous serez prévenue à chaque nouvelle recette.';
+  } else if(etat === 'refuse'){
+    b.style.display = 'none';
+    if(t) t.textContent = 'Les notifications sont bloquées dans les réglages de votre navigateur.';
+  } else {
+    b.textContent = 'Me prévenir';
+    if(t) t.textContent = 'Une notification, uniquement quand une recette est ajoutée.';
+  }
+}
+
+async function basculerNotif(){
+  if(!pushDisponible()) return;
+  const reg = await navigator.serviceWorker.ready;
+  const existante = await reg.pushManager.getSubscription();
+
+  if(existante){
+    try { await supaFetch('/rest/v1/push_abonnes?endpoint=eq.' + encodeURIComponent(existante.endpoint), 'DELETE'); } catch(e) {}
+    await existante.unsubscribe();
+    return majBoutonNotif();
+  }
+
+  const perm = await Notification.requestPermission();
+  if(perm !== 'granted') return majBoutonNotif();
+
+  try {
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: b64ToUint8(VAPID_PUBLIC)
+    });
+    const j = sub.toJSON();
+    await supaFetch('/rest/v1/push_abonnes', 'POST', {
+      endpoint: j.endpoint,
+      p256dh: j.keys.p256dh,
+      auth: j.keys.auth
+    });
+    await reg.showNotification('C\u2019est noté !', {
+      body: 'Vous serez prévenue dès qu\u2019une nouvelle recette arrive.',
+      icon: 'images/icon-192.png'
+    });
+  } catch(e) {
+    console.error(e);
+    alert('Impossible d\u2019activer les notifications pour le moment.');
+  }
+  majBoutonNotif();
+}
+
 // ===== INSTALLATION SUR L'ÉCRAN D'ACCUEIL =====
 let invitationInstall = null;
 
@@ -3098,6 +3196,8 @@ window.addEventListener('appinstalled', () => {
 });
 
 // iOS ne propose pas d'invitation automatique : on explique le geste.
+window.addEventListener('load', () => { setTimeout(majBoutonNotif, 1200); });
+
 if(estIOS() && !dejaInstalle()){
   window.addEventListener('load', () => setTimeout(() => afficherInstall('ios'), 5000));
 }
