@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Table d'Elsa</title>
+<meta name="version-site" content="2026-08-03-notifications">
 <meta name="description" content="Des recettes testées, retestées, et partagées avec ceux que j'aime. Du bon, du vrai, du fait maison.">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#4E6E52">
@@ -3092,6 +3093,8 @@ function openModalComingPhotos(id, name) {
 // ===== NOTIFICATIONS : NOUVELLES RECETTES =====
 const VAPID_PUBLIC = 'BFx1RhtNOXQ15q2cvkZC-SavtDq5o46gW1rxJQ-3BSsN1OzcWQ1suBbl8ZWIRgd8D9oihqrxyhFlwywr0-Wc4-s';
 
+console.info('La Table d\u2019Elsa — version 2026-08-03-notifications');
+
 function pushDisponible(){
   return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 }
@@ -3103,12 +3106,17 @@ function b64ToUint8(base64){
   return Uint8Array.from([...brut].map(c => c.charCodeAt(0)));
 }
 
+function avecDelai(promesse, ms, secours){
+  return Promise.race([promesse, new Promise(r => setTimeout(() => r(secours), ms))]);
+}
+
 async function etatNotif(){
   if(!pushDisponible()) return 'indisponible';
   if(Notification.permission === 'denied') return 'refuse';
   try {
-    const reg = await navigator.serviceWorker.ready;
-    const sub = await reg.pushManager.getSubscription();
+    const reg = await avecDelai(navigator.serviceWorker.ready, 2500, null);
+    if(!reg) return 'inactif';
+    const sub = await avecDelai(reg.pushManager.getSubscription(), 2500, null);
     return sub ? 'actif' : 'inactif';
   } catch(e) { return 'inactif'; }
 }
