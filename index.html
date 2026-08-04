@@ -200,6 +200,26 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 
 /* ── Liste de courses ── */
 .modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}/* ── Nombre de parts ── */
+/* ── Vidéo des gestes ── */
+.video-btn{display:inline-flex;align-items:center;font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;background:rgba(139,99,71,0.1);border:1px solid rgba(139,99,71,0.35);color:var(--brown);border-radius:20px;padding:0.45rem 0.9rem;cursor:pointer;margin-top:0.6rem;transition:all 0.2s}
+.video-btn:hover{background:var(--brown);border-color:var(--brown);color:var(--white)}
+.video-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.72);z-index:2200;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto}
+.video-overlay.open{display:flex}
+.video-boite{background:var(--white);border-radius:14px;max-width:560px;width:100%;padding:1.8rem 1.6rem;position:relative;margin:auto}
+.video-close{position:fixed;top:1.1rem;right:1.1rem;background:rgba(46,42,37,0.8);border:none;width:38px;height:38px;border-radius:50%;color:var(--white);font-size:1rem;cursor:pointer;z-index:2300;display:flex;align-items:center;justify-content:center}
+.video-tete{margin-bottom:1rem}
+.video-eyebrow{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--brown-light);font-weight:600}
+.video-tete h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--text);margin-top:0.2rem}
+.video-anim{background:var(--cream);border-radius:10px;overflow:hidden;margin-bottom:1rem}
+.video-anim svg{display:block;width:100%;height:auto}
+.video-lecteur{width:100%;border-radius:8px;background:#000;display:block}
+.video-def{font-size:0.87rem;color:var(--text-muted);line-height:1.7;background:var(--cream);border-radius:8px;padding:0.9rem 1rem;margin-bottom:1rem}
+.video-lien{display:flex;align-items:center;justify-content:center;font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border-radius:24px;padding:0.85rem 1.3rem;text-decoration:none;transition:opacity 0.2s}
+.video-lien:hover{opacity:0.87}
+.video-note{font-size:0.72rem;color:var(--brown-light);text-align:center;margin-top:0.6rem}
+.video-secours.replie{display:none}
+#cuisine-geste{margin-top:0.6rem}
+@media(max-width:560px){.video-boite{padding:1.4rem 1.1rem}}
 /* ── Mode cuisine plein écran ── */
 /* ── Installation sur l'écran d'accueil ── */
 /* ── Invitation flottante aux notifications ── */
@@ -279,6 +299,120 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
   .cuisine-corps{padding:0.8rem 1.2rem 1.2rem}
   .cuisine-timer-val{font-size:2.2rem}
 }
+.nav-wishlist-li{margin-left:auto}
+.nav-compte-li a{padding-left:0.5rem!important}
+.compte-libelle{display:none}
+.compte-pastille{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--white);border:1.5px solid var(--brown-light);color:var(--brown);font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1;transition:all 0.2s}
+.compte-pastille svg{width:17px;height:17px;display:block}
+.nav-compte-li a:hover .compte-pastille{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.compte-pastille.rempli{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+/* ── Mon compte ── */
+.compte-wrap{max-width:680px;margin:0 auto;padding:2.6rem 1.2rem 5rem}
+.compte-tete{text-align:center;margin-bottom:2rem}
+.compte-tete h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;color:var(--text)}
+.compte-tete p{font-size:0.86rem;color:var(--text-muted);line-height:1.7;max-width:460px;margin:0.5rem auto 0}
+.compte-bloc{background:var(--white);border:1px solid var(--cream-dark);border-radius:10px;padding:1.4rem 1.4rem 1.2rem;margin-bottom:1.1rem}
+.compte-label{display:block;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);margin-bottom:0.7rem}
+.compte-input{width:100%;padding:0.85rem 1rem;border:1px solid var(--cream-dark);border-radius:8px;background:var(--cream);font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text)}
+.compte-input:focus{outline:none;border-color:var(--sage)}
+.compte-aide{font-size:0.78rem;color:var(--text-muted);line-height:1.6;margin-top:0.7rem}
+.compte-note{background:var(--cream);border-style:dashed}
+.compte-note strong{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown);display:block;margin-bottom:0.5rem}
+.compte-note p{font-size:0.8rem;color:var(--text-muted);line-height:1.7}
+.compte-effacer{margin-top:1rem;background:none;border:none;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-decoration:underline}
+.compte-effacer:hover{color:var(--brown)}
+.compte-ligne{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 0;border-top:1px solid var(--cream-dark)}
+.compte-ligne:first-of-type{border-top:none}
+.compte-ligne>div:first-child{display:flex;flex-direction:column;gap:0.15rem;flex:1;min-width:0}
+.compte-ligne strong{font-size:0.9rem;font-weight:500;color:var(--text)}
+.compte-ligne span{font-size:0.76rem;color:var(--text-muted);line-height:1.5}
+.compte-switch{width:50px;height:28px;border-radius:16px;border:none;background:var(--cream-dark);cursor:pointer;position:relative;transition:background 0.25s;flex-shrink:0}
+.compte-switch span{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--white);box-shadow:0 1px 4px rgba(46,42,37,0.2);transition:transform 0.25s}
+.compte-switch.on{background:var(--sage-dark)}
+.compte-switch.on span{transform:translateX(22px)}
+.compte-action{font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;background:transparent;border:1px solid var(--sage);color:var(--sage-dark);border-radius:20px;padding:0.55rem 1rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.compte-action:hover{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.compte-prevues{display:flex;flex-direction:column;gap:0.5rem}
+.compte-prevue{display:flex;align-items:baseline;gap:0.7rem;flex-wrap:wrap;text-align:left;background:var(--cream);border:1px solid var(--cream-dark);border-radius:8px;padding:0.75rem 0.9rem;cursor:pointer;transition:border-color 0.2s}
+.compte-prevue:hover{border-color:var(--sage)}
+.compte-prevue-jour{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:600;color:var(--white);background:var(--sage-dark);border-radius:14px;padding:3px 10px}
+.compte-prevue-titre{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text);flex:1}
+.compte-prevue-date{font-size:0.74rem;color:var(--text-muted)}
+.compte-raccourcis{display:flex;gap:0.6rem;flex-wrap:wrap}
+.compte-raccourci{flex:1;min-width:140px;display:flex;flex-direction:column;align-items:center;gap:0.25rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:10px;padding:1rem 0.6rem;cursor:pointer;transition:border-color 0.2s}
+.compte-raccourci:hover{border-color:var(--sage)}
+.compte-raccourci strong{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--sage-dark);line-height:1}
+.compte-raccourci span{font-size:0.72rem;color:var(--text-muted);text-align:center;line-height:1.4}
+.compte-bloc .portion-stepper{flex-shrink:0}
+.profil-actif{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;font-size:0.78rem;color:var(--sage-dark);background:rgba(122,158,126,0.13);border-radius:8px;padding:0.6rem 0.9rem;margin-top:1rem}
+.profil-actif button{background:none;border:none;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-decoration:underline;margin-left:auto}
+.profil-actif button:hover{color:var(--brown)}
+.cout-ligne{display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;font-size:0.82rem;color:var(--text-muted);background:var(--cream);border-radius:8px;padding:0.7rem 0.95rem;margin-top:1rem}
+.cout-ligne strong{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--brown)}
+.cout-ligne span{font-size:0.76rem}
+.cout-partiel{color:var(--brown-light);font-style:italic}
+/* ── Filtres prix et temps ── */
+.filtres{display:flex;align-items:flex-end;gap:0.9rem;flex-wrap:wrap;padding:0 3rem 1.4rem}
+.filtre-select{display:flex;flex-direction:column;gap:0.3rem}
+.filtre-titre{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--brown-light)}
+.filtre-select select{appearance:none;-webkit-appearance:none;font-family:Jost,sans-serif;font-size:0.8rem;color:var(--text);background:var(--white) url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238B6347' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.7rem center/14px;border:1px solid var(--cream-dark);border-radius:22px;padding:0.6rem 2.2rem 0.6rem 1rem;cursor:pointer;min-width:190px;transition:border-color 0.2s}
+.filtre-select select:hover{border-color:var(--sage)}
+.filtre-select select:focus{outline:none;border-color:var(--sage)}
+.filtre-reset{display:none;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;color:var(--text-muted);cursor:pointer;text-decoration:underline;padding:0.7rem 0}
+.filtre-reset.visible{display:inline}
+.filtre-reset:hover{color:var(--brown)}
+.filtre-bilan{font-size:0.75rem;color:var(--text-muted);font-style:italic;padding-bottom:0.7rem}
+.filtre-bilan.vide{color:var(--brown)}
+@media(max-width:640px){
+  .filtres{padding:0 1.2rem 1.1rem;gap:0.7rem}
+  .filtre-select{flex:1;min-width:150px}
+  .filtre-select select{min-width:0;width:100%}
+  .filtre-bilan{width:100%;padding-bottom:0}
+}
+/* ── Barre d'outils de la fiche recette ── */
+.outils{display:flex;gap:0.45rem;flex-wrap:wrap;margin:1.4rem 0 0.2rem}
+.outil{display:inline-flex;align-items:center;gap:0.4rem;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;font-weight:500;background:var(--white);border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:22px;padding:0.6rem 1rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.outil:hover{border-color:var(--sage);color:var(--sage-dark)}
+.outil.actif{background:var(--cream);border-color:var(--sage);color:var(--sage-dark)}
+.outil.primaire{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.outil.primaire:hover{opacity:0.88;color:var(--white)}
+.outil-ico{font-size:0.9rem;line-height:1}
+.volet{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.volet.open{max-height:3000px}
+.ing-tete{align-items:center}
+.ing-tete .portion-ctrl{margin:0;padding:0.4rem 0.6rem;background:transparent;border:none;gap:0.45rem}
+.ing-tete .portion-label{display:none}
+.ing-tete .portion-unite{font-size:0.76rem}
+.ing-tete .portion-reset{margin-left:0.3rem}
+@media(max-width:520px){
+  .outils{gap:0.35rem}
+  .outil{font-size:0.63rem;padding:0.55rem 0.8rem}
+  .ing-tete{flex-direction:row;align-items:center;justify-content:space-between}
+  .ing-tete .portion-ctrl{padding:0.2rem 0}
+}
+/* ── Adaptation par régime ── */
+.regime-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:0.8rem;background:var(--white);border:1.5px solid var(--brown-light);border-radius:8px;padding:0.85rem 1.1rem;cursor:pointer;font-family:Jost,sans-serif;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--brown);margin:0.7rem 0 0.2rem;transition:all 0.2s}
+.regime-toggle:hover{background:var(--brown);border-color:var(--brown);color:var(--white)}
+.regime-chevron{font-size:0.9rem;transition:transform 0.3s}
+.regime-toggle.open .regime-chevron{transform:rotate(180deg)}
+.regime-panneau{max-height:0;overflow:hidden;transition:max-height 0.45s ease}
+.regime-panneau.open{max-height:3000px}
+.regime-cat{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--brown-light);margin:0.9rem 0 0.4rem}
+.regime-cat:first-child{margin-top:0.4rem}
+.regime-ligne{display:flex;flex-wrap:wrap;gap:0.4rem}
+.regime-chips{padding:0.6rem 0 0.2rem}
+.regime-chip{font-family:Jost,sans-serif;font-size:0.72rem;background:var(--white);border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:20px;padding:0.5rem 0.9rem;cursor:pointer;transition:all 0.2s}
+.regime-chip:hover{border-color:var(--sage);color:var(--sage-dark)}
+.regime-chip.actif{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.regime-notes{padding:0.2rem 0 0.4rem}
+.regime-alerte{font-size:0.76rem;line-height:1.6;color:var(--brown);background:rgba(196,168,130,0.16);border-left:3px solid var(--brown-light);border-radius:5px;padding:0.7rem 0.9rem;margin:0.9rem 0 0.7rem}
+.regime-note-bloc{margin-bottom:0.7rem}
+.regime-note-bloc strong{font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.11em;text-transform:uppercase;color:var(--sage-dark);font-weight:600}
+.regime-note-bloc ul{list-style:none;margin-top:0.35rem;display:flex;flex-direction:column;gap:0.35rem}
+.regime-note-bloc li{font-size:0.79rem;color:var(--text-muted);line-height:1.6;padding-left:0.9rem;position:relative}
+.regime-note-bloc li::before{content:'\2022';position:absolute;left:0;color:var(--brown-light)}
+.ingredient-list li.ing-adapte{color:var(--sage-dark);font-weight:500}
+.ingredient-list li.ing-adapte::before{content:'\21BB';color:var(--sage);font-size:0.78rem}
 .portion-ctrl{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;background:var(--cream);border:1px solid var(--cream-dark);border-radius:8px;padding:0.75rem 0.95rem;margin:1.6rem 0 0.2rem;transition:border-color 0.25s}
 .portion-ctrl.modifie{border-color:var(--sage);background:rgba(122,158,126,0.09)}
 .portion-label{font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark)}
@@ -472,6 +606,10 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
     box-shadow: 0 4px 16px rgba(46,42,37,0.1);
   }
   .nav-links.open { display: flex; }
+  .nav-compte-li a { padding-left: 1.4rem!important; }
+  .compte-libelle { display: inline; margin-left: 0.6rem; vertical-align: middle; }
+  .compte-pastille { width: 26px; height: 26px; font-size: 0.9rem; vertical-align: middle; }
+  .nav-wishlist-li { margin-left: 0; }
   .nav-links li { flex: none; text-align: left; width: 100%; }
   .nav-links a {
     display: block;
@@ -953,6 +1091,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
 .inspi-msg.moi .inspi-bulle{background:var(--sage-dark);color:var(--white)}
 .inspi-bulle strong{font-weight:600}
 .inspi-bulle em{font-style:normal;color:var(--sage-dark);font-weight:600}
+.conv-note{display:block;font-size:0.74rem;color:var(--text-muted);line-height:1.55;margin-top:0.4rem;font-style:italic}
 .inspi-carte{background:var(--white);border:1px solid var(--cream-dark);border-left:3px solid var(--sage);border-radius:8px;padding:0.8rem 0.9rem;margin-top:0.65rem}
 .inspi-carte-tag{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light);font-weight:500}
 .inspi-carte h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);margin:0.15rem 0 0.4rem}
@@ -1134,6 +1273,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
     <li><a href="#" data-tab="feed">Partage ta réalisation</a></li>
     <li><a href="#" data-tab="calculateur" style="font-weight:600">Mon bilan calorique</a></li>
     <li class="nav-wishlist-li" style="margin-left:auto"><a href="#" data-tab="wishlist" id="wishlist-nav" title="Mes favoris">❤️ <span id="wishlist-count"></span></a></li>
+    <li class="nav-compte-li"><a href="#" data-tab="compte" id="compte-nav" title="Mon compte"><span class="compte-pastille" id="compte-pastille"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="compte-libelle">Mon compte</span></a></li>
   </ul>
 </nav>
 <script>
@@ -1421,7 +1561,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Cookies Signatures</h3>
-        <div class="patisserie-card-meta"><span>🍪 Cookies</span></div>
+        <div class="patisserie-card-meta"><span>🍪 Cookies</span><span>⏱ 30 min</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('noelcheese')">
@@ -1464,7 +1604,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Brownie Signature</h3>
-        <div class="patisserie-card-meta"><span>🍫 Gâteau</span></div>
+        <div class="patisserie-card-meta"><span>🍫 Gâteau</span><span>⏱ 45 min</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('levain')">
@@ -1843,6 +1983,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div><!-- end tab-calculateur -->
 
+<div class="tab-content" id="tab-compte">
+  <div class="compte-wrap" id="compte-corps"></div>
+</div>
+
 <div class="tab-content" id="tab-inspiration">
   <div class="inspi-wrap">
     <div class="inspi-chat" id="inspi-chat"></div>
@@ -1997,6 +2141,13 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
+<div class="video-overlay" id="video-overlay" onclick="clicOverlayVideo(event)">
+  <div class="video-boite">
+    <button class="video-close" onclick="fermerVideo()">&#10005;</button>
+    <div id="video-contenu"></div>
+  </div>
+</div>
+
 <div class="cuisine-overlay" id="cuisine-overlay">
   <div class="cuisine-barre"><div class="cuisine-progression" id="cuisine-progression"></div></div>
   <div class="cuisine-top">
@@ -2016,6 +2167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="cuisine-jour" id="cuisine-jour"></span>
     <p class="cuisine-texte" id="cuisine-texte"></p>
     <button class="cuisine-relire" id="voix-relire" onclick="lireEtape()">&#9654;&nbsp; Relire l'étape</button>
+    <div id="cuisine-geste"></div>
     <div class="cuisine-photos" id="cuisine-photos"></div>
     <div id="cuisine-minuteur"></div>
   </div>
@@ -2971,6 +3123,7 @@ function openModal(id) {
     const imgs=modalPhotos.map(s=>'<img src="'+s+'" alt="">').join('');
     photosHtml='<div class="modal-carousel" id="modal-carousel"><div class="modal-carousel-track" id="carousel-track">'+imgs+'</div><button class="carousel-btn carousel-prev" onclick="carouselPrev()">&#8592;</button><button class="carousel-btn carousel-next" onclick="carouselNext()">&#8594;</button><div class="carousel-dots" id="carousel-dots">'+dots+'</div></div>';
   }
+  regimesActifs = (profil.regimes || []).slice();
   portionsTexteBase = r.portions || '';
   portionsBase = parsePortionsBase(portionsTexteBase);
   portionsActuel = portionsBase;
@@ -3006,15 +3159,16 @@ function openModal(id) {
   const multiDay = days.length > 1;
   const planSaved = planningDates[id] || '';
   const dayTabsHtml = multiDay
-    ? planWrapHtml(id, days)
-      + '<div class="day-tabs"><button class="day-tab active" onclick="filterDay(this,\'all\')"><span>Tout voir</span></button>'
+    ? '<div class="day-tabs"><button class="day-tab active" onclick="filterDay(this,\'all\')"><span>Tout voir</span></button>'
       + days.map(d => '<button class="day-tab" data-day="'+d+'" onclick="filterDay(this,\''+d+'\')"><span>'+d+'</span><span class="day-tab-date"></span></button>').join('')
       + '</div>'
     : '';
   const steps = stepData.map((x,idx) => {
     const photosHtml = x.photos.length ? '<div class="step-photos">'+x.photos.map(src=>'<img class="step-img" src="'+src+'" alt="" loading="lazy">').join('')+'</div>' : '';
     const badge = (multiDay && x.day) ? '<div class="day-badge" data-daylabel="'+x.day+'">'+x.day+'</div>' : '';
-    return '<li class="step" data-day="'+(x.day||'')+'"><span class="step-num">'+(idx+1)+'</span><div class="step-content">'+badge+'<p>'+x.text+'</p>'+photosHtml+'</div></li>';
+    const geste = detecterGeste(x.text);
+    const btnVideo = geste ? '<button class="video-btn" onclick="ouvrirVideo(\''+geste.c+'\')">&#9654;&nbsp; '+geste.n+' en vid\u00e9o</button>' : '';
+    return '<li class="step" data-day="'+(x.day||'')+'"><span class="step-num">'+(idx+1)+'</span><div class="step-content">'+badge+'<p>'+x.text+'</p>'+btnVideo+photosHtml+'</div></li>';
   }).join('');
   const communauteHtml = '';
   const nutritionHtml = r.kcal ? 
@@ -3025,20 +3179,37 @@ function openModal(id) {
   document.getElementById('modal-content').innerHTML=
     photosHtml+'<div class="modal-body"><div class="modal-tag">'+r.tag+'</div><h2 class="modal-title">'+r.title+'</h2>'+
     nutritionHtml+
-    portionsHtml()+
-    '<div class="modal-section-title">Ingr\u00E9dients</div>'+
+    coutHtml(id)+
+    // barre d'outils compacte : une seule ligne au lieu de quatre blocs
+    '<div class="outils">'+
+      '<button class="outil primaire" onclick="ouvrirCuisine()"><span class="outil-ico">&#127859;</span>Mode cuisine</button>'+
+      '<button class="outil" onclick="openShoppingList(\''+id+'\')"><span class="outil-ico">&#128722;</span>Courses</button>'+
+      '<button class="outil" id="outil-regime" onclick="ouvrirVolet(\'regime\',this)"><span class="outil-ico">&#129367;</span>R\u00E9gime</button>'+
+      (multiDay ? '<button class="outil" id="outil-plan" onclick="ouvrirVolet(\'plan\',this)"><span class="outil-ico">&#128197;</span>Planifier</button>' : '')+
+    '</div>'+
+    bandeauProfilHtml()+
+    '<div class="volet" id="volet-regime">'+regimesHtml()+'</div>'+
+    (multiDay ? '<div class="volet" id="volet-plan">'+planWrapHtml(id, days)+'</div>' : '')+
+    '<div class="modal-section-head ing-tete">'+
+      '<div class="modal-section-title">Ingr\u00E9dients <span class="ing-count">\u00b7 '+nbIngredients+'</span></div>'+
+      portionsHtml()+
+    '</div>'+
     '<button class="ing-toggle-bar" id="ing-toggle-bar" data-nb="'+nbIngredients+'" onclick="toggleIngredients(this)">'+
-      '<span class="ing-toggle-label">Voir les '+nbIngredients+' ingr\u00E9dients</span>'+
+      '<span class="ing-toggle-label">Voir les ingr\u00E9dients</span>'+
       '<span class="ing-chevron">&#9662;</span></button>'+
     '<div class="ing-collapse"><ul class="ingredient-list">'+ing+'</ul></div>'+
-    '<button class="shop-btn shop-btn-block" onclick="openShoppingList(\''+id+'\')">&#128722;&nbsp; G\u00E9n\u00E9rer ma liste de courses</button>'+
     '<div class="modal-section-title">Préparation</div>'+
-    '<button class="cuisine-start" onclick="ouvrirCuisine()">&#127859;&nbsp; Lancer le mode cuisine</button>'+
     dayTabsHtml+'<ol class="steps-list">'+steps+'</ol>'+
     '<div class="astuce">'+r.astuce+'</div>'+(communitySection[id]||'')+'</div>';
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   currentRecipeId = id;
+  if (regimesActifs.length) { rendreIngredients(); majNotesRegimes(); }
+  if (profil.portions && portionsBase && /^(part|portion)/.test(portionsUnite)) appliquerPortions(profil.portions);
+  if (profil.ingOuverts) {
+    const bar = document.getElementById('ing-toggle-bar');
+    if (bar && !bar.classList.contains('open')) toggleIngredients(bar);
+  }
   if (multiDay && planSaved) applyPlanning(planSaved);
 }
 
@@ -3388,6 +3559,509 @@ function majBoutonVoix(){
   if(r) r.style.display = voixActive ? 'inline-flex' : 'none';
 }
 
+// ===== ANIMATIONS DES GESTES (dessinées à la main, rien d'emprunté) =====
+// Chaque phase porte deux lignes : ce qu'on fait, puis le détail qui fait
+// la différence pour quelqu'un qui n'a jamais pâtissé.
+const ANIM_CSS = `
+<style>
+.gest .ph{opacity:0}
+.gest .p1{animation:gestPh 11s infinite}
+.gest .p2{animation:gestPh 11s infinite;animation-delay:2.75s}
+.gest .p3{animation:gestPh 11s infinite;animation-delay:5.5s}
+.gest .p4{animation:gestPh 11s infinite;animation-delay:8.25s}
+@keyframes gestPh{0%{opacity:0}2%{opacity:1}22%{opacity:1}25%{opacity:0}100%{opacity:0}}
+.gest .tit{font-family:Jost,sans-serif;font-size:14px;font-weight:500;fill:#2E2A25}
+.gest .sub{font-family:Jost,sans-serif;font-size:11.5px;fill:#7A6F63}
+.gest .num{font-family:Jost,sans-serif;font-size:12px;font-weight:600;fill:#FDFAF6}
+.gest .rep{font-family:Jost,sans-serif;font-size:10.5px;font-weight:500;fill:#4E6E52}
+.gest .glisse{animation:gestGlisse 2.75s ease-in-out infinite}
+@keyframes gestGlisse{0%,100%{transform:translateX(-30px)}50%{transform:translateX(30px)}}
+.gest .frotte{animation:gestFrotte .7s ease-in-out infinite}
+@keyframes gestFrotte{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-6px) rotate(7deg)}}
+.gest .presse{animation:gestPresse 1.4s ease-in-out infinite}
+@keyframes gestPresse{0%,100%{transform:translate(0,0)}50%{transform:translate(3px,5px)}}
+.gest .monte{animation:gestMonte 2.75s ease-out infinite}
+@keyframes gestMonte{0%{transform:translateY(18px);opacity:.3}55%,100%{transform:translateY(0);opacity:1}}
+.gest .tourne{transform-origin:center;animation:gestTourne 1.6s linear infinite}
+@keyframes gestTourne{to{transform:rotate(360deg)}}
+.gest .chauffe{animation:gestChauffe 2.75s ease-in forwards infinite}
+@keyframes gestChauffe{0%{fill:#F2E7CE}60%{fill:#D9A54A}100%{fill:#B4761F}}
+.gest .coule{animation:gestCoule 2.75s ease-in-out infinite}
+@keyframes gestCoule{0%{transform:translateY(-10px);opacity:0}25%{opacity:1}100%{transform:translateY(30px);opacity:1}}
+.gest .clign{animation:gestClign 1.1s ease-in-out infinite}
+@keyframes gestClign{0%,100%{opacity:.35}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.gest *{animation:none!important}.gest .ph{opacity:1}}
+</style>`;
+
+// ── briques de dessin ──────────────────────────────────────────────
+const A = {
+  bol: (x,y,w) => `<path d="M${x-w} ${y} h${2*w} l-${w*0.18} ${w*0.62} a${w*0.2} ${w*0.2} 0 0 1 -${w*0.16} ${w*0.1} h-${2*w-w*0.64} a${w*0.2} ${w*0.2} 0 0 1 -${w*0.16} -${w*0.1} z" fill="#FDFAF6" stroke="#DED6C6" stroke-width="3"/>`,
+  casserole: (x,y,w) => `<path d="M${x-w} ${y} h${2*w} v${w*0.55} a14 14 0 0 1 -14 14 h-${2*w-28} a14 14 0 0 1 -14 -14 z" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/><rect x="${x+w}" y="${y+6}" width="54" height="10" rx="5" fill="#6B4E38"/>`,
+  liquide: (x,y,w,h,c) => `<rect x="${x-w}" y="${y}" width="${2*w}" height="${h}" rx="6" fill="${c}"/>`,
+  four: (x,y) => `<rect x="${x-70}" y="${y-46}" width="140" height="92" rx="8" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/><rect x="${x-56}" y="${y-30}" width="112" height="58" rx="5" fill="#3A342C"/><circle cx="${x+56}" cy="${y-36}" r="5" fill="#B4761F"/>`,
+  cercle: (x,y,w,h) => `<ellipse cx="${x}" cy="${y}" rx="${w}" ry="${h}" fill="none" stroke="#9AA0A6" stroke-width="4"/>`,
+  plaque: (x,y) => `<rect x="${x-92}" y="${y}" width="184" height="12" rx="4" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="2"/>`,
+  fouet: (x,y,cls) => `<g class="${cls||''}" style="transform-origin:${x}px ${y-30}px"><path d="M${x} ${y-64} v30" stroke="#9AA0A6" stroke-width="4"/><path d="M${x} ${y-34} q-15 12 0 26 M${x} ${y-34} q15 12 0 26 M${x} ${y-34} q-7 13 0 26 M${x} ${y-34} q7 13 0 26" fill="none" stroke="#B9BEC4" stroke-width="2.5"/></g>`,
+  maryse: (x,y,r) => `<g transform="rotate(${r||-20} ${x} ${y})"><rect x="${x-5}" y="${y-56}" width="10" height="42" rx="4" fill="#6B4E38"/><path d="M${x-16} ${y-16} h32 v18 a16 16 0 0 1 -32 0 z" fill="#7A9E7E"/></g>`,
+  rouleau: (x,y,cls) => `<g class="${cls||''}"><rect x="${x-50}" y="${y}" width="100" height="15" rx="7" fill="#B98A5E"/><rect x="${x-62}" y="${y+4}" width="14" height="7" rx="3" fill="#8B6347"/><rect x="${x+48}" y="${y+4}" width="14" height="7" rx="3" fill="#8B6347"/></g>`,
+  couteau: (x,y,cls) => `<g class="${cls||''}"><path d="M${x} ${y} h96 l-8 7 h-88 z" fill="#C9CED3" stroke="#9AA0A6" stroke-width="1.5"/><rect x="${x-38}" y="${y-2}" width="38" height="9" rx="4" fill="#6B4E38"/></g>`,
+  pate: (x,y,rx,ry) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>`,
+  chaleur: (x,y) => `<path d="M${x-16} ${y} q6 -12 0 -22 M${x} ${y} q6 -12 0 -22 M${x+16} ${y} q6 -12 0 -22" fill="none" stroke="#D9A54A" stroke-width="3" stroke-linecap="round"/>`,
+  froid: (x,y) => `<g stroke="#7FA8C4" stroke-width="2.5" stroke-linecap="round"><path d="M${x} ${y-12} v24 M${x-11} ${y-6} l22 12 M${x-11} ${y+6} l22 -12"/></g>`,
+  fleche: (x1,y1,x2,y2) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="#4E6E52" stroke-width="2.5" stroke-linecap="round" marker-end="url(#pointe)"/>`,
+  thermo: (x,y,t) => `<rect x="${x-9}" y="${y-52}" width="18" height="52" rx="9" fill="#FDFAF6" stroke="#B9BEC4" stroke-width="2"/><circle cx="${x}" cy="${y+6}" r="12" fill="#C0554A"/><rect x="${x-4}" y="${y-30}" width="8" height="36" fill="#C0554A"/><text class="rep" x="${x+18}" y="${y-16}">${t}</text>`,
+  // une main vue de profil, index tendu : lisible même en petit
+  main: (x,y,r,cls) => `<g class="${cls||''}" transform="rotate(${r||0} ${x} ${y})">
+      <path d="M${x} ${y} l-6 -30 a7 7 0 0 1 14 0 l2 22" fill="#E8C9A0" stroke="#D6AF83" stroke-width="1.5"/>
+      <path d="M${x+8} ${y-10} q22 -6 26 10 q3 20 -12 26 l-24 4 a12 12 0 0 1 -12 -12 l0 -16 z" fill="#E8C9A0" stroke="#D6AF83" stroke-width="1.5"/>
+    </g>`,
+  doigt: (x,y,r,cls) => `<g class="${cls||''}" transform="rotate(${r||0} ${x} ${y})">
+      <rect x="${x-11}" y="${y-52}" width="22" height="46" rx="11" fill="#E8C9A0" stroke="#D6AF83" stroke-width="1.5"/>
+      <path d="M${x-11} ${y-30} h22" stroke="#D6AF83" stroke-width="1.2"/>
+      <path d="M${x-13} ${y-58} q13 -12 26 0 l0 10 h-26 z" fill="#E8C9A0" stroke="#D6AF83" stroke-width="1.5"/>
+    </g>`,
+  repere: (x,y,tx,ty,txt) => `<path d="M${x} ${y} L${tx} ${ty}" stroke="#4E6E52" stroke-width="1.8" stroke-dasharray="3 3"/><circle cx="${x}" cy="${y}" r="4" fill="#4E6E52"/><text class="rep" x="${tx+4}" y="${ty+4}">${txt}</text>`,
+  loupe: (x,y,r) => `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#4E6E52" stroke-width="2" stroke-dasharray="4 4"/>`
+};
+
+function svgGeste(phases){
+  const P = phases.map((p,i) =>
+    `<g class="ph p${i+1}">${p[2]}` +
+    `<circle cx="26" cy="26" r="13" fill="#4E6E52"/><text class="num" x="26" y="30" text-anchor="middle">${i+1}</text>` +
+    `<text class="tit" x="48" y="24">${p[0]}</text><text class="sub" x="48" y="42">${p[1]}</text></g>`
+  ).join('');
+  return `<svg class="gest" viewBox="0 0 340 224" xmlns="http://www.w3.org/2000/svg">${ANIM_CSS}
+    <defs><marker id="pointe" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#4E6E52"/></marker></defs>
+    <rect width="340" height="224" fill="#F7F3EC" rx="10"/>${P}</svg>`;
+}
+
+const ANIMATIONS = {};
+
+// ── FONÇAGE : entièrement repensé, avec deux vues en coupe ─────────
+ANIMATIONS.foncage = svgGeste([
+  ['Étaler la pâte', 'Plus large que le moule : il faut de la marge',
+   A.pate(170,140,100,32) + A.rouleau(170,96,'glisse') +
+   `<ellipse cx="170" cy="140" rx="62" ry="20" fill="none" stroke="#9AA0A6" stroke-width="2" stroke-dasharray="5 5"/>` +
+   A.repere(232,140,246,192,'taille du moule')],
+
+  ['Poser la pâte sur le moule', 'Elle retombe librement de chaque côté',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <rect x="104" y="106" width="9" height="70" fill="#9AA0A6"/><rect x="227" y="106" width="9" height="70" fill="#9AA0A6"/>
+    <path d="M62 128 q54 -34 108 -34 q54 0 108 34 l0 9 q-54 -32 -108 -32 q-54 0 -108 32 z" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>` +
+   A.repere(74,124,52,196,'ça dépasse')],
+
+  ['Pousser la pâte dans l’angle', 'Du doigt, vers le bas — surtout ne jamais l’étirer',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <rect x="104" y="100" width="9" height="76" fill="#9AA0A6"/><rect x="227" y="100" width="9" height="76" fill="#9AA0A6"/>
+    <path d="M113 100 h11 v56 h92 v-56 h11 v66 h-114 z" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>` +
+   A.loupe(124,158,26) +
+   A.doigt(150,118,152,'presse') +
+   A.fleche(140,132,128,152) +
+   A.repere(124,160,168,196,'l’angle doit être net')],
+
+  ['Couper ce qui dépasse', 'La lame à plat, posée sur le bord, on la fait glisser',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <rect x="104" y="100" width="9" height="76" fill="#9AA0A6"/><rect x="227" y="100" width="9" height="76" fill="#9AA0A6"/>
+    <path d="M113 100 h11 v56 h92 v-56 h11 v66 h-114 z" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>
+    <path d="M113 100 l-46 -8 v9 l46 8 z" fill="#E4D4B4" stroke="#C4A882" stroke-width="1.5"/>
+    <path d="M227 100 l46 -8 v9 l-46 8 z" fill="#E4D4B4" stroke="#C4A882" stroke-width="1.5"/>` +
+   A.couteau(66,88,'glisse') +
+   A.repere(88,98,44,196,'l’excédent tombe')]
+]);
+
+ANIMATIONS.sablage = svgGeste([
+  ['Farine, sucre, beurre très froid', 'Le beurre doit sortir du frigo, en petits dés',
+   A.bol(170,112,72) + `<ellipse cx="170" cy="140" rx="60" ry="14" fill="#F0E8D8"/>
+   <rect x="142" y="122" width="20" height="16" rx="3" fill="#F5D97A"/><rect x="168" y="118" width="20" height="16" rx="3" fill="#F5D97A"/><rect x="154" y="136" width="20" height="16" rx="3" fill="#F0CE62"/>`],
+  ['Frotter entre les doigts', 'Du bout des doigts : les mains chaudes font fondre',
+   A.bol(170,112,72) + `<ellipse cx="170" cy="144" rx="60" ry="14" fill="#F0E8D8"/>` +
+   A.main(140,106,20,'frotte') + A.main(206,106,-20,'frotte')],
+  ['Une texture de sable', 'Plus de gros morceaux de beurre visibles',
+   A.bol(170,112,72) + `<ellipse cx="170" cy="146" rx="64" ry="15" fill="#EBDCC0"/>
+   <circle cx="140" cy="142" r="3" fill="#D8C29A"/><circle cx="158" cy="148" r="2.5" fill="#D8C29A"/><circle cx="176" cy="140" r="3" fill="#D8C29A"/><circle cx="194" cy="147" r="2.5" fill="#D8C29A"/>` +
+   A.loupe(170,144,30)],
+  ['Ajouter l’œuf, rassembler', 'On amalgame, on ne pétrit pas : sinon elle durcit',
+   A.bol(170,112,72) + `<ellipse cx="170" cy="140" rx="34" ry="26" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>` +
+   A.repere(150,132,52,190,'juste rassemblée')]
+]);
+
+ANIMATIONS.blancs = svgGeste([
+  ['Démarrer doucement', 'Vitesse lente : on crée de petites bulles solides',
+   A.bol(170,112,70) + `<ellipse cx="170" cy="142" rx="56" ry="12" fill="#F5F1E4"/>` + A.fouet(170,156)],
+  ['Accélérer peu à peu', 'La mousse devient blanche et opaque',
+   A.bol(170,112,70) + `<ellipse cx="170" cy="136" rx="58" ry="18" fill="#FBF8F0"/>` + A.fouet(170,152,'tourne')],
+  ['Verser le sucre en pluie', 'À la fin seulement : c’est lui qui rend les blancs lisses',
+   A.bol(170,112,70) + `<path d="M114 138 q56 -44 112 0 z" fill="#FFFFFF" class="monte"/>
+   <circle cx="150" cy="76" r="2" fill="#E6DCC8"/><circle cx="170" cy="68" r="2" fill="#E6DCC8"/><circle cx="190" cy="78" r="2" fill="#E6DCC8"/>`],
+  ['Le bec d’oiseau', 'Fouet levé : la pointe tient et se recourbe à peine',
+   A.bol(170,112,70) + `<path d="M114 138 q56 -48 112 0 z" fill="#FFFFFF"/>
+   <path d="M170 90 l12 -30 l7 32 z" fill="#FFFFFF"/>` +
+   A.repere(180,66,214,60,'la pointe tient')]
+]);
+
+ANIMATIONS.caramel = svgGeste([
+  ['Le sucre seul dans la casserole', 'À sec : pas d’eau, pas de cuillère',
+   A.casserole(170,124,60) + `<rect x="122" y="138" width="96" height="14" rx="4" fill="#F2E7CE"/>`],
+  ['Il fond sur les bords', 'On ne remue jamais : on incline la casserole',
+   A.casserole(170,124,60) + `<rect x="120" y="136" width="100" height="17" rx="7" fill="#EFDCA8"/>` + A.chaleur(170,178) +
+   A.repere(126,140,54,196,'ça commence ici')],
+  ['La couleur monte vite', 'Ambre foncé = prêt. Une seconde de trop = amer',
+   A.casserole(170,124,60) + `<rect x="118" y="134" width="104" height="20" rx="8" class="chauffe"/>` +
+   A.repere(170,144,236,178,'ambré')],
+  ['Décuire hors du feu', 'La crème chaude, en trois fois : ça projette',
+   A.casserole(170,124,60) + `<rect x="118" y="134" width="104" height="20" rx="8" fill="#B4761F"/>
+   <ellipse cx="170" cy="92" rx="26" ry="9" fill="#EFE9DC"/>
+   <path d="M170 98 v20" stroke="#EFE9DC" stroke-width="7" stroke-linecap="round" class="coule"/>`]
+]);
+
+ANIMATIONS.poche = svgGeste([
+  ['Remplir aux deux tiers', 'Trop pleine, elle déborde par le haut',
+   `<path d="M150 52 l40 0 l-12 66 h-16 z" fill="#FDFAF6" stroke="#C4A882" stroke-width="2"/>
+    <path d="M156 74 l28 0 l-8 44 h-12 z" fill="#F3E7D4"/>
+    <path d="M162 118 h16 l-3 14 h-10 z" fill="#9AA0A6"/>` +
+   A.repere(170,76,206,64,'2/3 max')],
+  ['Chasser l’air', 'Une poche pleine d’air fait des trous dans le décor',
+   `<path d="M150 52 l40 0 l-12 66 h-16 z" fill="#FDFAF6" stroke="#C4A882" stroke-width="2"/>
+    <path d="M162 118 h16 l-3 14 h-10 z" fill="#9AA0A6"/>` + A.fleche(200,70,182,96)],
+  ['Douille à la verticale', 'Bien droite au-dessus de la plaque, sans bouger',
+   `<path d="M150 42 l40 0 l-12 66 h-16 z" fill="#FDFAF6" stroke="#C4A882" stroke-width="2"/>
+    <path d="M162 108 h16 l-3 14 h-10 z" fill="#9AA0A6"/>
+    <path d="M170 122 v34" stroke="#C4A882" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <line x1="60" y1="180" x2="280" y2="180" stroke="#DED6C6" stroke-width="4"/>
+    <circle cx="170" cy="170" r="14" fill="#EFE9DC"/>`],
+  ['Presser, relâcher, lever', 'Relâcher avant de lever : sinon ça fait une pointe',
+   `<line x1="60" y1="180" x2="280" y2="180" stroke="#DED6C6" stroke-width="4"/>
+    <circle cx="106" cy="168" r="14" fill="#EFE9DC"/><circle cx="144" cy="168" r="14" fill="#EFE9DC"/>
+    <circle cx="182" cy="168" r="14" fill="#EFE9DC"/><circle cx="220" cy="168" r="14" fill="#EFE9DC"/>
+    <circle cx="258" cy="168" r="14" fill="#EFE9DC"/>` +
+   A.repere(144,156,150,120,'régulières')]
+]);
+
+ANIMATIONS.garniture = svgGeste([
+  ['Le fond de tarte, bien froid', 'Tiède, il ferait fondre la garniture',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <path d="M96 106 h12 v58 h124 v-58 h12 v70 h-148 z" fill="#D9B478" stroke="#B4884E" stroke-width="2"/>`],
+  ['Première couche : la compotée', 'Bien froide et épaisse, sinon elle détrempe la pâte',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <path d="M96 106 h12 v58 h124 v-58 h12 v70 h-148 z" fill="#D9B478" stroke="#B4884E" stroke-width="2"/>
+    <path d="M108 164 h124 v-22 h-124 z" fill="#C86A4E" class="monte"/>` +
+   A.repere(170,152,214,196,'une couche fine')],
+  ['Puis la crème, détendue au fouet', 'Elle s’étale sans arracher la couche du dessous',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <path d="M96 106 h12 v58 h124 v-58 h12 v70 h-148 z" fill="#D9B478" stroke="#B4884E" stroke-width="2"/>
+    <path d="M108 164 h124 v-22 h-124 z" fill="#C86A4E"/>
+    <path d="M108 142 h124 v-28 h-124 z" fill="#F7E7B8" class="monte"/>` + A.maryse(246,120,22)],
+  ['Lisser à ras du bord', 'La spatule à plat, d’un seul passage',
+   `<rect x="60" y="176" width="220" height="7" rx="3" fill="#DDE0E3"/>
+    <path d="M96 106 h12 v58 h124 v-58 h12 v70 h-148 z" fill="#D9B478" stroke="#B4884E" stroke-width="2"/>
+    <path d="M108 164 h124 v-22 h-124 z" fill="#C86A4E"/>
+    <path d="M108 142 h124 v-34 h-124 z" fill="#F7E7B8"/>` +
+   `<g class="glisse"><rect x="120" y="96" width="120" height="8" rx="3" fill="#C9CED3" stroke="#9AA0A6" stroke-width="1.5"/></g>` +
+   A.repere(170,110,206,196,'à hauteur du bord')]
+]);
+
+Object.assign(ANIMATIONS, {
+
+  blanchir: svgGeste([
+    ['Jaunes et sucre dans le bol', 'Le sucre attaque les jaunes : ne pas laisser reposer', A.bol(170,104,70) + `<ellipse cx="156" cy="126" rx="20" ry="10" fill="#F0C64B"/><ellipse cx="192" cy="128" rx="16" ry="8" fill="#FBF6E6"/>`],
+    ['Fouetter sans attendre', 'Au fouet, énergiquement, pendant 2 bonnes minutes', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="42" ry="12" fill="#F2CE60"/>` + A.fouet(170,140,'tourne')],
+    ['Le mélange pâlit et monte', 'Il passe du jaune vif au jaune pâle : c\'est le signe', A.bol(170,104,70) + `<ellipse cx="170" cy="124" rx="52" ry="16" fill="#F8E9AE" class="monte"/>`],
+    ['Il forme un ruban en retombant', 'Il retombe en ruban qui reste visible 2 secondes', A.bol(170,104,70) + `<ellipse cx="170" cy="126" rx="54" ry="15" fill="#FAEFC8"/><path d="M196 92 q10 20 -14 30" fill="none" stroke="#F8E1A0" stroke-width="7" stroke-linecap="round"/>`]
+  ]),
+
+  cremer: svgGeste([
+    ['Beurre pommade et sucre', 'Mou comme une pommade, jamais fondu', A.bol(170,104,70) + `<rect x="146" y="116" width="24" height="18" rx="4" fill="#F5D97A"/><ellipse cx="192" cy="130" rx="18" ry="7" fill="#F0E8D8"/>`],
+    ['Travailler en crème', 'Jusqu\'à ce que le mélange devienne clair et mousseux', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="44" ry="13" fill="#F3E0A8"/>` + A.fouet(170,140,'tourne')],
+    ['La masse devient claire', 'Le volume augmente : c\'est l\'air qui rentre', A.bol(170,104,70) + `<ellipse cx="170" cy="124" rx="50" ry="16" fill="#FBF3DC" class="monte"/>`],
+    ['Aérée : ajouter les œufs un à un', 'Un à un, en attendant que chacun soit absorbé', A.bol(170,104,70) + `<ellipse cx="170" cy="124" rx="52" ry="16" fill="#FDF8EA"/><ellipse cx="170" cy="84" rx="14" ry="17" fill="#FBF6E6" stroke="#EDE7DA" stroke-width="2"/>`]
+  ]),
+
+  bainmarie: svgGeste([
+    ['Un fond d’eau dans la casserole', '3 cm suffisent : l\'eau ne doit jamais toucher le bol', A.casserole(170,120,64) + A.liquide(170,140,54,20,'#CFE0EA')],
+    ['Le bol posé dessus, sans toucher l’eau', 'Le fond du bol reste au-dessus de l\'eau, pas dedans', A.casserole(170,120,64) + A.liquide(170,140,54,20,'#CFE0EA') + A.bol(170,88,58) + `<rect x="132" y="106" width="20" height="14" rx="3" fill="#5C3A24"/><rect x="160" y="104" width="20" height="14" rx="3" fill="#5C3A24"/>`],
+    ['Chaleur douce, on remue', 'Feu doux, sinon le chocolat brûle et devient granuleux', A.casserole(170,120,64) + A.liquide(170,140,54,20,'#CFE0EA') + A.bol(170,88,58) + `<ellipse cx="170" cy="112" rx="34" ry="9" fill="#6B4530"/>` + A.chaleur(170,152) + A.maryse(206,104,18)],
+    ['Chocolat lisse et brillant', 'Une seule goutte d\'eau ferait tout figer', A.casserole(170,120,64) + A.bol(170,88,58) + `<ellipse cx="170" cy="112" rx="40" ry="11" fill="#4A2E1E"/><ellipse cx="156" cy="108" rx="10" ry="3" fill="#7A5238" opacity=".7"/>`]
+  ]),
+
+  temperage: svgGeste([
+    ['Fondre à 50°C', 'Au bain-marie, jusqu\'à 50°C : tous les cristaux fondent', `<path d="M40 160 L110 84" stroke="#C0554A" stroke-width="4" fill="none"/><circle cx="110" cy="84" r="6" fill="#C0554A"/><text class="lab" x="88" y="74">50°</text><path d="M30 168 h280 M40 60 v112" stroke="#EDE7DA" stroke-width="2"/>`],
+    ['Descendre à 28°C', 'Dans un bol froid : les bons cristaux se forment', `<path d="M40 160 L110 84 L190 138" stroke="#C0554A" stroke-width="4" fill="none"/><circle cx="190" cy="138" r="6" fill="#7A9E7E"/><text class="lab" x="172" y="160">28°</text><path d="M30 168 h280 M40 60 v112" stroke="#EDE7DA" stroke-width="2"/>`],
+    ['Remonter à 31°C', 'Quelques secondes de chaleur, pas plus, pour le fluidifier', `<path d="M40 160 L110 84 L190 138 L262 122" stroke="#C0554A" stroke-width="4" fill="none"/><circle cx="262" cy="122" r="6" fill="#4E6E52"/><text class="lab" x="246" y="112">31°</text><path d="M30 168 h280 M40 60 v112" stroke="#EDE7DA" stroke-width="2"/>`],
+    ['Brillant et cassant net', 'Sans tempérage, il resterait mou et blanchirait', `<path d="M120 96 h100 v50 h-100 z" fill="#4A2E1E"/><path d="M132 104 h26 v14 h-26 z" fill="#6B4530" opacity=".55"/><path d="M170 96 v50" stroke="#F7F3EC" stroke-width="3"/>`]
+  ]),
+
+  cuireblanc: svgGeste([
+    ['Le fond piqué à la fourchette', 'Sinon la vapeur soulève le fond en cloque', A.pate(170,120,66,20) + `<circle cx="146" cy="118" r="2" fill="#C4A882"/><circle cx="166" cy="122" r="2" fill="#C4A882"/><circle cx="186" cy="118" r="2" fill="#C4A882"/><circle cx="156" cy="126" r="2" fill="#C4A882"/><circle cx="196" cy="125" r="2" fill="#C4A882"/>`],
+    ['Papier cuisson et poids', 'Le papier épouse les bords, les poids bloquent la pâte', A.pate(170,126,66,18) + `<path d="M108 112 q62 -26 124 0 l-8 12 q-54 -20 -108 0 z" fill="#F0E4CE"/><circle cx="150" cy="106" r="6" fill="#C9CED3"/><circle cx="170" cy="102" r="6" fill="#C9CED3"/><circle cx="190" cy="106" r="6" fill="#C9CED3"/>`],
+    ['Au four, bords blonds', '20 min à 175°C, le temps que les bords prennent couleur', A.four(170,110) + `<ellipse cx="170" cy="118" rx="40" ry="11" fill="#E8D3A8"/>` + A.chaleur(170,158)],
+    ['Retirer les poids, finir la cuisson', '10 min de plus à nu, pour sécher le fond', A.pate(170,124,66,19) + `<ellipse cx="170" cy="124" rx="66" ry="19" fill="#D9B478" stroke="#B4884E" stroke-width="2"/>`]
+  ]),
+
+  chemiser: svgGeste([
+    ['Le cercle, nu', 'Le rhodoïd est une bande plastique alimentaire', A.cercle(170,120,58,19) + `<path d="M112 120 v-34 M228 120 v-34" stroke="#9AA0A6" stroke-width="4"/>` + A.cercle(170,86,58,19)],
+    ['Une bande de rhodoïd', 'On la coupe à la hauteur du cercle, pas plus', A.cercle(170,120,58,19) + `<path d="M112 120 v-34 M228 120 v-34" stroke="#9AA0A6" stroke-width="4"/>` + A.cercle(170,86,58,19) + `<rect x="240" y="72" width="70" height="10" rx="4" fill="#CFE0EA" opacity=".9"/>`],
+    ['On la plaque à l’intérieur', 'Elle épouse la paroi, sans pli ni bulle d\'air', A.cercle(170,120,58,19) + `<path d="M112 120 v-34 M228 120 v-34" stroke="#9AA0A6" stroke-width="4"/><path d="M116 118 v-30 a54 17 0 0 1 108 0 v30" fill="#CFE0EA" opacity=".55"/>` + A.cercle(170,86,58,19)],
+    ['Démoulage net garanti', 'On la retire d\'un geste, les bords restent lisses', A.cercle(170,120,58,19) + `<path d="M116 118 v-30 a54 17 0 0 1 108 0 v30" fill="#F3E7D4"/>` + A.cercle(170,88,54,17) + `<path d="M250 96 l-18 -14" stroke="#4E6E52" stroke-width="2.5" stroke-linecap="round"/>`]
+  ]),
+
+  abaisser: svgGeste([
+    ['Une boule bien froide', 'Trop froide elle casse, trop molle elle colle', `<circle cx="170" cy="124" r="30" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>`],
+    ['Fleurer, écraser du plat', 'Un voile de farine sous la pâte, pas dessus', A.pate(170,126,52,20) + `<ellipse cx="140" cy="104" rx="14" ry="19" fill="#E8C9A0"/>`],
+    ['Rouler en tournant d’un quart', 'Un quart de tour entre chaque passage, pour rester ronde', A.pate(170,128,84,26) + A.rouleau(170,86,'glisse')],
+    ['Épaisseur régulière, 2 à 3 mm', 'Vérifiez en glissant la main dessous : uniforme partout', A.pate(170,128,96,30) + `<path d="M74 148 h192" stroke="#4E6E52" stroke-width="2" stroke-dasharray="5 5"/>`]
+  ]),
+
+  praline: svgGeste([
+    ['Fruits secs torréfiés + caramel', 'Ils doivent être encore tièdes, jamais brûlants', A.plaque(170,140) + `<circle cx="140" cy="130" r="9" fill="#C08A4A"/><circle cx="164" cy="132" r="9" fill="#C08A4A"/><circle cx="188" cy="130" r="9" fill="#C08A4A"/><circle cx="212" cy="133" r="9" fill="#C08A4A"/><path d="M126 138 h100" stroke="#B4761F" stroke-width="6" stroke-linecap="round"/>`],
+    ['Casser la nougatine', 'En gros morceaux, sinon le robot peine', A.bol(170,104,70) + `<path d="M148 130 l14 -10 l10 12 z" fill="#B4761F"/><path d="M176 132 l16 -8 l6 12 z" fill="#C08A4A"/>`],
+    ['Mixer : stade poudre', 'Premier stade : ça ressemble à de la poudre. C\'est normal', A.bol(170,104,70) + `<ellipse cx="170" cy="130" rx="40" ry="10" fill="#D6A96A"/><circle cx="152" cy="126" r="2" fill="#B4761F"/><circle cx="176" cy="128" r="2" fill="#B4761F"/><circle cx="190" cy="125" r="2" fill="#B4761F"/>`],
+    ['Puis liquide et brillant', '5 à 10 min au total, en laissant souffler le moteur', A.bol(170,104,70) + `<ellipse cx="170" cy="126" rx="46" ry="14" fill="#A9702F"/><ellipse cx="154" cy="121" rx="12" ry="4" fill="#C89257" opacity=".8"/>`]
+  ]),
+
+  beurrenoisette: svgGeste([
+    ['Beurre dans la casserole', 'Casserole claire de préférence : on doit voir la couleur', A.casserole(170,116,60) + `<rect x="146" y="132" width="22" height="16" rx="4" fill="#F5D97A"/><rect x="172" y="134" width="22" height="14" rx="4" fill="#F5D97A"/>`],
+    ['Il fond, puis mousse', 'L\'eau s\'évapore, ça crépite puis ça mousse', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#EFD489') + `<circle cx="150" cy="132" r="5" fill="#FBF3DC"/><circle cx="170" cy="129" r="6" fill="#FBF3DC"/><circle cx="190" cy="132" r="5" fill="#FBF3DC"/>` + A.chaleur(170,164)],
+    ['Des dépôts brunissent au fond', 'Ce sont les protéines du lait qui colorent et parfument', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#D9A54A') + `<circle cx="156" cy="146" r="3" fill="#7A4A1E"/><circle cx="176" cy="147" r="3" fill="#7A4A1E"/><circle cx="192" cy="145" r="3" fill="#7A4A1E"/>`],
+    ['Odeur de noisette : filtrer aussitôt', 'Sinon il continue de cuire et devient amer', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#B4761F') + `<path d="M232 108 q16 -10 26 4" fill="none" stroke="#4E6E52" stroke-width="2.5" stroke-linecap="round"/>`]
+  ]),
+
+  filmer: svgGeste([
+    ['La crème encore chaude', 'Attendre qu\'elle refroidisse ferait sécher la surface', A.bol(170,100,72) + `<ellipse cx="170" cy="126" rx="52" ry="14" fill="#FBF0D0"/>` + A.chaleur(240,110)],
+    ['Le film descend', 'On pose le film directement dessus, pas sur le bol', A.bol(170,100,72) + `<ellipse cx="170" cy="126" rx="52" ry="14" fill="#FBF0D0"/><rect x="106" y="72" width="128" height="8" rx="4" fill="#CFE0EA" opacity=".85" class="coule"/>`],
+    ['Au contact, sans bulle d’air', 'Chasser l\'air en lissant du centre vers les bords', A.bol(170,100,72) + `<ellipse cx="170" cy="124" rx="52" ry="14" fill="#FBF0D0"/><path d="M118 124 q52 -18 104 0" fill="none" stroke="#9CC3DA" stroke-width="4"/>`],
+    ['Aucune peau ne se formera', 'Aucune croûte, aucun grumeau au moment de l\'utiliser', A.bol(170,100,72) + `<ellipse cx="170" cy="124" rx="52" ry="14" fill="#FBF0D0"/><path d="M118 124 q52 -18 104 0" fill="none" stroke="#9CC3DA" stroke-width="4"/><path d="M244 104 l-18 -14" stroke="#4E6E52" stroke-width="2.5" stroke-linecap="round"/>`]
+  ]),
+
+  anglaise: svgGeste([
+    ['Lait chaud sur les jaunes', 'Verser petit à petit en fouettant, sinon les jaunes cuisent', A.bol(170,100,70) + `<ellipse cx="170" cy="126" rx="46" ry="13" fill="#F5DE9A"/><path d="M170 66 v22" stroke="#FBF6E6" stroke-width="7" stroke-linecap="round" class="coule"/>`],
+    ['Cuire doucement en remuant', 'Cuillère en bois, mouvement en huit, sans jamais bouillir', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#F7E7B8') + A.maryse(206,120,16) + A.chaleur(170,166)],
+    ['83°C, jamais plus', 'Au-delà, les jaunes coagulent et la crème tranche', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#F5DE9A') + A.thermo(120,120,'83°C')],
+    ['Elle nappe : le trait reste net', 'Le trait du doigt sur la cuillère reste net', `<path d="M112 106 q58 34 116 0 l4 16 q-62 36 -124 0 z" fill="#F3DFA4"/><path d="M170 112 v34" stroke="#FDFAF6" stroke-width="6"/>`]
+  ]),
+
+  patissiere: svgGeste([
+    ['Jaunes, sucre, maïzena', 'La maïzena en dernier, bien délayée', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="40" ry="11" fill="#F2CE60"/>`],
+    ['Verser le lait bouillant', 'Le lait bouillant, versé en filet pour ne pas cuire les jaunes', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="46" ry="13" fill="#F7E7B8"/><path d="M170 62 v26" stroke="#FBF6E6" stroke-width="8" stroke-linecap="round" class="coule"/>`],
+    ['Sur le feu, fouetter sans arrêt', 'Elle épaissit d\'un coup : ne pas s\'arrêter de fouetter', A.casserole(170,116,60) + A.liquide(170,132,46,18,'#F7E7B8') + A.fouet(170,150,'tourne') + A.chaleur(170,166)],
+    ['Elle épaissit d’un coup', '2 minutes d\'ébullition pour cuire la fécule', A.casserole(170,116,60) + `<path d="M124 132 q46 -22 92 0 v14 h-92 z" fill="#F5DE9A"/>` + A.maryse(212,116,16)]
+  ]),
+
+  choux: svgGeste([
+    ['Eau, beurre, farine d’un coup', 'Hors du feu, farine d\'un coup, on mélange vite', A.casserole(170,116,60) + A.liquide(170,134,46,16,'#F0E8D8')],
+    ['Dessécher jusqu’à la pellicule', 'Une fine pellicule se forme au fond : c\'est prêt', A.casserole(170,116,60) + `<ellipse cx="170" cy="140" rx="42" ry="12" fill="#EFE3C8"/>` + A.maryse(206,122,16) + A.chaleur(170,166)],
+    ['Poche : des boules régulières', 'Bien espacés, ils vont doubler de volume', A.plaque(170,146) + `<circle cx="126" cy="134" r="12" fill="#EFE3C8"/><circle cx="170" cy="134" r="12" fill="#EFE3C8"/><circle cx="214" cy="134" r="12" fill="#EFE3C8"/>`],
+    ['Au four, ils gonflent seuls', 'Ne pas ouvrir le four : ils retomberaient', A.plaque(170,150) + `<circle cx="126" cy="128" r="20" fill="#D9B478" class="monte"/><circle cx="170" cy="128" r="20" fill="#D9B478" class="monte"/><circle cx="214" cy="128" r="20" fill="#D9B478" class="monte"/>`]
+  ]),
+
+  macaronner: svgGeste([
+    ['Poudres et blancs montés', 'Un tiers des blancs d\'abord, pour détendre la masse', A.bol(170,104,70) + `<ellipse cx="152" cy="126" rx="20" ry="10" fill="#F3E7D4"/><circle cx="196" cy="122" r="14" fill="#FFFFFF"/>`],
+    ['Écraser contre la paroi', 'On écrase contre la paroi, on ne mélange pas doucement', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="44" ry="12" fill="#F6EEE0"/>` + A.maryse(214,110,26) + A.fleche(206,96,180,116)],
+    ['La pâte devient souple', 'Trop peu : ça craquelle. Trop : ça s\'étale', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="48" ry="13" fill="#F8F2E8"/>`],
+    ['Elle retombe en ruban', 'C\'est exactement là qu\'il faut s\'arrêter', A.bol(170,104,70) + `<ellipse cx="170" cy="130" rx="50" ry="13" fill="#F8F2E8"/><path d="M196 88 q12 22 -16 34" fill="none" stroke="#F3E7D4" stroke-width="8" stroke-linecap="round"/>`]
+  ]),
+
+  montage: svgGeste([
+    ['Le cercle chemisé', 'Rhodoïd indispensable pour un démoulage net', A.cercle(170,140,58,18) + `<path d="M112 140 v-46 M228 140 v-46" stroke="#9AA0A6" stroke-width="4"/>` + A.cercle(170,94,58,18)],
+    ['Crème sur les parois', 'Elle remonte sur les parois : pas de bulle visible ensuite', A.cercle(170,140,58,18) + `<path d="M112 140 v-46 M228 140 v-46" stroke="#9AA0A6" stroke-width="4"/><path d="M116 138 v-42 a54 16 0 0 1 108 0 v42" fill="none" stroke="#F3E7D4" stroke-width="9"/>`],
+    ['Croustillant, biscuit, insert', 'Chaque couche bien à plat, l\'insert au centre', A.cercle(170,140,58,18) + `<path d="M112 140 v-46 M228 140 v-46" stroke="#9AA0A6" stroke-width="4"/><rect x="120" y="128" width="100" height="10" fill="#C08A4A"/><rect x="120" y="114" width="100" height="14" fill="#E8D3A8"/><ellipse cx="170" cy="110" rx="30" ry="7" fill="#8E3B5A"/>`],
+    ['Lisser, puis grand froid', 'Une nuit au congélateur avant de démouler', A.cercle(170,140,58,18) + `<path d="M116 138 v-42 a54 16 0 0 1 108 0 v42" fill="#F3E7D4"/>` + A.froid(268,104)]
+  ]),
+
+  glacage: svgGeste([
+    ['L’entremets congelé sur grille', 'Il doit sortir du congélateur à l\'instant', `<path d="M116 130 v-30 a54 16 0 0 1 108 0 v30" fill="#EDE7DA"/><path d="M96 146 h148" stroke="#B9BEC4" stroke-width="3"/>` + A.froid(268,104)],
+    ['Le glaçage à 30-35°C', 'Trop chaud il coule, trop froid il fige en route', `<path d="M116 130 v-30 a54 16 0 0 1 108 0 v30" fill="#EDE7DA"/>` + A.bol(170,52,40) + A.thermo(268,110,'33°C')],
+    ['Couler d’un seul geste', 'D\'un seul geste, du centre vers les bords', `<path d="M116 130 v-30 a54 16 0 0 1 108 0 v30" fill="#EDE7DA"/><path d="M170 60 v26" stroke="#8E3B5A" stroke-width="12" stroke-linecap="round" class="coule"/>`],
+    ['Il fige au contact du froid', 'Ne jamais repasser dessus : ça ferait des traces', `<path d="M116 130 v-30 a54 16 0 0 1 108 0 v30" fill="#8E3B5A"/><ellipse cx="150" cy="104" rx="14" ry="5" fill="#B8607E" opacity=".7"/><path d="M96 146 h148" stroke="#B9BEC4" stroke-width="3"/>`]
+  ]),
+
+  ecailles: svgGeste([
+    ['Des tranches très fines', 'À la mandoline si possible : 2 mm maximum', A.couteau(96,96) + `<ellipse cx="200" cy="120" rx="34" ry="20" fill="#F0A860"/><path d="M180 104 v32 M196 102 v36 M212 104 v32" stroke="#E08C3C" stroke-width="2"/>`],
+    ['On démarre par l’extérieur', 'On démarre par le bord et on remonte vers le centre', `<ellipse cx="170" cy="126" rx="86" ry="26" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><path d="M96 122 a16 10 0 0 1 30 0 z" fill="#F0A860"/><path d="M118 122 a16 10 0 0 1 30 0 z" fill="#F0A860"/>`],
+    ['Chaque tranche chevauche la précédente', 'Chaque tranche cache la moitié de la précédente', `<ellipse cx="170" cy="126" rx="86" ry="26" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/>` + [0,1,2,3,4,5,6].map(i => `<path d="M${96+i*22} 122 a16 10 0 0 1 30 0 z" fill="#F0A860" stroke="#E08C3C" stroke-width="1"/>`).join('')],
+    ['Lustrer au pinceau', 'Le miel ou le nappage donne le brillant final', `<ellipse cx="170" cy="126" rx="86" ry="26" fill="#F0A860" stroke="#E08C3C" stroke-width="2"/><rect x="150" y="60" width="12" height="34" rx="4" fill="#6B4E38"/><path d="M144 94 h24 l-4 14 h-16 z" fill="#C4A882"/>`]
+  ]),
+
+  chantilly: svgGeste([
+    ['Crème et cuve très froides', 'Bol et fouet au congélateur 10 min avant', A.bol(170,100,70) + `<ellipse cx="170" cy="128" rx="46" ry="12" fill="#FBF8F0"/>` + A.froid(268,96)],
+    ['Fouetter en accélérant', 'Doucement d\'abord, puis de plus en plus vite', A.bol(170,100,70) + `<ellipse cx="170" cy="126" rx="50" ry="14" fill="#FDFCF7"/>` + A.fouet(170,140,'tourne')],
+    ['Elle prend du volume', 'Le fouet laisse des sillons qui restent marqués', A.bol(170,100,70) + `<path d="M118 124 q52 -34 104 0 z" fill="#FFFFFF" class="monte"/>`],
+    ['Bec souple : stop, sinon elle graine', 'Un tour de trop et elle se transforme en beurre', A.bol(170,100,70) + `<path d="M118 124 q52 -38 104 0 z" fill="#FFFFFF"/><path d="M170 78 q10 -20 16 -4" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>`]
+  ]),
+
+  ganache: svgGeste([
+    ['Chocolat haché dans le bol', 'Plus le chocolat est fin, mieux il fondra', A.bol(170,104,70) + `<rect x="146" y="120" width="18" height="12" rx="3" fill="#4A2E1E"/><rect x="168" y="124" width="18" height="12" rx="3" fill="#4A2E1E"/><rect x="156" y="134" width="18" height="10" rx="3" fill="#5C3A24"/>`],
+    ['Crème bouillante en trois fois', 'En trois fois : la première crée le noyau d\'émulsion', A.bol(170,104,70) + `<ellipse cx="170" cy="130" rx="40" ry="11" fill="#6B4530"/><path d="M170 66 v24" stroke="#FBF6E6" stroke-width="8" stroke-linecap="round" class="coule"/>`],
+    ['Remuer depuis le centre', 'Petits cercles au centre, on élargit progressivement', A.bol(170,104,70) + `<ellipse cx="170" cy="128" rx="46" ry="13" fill="#5C3A24"/><circle cx="170" cy="126" r="14" fill="#3A2416"/>` + A.maryse(212,110,18)],
+    ['Lisse, brillante, homogène', 'Si elle tranche, un coup de mixeur plongeant la sauve', A.bol(170,104,70) + `<ellipse cx="170" cy="126" rx="50" ry="14" fill="#3A2416"/><ellipse cx="154" cy="121" rx="12" ry="4" fill="#6B4530" opacity=".8"/>`]
+  ]),
+
+  torrefier: svgGeste([
+    ['Étaler sur la plaque', 'En une seule couche, sinon ça cuit inégalement', A.plaque(170,142) + `<circle cx="132" cy="132" r="8" fill="#D9B478"/><circle cx="156" cy="134" r="8" fill="#D9B478"/><circle cx="180" cy="132" r="8" fill="#D9B478"/><circle cx="204" cy="134" r="8" fill="#D9B478"/>`],
+    ['10 à 15 min à 150-160°C', 'Remuer à mi-cuisson pour une couleur uniforme', A.four(170,110) + A.chaleur(170,158)],
+    ['Ils colorent et embaument', 'L\'odeur vous prévient avant la couleur', A.plaque(170,142) + `<circle cx="132" cy="132" r="8" fill="#B4761F"/><circle cx="156" cy="134" r="8" fill="#B4761F"/><circle cx="180" cy="132" r="8" fill="#A9702F"/><circle cx="204" cy="134" r="8" fill="#B4761F"/>` + `<path d="M240 118 q14 -12 24 2" fill="none" stroke="#4E6E52" stroke-width="2.5" stroke-linecap="round"/>`],
+    ['Frotter au torchon pour les peaux', 'Frotter dans un torchon retire l\'amertume des peaux', `<path d="M96 108 q74 -22 148 0 l-8 44 q-66 -18 -132 0 z" fill="#EDE7DA"/><circle cx="150" cy="130" r="7" fill="#B4761F"/><circle cx="176" cy="128" r="7" fill="#B4761F"/><path d="M212 120 l16 -12" stroke="#8B6347" stroke-width="3" stroke-linecap="round"/>`]
+  ]),
+
+  deglacer: svgGeste([
+    ['Des sucs collés au fond', 'Ce brun collé au fond, ce n\'est pas du brûlé : c\'est le goût', `<path d="M92 116 h156 v26 a16 16 0 0 1 -16 16 h-124 a16 16 0 0 1 -16 -16 z" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/><rect x="244" y="120" width="56" height="10" rx="5" fill="#6B4E38"/><path d="M120 148 h12 M146 150 h16 M180 148 h14 M212 150 h12" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/>`],
+    ['Verser le liquide sur le feu vif', 'Vin, bouillon ou eau : le liquide décolle tout', `<path d="M92 116 h156 v26 a16 16 0 0 1 -16 16 h-124 a16 16 0 0 1 -16 -16 z" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/><path d="M170 62 v30" stroke="#C08A4A" stroke-width="8" stroke-linecap="round" class="coule"/>` + A.chaleur(170,172)],
+    ['Gratter pendant que ça bout', 'À la spatule, pendant que ça bout', `<path d="M92 116 h156 v26 a16 16 0 0 1 -16 16 h-124 a16 16 0 0 1 -16 -16 z" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/>` + A.liquide(170,134,72,20,'#C08A4A') + A.maryse(222,120,20)],
+    ['Tout le goût est dans la sauce', 'Laisser réduire de moitié pour concentrer', `<path d="M92 116 h156 v26 a16 16 0 0 1 -16 16 h-124 a16 16 0 0 1 -16 -16 z" fill="#DDE0E3" stroke="#B9BEC4" stroke-width="3"/>` + A.liquide(170,132,72,22,'#8B5A2B')]
+  ]),
+
+  nacrer: svgGeste([
+    ['Oignon fondu dans le gras', 'Oignon translucide, jamais coloré', A.casserole(170,116,62) + `<ellipse cx="170" cy="140" rx="34" ry="9" fill="#F3E7D4"/>` + A.chaleur(170,168)],
+    ['Verser le riz sec', 'Riz sec, jamais rincé : l\'amidon fait le crémeux', A.casserole(170,116,62) + `<ellipse cx="170" cy="138" rx="40" ry="11" fill="#FBF8F0"/><circle cx="152" cy="136" r="3" fill="#FFFFFF"/><circle cx="172" cy="139" r="3" fill="#FFFFFF"/><circle cx="190" cy="135" r="3" fill="#FFFFFF"/>`],
+    ['Remuer 2 minutes', 'Feu moyen, on remue sans arrêt', A.casserole(170,116,62) + `<ellipse cx="170" cy="138" rx="42" ry="11" fill="#F7F0E2"/>` + A.maryse(214,120,18) + A.chaleur(170,168)],
+    ['Les grains deviennent translucides', 'Les bords deviennent transparents, le cœur reste blanc', A.casserole(170,116,62) + `<ellipse cx="170" cy="138" rx="42" ry="11" fill="#EDE4CE"/><circle cx="150" cy="136" r="3.5" fill="#D9CBA8"/><circle cx="170" cy="139" r="3.5" fill="#D9CBA8"/><circle cx="190" cy="136" r="3.5" fill="#D9CBA8"/>`]
+  ]),
+
+  ciseler: svgGeste([
+    ['Couper en deux, garder la racine', 'Le pied garde les couches ensemble', `<ellipse cx="170" cy="124" rx="46" ry="34" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><path d="M170 90 v68" stroke="#C4A882" stroke-width="2"/>`],
+    ['Entailles horizontales', 'Sans traverser jusqu\'à la racine', `<path d="M124 124 a46 34 0 0 1 92 0 z" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><path d="M132 110 h76 M138 98 h64" stroke="#C4A882" stroke-width="2"/>`],
+    ['Puis verticales, sans aller au bout', 'Perpendiculaires aux premières, même profondeur', `<path d="M124 124 a46 34 0 0 1 92 0 z" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><path d="M148 124 v-28 M170 124 v-32 M192 124 v-28" stroke="#C4A882" stroke-width="2"/>` + A.couteau(96,86,'glisse')],
+    ['Trancher : des dés réguliers', 'Les dés tombent tout seuls, tous de la même taille', [0,1,2,3].map(i=>[0,1,2].map(j=>`<rect x="${130+i*22}" y="${104+j*14}" width="14" height="10" rx="2" fill="#F3E7D4" stroke="#C4A882" stroke-width="1.5"/>`).join('')).join('')]
+  ]),
+
+  paner: svgGeste([
+    ['Trois assiettes en ligne', 'Trois assiettes, dans l\'ordre : sans ça rien ne tient', `<ellipse cx="90" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="170" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="250" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><text class="lab" x="66" y="164">farine</text><text class="lab" x="152" y="164">œuf</text><text class="lab" x="214" y="164">chapelure</text>`],
+    ['La farine d’abord', 'Bien tapoter pour retirer l\'excédent', `<ellipse cx="90" cy="130" rx="34" ry="14" fill="#F3E7D4" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="170" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="250" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><rect x="72" y="112" width="36" height="16" rx="6" fill="#EFD9B8"/>`],
+    ['Puis l’œuf battu', 'Égoutter quelques secondes au-dessus de l\'assiette', `<ellipse cx="90" cy="130" rx="34" ry="14" fill="#F3E7D4" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="170" cy="130" rx="34" ry="14" fill="#F2CE60" stroke="#EDE7DA" stroke-width="3"/><ellipse cx="250" cy="130" rx="34" ry="14" fill="#FDFAF6" stroke="#EDE7DA" stroke-width="3"/><rect x="152" y="112" width="36" height="16" rx="6" fill="#F0C64B"/>`],
+    ['La chapelure en dernier, en pressant', 'Presser fort pour que la chapelure adhère', `<ellipse cx="250" cy="130" rx="34" ry="14" fill="#D9B478" stroke="#EDE7DA" stroke-width="3"/><rect x="232" y="110" width="36" height="18" rx="6" fill="#C08A4A"/><circle cx="238" cy="112" r="2" fill="#A9702F"/><circle cx="252" cy="114" r="2" fill="#A9702F"/><circle cx="264" cy="111" r="2" fill="#A9702F"/>`]
+  ]),
+
+  petrir: svgGeste([
+    ['Une pâte collante au départ', 'Au début elle colle : c\'est normal, ne pas ajouter de farine', A.pate(170,126,44,28) + `<path d="M132 118 q16 -12 30 4" fill="none" stroke="#C4A882" stroke-width="2"/>`],
+    ['Étirer devant soi', 'On l\'étire loin devant soi, avec la paume', `<ellipse cx="150" cy="128" rx="40" ry="22" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/><path d="M190 128 q26 -6 42 2" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>` + A.fleche(200,102,250,102)],
+    ['Rabattre et recommencer', 'On replie et on recommence, 10 minutes', A.pate(170,128,42,26) + A.fleche(216,96,178,116) + `<ellipse cx="126" cy="106" rx="15" ry="20" fill="#E8C9A0"/>`],
+    ['Lisse et élastique : c’est prêt', 'Étirée, elle forme un voile sans se déchirer', `<circle cx="170" cy="124" r="34" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><ellipse cx="156" cy="112" rx="11" ry="5" fill="#FBF6E6" opacity=".9"/>`]
+  ]),
+
+  faconner: svgGeste([
+    ['Dégazer la pâte levée', 'On chasse le gaz en appuyant du plat de la main', `<circle cx="170" cy="124" r="36" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/>` + A.fleche(170,74,170,102)],
+    ['Rabattre les bords au centre', 'Comme une enveloppe, pour créer de la tension', `<circle cx="170" cy="124" r="32" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/>` + A.fleche(126,110,158,122) + A.fleche(214,110,182,122)],
+    ['Rouler pour tendre la surface', 'La surface doit devenir lisse et tendue', `<circle cx="170" cy="124" r="30" fill="#F3E7D4" stroke="#C4A882" stroke-width="2"/><path d="M144 138 q26 14 52 0" fill="none" stroke="#C4A882" stroke-width="2"/>` + A.fleche(132,150,208,150)],
+    ['Soudure dessous, boule bien tendue', 'Soudure en dessous, sinon elle s\'ouvrira à la cuisson', `<circle cx="170" cy="122" r="30" fill="#F6EEE0" stroke="#C4A882" stroke-width="2"/><ellipse cx="170" cy="152" rx="30" ry="6" fill="#EDE7DA"/>`]
+  ]),
+
+  tourage: svgGeste([
+    ['La détrempe et le beurre', 'Beurre et pâte à la même température, sinon ça déchire', `<rect x="98" y="104" width="144" height="44" rx="6" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/><rect x="134" y="114" width="72" height="24" rx="4" fill="#F5D97A"/>`],
+    ['Enfermer le beurre', 'Bien enfermé, comme dans une enveloppe', `<rect x="98" y="104" width="144" height="44" rx="6" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/><rect x="134" y="114" width="72" height="24" rx="4" fill="#F5D97A" opacity=".45"/>` + A.fleche(112,126,132,126) + A.fleche(228,126,208,126)],
+    ['Étaler en longueur', 'Toujours dans le même sens, jamais en travers', `<rect x="70" y="112" width="200" height="30" rx="6" fill="#EFE3C8" stroke="#C4A882" stroke-width="2"/>` + A.rouleau(170,80,'glisse')],
+    ['Plier en trois : un tour simple', 'On tourne d\'un quart et on recommence : 3 tours minimum', `<rect x="102" y="106" width="136" height="14" rx="4" fill="#EFE3C8" stroke="#C4A882" stroke-width="1.5"/><rect x="102" y="122" width="136" height="14" rx="4" fill="#F3E7D4" stroke="#C4A882" stroke-width="1.5"/><rect x="102" y="138" width="136" height="14" rx="4" fill="#EFE3C8" stroke="#C4A882" stroke-width="1.5"/>`]
+  ])
+});
+
+
+// ===== VIDÉOS DES GESTES TECHNIQUES =====
+// Chaque geste pointe vers un fichier local (videos/xxx.mp4) s'il existe,
+// sinon vers une recherche vidéo. Déposez vos propres vidéos dans le
+// dossier « videos » sous le nom indiqué : elles remplaceront la recherche.
+const GESTES = [
+  {c:'foncage', n:'Foncer un moule', m:['foncage','foncer','foncez','foncant','foncé'], r:'foncer un cercle à tarte pâte sucrée technique'},
+  {c:'sablage', n:'Sabler une pâte', m:['sablez','sabler','sablage','du bout des doigts'], r:'sabler une pâte sucrée technique'},
+  {c:'blanchir', n:'Blanchir les œufs', m:['blanchissez','blanchir les','blanchissement'], r:'blanchir les jaunes et le sucre pâtisserie'},
+  {c:'blancs', n:'Monter des blancs en neige', m:['blancs en neige','montez les blancs','monter les blancs','en neige'], r:'monter des blancs en neige fermes technique'},
+  {c:'cremer', n:'Crémer le beurre', m:['crémez','crémer','beurre mou avec le sucre'], r:'crémer beurre et sucre pâtisserie'},
+  {c:'poche', n:'Pocher à la douille', m:['pochez','poche à douille','pocher'], r:'pocher à la poche à douille technique'},
+  {c:'bainmarie', n:'Le bain-marie', m:['bain-marie','bain marie'], r:'faire fondre du chocolat au bain-marie'},
+  {c:'temperage', n:'Tempérer le chocolat', m:['tempérer','tempérage','courbe de température'], r:'tempérage du chocolat courbe technique'},
+  {c:'cuireblanc', n:'Cuire à blanc', m:['cuire à blanc','cuisson à blanc','billes de cuisson'], r:'cuire un fond de tarte à blanc'},
+  {c:'chemiser', n:'Chemiser un moule', m:['chemisez','chemiser','rhodoïd'], r:'chemiser un cercle à entremets rhodoïd'},
+  {c:'abaisser', n:'Abaisser une pâte', m:['abaisser','abaissez','abaisse','étalez la pâte au rouleau'], r:'abaisser une pâte au rouleau régulièrement'},
+  {c:'caramel', n:'Le caramel à sec', m:['caramel à sec','faites-le fondre à sec','couleur ambrée'], r:'réussir un caramel à sec technique'},
+  {c:'praline', n:'Mixer un praliné', m:['mixez-la au robot','mixer le praliné','texture liquide et brillante'], r:'faire un praliné maison au robot'},
+  {c:'beurrenoisette', n:'Le beurre noisette', m:['beurre noisette'], r:'réaliser un beurre noisette'},
+  {c:'filmer', n:'Filmer au contact', m:['filmez au contact','filmer au contact'], r:'filmer au contact une crème pâtissière'},
+  {c:'anglaise', n:'Cuire une anglaise à la nappe', m:['à la nappe','crème anglaise','83°c'], r:'cuire une crème anglaise à la nappe'},
+  {c:'patissiere', n:'La crème pâtissière', m:['crème pâtissière','fouettant sans arrêt jusqu’à épaississement'], r:'réussir une crème pâtissière'},
+  {c:'choux', n:'La pâte à choux', m:['pâte à choux','dessécher','panade'], r:'réussir une pâte à choux'},
+  {c:'macaronner', n:'Macaronner', m:['macaronner','macaronnez','forme un ruban'], r:'macaronnage macarons technique'},
+  {c:'montage', n:'Monter un entremets', m:['chemisez un cercle','montez la chantache','pochez la crème bonbon'], r:'montage entremets cercle technique'},
+  {c:'garniture', n:'Garnir une tarte', m:['sur le fond de tarte','tapissez le fond','fond de tarte refroidi','étalez la compotée'], r:'garnir une tarte en couches'},
+  {c:'glacage', n:'Couler un glaçage miroir', m:['glaçage miroir','napper l’entremets'], r:'glaçage miroir entremets technique'},
+  {c:'ecailles', n:'Disposer en écailles', m:['en écailles','tranches très fines et disposez'], r:'dresser des fruits en écailles sur une tarte'},
+  {c:'chantilly', n:'Monter une chantilly', m:['montez la chantilly','crème fouettée','cuve bien froide'], r:'monter une chantilly ferme'},
+  {c:'ganache', n:'Émulsionner une ganache', m:['ganache','émulsionn'], r:'émulsionner une ganache au chocolat'},
+  {c:'torrefier', n:'Torréfier des fruits secs', m:['torréfiez','torréfaction','torréfier'], r:'torréfier des fruits secs au four'},
+  {c:'deglacer', n:'Déglacer', m:['déglacez','déglacer'], r:'déglacer une poêle technique'},
+  {c:'nacrer', n:'Nacrer le riz', m:['nacrez','nacrer','translucides sur les bords'], r:'nacrer le riz risotto'},
+  {c:'ciseler', n:'Ciseler un oignon', m:['ciselez','ciseler'], r:'ciseler un oignon technique'},
+  {c:'paner', n:'Paner à l’anglaise', m:['panez','paner','chapelure'], r:'paner à l’anglaise technique'},
+  {c:'petrir', n:'Pétrir une pâte levée', m:['pétrissez','pétrir','pétrissage'], r:'pétrir une pâte à brioche technique'},
+  {c:'faconner', n:'Façonner une pâte', m:['façonnez','façonner','formez des boules'], r:'façonner une brioche technique'},
+  {c:'tourage', n:'Le tourage', m:['tourage','tour simple','tour double','détrempe'], r:'tourage feuilletage tour simple technique'}
+];
+
+let gesteCourant = null;
+
+// On cherche le mot entier — « enfoncez » ne doit pas déclencher « foncez » —
+// et on retient le geste mentionné le plus tôt : une étape commence
+// presque toujours par son action principale (« Fonçage : ... »).
+function detecterGeste(texte){
+  if(!texte) return null;
+  const t = inspiNorm(texte);
+  let meilleur = null;
+  GESTES.forEach(g => g.m.forEach(mot => {
+    const n = inspiNorm(mot);
+    if(!n) return;
+    const re = new RegExp('(^|[^a-z0-9])' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[^a-z0-9])');
+    const m = re.exec(t);
+    if(!m) return;
+    const pos = m.index + m[1].length;
+    if(!meilleur || pos < meilleur.pos || (pos === meilleur.pos && n.length > meilleur.long)){
+      meilleur = { g: g, pos: pos, long: n.length };
+    }
+  }));
+  return meilleur ? meilleur.g : null;
+}
+
+function ouvrirVideo(cle){
+  const g = GESTES.find(x => x.c === cle);
+  if(!g) return;
+  gesteCourant = g;
+  const def = inspiDefinition(g.n) || inspiDefinition(g.m[0]);
+  const fichier = 'videos/' + g.c + '.mp4';
+  const recherche = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(g.r);
+
+  const anim = ANIMATIONS[g.c];
+  document.getElementById('video-contenu').innerHTML =
+    '<div class="video-tete"><span class="video-eyebrow">Le geste en images</span><h3>' + g.n + '</h3></div>' +
+    (anim ? '<div class="video-anim">' + anim + '</div>' : '') +
+    '<video class="video-lecteur" id="video-lecteur" controls playsinline preload="metadata" style="display:none"><source src="' + fichier + '" type="video/mp4"></video>' +
+    '<div class="video-secours" id="video-secours">' +
+      (def ? '<p class="video-def">' + def.def + '</p>' : '') +
+      // le lien de recherche ne sert que si je n'ai pas encore dessin\u00e9 le geste
+      (anim ? '' :
+        '<a class="video-lien" href="' + recherche + '" target="_blank" rel="noopener">&#9654;&nbsp; Voir des vid\u00e9os de ce geste</a>' +
+        '<p class="video-note">S\u2019ouvre dans un nouvel onglet.</p>') +
+    '</div>';
+
+  const v = document.getElementById('video-lecteur');
+  v.addEventListener('loadeddata', () => {
+    v.style.display = 'block';
+    const s = document.getElementById('video-secours');
+    if(s) s.classList.add('replie');
+  });
+
+  document.getElementById('video-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function fermerVideo(){
+  const v = document.getElementById('video-lecteur');
+  if(v){ try { v.pause(); } catch(e) {} }
+  document.getElementById('video-overlay').classList.remove('open');
+  const cui = document.getElementById('cuisine-overlay');
+  const modal = document.getElementById('modal-overlay');
+  const encoreOuvert = (cui && cui.classList.contains('open')) || (modal && modal.classList.contains('open'));
+  if(!encoreOuvert) document.body.style.overflow = '';
+}
+
+function clicOverlayVideo(e){
+  if(e.target === document.getElementById('video-overlay')) fermerVideo();
+}
+
 // ===== MODE CUISINE PLEIN ÉCRAN =====
 let cuisineEtapes = [];
 let cuisineIndex = 0;
@@ -3474,6 +4148,12 @@ function afficherEtape(){
 
   const photos = document.getElementById('cuisine-photos');
   photos.innerHTML = (e.photos || []).map(src => '<img src="' + src + '" alt="">').join('');
+
+  const zoneGeste = document.getElementById('cuisine-geste');
+  const geste = detecterGeste(e.text);
+  if(zoneGeste){
+    zoneGeste.innerHTML = geste ? '<button class="video-btn" onclick="ouvrirVideo(\''+geste.c+'\')">&#9654;&nbsp; '+geste.n+' en vid\u00e9o</button>' : '';
+  }
 
   const sec = detecterDuree(e.text);
   const zone = document.getElementById('cuisine-minuteur');
@@ -3562,6 +4242,967 @@ function sonnerie(){
   } catch(e) {}
 }
 
+// ===== COÛT ESTIMÉ DES RECETTES =====
+// Prix moyens indicatifs en France, en euros. Ce ne sont pas des prix relevés
+// en magasin : ils servent à comparer les recettes entre elles et à donner un
+// ordre de grandeur. Ils se corrigent en une ligne ci-dessous.
+// kg  = prix au kilo (ou au litre pour les liquides)
+// piece = prix à l'unité ; poidsPiece = poids moyen d'une pièce, en grammes
+const PRIX = {
+  // épicerie de base
+  'farine':{kg:1.2}, 'sucre glace':{kg:3.2}, 'sucre vanille':{kg:12}, 'sucre':{kg:1.2},
+  'cassonade':{kg:2.6}, 'vergeoise':{kg:2.8}, 'sucre de coco':{kg:12}, 'erythritol':{kg:14},
+  'maizena':{kg:3}, 'fecule':{kg:3}, 'levure chimique':{kg:12}, 'levure':{kg:9},
+  'bicarbonate':{kg:5}, 'sel':{kg:1}, 'fleur de sel':{kg:12}, 'poivre':{kg:25},
+  'chapelure':{kg:4}, 'psyllium':{kg:30}, 'xanthane':{kg:60}, 'agar':{kg:120},
+  'gelatine':{kg:60}, 'pectine':{kg:80}, 'glucose':{kg:6}, 'trimoline':{kg:7},
+  // matières grasses et laitages
+  'beurre':{kg:12}, 'margarine':{kg:4.5}, 'huile olive':{kg:8}, 'huile':{kg:3},
+  'lait concentre':{kg:4.5}, 'lait coco':{kg:3.2}, 'lait':{kg:1.2}, 'boisson':{kg:1.8},
+  'creme':{kg:4.5}, 'mascarpone':{kg:8.5}, 'ricotta':{kg:7}, 'fromage blanc':{kg:3},
+  'yaourt':{kg:2.6}, 'skyr':{kg:6}, 'gruyere':{kg:12}, 'parmesan':{kg:22},
+  'emmental':{kg:10}, 'mozzarella':{kg:9}, 'feta':{kg:12}, 'cheddar':{kg:12}, 'comte':{kg:18},
+  // œufs et fruits secs
+  'oeuf':{piece:0.35, poidsPiece:50, kg:7}, 'jaune':{piece:0.35, poidsPiece:18, kg:19}, 'blanc':{kg:7, poidsPiece:33},
+  'poudre amande':{kg:16}, 'amande':{kg:14}, 'noisette':{kg:16}, 'cacahuete':{kg:8},
+  'pistache':{kg:30}, 'noix de pecan':{kg:22}, 'noix de cajou':{kg:16}, 'noix':{kg:12},
+  'pignon':{kg:60}, 'graines de tournesol':{kg:6}, 'sesame':{kg:9}, 'chia':{kg:12},
+  'datte':{kg:8}, 'raisin sec':{kg:7}, 'coco rape':{kg:8},
+  // chocolat, parfums
+  'chocolat blanc':{kg:13}, 'chocolat':{kg:12}, 'cacao':{kg:15}, 'praline':{kg:18},
+  'gousse de vanille':{piece:3}, 'vanille':{piece:3}, 'extrait de vanille':{kg:60},
+  'miel':{kg:12}, 'sirop erable':{kg:20}, 'sirop agave':{kg:10}, 'cafe':{kg:20},
+  'speculoos':{kg:8}, 'feuillantine':{kg:18}, 'crepes dentelles':{kg:18},
+  'pate brisee':{kg:4.5}, 'pate feuilletee':{kg:4.5}, 'pate sucree':{kg:5},
+  'pain de mie':{kg:3.5}, 'pain':{kg:3.5}, 'tortilla':{kg:6}, 'biscuit':{kg:7},
+  // fruits
+  'myrtille':{kg:12}, 'framboise':{kg:12}, 'fraise':{kg:6}, 'mure':{kg:12},
+  'abricot':{kg:4, poidsPiece:60}, 'peche':{kg:3.5, poidsPiece:150}, 'pomme':{kg:2.5, poidsPiece:150},
+  'poire':{kg:3, poidsPiece:160}, 'banane':{kg:2, poidsPiece:120}, 'citron':{kg:3, poidsPiece:100},
+  'orange':{kg:2.5, poidsPiece:180}, 'cerise':{kg:8}, 'olive':{kg:9},
+  // légumes
+  'pomme de terre':{kg:1.6, poidsPiece:150}, 'carotte':{kg:1.5, poidsPiece:80},
+  'oignon':{kg:1.5, poidsPiece:120}, 'echalote':{kg:4, poidsPiece:30},
+  'ail':{kg:8, poidsPiece:5}, 'courgette':{kg:2.5, poidsPiece:250},
+  'aubergine':{kg:3, poidsPiece:300}, 'poivron':{kg:3.5, poidsPiece:180},
+  'tomate concassee':{kg:1.8}, 'tomate':{kg:3, poidsPiece:120}, 'champignon':{kg:6},
+  'brocoli':{kg:3}, 'chou fleur':{kg:2.6, poidsPiece:900}, 'epinard':{kg:6},
+  'poireau':{kg:2.5, poidsPiece:200}, 'navet':{kg:2, poidsPiece:150}, 'salade':{piece:1.2},
+  'petits pois':{kg:3}, 'persil':{piece:1}, 'basilic':{piece:2}, 'menthe':{piece:1.5},
+  // féculents et légumineuses
+  'pates':{kg:2}, 'lasagne':{kg:3}, 'nouille':{kg:3}, 'riz':{kg:2.5},
+  'semoule':{kg:2}, 'boulgour':{kg:3}, 'quinoa':{kg:6}, 'flocons':{kg:2.5},
+  'lentille':{kg:3}, 'pois chiche':{kg:2.6}, 'haricot rouge':{kg:2.6}, 'tofu':{kg:9},
+  // viandes, poissons
+  'viande hachee':{kg:12}, 'boeuf':{kg:15}, 'veau':{kg:20}, 'poulet':{kg:9, poidsPiece:1400},
+  'dinde':{kg:12}, 'lardon':{kg:10}, 'jambon':{kg:14}, 'saucisse':{kg:10, poidsPiece:80},
+  'saumon fume':{kg:35}, 'saumon':{kg:22}, 'thon':{kg:12}, 'cabillaud':{kg:20},
+  'crevette':{kg:18}, 'escalope':{kg:14, poidsPiece:130},
+  // liquides divers
+  'vin':{kg:6}, 'rhum':{kg:25}, 'sauce soja':{kg:6}, 'vinaigre':{kg:3},
+  'moutarde':{kg:5}, 'bouillon':{kg:0.4}, 'eau':{kg:0}, 'tahini':{kg:14},
+  'beurre de cacahuete':{kg:10}, 'peanut butter':{kg:10}, 'compote':{kg:2.5}, 'confiture':{kg:6},
+  'agave':{kg:10}, 'erable':{kg:20}, 'whey':{kg:25}, 'proteine':{kg:25}, 'petit suisse':{kg:4},
+  'creme de coco':{kg:4}, 'chantache':{kg:6}, 'fromage frais':{kg:7}, 'st moret':{kg:7}, 'arome':{kg:60}, 'colorant':{kg:80}, 'aquafaba':{kg:1},
+  'haricot vert':{kg:3}, 'concombre':{kg:2.5, poidsPiece:350}, 'avocat':{kg:6, poidsPiece:200},
+  'mais':{kg:2.5}, 'coriandre':{piece:1}, 'thym':{piece:1}, 'laurier':{piece:1},
+  'curry':{kg:30}, 'cumin':{kg:30}, 'paprika':{kg:25}, 'cannelle':{kg:40}, 'muscade':{kg:60},
+  'gingembre':{kg:8, poidsPiece:30}, 'safran':{kg:3000}, 'ras el hanout':{kg:30}
+};
+
+// équivalences pour les mesures qui ne sont ni des grammes ni des millilitres
+const POIDS_MESURE = { 'cas':15, 'cac':5, 'pincee':1, 'sachet':11, 'feuille':2, 'bouquet':20, 'branche':5, 'morceau':15, 'poignee':30, 'pot':100, 'paquet':250, 'baton':10, 'cube':10, 'noix':15 };
+
+function analyserQuantite(txt){
+  const t = ' ' + inspiNorm(txt) + ' ';
+  let m = /^\s*(\d+)\s*\/\s*(\d+)\s/.exec(t);
+  let q = null;
+  if(m) q = parseInt(m[1],10) / parseInt(m[2],10);
+  if(q === null){
+    m = /^\s*(\d+(?:[.,]\d+)?)(?:\s*a\s*(\d+(?:[.,]\d+)?))?\s/.exec(t);
+    if(m) q = parseFloat((m[2] || m[1]).replace(',', '.'));
+  }
+  if(q === null) return null;
+
+  if(/\bkg\b|\bkilos?\b/.test(t)) return { g: q * 1000 };
+  if(/\bg\b|\bgr\b|\bgrammes?\b/.test(t)) return { g: q };
+  if(/\bl\b|\blitres?\b/.test(t)) return { g: q * 1000 };
+  if(/\bcl\b/.test(t)) return { g: q * 10 };
+  if(/\bml\b/.test(t)) return { g: q };
+  if(/\bc\s*a\s*s\b|\bcas\b|cuilleres?\s+a\s+soupe|\bc\.?\s*a\s+soupe/.test(t)) return { g: q * POIDS_MESURE.cas };
+  if(/\bc\s*a\s*c\b|\bcac\b|cuilleres?\s+a\s+cafe|\bc\.?\s*a\s+cafe/.test(t)) return { g: q * POIDS_MESURE.cac };
+  if(/pincees?/.test(t)) return { g: q * POIDS_MESURE.pincee };
+  if(/sachets?/.test(t)) return { g: q * POIDS_MESURE.sachet };
+  if(/feuilles?/.test(t)) return { g: q * POIDS_MESURE.feuille };
+  if(/bouquets?|branches?/.test(t)) return { g: q * POIDS_MESURE.bouquet };
+  if(/poignees?/.test(t)) return { g: q * POIDS_MESURE.poignee };
+  if(/pots?\b/.test(t)) return { g: q * POIDS_MESURE.pot };
+  if(/paquets?/.test(t)) return { g: q * POIDS_MESURE.paquet };
+  if(/batons?/.test(t)) return { g: q * POIDS_MESURE.baton };
+  if(/cubes?/.test(t)) return { g: q * POIDS_MESURE.cube };
+  return { piece: q };
+}
+
+function prixIngredient(txt){
+  const t = inspiNorm(txt);
+  const q = analyserQuantite(txt);
+  if(!q) return null;
+  const cles = Object.keys(PRIX).sort((a,b) => b.length - a.length);
+  for(const c of cles){
+    const n = inspiNorm(c);
+    const re = new RegExp('(^|[^a-z0-9])' + n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?:s|x)?($|[^a-z0-9])');
+    if(!re.test(t)) continue;
+    const e = PRIX[c];
+    // on continue de chercher si cette entr\u00e9e ne sait pas convertir l'unit\u00e9
+    if(q.g !== undefined && e.kg !== undefined) return q.g / 1000 * e.kg;
+    if(q.piece !== undefined && e.piece !== undefined) return q.piece * e.piece;
+    if(q.piece !== undefined && e.poidsPiece !== undefined && e.kg !== undefined) return q.piece * e.poidsPiece / 1000 * e.kg;
+  }
+  return null;
+}
+
+function coutRecette(id){
+  const r = recipes[id];
+  if(!r || !r.ingredients) return null;
+  let total = 0, connus = 0, inconnus = 0, libres = 0;
+  r.ingredients.forEach(x => {
+    if(estIntertitre(x)) return;
+    // « fleur de sel », « chocolat \u00e0 volont\u00e9 », « QS » : la recette elle-m\u00eame
+    // ne donne pas de quantit\u00e9, ce n'est pas un manque de ma table
+    if(!analyserQuantite(x)) { libres++; return; }
+    const p = prixIngredient(x);
+    if(p === null) inconnus++; else { total += p; connus++; }
+  });
+  if(!connus) return null;
+  const parts = parsePortionsBase(r.portions || '') || 1;
+  return { total: total, parPart: total / parts, parts: parts, connus: connus, inconnus: inconnus, libres: libres };
+}
+
+function euros(v){
+  return (Math.round(v * 100) / 100).toFixed(2).replace('.', ',') + '\u00a0\u20ac';
+}
+
+function coutHtml(id){
+  const c = coutRecette(id);
+  if(!c) return '';
+  return '<div class="cout-ligne" title="Estimation \u00e0 partir de prix moyens">' +
+    '<strong>' + euros(c.parPart) + '</strong> la part' +
+    '<span>soit environ ' + euros(c.total) + ' pour la recette enti\u00e8re</span>' +
+    (c.libres ? '<span class="cout-partiel">hors garnitures \u00e0 volont\u00e9</span>' : '') +
+    (c.inconnus ? '<span class="cout-partiel">' + c.inconnus + ' ingr\u00e9dient' + (c.inconnus > 1 ? 's' : '') + ' non chiffr\u00e9' + (c.inconnus > 1 ? 's' : '') + '</span>' : '') +
+  '</div>';
+}
+
+// classement des recettes par coût, pour Basile
+function recettesParBudget(plafondPart, plafondTotal){
+  return Object.keys(recipes).map(id => {
+    const c = coutRecette(id);
+    if(!c) return null;
+    return { id: id, titre: recipes[id].title, tag: recipes[id].tag, c: c };
+  }).filter(x => x &&
+      (plafondPart === null || x.c.parPart <= plafondPart) &&
+      (plafondTotal === null || x.c.total <= plafondTotal))
+    .sort((a,b) => a.c.parPart - b.c.parPart);
+}
+
+function questionBudget(saisie){
+  const brut = String(saisie).toLowerCase();          // le symbole € dispara\u00eet \u00e0 la normalisation
+  if(!/budget|prix|cher|co[u\u00fb]te|euros?|\u20ac/.test(brut)) return null;
+  const q = inspiNorm(saisie);
+  let part = null, total = null;
+  let m = /(\d+(?:[.,]\d+)?)\s*(?:euros?|\u20ac)?\s*(?:par|la|\/)\s*(?:part|personne|portion)/.exec(q);
+  if(m) part = parseFloat(m[1].replace(',', '.'));
+  if(part === null){
+    m = /(?:moins de|max|maximum|sous|jusqu.a|budget de|budget)\s*(\d+(?:[.,]\d+)?)/.exec(q);
+    if(m) total = parseFloat(m[1].replace(',', '.'));
+  }
+  if(part === null && total === null && /pas cher|petit prix|economique|moins cher/.test(q)) part = 1.5;
+  if(part === null && total === null) return null;
+
+  const liste = recettesParBudget(part, total).slice(0, 4);
+  const seuil = part !== null ? euros(part) + ' la part' : euros(total) + ' au total';
+  if(!liste.length) return 'Rien ne tient dans ' + seuil + '. Mes recettes les plus \u00e9conomiques tournent autour de ' +
+    euros(recettesParBudget(null, null)[0].c.parPart) + ' la part.';
+
+  return 'Avec ' + seuil + ', voil\u00e0 ce que je te propose&nbsp;:' +
+    liste.map(x =>
+      '<div class="inspi-carte">' +
+        '<div class="inspi-carte-tag">' + inspiEchapper(x.tag) + '</div>' +
+        '<h4>' + inspiEchapper(x.titre) + '</h4>' +
+        '<div class="inspi-score">' + euros(x.c.parPart) + ' la part \u00b7 ' + euros(x.c.total) + ' en tout</div>' +
+        '<button class="inspi-voir" onclick="openModal(\'' + x.id + '\')">Voir la recette</button>' +
+      '</div>').join('') +
+    '<div class="conv-note">Estimations \u00e0 partir de prix moyens : comptez une marge selon l\u2019enseigne et la saison.</div>';
+}
+
+// ===== FILTRES PRIX ET TEMPS =====
+const FILTRES_PRIX = [
+  { id: 'tous', lib: 'Tous les prix', max: null },
+  { id: 'p1',   lib: 'moins de 1 \u20ac', max: 1 },
+  { id: 'p2',   lib: 'moins de 2 \u20ac', max: 2 },
+  { id: 'p4',   lib: 'moins de 4 \u20ac', max: 4 }
+];
+const FILTRES_TEMPS = [
+  { id: 'tous', lib: 'Tous les temps', max: null },
+  { id: 't30',  lib: 'moins de 30 min', max: 30 },
+  { id: 't60',  lib: 'moins d\u2019une heure', max: 60 },
+  { id: 'tjour',lib: 'en une journ\u00e9e', max: 1439 }
+];
+let filtrePrix = 'tous';
+let filtreTemps = 'tous';
+
+function idDeCarte(el){
+  const h = el.getAttribute('onclick') || '';
+  const m = /openModal\('([^']+)'\)/.exec(h);
+  return m ? m[1] : null;
+}
+
+// « 25 min », « 1h30 », « 2 jours », « 1h + repos » -> minutes
+// une recette étalée sur plusieurs jours ne peut pas être « faite en 1 h »,
+// même si sa carte annonce un temps de travail court
+function joursRecette(id){
+  const r = recipes[id];
+  if(!r || !r.steps) return 0;
+  let max = 0;
+  r.steps.forEach(st => {
+    const t = (typeof st === 'string') ? st : st.text;
+    const m = /^\s*J-(\d+)/.exec(t);
+    if(m) max = Math.max(max, parseInt(m[1], 10));
+  });
+  return max;
+}
+
+function dureeDeCarte(el){
+  const id = idDeCarte(el);
+  if(id){
+    const j = joursRecette(id);
+    if(j > 0) return j * 1440;
+  }
+  const spans = el.querySelectorAll('.patisserie-card-meta span, .recipe-card-meta span');
+  let t = '';
+  spans.forEach(s => { if(s.textContent.indexOf('\u23F1') !== -1) t = s.textContent; });
+  if(!t) return null;
+  const n = inspiNorm(t);
+  if(/a venir/.test(n)) return null;
+  let m = /(\d+)\s*jours?/.exec(n);
+  if(m) return parseInt(m[1], 10) * 1440;
+  m = /(\d+)\s*h\s*(\d+)/.exec(n);
+  if(m) return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+  m = /(\d+)\s*h\b/.exec(n);
+  if(m) return parseInt(m[1], 10) * 60;
+  m = /(\d+)\s*min/.exec(n);
+  if(m) return parseInt(m[1], 10);
+  return null;
+}
+
+function barreFiltresHtml(){
+  const liste = (titre, options, choisi, type) =>
+    '<label class="filtre-select">' +
+      '<span class="filtre-titre">' + titre + '</span>' +
+      '<select onchange="majFiltre(\'' + type + '\', this.value)">' +
+        options.map(f => '<option value="' + f.id + '"' + (choisi === f.id ? ' selected' : '') + '>' + f.lib + '</option>').join('') +
+      '</select>' +
+    '</label>';
+  return '<div class="filtres">' +
+    liste('Prix par part', FILTRES_PRIX, filtrePrix, 'prix') +
+    liste('Temps', FILTRES_TEMPS, filtreTemps, 'temps') +
+    '<button class="filtre-reset" onclick="majFiltre(\'reset\',\'tous\')">Tout afficher</button>' +
+    '<div class="filtre-bilan" id="filtre-bilan"></div>' +
+  '</div>';
+}
+
+function poserFiltres(){
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    const grille = tab.querySelector('.patisserie-grid, .recipe-grid');
+    if(!grille) return;
+    if(tab.querySelector('.filtres')) return;
+    const d = document.createElement('div');
+    d.innerHTML = barreFiltresHtml();
+    grille.parentNode.insertBefore(d.firstChild, grille);
+  });
+}
+
+function majFiltre(type, val){
+  if(type === 'prix') filtrePrix = val;
+  else if(type === 'temps') filtreTemps = val;
+  else { filtrePrix = 'tous'; filtreTemps = 'tous'; }
+  // on resynchronise toutes les barres, y compris celles des autres onglets
+  document.querySelectorAll('.filtres select').forEach(sel => {
+    const est = sel.closest('.filtre-select').querySelector('.filtre-titre').textContent;
+    sel.value = (est.indexOf('Prix') === 0) ? filtrePrix : filtreTemps;
+  });
+  const actif = filtrePrix !== 'tous' || filtreTemps !== 'tous';
+  document.querySelectorAll('.filtre-reset').forEach(b => b.classList.toggle('visible', actif));
+  appliquerFiltres();
+}
+
+function appliquerFiltres(){
+  const fp = FILTRES_PRIX.find(f => f.id === filtrePrix);
+  const ft = FILTRES_TEMPS.find(f => f.id === filtreTemps);
+  const actif = (fp && fp.max !== null) || (ft && ft.max !== null);
+
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    if(!tab.querySelector('.patisserie-grid, .recipe-grid')) return;
+    let visibles = 0, total = 0;
+    tab.querySelectorAll('.patisserie-card, .recipe-card').forEach(carte => {
+      total++;
+      let garder = true;
+      if(actif){
+        const id = idDeCarte(carte);
+        if(!id){ garder = false; }                       // recette \u00e0 venir
+        else {
+          if(fp && fp.max !== null){
+            const c = coutRecette(id);
+            if(!c || c.parPart > fp.max) garder = false;
+          }
+          if(garder && ft && ft.max !== null){
+            const d = dureeDeCarte(carte);
+            if(d === null || d > ft.max) garder = false;
+          }
+        }
+      }
+      carte.style.display = garder ? '' : 'none';
+      if(garder) visibles++;
+    });
+    const bilan = tab.querySelector('#filtre-bilan') || tab.querySelector('.filtre-bilan');
+    if(bilan){
+      bilan.textContent = actif
+        ? visibles + ' recette' + (visibles > 1 ? 's' : '') + ' sur ' + total
+        : '';
+      bilan.classList.toggle('vide', actif && visibles === 0);
+    }
+  });
+}
+
+// ===== MON COMPTE : profil local =====
+let profil = { prenom: '', regimes: [], portions: null, voixAuto: false, ingOuverts: false };
+try { profil = Object.assign(profil, JSON.parse(localStorage.getItem('elsa_profil') || '{}')); } catch(e) {}
+
+function sauverProfil(){
+  try { localStorage.setItem('elsa_profil', JSON.stringify(profil)); } catch(e) {}
+  majPastilleCompte();
+}
+
+function majPastilleCompte(){
+  const p = document.getElementById('compte-pastille');
+  if(!p) return;
+  const ini = (profil.prenom || '').trim().charAt(0).toUpperCase();
+  p.innerHTML = ini || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
+  p.classList.toggle('rempli', !!ini);
+}
+window.addEventListener('load', majPastilleCompte);
+
+function bonjourSelonHeure(){
+  const h = new Date().getHours();
+  return (h >= 18 || h < 5) ? 'Bonsoir' : 'Bonjour';
+}
+function salutation(){
+  return bonjourSelonHeure() + (profil.prenom ? ' ' + profil.prenom : '');
+}
+function nomsRegimes(liste){
+  return (liste || []).map(id => {
+    const r = REGIMES.find(x => x.id === id);
+    return r ? r.nom.toLowerCase() : null;
+  }).filter(Boolean);
+}
+function resumeRegimes(){
+  const n = nomsRegimes(profil.regimes);
+  if(!n.length) return 'Aucun r\u00e9gime s\u00e9lectionn\u00e9 : les recettes restent telles quelles.';
+  return 'Appliqu\u00e9 \u00e0 chaque recette&nbsp;: ' + n.join(', ') + '.';
+}
+
+// ── les recettes que vous avez planifiées ──
+function recettesPrevues(){
+  const out = [];
+  Object.keys(planningDates || {}).forEach(id => {
+    const v = planningDates[id];
+    if(!v || !recipes[id]) return;
+    const dd = parseISO(v);
+    const jours = Math.round((dd - new Date(new Date().toDateString())) / 86400000);
+    if(jours >= 0) out.push({ id: id, titre: recipes[id].title, date: dd, jours: jours });
+  });
+  return out.sort((a,b) => a.date - b.date);
+}
+
+function initCompte(){
+  const zone = document.getElementById('compte-corps');
+  if(!zone) return;
+  const cats = ['Allergies', 'Convictions', 'Sant\u00e9'];
+  const prevues = recettesPrevues();
+  const nbFav = (typeof likes !== 'undefined' && likes) ? likes.length : 0;
+
+  zone.innerHTML =
+    '<div class="compte-tete"><h2>' + (profil.prenom ? salutation() : 'Mon compte') + '</h2>' +
+      '<p>' + (profil.prenom
+        ? 'Vos pr\u00e9f\u00e9rences sont appliqu\u00e9es automatiquement \u00e0 chaque recette.'
+        : 'Dites-moi qui vous \u00eates et ce que vous ne mangez pas : les recettes s\u2019adapteront toutes seules.') + '</p></div>' +
+
+    // ── identité
+    '<div class="compte-bloc">' +
+      '<label class="compte-label" for="compte-prenom">Votre pr\u00e9nom</label>' +
+      '<input class="compte-input" id="compte-prenom" type="text" maxlength="24" placeholder="Elsa" value="' + (profil.prenom || '').replace(/"/g,'&quot;') + '" oninput="majPrenom(this.value)">' +
+      '<p class="compte-aide">Basile s\u2019en servira pour vous saluer.</p>' +
+    '</div>' +
+
+    // ── régimes
+    '<div class="compte-bloc">' +
+      '<div class="compte-label">Vos r\u00e9gimes et allergies</div>' +
+      cats.map(cat =>
+        '<div class="regime-cat">' + cat + '</div><div class="regime-ligne">' +
+        REGIMES.filter(r => (r.cat || 'Sant\u00e9') === cat).map(r =>
+          '<button class="regime-chip' + (profil.regimes.indexOf(r.id) !== -1 ? ' actif' : '') + '" data-id="' + r.id + '" onclick="basculerRegimeProfil(\'' + r.id + '\')">' + r.emoji + '&nbsp; ' + r.nom + '</button>').join('') +
+        '</div>').join('') +
+      '<p class="compte-aide" id="compte-resume">' + resumeRegimes() + '</p>' +
+    '</div>' +
+
+    // ── habitudes de cuisine
+    '<div class="compte-bloc">' +
+      '<div class="compte-label">Vos habitudes</div>' +
+      '<div class="compte-ligne">' +
+        '<div><strong>Je cuisine souvent pour</strong><span>Les quantit\u00e9s seront pr\u00e9-r\u00e9gl\u00e9es \u00e0 l\u2019ouverture</span></div>' +
+        '<div class="portion-stepper">' +
+          '<button onclick="majPortionsProfil(-1)">\u2212</button>' +
+          '<span class="portion-val" id="compte-portions">' + (profil.portions || '\u2014') + '</span>' +
+          '<button onclick="majPortionsProfil(1)">+</button>' +
+        '</div>' +
+      '</div>' +
+      interrupteur('voixAuto', 'Lecture \u00e0 voix haute', 'Le mode cuisine lit les \u00e9tapes automatiquement') +
+      interrupteur('ingOuverts', 'Ingr\u00e9dients d\u00e9pli\u00e9s', 'La liste s\u2019ouvre sans avoir \u00e0 cliquer') +
+    '</div>' +
+
+    // ── ce qui est prévu
+    '<div class="compte-bloc">' +
+      '<div class="compte-label">Vos prochaines recettes</div>' +
+      (prevues.length
+        ? '<div class="compte-prevues">' + prevues.map(p =>
+            '<button class="compte-prevue" onclick="openModal(\'' + p.id + '\')">' +
+              '<span class="compte-prevue-jour">' + (p.jours === 0 ? 'aujourd\u2019hui' : p.jours === 1 ? 'demain' : 'dans ' + p.jours + ' jours') + '</span>' +
+              '<span class="compte-prevue-titre">' + p.titre + '</span>' +
+              '<span class="compte-prevue-date">' + dateLongue(p.date) + '</span>' +
+            '</button>').join('') + '</div>'
+        : '<p class="compte-aide">Aucune date planifi\u00e9e. Dans une recette sur plusieurs jours, indiquez quand vous la voulez pr\u00eate.</p>') +
+    '</div>' +
+
+    // ── raccourcis
+    '<div class="compte-bloc">' +
+      '<div class="compte-label">Raccourcis</div>' +
+      '<div class="compte-raccourcis">' +
+        '<button class="compte-raccourci" onclick="showTab(\'wishlist\')"><strong>' + nbFav + '</strong><span>recette' + (nbFav > 1 ? 's' : '') + ' en favori' + (nbFav > 1 ? 's' : '') + '</span></button>' +
+        '<button class="compte-raccourci" onclick="showTab(\'calculateur\')"><strong>\u{1F4CA}</strong><span>Mon bilan calorique</span></button>' +
+        '<button class="compte-raccourci" onclick="showTab(\'inspiration\')"><strong>\u{1F33F}</strong><span>Demander \u00e0 Basile</span></button>' +
+      '</div>' +
+    '</div>' +
+
+    // ── notifications et application
+    '<div class="compte-bloc">' +
+      '<div class="compte-label">Alertes et application</div>' +
+      '<div class="compte-ligne">' +
+        '<div><strong>Nouvelles recettes</strong><span id="compte-notif-etat">Une notification quand une recette arrive</span></div>' +
+        '<button class="compte-action" id="compte-notif-btn" onclick="basculerNotif()">Me pr\u00e9venir</button>' +
+      '</div>' +
+      '<div class="compte-ligne">' +
+        '<div><strong>Installer l\u2019application</strong><span>Un acc\u00e8s direct depuis l\u2019\u00e9cran d\u2019accueil</span></div>' +
+        '<button class="compte-action" onclick="installerDepuisCompte()">Installer</button>' +
+      '</div>' +
+    '</div>' +
+
+    // ── confidentialité
+    '<div class="compte-bloc compte-note">' +
+      '<strong>O\u00f9 sont conserv\u00e9es ces informations&nbsp;?</strong>' +
+      '<p>Uniquement dans ce navigateur, sur cet appareil. Rien n\u2019est envoy\u00e9 sur internet, et personne d\u2019autre n\u2019y a acc\u00e8s. Sur un autre t\u00e9l\u00e9phone, il faudra les saisir \u00e0 nouveau.</p>' +
+      '<button class="compte-effacer" onclick="effacerProfil()">Effacer mes informations</button>' +
+    '</div>';
+
+  majEtatNotifCompte();
+}
+
+function interrupteur(cle, titre, aide){
+  const on = !!profil[cle];
+  return '<div class="compte-ligne">' +
+    '<div><strong>' + titre + '</strong><span>' + aide + '</span></div>' +
+    '<button class="compte-switch' + (on ? ' on' : '') + '" id="sw-' + cle + '" onclick="basculerOption(\'' + cle + '\')" aria-pressed="' + on + '"><span></span></button>' +
+  '</div>';
+}
+
+function basculerOption(cle){
+  profil[cle] = !profil[cle];
+  sauverProfil();
+  const b = document.getElementById('sw-' + cle);
+  if(b){ b.classList.toggle('on', profil[cle]); b.setAttribute('aria-pressed', profil[cle]); }
+  if(cle === 'voixAuto'){
+    voixActive = profil.voixAuto;
+    try { localStorage.setItem('elsa_voix', voixActive ? '1' : '0'); } catch(e) {}
+  }
+}
+
+function majPortionsProfil(delta){
+  const actuel = profil.portions || 6;
+  let v = actuel + delta;
+  if(!profil.portions && delta > 0) v = 6;
+  profil.portions = Math.max(1, Math.min(30, v));
+  sauverProfil();
+  const el = document.getElementById('compte-portions');
+  if(el) el.textContent = profil.portions;
+}
+
+function majPrenom(v){
+  profil.prenom = v.trim();
+  sauverProfil();
+}
+
+function basculerRegimeProfil(id){
+  const i = profil.regimes.indexOf(id);
+  if(i === -1) profil.regimes.push(id); else profil.regimes.splice(i, 1);
+  sauverProfil();
+  document.querySelectorAll('#compte-corps .regime-chip').forEach(c =>
+    c.classList.toggle('actif', profil.regimes.indexOf(c.dataset.id) !== -1));
+  const r = document.getElementById('compte-resume');
+  if(r) r.innerHTML = resumeRegimes();
+}
+
+async function majEtatNotifCompte(){
+  const b = document.getElementById('compte-notif-btn');
+  const t = document.getElementById('compte-notif-etat');
+  if(!b) return;
+  const etat = await etatNotif();
+  if(etat === 'indisponible'){ b.style.display = 'none'; if(t) t.textContent = 'Non g\u00e9r\u00e9es par ce navigateur'; return; }
+  if(etat === 'actif'){ b.textContent = 'Me d\u00e9sabonner'; if(t) t.textContent = 'Vous \u00eates pr\u00e9venue \u00e0 chaque nouvelle recette'; }
+  else if(etat === 'incomplet'){ b.textContent = 'Terminer'; if(t) t.textContent = 'L\u2019abonnement n\u2019a pas \u00e9t\u00e9 enregistr\u00e9'; }
+  else if(etat === 'refuse'){ b.style.display = 'none'; if(t) t.textContent = 'Bloqu\u00e9es dans les r\u00e9glages du navigateur'; }
+  else { b.textContent = 'Me pr\u00e9venir'; if(t) t.textContent = 'Une notification quand une recette arrive'; }
+}
+
+function installerDepuisCompte(){
+  if(dejaInstalle()) return alert('L\u2019application est d\u00e9j\u00e0 install\u00e9e sur cet appareil.');
+  if(invitationInstall) return lancerInstallation();
+  if(estIOS()) return alert('Sur iPhone : appuyez sur le bouton Partager en bas de Safari, puis sur « Sur l\u2019\u00e9cran d\u2019accueil ».');
+  alert('Sur Android : ouvrez le menu de votre navigateur, puis choisissez « Installer l\u2019application ».');
+}
+
+function effacerProfil(){
+  if(!confirm('Effacer votre pr\u00e9nom, vos r\u00e9gimes et vos pr\u00e9f\u00e9rences ?')) return;
+  profil = { prenom: '', regimes: [], portions: null, voixAuto: false, ingOuverts: false };
+  try { localStorage.removeItem('elsa_profil'); } catch(e) {}
+  initCompte();
+}
+
+function bandeauProfilHtml(){
+  const n = nomsRegimes(profil.regimes);
+  if(!n.length) return '';
+  return '<div class="profil-actif">Adapt\u00e9 \u00e0 vos pr\u00e9f\u00e9rences&nbsp;: <strong>' + n.join(', ') + '</strong>' +
+    '<button onclick="showTab(\'compte\')">modifier</button></div>';
+}
+
+// ===== ADAPTATION DES RECETTES SELON LE RÉGIME =====
+// Chaque règle remplace un ingrédient par son équivalent. Les remarques
+// signalent ce qu'un simple remplacement ne suffit pas à régler.
+
+const REGIMES = [
+  {
+    id: 'gluten', cat: 'Allergies', nom: 'Sans gluten', emoji: '\u{1F33E}',
+    regles: [
+      [/farines?(\s+T\d+)?(\s+de\s+bl\u00e9)?/gi, 'farine sans gluten (m\u00e9lange p\u00e2tisserie)'],
+      [/cr\u00eapes?\s+dentelles?|feuillantine|gavottes?/gi, 'cr\u00eapes dentelles sans gluten'],
+      [/sp\u00e9culoos/gi, 'biscuits sabl\u00e9s sans gluten'],
+      [/p\u00e2te\s+(bris\u00e9e|feuillet\u00e9e|sucr\u00e9e)/gi, 'p\u00e2te sans gluten'],
+      [/pain\s+de\s+mie|pain\s+rassis/gi, 'pain sans gluten'],
+      [/chapelure/gi, 'chapelure sans gluten'],
+      [/flocons\s+d[\u2019']avoine/gi, 'flocons d\u2019avoine certifi\u00e9s sans gluten'],
+      [/boulgour|semoule/gi, 'quinoa'],
+      [/plaques?\s+de\s+lasagnes|p\u00e2tes|nouilles/gi, 'p\u00e2tes sans gluten (riz ou ma\u00efs)'],
+      [/levure\s+chimique/gi, 'levure chimique sans gluten']
+    ],
+    notes: [
+      'Ajoutez 1/2 c.\u00e0.c de gomme de xanthane pour 250 g de farine sans gluten : elle remplace le r\u00e9seau de gluten et \u00e9vite une p\u00e2te friable.',
+      'Les p\u00e2tes sans gluten se travaillent mieux tr\u00e8s froides et se d\u00e9chirent plus facilement : \u00e9talez-les entre deux feuilles de papier cuisson.',
+      'V\u00e9rifiez les \u00e9tiquettes du chocolat, de la levure et des \u00e9pices : le gluten s\u2019y cache souvent.'
+    ]
+  },
+  {
+    id: 'lactose', cat: 'Allergies', nom: 'Sans lactose', emoji: '\u{1F95B}',
+    regles: [
+      [/beurre\s+(mou|fondu|froid|demi[- ]sel|noisette|pommade)?/gi, 'margarine v\u00e9g\u00e9tale'],
+      [/lait\s+concentr\u00e9\s+sucr\u00e9/gi, 'lait concentr\u00e9 de coco sucr\u00e9'],
+      [/lait\s+concentr\u00e9(\s+non\s+sucr\u00e9)?/gi, 'lait de coco \u00e9pais'],
+      [/lait\s+entier|lait\b/gi, 'boisson d\u2019avoine ou lait sans lactose'],
+      [/cr\u00e8me(?!\s+(?:p\u00e2tissi\u00e8re|d[\u2019']amande|bonbon|anglaise|au\s+beurre))(?:\s+(?:liquide|enti\u00e8re|fra\u00eeche|chaude|froide|\u00e9paisse))*(?:\s*\(?\s*\d+\s*%\s*(?:MG)?\s*\)?)?/gi, 'cr\u00e8me v\u00e9g\u00e9tale (soja ou avoine)'],
+      [/mascarpone/gi, 'tofu soyeux fouett\u00e9 ou mascarpone v\u00e9g\u00e9tal'],
+      [/fromage\s+blanc|yaourt(\s+nature|\s+grec)?|skyr/gi, 'yaourt v\u00e9g\u00e9tal'],
+      [/ricotta/gi, 'ricotta v\u00e9g\u00e9tale'],
+      [/chocolat\s+blanc/gi, 'chocolat blanc sans lactose'],
+      [/chocolat\s+au\s+lait/gi, 'chocolat noir'],
+      [/gruy\u00e8re|parmesan|emmental|cheddar|mozzarella|feta/gi, 'fromage v\u00e9g\u00e9tal r\u00e2p\u00e9']
+    ],
+    notes: [
+      'La margarine contient moins d\u2019eau que le beurre : les p\u00e2tes sabl\u00e9es sont l\u00e9g\u00e8rement plus friables.',
+      'Pour une chantilly v\u00e9g\u00e9tale, la cr\u00e8me doit passer 12 h au frais et \u00eatre mont\u00e9e tr\u00e8s froide.',
+      'Le chocolat noir contient souvent des traces de lait : v\u00e9rifiez l\u2019\u00e9tiquette en cas d\u2019allergie et non de simple intol\u00e9rance.'
+    ]
+  },
+  {
+    id: 'oeuf', cat: 'Allergies', nom: 'Sans \u0153uf', emoji: '\u{1F373}',
+    regles: [
+      [/jaunes?\s+d[\u2019']\u0153ufs?|jaunes?\s+d[\u2019']oeufs?/gi, 'faux jaunes (1 c.\u00e0.s de f\u00e9cule + 2 c.\u00e0.s d\u2019eau chacun)'],
+      [/blancs?\s+d[\u2019']\u0153ufs?|blancs?\s+d[\u2019']oeufs?/gi, 'aquafaba (jus de pois chiches), m\u00eame poids'],
+      [/\u0153ufs?\s+entiers?|oeufs?\s+entiers?|\u0153ufs?|oeufs?/gi, '\u00e9quivalents \u0153uf (60 g de compote de pommes chacun)']
+    ],
+    notes: [
+      'L\u2019aquafaba est le jus des pois chiches en conserve. Il se monte en neige comme un blanc, en un peu plus long.',
+      'Les recettes qui reposent enti\u00e8rement sur l\u2019\u0153uf \u2014 flan, cr\u00e8me anglaise, mousse \u2014 changent vraiment de texture. Comptez un essai avant de servir.',
+      'Ajoutez 1/2 c.\u00e0.c de levure pour compenser le pouvoir levant perdu.'
+    ]
+  },
+  {
+    id: 'porc', cat: 'Convictions', nom: 'Sans porc', emoji: '\u{1F515}',
+    regles: [
+      [/g\u00e9latine(\s+feuille)?(\s+200\s+bloom)?/gi, 'agar-agar (2 g pour 6 g de g\u00e9latine) ou g\u00e9latine de b\u0153uf'],
+      [/lardons/gi, 'd\u00e9s de dinde fum\u00e9e'],
+      [/jambon/gi, 'blanc de dinde'],
+      [/saucisses?/gi, 'saucisses de volaille'],
+      [/bacon/gi, 'bacon de dinde']
+    ],
+    notes: [
+      'L\u2019agar-agar doit bouillir 30 secondes pour g\u00e9lifier, contrairement \u00e0 la g\u00e9latine. Il donne une tenue plus ferme et moins fondante.',
+      'La g\u00e9latine des bonbons, guimauves et certains yaourts est le plus souvent porcine : v\u00e9rifiez les \u00e9tiquettes.'
+    ]
+  },
+  {
+    id: 'coque', cat: 'Allergies', nom: 'Sans fruits \u00e0 coque', emoji: '\u{1F330}',
+    regles: [
+      [/poudre\s+d[\u2019']amandes?/gi, 'graines de tournesol mixées finement'],
+      [/amandes?\s+(entières|effilées|concassées)?/gi, 'graines de tournesol'],
+      [/noisettes?/gi, 'graines de courge'],
+      [/pistaches?/gi, 'graines de tournesol'],
+      [/noix\s+de\s+p\u00e9can|noix\s+de\s+cajou|noix\b/gi, 'graines de courge'],
+      [/pignons?/gi, 'graines de tournesol'],
+      [/pralin\u00e9(\s+\w+)?/gi, 'pralin\u00e9 de graines de tournesol'],
+      [/beurre\s+de\s+cacahu\u00e8te/gi, 'pur\u00e9e de graines de tournesol'],
+      [/cacahu\u00e8tes?/gi, 'graines de tournesol']
+    ],
+    notes: [
+      'Les graines de tournesol torr\u00e9fi\u00e9es donnent un pralin\u00e9 tr\u00e8s proche. Elles peuvent verdir au contact du bicarbonate, sans danger.',
+      'L\u2019arachide est une l\u00e9gumineuse, pas un fruit \u00e0 coque, mais l\u2019allergie est souvent associ\u00e9e : je la remplace aussi par pr\u00e9caution.'
+    ]
+  },
+  {
+    id: 'sucre', cat: 'Sant\u00e9', nom: 'Diab\u00e8te \u00b7 sucre r\u00e9duit', emoji: '\u{1FA78}',
+    regles: [
+      [/sucre\s+glace/gi, '\u00e9rythritol glace'],
+      [/sucre\s+vanill\u00e9/gi, 'extrait de vanille'],
+      [/vergeoise|cassonade|sucre\s+roux|sucre\s+de\s+coco/gi, '\u00e9rythritol brun, un tiers de moins'],
+      [/sucre\s+blanc|sucres?\b/gi, '\u00e9rythritol, ou un tiers de sucre en moins'],
+      [/miel|sirop\s+d[\u2019']agave|sirop\s+d[\u2019']\u00e9rable/gi, 'sirop sans sucre'],
+      [/lait\s+concentr\u00e9\s+sucr\u00e9/gi, 'lait concentr\u00e9 non sucr\u00e9'],
+      [/chocolat\s+blanc/gi, 'chocolat blanc sans sucre ajout\u00e9'],
+      [/chocolat(?!\s+blanc)(\s+noir|\s+au\s+lait)?/gi, 'chocolat noir 85% ou sans sucre ajout\u00e9'],
+      [/p\u00e9pites\s+de\s+chocolat/gi, 'p\u00e9pites de chocolat sans sucre ajout\u00e9']
+    ],
+    notes: [
+      'Le sucre ne fait pas que sucrer : il colore, retient l\u2019humidit\u00e9 et donne du moelleux. Attendez-vous \u00e0 un r\u00e9sultat plus p\u00e2le et plus sec.',
+      'L\u2019\u00e9rythritol supporte mal la cuisson des caramels : pour un pralin\u00e9, gardez du vrai sucre et r\u00e9duisez plut\u00f4t la portion.',
+      'Ces adaptations r\u00e9duisent les sucres rapides mais ne constituent pas un avis m\u00e9dical. Les glucides restent \u00e0 comptabiliser, et les valeurs nutritionnelles affich\u00e9es ne sont pas recalcul\u00e9es.'
+    ]
+  }
+];
+
+const REGIMES_PLUS = [
+  {
+    id: 'vegetarien', cat: 'Convictions', nom: 'V\u00e9g\u00e9tarien', emoji: '\u{1F331}',
+    regles: [
+      [/viande\s+hach\u00e9e/gi, 'prot\u00e9ines de soja textur\u00e9es r\u00e9hydrat\u00e9es'],
+      [/poulet\s+hach\u00e9|poulet|blancs?\s+de\s+poulet|escalopes?\s+(?:de\s+)?(?:veau|poulet|dinde)?/gi, 'tofu ferme marin\u00e9'],
+      [/lardons|bacon/gi, 'd\u00e9s de tofu fum\u00e9'],
+      [/jambon/gi, 'tofu fum\u00e9 en d\u00e9s'],
+      [/saucisses?/gi, 'saucisses v\u00e9g\u00e9tales'],
+      [/cuisses?\s+de\s+poulet|1\s+poulet|veau|b\u0153uf|boeuf/gi, 'seitan ou tofu ferme'],
+      [/crevettes?|gambas/gi, 'c\u0153urs d\u2019artichaut'],
+      [/thon|saumon(\s+fum\u00e9)?|cabillaud|colin/gi, 'pois chiches \u00e9cras\u00e9s'],
+      [/bouillon/gi, 'bouillon de l\u00e9gumes'],
+      [/g\u00e9latine(\s+feuille)?(\s+200\s+bloom)?/gi, 'agar-agar (2 g pour 6 g de g\u00e9latine)'],
+      [/parmesan|pecorino/gi, 'parmesan \u00e0 pr\u00e9sure microbienne']
+    ],
+    notes: [
+      'La pr\u00e9sure de nombreux fromages est d\u2019origine animale : parmesan, comt\u00e9 et gruy\u00e8re AOP en contiennent. Cherchez la mention « pr\u00e9sure microbienne » ou « coagulant v\u00e9g\u00e9tal ».',
+      'La g\u00e9latine des bonbons, guimauves et certains yaourts est issue du porc ou du b\u0153uf.'
+    ]
+  },
+  {
+    id: 'vegan', cat: 'Convictions', nom: 'V\u00e9g\u00e9talien', emoji: '\u{1F33F}',
+    regles: [
+      [/beurre\s+(mou|fondu|froid|demi[- ]sel|noisette|pommade)?/gi, 'margarine v\u00e9g\u00e9tale'],
+      [/lait\s+concentr\u00e9\s+sucr\u00e9/gi, 'lait concentr\u00e9 de coco sucr\u00e9'],
+      [/lait\s+entier|lait\b/gi, 'boisson d\u2019avoine'],
+      [/cr\u00e8me(?!\s+(?:p\u00e2tissi\u00e8re|d[\u2019']amande|bonbon|anglaise|au\s+beurre))(?:\s+(?:liquide|enti\u00e8re|fra\u00eeche|chaude|froide|\u00e9paisse))*(?:\s*\(?\s*\d+\s*%\s*(?:MG)?\s*\)?)?/gi, 'cr\u00e8me v\u00e9g\u00e9tale (soja ou avoine)'],
+      [/mascarpone/gi, 'tofu soyeux fouett\u00e9'],
+      [/yaourt(\s+nature|\s+grec)?|fromage\s+blanc|skyr|ricotta/gi, 'yaourt v\u00e9g\u00e9tal'],
+      [/gruy\u00e8re|parmesan|emmental|cheddar|mozzarella|feta/gi, 'fromage v\u00e9g\u00e9tal r\u00e2p\u00e9'],
+      [/chocolat\s+blanc/gi, 'chocolat blanc v\u00e9g\u00e9tal'],
+      [/chocolat\s+au\s+lait/gi, 'chocolat noir sans lait'],
+      [/jaunes?\s+d[\u2019']\u0153ufs?|jaunes?\s+d[\u2019']oeufs?/gi, 'faux jaunes (1 c.\u00e0.s de f\u00e9cule + 2 c.\u00e0.s d\u2019eau chacun)'],
+      [/blancs?\s+d[\u2019']\u0153ufs?|blancs?\s+d[\u2019']oeufs?/gi, 'aquafaba (jus de pois chiches), m\u00eame poids'],
+      [/\u0153ufs?\s+entiers?|oeufs?\s+entiers?|\u0153ufs?|oeufs?/gi, '\u00e9quivalents \u0153uf (60 g de compote de pommes chacun)'],
+      [/miel/gi, 'sirop d\u2019\u00e9rable'],
+      [/g\u00e9latine(\s+feuille)?(\s+200\s+bloom)?/gi, 'agar-agar (2 g pour 6 g de g\u00e9latine)'],
+      [/lardons|bacon|jambon/gi, 'tofu fum\u00e9'],
+      [/viande\s+hach\u00e9e/gi, 'prot\u00e9ines de soja textur\u00e9es'],
+      [/poulet|thon|saumon|crevettes?/gi, 'tofu ferme marin\u00e9']
+    ],
+    notes: [
+      'Une chantilly v\u00e9g\u00e9tale demande une cr\u00e8me tr\u00e8s froide et 12 h de repos. Le lait de coco enti\u00e8re, r\u00e9frig\u00e9r\u00e9 une nuit, fonctionne aussi tr\u00e8s bien.',
+      'L\u2019aquafaba monte en neige comme un blanc d\u2019\u0153uf, en un peu plus long. Une pinc\u00e9e de cr\u00e8me de tartre aide.',
+      'Attention au sucre blanc, parfois filtr\u00e9 sur noir animal, et \u00e0 la l\u00e9cithine des chocolats.'
+    ]
+  },
+  {
+    id: 'halal', cat: 'Convictions', nom: 'Halal', emoji: '\u{1F54C}',
+    regles: [
+      [/g\u00e9latine(\s+feuille)?(\s+200\s+bloom)?/gi, 'agar-agar ou g\u00e9latine bovine halal'],
+      [/lardons|bacon/gi, 'd\u00e9s de dinde fum\u00e9e halal'],
+      [/jambon/gi, 'blanc de dinde halal'],
+      [/saucisses?/gi, 'saucisses de volaille halal'],
+      [/vin\s+blanc|vin\s+rouge|vin\b/gi, 'bouillon + 1 c.\u00e0.s de vinaigre'],
+      [/rhum|kirsch|cognac|grand\s+marnier|liqueur|amaretto/gi, 'sirop ou jus d\u2019orange'],
+      [/extrait\s+de\s+vanille/gi, 'vanille en poudre ou gousse'],
+      [/bi\u00e8re/gi, 'bouillon']
+    ],
+    notes: [
+      'L\u2019extrait de vanille du commerce contient de l\u2019alcool : pr\u00e9f\u00e9rez la gousse ou la poudre.',
+      'Certains ar\u00f4mes, colorants et enzymes sont d\u2019origine animale. La mention halal sur l\u2019emballage reste la seule garantie.'
+    ]
+  },
+  {
+    id: 'alcool', cat: 'Convictions', nom: 'Sans alcool', emoji: '\u{1F6AB}',
+    regles: [
+      [/vin\s+blanc|vin\s+rouge|vin\b/gi, 'bouillon + 1 c.\u00e0.s de vinaigre'],
+      [/rhum|kirsch|cognac|grand\s+marnier|liqueur|amaretto|calvados/gi, 'sirop de sucre parfum\u00e9 ou jus d\u2019orange'],
+      [/extrait\s+de\s+vanille/gi, 'vanille en poudre ou gousse'],
+      [/bi\u00e8re/gi, 'bouillon']
+    ],
+    notes: [
+      'L\u2019alcool ne s\u2019\u00e9vapore jamais compl\u00e8tement \u00e0 la cuisson : il en reste 5 \u00e0 40 % selon le temps et le mode de cuisson.'
+    ]
+  },
+  {
+    id: 'soja', cat: 'Allergies', nom: 'Sans soja', emoji: '\u{1FAD8}',
+    regles: [
+      [/sauce\s+soja/gi, 'sauce coco aminos ou tamari sans soja'],
+      [/tofu(\s+soyeux|\s+ferme|\s+fum\u00e9)?/gi, 'pois chiches \u00e9cras\u00e9s'],
+      [/l\u00e9cithine\s+de\s+soja/gi, 'l\u00e9cithine de tournesol'],
+      [/(cr\u00e8me|boisson|yaourt|margarine)\s+(?:v\u00e9g\u00e9tale?\s+)?(?:\(soja[^)]*\)|de\s+soja|au\s+soja)/gi, '$1 d\u2019avoine'],
+      [/soja/gi, 'avoine']
+    ],
+    notes: [
+      'Le soja se cache dans beaucoup de chocolats, sous forme de l\u00e9cithine (E322). V\u00e9rifiez l\u2019\u00e9tiquette.'
+    ]
+  },
+  {
+    id: 'arachide', cat: 'Allergies', nom: 'Sans arachide', emoji: '\u{1F95C}',
+    regles: [
+      [/beurre\s+de\s+cacahu\u00e8te/gi, 'pur\u00e9e d\u2019amande'],
+      [/pralin\u00e9\s+cacahu\u00e8te/gi, 'pralin\u00e9 amande'],
+      [/cacahu\u00e8tes?(\s+non\s+sal\u00e9es)?/gi, 'amandes'],
+      [/huile\s+d[\u2019']arachide/gi, 'huile de tournesol']
+    ],
+    notes: [
+      'L\u2019arachide est une l\u00e9gumineuse : l\u2019allergie n\u2019implique pas forc\u00e9ment celle aux fruits \u00e0 coque, d\u2019o\u00f9 le remplacement par l\u2019amande. Si les deux sont en cause, cochez aussi « Sans fruits \u00e0 coque ».',
+      'C\u2019est l\u2019une des allergies les plus s\u00e9v\u00e8res : la contamination crois\u00e9e en atelier suffit \u00e0 d\u00e9clencher une r\u00e9action. La mention « peut contenir des traces » doit \u00eatre prise au s\u00e9rieux.'
+    ]
+  },
+  {
+    id: 'sesame', cat: 'Allergies', nom: 'Sans s\u00e9same', emoji: '\u{1F33E}',
+    regles: [
+      [/tahini|pur\u00e9e\s+de\s+s\u00e9same/gi, 'pur\u00e9e de tournesol'],
+      [/graines\s+de\s+s\u00e9same|s\u00e9same/gi, 'graines de pavot'],
+      [/huile\s+de\s+s\u00e9same/gi, 'huile neutre']
+    ],
+    notes: [
+      'Le s\u00e9same est un allerg\u00e8ne \u00e0 d\u00e9claration obligatoire. Il est tr\u00e8s pr\u00e9sent dans les pains, burgers et m\u00e9langes d\u2019\u00e9pices type za\u2019atar.'
+    ]
+  },
+  {
+    id: 'keto', cat: 'Sant\u00e9', nom: 'C\u00e9togène', emoji: '\u{1F953}',
+    regles: [
+      [/farines?(\s+T\d+)?(\s+de\s+bl\u00e9)?/gi, 'poudre d\u2019amande + 1 c.\u00e0.c de psyllium'],
+      [/sucre\s+glace/gi, '\u00e9rythritol glace'],
+      [/sucre\s+blanc|cassonade|vergeoise|sucres?\b/gi, '\u00e9rythritol'],
+      [/miel|sirop\s+d[\u2019'](?:agave|\u00e9rable)/gi, 'sirop sans sucre'],
+      [/ma\u00efzena|f\u00e9cule/gi, 'gomme de xanthane, dix fois moins'],
+      [/lait\s+entier|lait\b/gi, 'cr\u00e8me enti\u00e8re dilu\u00e9e'],
+      [/chocolat(?!\s+blanc)(\s+noir|\s+au\s+lait)?/gi, 'chocolat 90% ou sans sucre'],
+      [/p\u00e2tes|riz\b|semoule|boulgour/gi, 'konjac ou chou-fleur r\u00e2p\u00e9'],
+      [/pommes?\s+de\s+terre/gi, 'chou-fleur'],
+      [/bananes?/gi, 'fruits rouges']
+    ],
+    notes: [
+      'La p\u00e2tisserie c\u00e9tog\u00e8ne ne se comporte pas comme la classique : sans gluten ni sucre, les p\u00e2tes ne l\u00e8vent pas pareil et restent plus denses.',
+      'La poudre d\u2019amande absorbe moins d\u2019eau que la farine : r\u00e9duisez les liquides d\u2019environ un quart.',
+      'Un r\u00e9gime c\u00e9tog\u00e8ne strict m\u00e9rite un suivi di\u00e9t\u00e9tique, surtout sur la dur\u00e9e.'
+    ]
+  },
+  {
+    id: 'igbas', cat: 'Sant\u00e9', nom: 'Index glyc\u00e9mique bas', emoji: '\u{1F4C9}',
+    regles: [
+      [/farines?(\s+T\d+)?(\s+de\s+bl\u00e9)?/gi, 'farine compl\u00e8te T110 ou petit \u00e9peautre'],
+      [/sucre\s+glace/gi, 'sucre de coco mixé'],
+      [/sucre\s+blanc|sucres?\b/gi, 'sucre de coco'],
+      [/riz\b/gi, 'riz basmati complet'],
+      [/pommes?\s+de\s+terre/gi, 'patate douce'],
+      [/p\u00e2tes/gi, 'p\u00e2tes compl\u00e8tes cuites al dente'],
+      [/pain\s+de\u00b7?\s*mie|pain\b/gi, 'pain au levain complet'],
+      [/miel/gi, 'sirop d\u2019agave']
+    ],
+    notes: [
+      'La cuisson compte autant que l\u2019ingr\u00e9dient : des p\u00e2tes al dente ont un index bien plus bas que des p\u00e2tes trop cuites.',
+      'Associer fibres, prot\u00e9ines ou gras \u00e0 un glucide fait baisser la r\u00e9ponse glyc\u00e9mique du repas entier.'
+    ]
+  },
+  {
+    id: 'fodmap', cat: 'Sant\u00e9', nom: 'Pauvre en FODMAP', emoji: '\u{1FAC1}',
+    regles: [
+      [/oignons?|\u00e9chalotes?/gi, 'vert de poireau ou huile infus\u00e9e'],
+      [/gousses?\s+d[\u2019']ail|ail\b/gi, 'c.\u00e0.s d\u2019huile infus\u00e9e \u00e0 l\u2019ail (par gousse)'],
+      [/farines?(\s+T\d+)?(\s+de\s+bl\u00e9)?/gi, 'farine sans gluten ou d\u2019\u00e9peautre au levain'],
+      [/lait\s+entier|lait\b/gi, 'lait sans lactose'],
+      [/cr\u00e8me(?!\s+p\u00e2tissi\u00e8re)/gi, 'cr\u00e8me sans lactose'],
+      [/miel/gi, 'sirop d\u2019\u00e9rable'],
+      [/\bpommes?\b(?!\s+de\s+terre)|\bpoires?\b/gi, 'fraises ou oranges'],
+      [/pois\s+chiches/gi, 'pois chiches en conserve rinc\u00e9s, 40 g maximum'],
+      [/chou[- ]fleur/gi, 'carottes']
+    ],
+    notes: [
+      'Le protocole FODMAP se d\u00e9roule en trois phases \u2014 \u00e9viction, r\u00e9introduction, personnalisation \u2014 et se fait normalement avec un di\u00e9t\u00e9ticien. Ce n\u2019est pas un r\u00e9gime \u00e0 suivre \u00e0 vie.',
+      'La tol\u00e9rance d\u00e9pend beaucoup des quantit\u00e9s : un aliment peut passer en petite portion et non en grande.'
+    ]
+  },
+  {
+    id: 'sel', cat: 'Sant\u00e9', nom: 'Pauvre en sel', emoji: '\u{1F9C2}',
+    regles: [
+      [/fleur\s+de\s+sel/gi, 'herbes et \u00e9pices, sans sel ajout\u00e9'],
+      [/beurre\s+demi[- ]sel/gi, 'beurre doux'],
+      [/pinc\u00e9es?\s+de\s+sel|sel\s+fin|sel\b/gi, 'm\u00e9lange d\u2019herbes, de zeste et de poivre'],
+      [/bouillon/gi, 'bouillon sans sel ajout\u00e9'],
+      [/lardons|jambon|olives|c\u00e2pres/gi, 'version dessal\u00e9e, ou moiti\u00e9 moins'],
+      [/sauce\s+soja/gi, 'sauce soja \u00e0 teneur r\u00e9duite en sel']
+    ],
+    notes: [
+      'Le sel structure aussi la p\u00e2te \u00e0 pain et rel\u00e8ve le sucr\u00e9. Le supprimer enti\u00e8rement en p\u00e2tisserie appauvrit nettement le go\u00fbt : r\u00e9duisez plut\u00f4t que d\u2019\u00f4ter.',
+      'L\u2019essentiel du sel alimentaire vient des produits transform\u00e9s, pas de la sali\u00e8re.'
+    ]
+  },
+  {
+    id: 'grossesse', cat: 'Sant\u00e9', nom: 'Grossesse', emoji: '\u{1F930}',
+    regles: [
+      [/mascarpone/gi, 'mascarpone au lait pasteuris\u00e9'],
+      [/\u0153ufs?\s+entiers?|oeufs?\s+entiers?|\u0153ufs?|oeufs?/gi, '\u0153ufs pasteuris\u00e9s, ou bien cuits'],
+      [/jaunes?\s+d[\u2019']\u0153ufs?|jaunes?\s+d[\u2019']oeufs?/gi, 'jaunes pasteuris\u00e9s'],
+      [/blancs?\s+d[\u2019']\u0153ufs?|blancs?\s+d[\u2019']oeufs?/gi, 'blancs pasteuris\u00e9s'],
+      [/saumon\s+fum\u00e9/gi, 'saumon bien cuit'],
+      [/rhum|kirsch|vin\b|liqueur/gi, 'jus ou sirop, sans alcool'],
+      [/(?:fromage|lait)\s+(?:au\s+)?lait\s+cru/gi, 'version au lait pasteuris\u00e9']
+    ],
+    notes: [
+      'Le vrai sujet est l\u2019\u0153uf cru : tiramisu, mousse au chocolat et cr\u00e8me anglaise peu cuite sont \u00e0 \u00e9viter, sauf \u0153ufs pasteuris\u00e9s.',
+      'Les cr\u00e8mes doivent atteindre 83\u00b0C et \u00eatre conserv\u00e9es au froid sans attendre.',
+      'Ces rep\u00e8res ne remplacent pas les recommandations de votre sage-femme ou de votre m\u00e9decin.'
+    ]
+  }
+];
+
+REGIMES.push.apply(REGIMES, REGIMES_PLUS);
+
+let regimesActifs = [];
+
+function regimesHtml(){
+  return '<div class="regime-panneau open" id="regime-panneau">'+
+      '<div class="regime-chips">'+
+        ['Allergies','Convictions','Sant\u00e9'].map(cat =>
+          '<div class="regime-cat">'+cat+'</div><div class="regime-ligne">'+
+          REGIMES.filter(r => (r.cat || 'Sant\u00e9') === cat)
+                 .map(r => '<button class="regime-chip'+(regimesActifs.indexOf(r.id)!==-1?' actif':'')+'" data-id="'+r.id+'" onclick="basculerRegime(\''+r.id+'\')">'+r.emoji+'&nbsp; '+r.nom+'</button>').join('')+
+          '</div>').join('')+
+      '</div>'+
+      '<div class="regime-notes" id="regime-notes"></div>'+
+    '</div>';
+}
+
+function ouvrirVolet(nom, btn){
+  const v = document.getElementById('volet-' + nom);
+  if(!v) return;
+  const ouvert = v.classList.toggle('open');
+  if(btn) btn.classList.toggle('actif', ouvert);
+  ['regime','plan'].forEach(a => {
+    if(a === nom) return;
+    const autre = document.getElementById('volet-' + a);
+    const bo = document.getElementById('outil-' + a);
+    if(autre) autre.classList.remove('open');
+    if(bo) bo.classList.remove('actif');
+  });
+}
+
+function ouvrirRegimes(){
+  const b = document.getElementById('regime-toggle');
+  const p = document.getElementById('regime-panneau');
+  if(!b || !p) return;
+  const ouvert = b.classList.toggle('open');
+  p.classList.toggle('open', ouvert);
+}
+
+function basculerRegime(id){
+  const i = regimesActifs.indexOf(id);
+  if(i === -1) regimesActifs.push(id); else regimesActifs.splice(i, 1);
+  document.querySelectorAll('#modal-content .regime-chip').forEach(c => {
+    c.classList.toggle('actif', regimesActifs.indexOf(c.dataset.id) !== -1);
+  });
+  rendreIngredients();
+  majNotesRegimes();
+  const bar = document.getElementById('ing-toggle-bar');
+  if(bar && regimesActifs.length && !bar.classList.contains('open')) toggleIngredients(bar);
+}
+
+function adapterIngredient(txt){
+  if(!regimesActifs.length) return { texte: txt, modifie: false };
+  let out = txt, modifie = false;
+  REGIMES.forEach(r => {
+    if(regimesActifs.indexOf(r.id) === -1) return;
+    r.regles.forEach(([motif, par]) => {
+      if(motif.test(out)){
+        out = out.replace(motif, par);
+        modifie = true;
+      }
+      motif.lastIndex = 0;
+    });
+  });
+  if(modifie){
+    out = out.replace(/\bde ([a\u00e0\u00e2eiou\u00e9\u00e8\u00ea\u00ee\u00f4\u00fby])/g, 'd\u2019$1');
+  }
+  return { texte: out, modifie: modifie };
+}
+
+function rendreIngredients(){
+  const f = (portionsBase && portionsActuel) ? (portionsActuel / portionsBase) : 1;
+  document.querySelectorAll('#modal-content .ingredient-list li').forEach(li => {
+    const brut = li.dataset.brut;
+    if(brut === undefined) return;
+    const misEchelle = scaleIngredient(brut, f);
+    const res = adapterIngredient(misEchelle);
+    li.textContent = res.texte;
+    li.classList.toggle('ing-adapte', res.modifie);
+  });
+}
+
+function majNotesRegimes(){
+  const z = document.getElementById('regime-notes');
+  if(!z) return;
+  if(!regimesActifs.length){ z.innerHTML = ''; return; }
+  let html = '<div class="regime-alerte">Ces adaptations sont des \u00e9quivalences de cuisine. En cas d\u2019allergie av\u00e9r\u00e9e, v\u00e9rifiez chaque \u00e9tiquette et la mention « peut contenir des traces ».</div>';
+  REGIMES.forEach(r => {
+    if(regimesActifs.indexOf(r.id) === -1) return;
+    html += '<div class="regime-note-bloc"><strong>'+r.nom+'</strong><ul>'+
+      r.notes.map(n => '<li>'+n+'</li>').join('')+'</ul></div>';
+  });
+  z.innerHTML = html;
+}
+
 // ===== QUANTITÉS SELON LE NOMBRE DE PARTS =====
 let portionsBase = null;   // nombre de parts d'origine de la recette
 let portionsActuel = null; // nombre choisi par la personne
@@ -3633,9 +5274,16 @@ function portionsHtml(){
   '</div>';
 }
 
+// applique un nombre de parts précis, sans passer par les boutons + et −
+function appliquerPortions(n){
+  if(!portionsBase) return;
+  portionsActuel = Math.max(1, Math.min(60, n));
+  changerPortions(null);
+}
+
 function changerPortions(delta){
   if(!portionsBase) return;
-  portionsActuel = (delta === 0) ? portionsBase : Math.max(1, Math.min(60, portionsActuel + delta));
+  if(delta !== null) portionsActuel = (delta === 0) ? portionsBase : Math.max(1, Math.min(60, portionsActuel + delta));
   const f = portionsActuel / portionsBase;
 
   const val = document.getElementById('portion-val');
@@ -3643,11 +5291,7 @@ function changerPortions(delta){
   const uni = document.getElementById('portion-unite');
   if(uni) uni.textContent = pluriel(portionsUnite, portionsActuel);
 
-  document.querySelectorAll('#modal-content .ingredient-list li').forEach(li => {
-    const brut = li.dataset.brut;
-    if(brut === undefined) return;
-    li.textContent = scaleIngredient(brut, f);
-  });
+  rendreIngredients();
 
   const kcalUnit = document.getElementById('kcal-portions');
   if(kcalUnit) kcalUnit.textContent = formatPortions(portionsTexteBase, portionsActuel);
@@ -3768,7 +5412,8 @@ function openShoppingList(id){
   if(!r) return;
   const rows = r.ingredients.map((x,i) => {
     if(isSectionHeader(x)) return '<div class="shop-group">'+x.replace(/\u2014/g,'').trim()+'</div>';
-    return '<label class="shop-item"><input type="checkbox" checked data-i="'+i+'"><span>'+x+'</span></label>';
+    const adapte = adapterIngredient(x).texte;
+    return '<label class="shop-item"><input type="checkbox" checked data-i="'+i+'"><span>'+adapte+'</span></label>';
   }).join('');
   document.getElementById('shop-content').innerHTML =
     '<div class="shop-head"><h3>Liste de courses</h3><div class="shop-sub">'+r.title+'</div></div>'+
@@ -3894,6 +5539,8 @@ function activateTab(t) {
   if(t==='wishlist') renderWishlist();
   if(t==='feed') loadFeed();
   if(t==='inspiration') initInspi();
+  if(t==='compte') initCompte();
+  if(['healthy','patisserie','sale','viennoiserie'].indexOf(t) !== -1){ poserFiltres(); appliquerFiltres(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -4921,16 +6568,357 @@ const INSPI_GLOSSAIRE = [
   {m:['flamber'], d:'Verser un alcool dans une poêle chaude et l’enflammer pour brûler l’alcool en gardant l’arôme.'},
   {m:['marbrer'], d:'Mélanger à peine deux préparations pour laisser des veines visibles, sans les fondre l’une dans l’autre.'},
   {m:['insert'], d:'Un élément congelé à part — compotée, crémeux — qu’on glisse au cœur d’un entremets pour créer la surprise à la découpe.'},
+  {m:["pate a bombe", "pâte à bombe"], d:"Des jaunes montés sur un sirop cuit à 118°C. Base aérienne et pasteurisée des mousses au chocolat et des parfaits glacés."},
+  {m:["creme mousseline", "crème mousseline"], d:"Une crème pâtissière à laquelle on incorpore du beurre pommade après refroidissement. Plus ferme, elle tient le montage d’un fraisier."},
+  {m:["creme diplomate", "crème diplomate"], d:"Crème pâtissière gélifiée allégée de crème fouettée. Plus légère que la mousseline, elle se poche parfaitement."},
+  {m:["creme chiboust", "chiboust"], d:"Crème pâtissière allégée de meringue italienne. C’est le cœur du Saint-Honoré."},
+  {m:["creme au beurre"], d:"Beurre monté avec une meringue italienne ou une pâte à bombe. Riche, stable, elle supporte la décoration."},
+  {m:["ganache montee", "ganache montée"], d:"Ganache très liquide, reposée 12 h au froid puis fouettée. Texture de chantilly, tenue d’une ganache."},
+  {m:["glacage miroir", "glaçage miroir"], d:"Glaçage brillant coulé à 30-35°C sur un entremets congelé. Le choc thermique le fige net."},
+  {m:["nappage neutre"], d:"Gelée transparente sans goût, pour faire briller les fruits et les protéger de l’air."},
+  {m:["sirop a 30", "trente degres baume", "sirop de base"], d:"Sirop à parts égales d’eau et de sucre, porté à ébullition. Sert à imbiber les biscuits."},
+  {m:["trimoline", "sucre inverti"], d:"Sucre liquide qui retient l’humidité et empêche la cristallisation. Il garde les gâteaux moelleux plus longtemps."},
+  {m:["glucose", "sirop de glucose"], d:"Sucre épais qui bloque la cristallisation des caramels et des glaçages, et leur donne du brillant."},
+  {m:["isomalt"], d:"Sucre de synthèse très stable à la chaleur, utilisé pour les décors en sucre coulé qui ne collent pas à l’humidité."},
+  {m:["beurre de tourage", "beurre sec"], d:"Beurre à 84% de matière grasse, plus plastique, qui ne casse pas au pliage. Indispensable au feuilletage."},
+  {m:["feuilletage inverse", "feuilletage inversé"], d:"On enferme la détrempe dans le beurre, et non l’inverse. Le feuilletage est plus friable et plus régulier."},
+  {m:["tour simple", "trois plis"], d:"Un pliage en trois du feuilletage. Multiplie les couches par trois à chaque tour."},
+  {m:["tour double", "portefeuille", "quatre plis"], d:"Pliage en quatre, dit portefeuille. Va plus vite mais répartit moins finement le beurre."},
+  {m:["pate a choux", "pâte à choux"], d:"Une pâte cuite deux fois : desséchée à la casserole, puis gonflée au four par sa propre vapeur."},
+  {m:["dessecher", "panade"], d:"Faire évaporer l’eau de la pâte à choux sur le feu, jusqu’à ce qu’une pellicule se forme au fond. C’est ce qui détermine le développement."},
+  {m:["craquelin"], d:"Un disque de pâte sablée posé sur le chou avant cuisson. Il régularise la pousse et donne le craquant."},
+  {m:["biscuit joconde"], d:"Biscuit fin aux amandes, souple, utilisé pour l’Opéra et les bandes de décor."},
+  {m:["dacquoise"], d:"Biscuit meringué aux fruits secs, moelleux au cœur et croustillant dessus."},
+  {m:["succes", "progres", "succès", "progrès"], d:"Deux biscuits meringués aux amandes ou noisettes, proches de la dacquoise, plus secs."},
+  {m:["collerette"], d:"Le petit pied dentelé qui se forme au bas du macaron. Signe d’un macaronnage et d’un croûtage réussis."},
+  {m:["gianduja"], d:"Mélange de chocolat et de noisettes broyées, fondant à température ambiante."},
+  {m:["bavaroise", "bavarois"], d:"Crème anglaise gélifiée allégée de crème fouettée. Base de nombreux entremets."},
+  {m:["pate de fruits", "pâte de fruits"], d:"Purée de fruits cuite avec sucre et pectine jaune jusqu’à 75° Brix. La cuisson détermine la tenue."},
+  {m:["pectine nh"], d:"Pectine thermoréversible : elle se gélifie, se refond et se regélifie. Idéale pour les nappages et les inserts."},
+  {m:["pectine jaune"], d:"Pectine non réversible, réservée aux pâtes de fruits. Une fois prise, elle ne refond plus."},
+  {m:["masse gelatine", "masse gélatine"], d:"Gélatine en poudre hydratée dans six fois son poids d’eau, puis figée. Se pèse facilement et se dose au gramme."},
+  {m:["bloom"], d:"L’unité qui mesure la force d’une gélatine. 200 bloom est la plus courante en pâtisserie."},
+  {m:["chablonner"], d:"Étaler une fine couche de chocolat fondu sous un biscuit pour l’isoler de l’humidité."},
+  {m:["masquer"], d:"Recouvrir entièrement un gâteau de crème, en lissant, avant le décor final."},
+  {m:["flocage", "velours", "effet velours"], d:"Pulvérisation d’un mélange chocolat et beurre de cacao sur un entremets congelé, pour un aspect velouté."},
+  {m:["cristallisation", "beta 5", "forme beta"], d:"L’organisation des cristaux de beurre de cacao après tempérage. Seule la forme dite bêta donne brillant et cassant."},
+  {m:["blanchiment gras", "graisse blanche"], d:"Le voile blanc qui apparaît sur un chocolat mal tempéré ou mal conservé. Sans danger, mais disgracieux."},
+  {m:["fleurage"], d:"La fine couche de farine dispersée sur le plan de travail pour éviter que la pâte colle."},
+  {m:["cheminee", "cheminée"], d:"Le petit trou percé au centre d’une tourte, pour laisser la vapeur s’échapper."},
+  {m:["maillard", "reaction de maillard", "réaction de maillard"], d:"La réaction entre sucres et protéines qui dore et parfume les croûtes à partir de 140°C. Ce n’est pas de la caramélisation."},
+  {m:["caramelisation", "caramélisation"], d:"La décomposition du sucre seul sous l’effet de la chaleur, à partir de 160°C."},
+  {m:["petit boule", "petit boulé"], d:"Stade de cuisson du sucre à 116-118°C. C’est celui de la meringue italienne."},
+  {m:["grand casse", "grand cassé"], d:"Stade de cuisson du sucre à 145-150°C. Le sucre casse net une fois refroidi : c’est le stade du sucre tiré."},
+  {m:["brix", "degre brix", "degré brix"], d:"La mesure du taux de sucre d’une préparation. On vise 75° Brix pour une pâte de fruits."},
+  {m:["foisonnement", "overrun"], d:"La quantité d’air incorporée à une préparation. Un foisonnement élevé donne une glace légère, un faible une glace dense."},
+  {m:["pralin"], d:"Fruits secs caramélisés concassés, mais non mixés en pâte. À ne pas confondre avec le praliné."},
+  {m:["tant pour tant"], d:"Autant de poudre d’amande que de sucre glace, au poids. Base des macarons et de la pâte d’amande."},
+  {m:["appareil a bombe", "parfait"], d:"Base glacée montée sans turbinage, grâce à l’air incorporé dans la pâte à bombe."},
+  {m:["turbiner"], d:"Faire prendre une glace en sorbetière, en la brassant pendant le refroidissement pour éviter les gros cristaux."},
+  {m:["maturation"], d:"Le repos d’un mix à glace au froid, 4 à 12 h avant turbinage. Il améliore la texture et le goût."},
+  {m:["insert"], d:"Élément congelé à part — compotée, crémeux — glissé au cœur d’un entremets."},
+  {m:["sable breton", "sablé breton"], d:"Pâte sablée riche en beurre demi-sel et levée à la levure chimique. Épaisse et friable."},
+  {m:["streusel"], d:"Pâte sablée émmiettée puis cuite à part, pour des miettes croustillantes."},
+  {m:["emulsionner au mixeur", "mixer plongeant"], d:"Mixer sans incorporer d’air, la tête du mixeur toujours immergée. Indispensable pour un glaçage sans bulles."},
+  {m:["pointer", "pointage"], d:"La première pousse d’une pâte levée, après pétrissage."},
+  {m:["detrempe", "détrempe"], d:"La pâte de base — farine, eau, sel — dans laquelle on enferme le beurre du feuilletage."},
+  {m:["abaisser au laminoir", "laminoir"], d:"Étaler une pâte à épaisseur constante entre deux rouleaux réglables."},
+  {m:["cadre", "cadre a entremets"], d:"Le rectangle en inox qui donne sa forme à un entremets et permet des découpes nettes."},
+  {m:["surgelation", "choc de froid"], d:"Le passage au grand froid qui fige un montage avant démoulage ou glaçage."},
+  {m:["temperature de base"], d:"En boulangerie, la somme des températures de la farine, du local et de l’eau. Elle sert à calculer l’eau de coulage."},
+  {m:["creme anglaise"], d:"Lait, jaunes et sucre cuits à 83°C sans bouillir. Base des crémeux, bavaroises et glaces."},
+  {m:["sucre cuit", "stades du sucre"], d:"Les paliers de cuisson du sucre : nappe 100°C, filet 105°C, petit boulé 117°C, grand boulé 125°C, cassé 145°C, caramel 160°C."},
   {m:['dresser','dressage'], d:'Disposer une préparation sur l’assiette ou dans le moule, avec soin. La dernière étape, celle qui se voit.'}
 ];
+
+// ===== BASILE : CONVERSIONS =====
+// Densités en g/ml, mesurées en cuisine (poudres non tassées).
+const DENSITES = {
+  'eau':1.00,'lait':1.03,'boisson':1.02,'creme':1.00,'cr\u00e8me':1.00,'yaourt':1.03,'jus':1.05,
+  'huile':0.92,'beurre fondu':0.91,'beurre':0.96,'miel':1.42,'sirop':1.32,'melasse':1.40,
+  'sucre':0.85,'sucre glace':0.56,'cassonade':0.80,'vergeoise':0.80,'sel':1.20,'sel fin':1.20,
+  'farine':0.53,'maizena':0.63,'fecule':0.63,'cacao':0.45,'poudre d amande':0.45,'amande':0.45,
+  'flocons':0.35,'avoine':0.35,'riz':0.85,'semoule':0.75,'chocolat':1.10,'lait concentre':1.28,
+  'vin':0.99,'alcool':0.79,'rhum':0.94,'purée':1.05,'compote':1.05,'coulis':1.06
+};
+
+const UNITES_VOLUME = {
+  'ml':1,'millilitre':1,'millilitres':1,'cc':5,'cl':10,'centilitre':10,'centilitres':10,
+  'dl':100,'decilitre':100,'l':1000,'litre':1000,'litres':1000,
+  'cuillere a cafe':5,'cuilleres a cafe':5,'cac':5,'c a c':5,'c.a.c':5,
+  'cuillere a soupe':15,'cuilleres a soupe':15,'cas':15,'c a s':15,'c.a.s':15,
+  'tasse':240,'tasses':240,'cup':240,'cups':240,'verre':200,'verres':200,
+  'fl oz':29.57,'once liquide':29.57
+};
+const UNITES_MASSE = {
+  'g':1,'gr':1,'gramme':1,'grammes':1,'kg':1000,'kilo':1000,'kilos':1000,'kilogramme':1000,
+  'mg':0.001,'oz':28.35,'once':28.35,'onces':28.35,'lb':453.6,'livre':453.6,'livres':453.6
+};
+
+const AFFICHE_UNITE = {'cas':'c.\u00e0.s','c a s':'c.\u00e0.s','cac':'c.\u00e0.c','c a c':'c.\u00e0.c',
+  'cuillere a soupe':'c.\u00e0.s','cuilleres a soupe':'c.\u00e0.s','cuillere a cafe':'c.\u00e0.c','cuilleres a cafe':'c.\u00e0.c',
+  'creme':'cr\u00e8me','decilitre':'dl','centilitre':'cl','millilitre':'ml'};
+function joliUnite(u){ return AFFICHE_UNITE[u] || u; }
+
+const THERMOSTATS = {1:30,2:60,3:90,4:120,5:150,6:180,7:210,8:240,9:270,10:300};
+
+function nombreFr(v){
+  if(v >= 100) return String(Math.round(v));
+  if(v >= 10) return String(Math.round(v * 10) / 10).replace('.', ',');
+  return String(Math.round(v * 100) / 100).replace('.', ',');
+}
+
+function trouverDensite(txt){
+  if(!txt) return null;
+  const t = inspiNorm(txt);
+  const cles = Object.keys(DENSITES).sort((a,b) => b.length - a.length);
+  for(const c of cles){ if(t.indexOf(inspiNorm(c)) !== -1) return { nom: c, d: DENSITES[c] }; }
+  return null;
+}
+
+function chercherUnite(txt, table){
+  const t = inspiNorm(txt);
+  const cles = Object.keys(table).sort((a,b) => b.length - a.length);
+  for(const c of cles){
+    const re = new RegExp('(^|\\s)' + inspiNorm(c).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\s|$)');
+    if(re.test(t)) return { nom: c, v: table[c] };
+  }
+  return null;
+}
+
+// « 200 ml de lait en g », « 2 tasses de farine en grammes », « thermostat 6 », « 350°F »
+function conversionCuisine(question){
+  const q = inspiNorm(question);
+
+  const th = /thermostat\s*(\d+)/.exec(q);
+  if(th){
+    const n = parseInt(th[1], 10);
+    if(THERMOSTATS[n]) return 'Thermostat <strong>' + n + '</strong> = <strong>' + THERMOSTATS[n] + '\u00b0C</strong>.<br><span class="conv-note">Un thermostat vaut 30\u00b0C. Le 6 (180\u00b0C) est la temp\u00e9rature de la plupart des g\u00e2teaux.</span>';
+  }
+  const f = /(\d+)\s*(?:\u00b0)?\s*f\b/.exec(q);
+  if(f && /fahrenheit|\u00b0f/.test(question.toLowerCase())){
+    const c = Math.round((parseInt(f[1], 10) - 32) * 5 / 9);
+    return '<strong>' + f[1] + '\u00b0F</strong> = <strong>' + c + '\u00b0C</strong>, soit thermostat ' + Math.round(c / 30) + '.';
+  }
+
+  // découpage : <nombre> <unité> [de <ingrédient>] en <unité>
+  const dep = /^(\d+[.,]?\d*)\s+(.+)$/.exec(q);
+  if(!dep) return null;
+  const valeur = parseFloat(dep[1].replace(',', '.'));
+  const sep = / en | vers | -> | = /.exec(' ' + dep[2] + ' ');
+  if(!sep) return null;
+  const coupe = (' ' + dep[2] + ' ').lastIndexOf(sep[0]);
+  const gauche = (' ' + dep[2] + ' ').slice(0, coupe).trim();
+  const uArrivee = (' ' + dep[2] + ' ').slice(coupe + sep[0].length).trim();
+
+  const enTete = (txt, table) => {
+    const cles = Object.keys(table).sort((a,b) => b.length - a.length);
+    for(const c of cles){
+      const n = inspiNorm(c);
+      if(txt === n || txt.indexOf(n + ' ') === 0) return { nom: c, v: table[c], reste: txt.slice(n.length).trim() };
+    }
+    return null;
+  };
+
+  const vd = enTete(gauche, UNITES_VOLUME);
+  const md = vd ? null : enTete(gauche, UNITES_MASSE);
+  const source = vd || md;
+  if(!source) return null;
+  const aliment = source.reste.replace(/^(?:de |d |du |des |d\u2019)/, '').trim();
+  const uDepart = source.nom;
+
+  const va = chercherUnite(uArrivee, UNITES_VOLUME);
+  const ma = va ? null : chercherUnite(uArrivee, UNITES_MASSE);
+
+  if(vd && va) return '<strong>' + nombreFr(valeur) + ' ' + joliUnite(uDepart) + '</strong> = <strong>' + nombreFr(valeur * vd.v / va.v) + ' ' + uArrivee + '</strong>.';
+  if(md && ma) return '<strong>' + nombreFr(valeur) + ' ' + joliUnite(uDepart) + '</strong> = <strong>' + nombreFr(valeur * md.v / ma.v) + ' ' + uArrivee + '</strong>.';
+
+  if(vd && ma){
+    const dens = trouverDensite(aliment);
+    if(!dens) return 'Pour passer d\u2019un volume \u00e0 un poids, il me faut l\u2019ingr\u00e9dient : la farine et le miel n\u2019ont pas la m\u00eame densit\u00e9. Essaie <em>200 ml de lait en g</em>.';
+    const g = valeur * vd.v * dens.d;
+    return '<strong>' + nombreFr(valeur) + ' ' + joliUnite(uDepart) + '</strong> de ' + aliment + ' \u2248 <strong>' + nombreFr(g / ma.v) + ' ' + uArrivee + '</strong>.<br><span class="conv-note">Densit\u00e9 retenue : ' + dens.d + ' g/ml. Pour les poudres, tout d\u00e9pend du tassement : \u00e0 la balance, c\u2019est toujours plus juste.</span>';
+  }
+  if(md && va){
+    const dens = trouverDensite(aliment);
+    if(!dens) return 'Pour passer d\u2019un poids \u00e0 un volume, dis-moi l\u2019ingr\u00e9dient. Essaie <em>250 g de farine en ml</em>.';
+    const ml = valeur * md.v / dens.d;
+    return '<strong>' + nombreFr(valeur) + ' ' + joliUnite(uDepart) + '</strong> de ' + aliment + ' \u2248 <strong>' + nombreFr(ml / va.v) + ' ' + uArrivee + '</strong>.<br><span class="conv-note">Densit\u00e9 retenue : ' + dens.d + ' g/ml.</span>';
+  }
+  return null;
+}
+
+// ===== BASILE : COMPLÉMENTS ALIMENTAIRES =====
+const COMPLEMENTS = [
+  {m:['whey','proteine en poudre','prot\u00e9ine en poudre'], d:'Prot\u00e9ine de lactos\u00e9rum, issue du petit-lait. Digestion rapide, riche en leucine. <strong>Utilit\u00e9</strong> : compl\u00e9ter l\u2019apport prot\u00e9ique quand l\u2019alimentation ne suffit pas. <strong>Rep\u00e8re</strong> : 20 \u00e0 30 g par prise. Ce n\u2019est rien d\u2019autre qu\u2019un aliment pratique, pas un produit magique.'},
+  {m:['isolat'], d:'Whey filtr\u00e9e \u00e0 90% de prot\u00e9ines, quasi sans lactose ni graisses. Int\u00e9ressante en cas d\u2019intol\u00e9rance au lactose ou de s\u00e8che, sinon le concentr\u00e9 fait le m\u00eame travail pour moins cher.'},
+  {m:['concentr\u00e9 de whey','concentrat'], d:'Whey \u00e0 70-80% de prot\u00e9ines, la plus courante et la moins ch\u00e8re. Contient un peu de lactose.'},
+  {m:['hydrolysat'], d:'Whey pr\u00e9-digest\u00e9e, absorption tr\u00e8s rapide. Nettement plus ch\u00e8re, pour un b\u00e9n\u00e9fice marginal chez la plupart des sportifs.'},
+  {m:['caseine','cas\u00e9ine'], d:'Prot\u00e9ine laiti\u00e8re \u00e0 digestion lente, lib\u00e9r\u00e9e sur plusieurs heures. Souvent prise le soir, m\u00eame si l\u2019apport total sur la journ\u00e9e compte bien davantage que le moment.'},
+  {m:['proteine vegetale','prot\u00e9ine v\u00e9g\u00e9tale','pois','riz brun'], d:'Protéines de pois, riz ou chanvre. Un m\u00e9lange pois + riz couvre bien les acides amin\u00e9s essentiels. Alternative pour les r\u00e9gimes v\u00e9g\u00e9taux ou les intol\u00e9rances.'},
+  {m:['creatine','cr\u00e9atine','monohydrate'], d:'Le compl\u00e9ment le mieux \u00e9tabli scientifiquement. Am\u00e9liore les efforts courts et intenses, la force et le volume musculaire. <strong>Rep\u00e8re</strong> : 3 \u00e0 5 g par jour, tous les jours, sans cycle n\u00e9cessaire. Pr\u00e9f\u00e9rez le monohydrate, les autres formes n\u2019apportent rien de plus.'},
+  {m:['bcaa'], d:'Trois acides amin\u00e9s ramifi\u00e9s (leucine, isoleucine, valine). <strong>Utilit\u00e9 r\u00e9elle</strong> : tr\u00e8s limit\u00e9e si votre apport en prot\u00e9ines est d\u00e9j\u00e0 suffisant, puisqu\u2019ils y sont d\u00e9j\u00e0 contenus. Souvent le compl\u00e9ment le plus surv\u00e9ndu.'},
+  {m:['eaa'], d:'Les neuf acides amin\u00e9s essentiels. Plus pertinents que les BCAA seuls, mais une simple dose de whey fait la m\u00eame chose pour moins cher.'},
+  {m:['glutamine'], d:'Acide amin\u00e9 tr\u00e8s pr\u00e9sent dans le muscle. Les donn\u00e9es sur la r\u00e9cup\u00e9ration sportive sont faibles chez le sujet sain.'},
+  {m:['beta alanine','b\u00e9ta alanine'], d:'Tamponne l\u2019acidit\u00e9 musculaire. Utile sur les efforts de 1 \u00e0 4 minutes \u2014 s\u00e9ries longues, CrossFit, natation. <strong>Rep\u00e8re</strong> : 3 \u00e0 5 g par jour. Provoque souvent des picotements sur la peau, sans danger.'},
+  {m:['citrulline','malate de citrulline'], d:'Augmente le flux sanguin et la congestion. Effets modestes mais r\u00e9els sur le volume d\u2019entra\u00eenement. <strong>Rep\u00e8re</strong> : 6 \u00e0 8 g avant la s\u00e9ance.'},
+  {m:['arginine'], d:'Pr\u00e9curseur d\u2019oxyde nitrique, mais mal absorb\u00e9e par voie orale. La citrulline est plus efficace pour le m\u00eame objectif.'},
+  {m:['cafeine','caf\u00e9ine','pre workout','preworkout','booster'], d:'Le stimulant le mieux document\u00e9 : am\u00e9liore la vigilance, la force et l\u2019endurance. <strong>Rep\u00e8re</strong> : 3 \u00e0 6 mg par kilo, 45 minutes avant l\u2019effort. \u00c0 \u00e9viter en fin de journ\u00e9e, elle reste active 6 \u00e0 8 heures.'},
+  {m:['gainer'], d:'M\u00e9lange de prot\u00e9ines et de glucides tr\u00e8s calorique. Utile seulement si vous peinez \u00e0 manger assez. Souvent, du riz et du beurre de cacahu\u00e8te co\u00fbtent moins cher.'},
+  {m:['maltodextrine'], d:'Glucide \u00e0 absorption rapide, pour recharger pendant ou apr\u00e8s un effort long. Peu d\u2019int\u00e9r\u00eat en musculation classique.'},
+  {m:['electrolytes','\u00e9lectrolytes'], d:'Sodium, potassium, magn\u00e9sium perdus par la sueur. Vraiment utiles au-del\u00e0 d\u2019une heure d\u2019effort, par forte chaleur ou en endurance.'},
+  {m:['omega 3','om\u00e9ga 3','epa','dha','huile de poisson'], d:'Acides gras essentiels anti-inflammatoires, bons pour le c\u0153ur et le cerveau. <strong>Rep\u00e8re</strong> : 1 \u00e0 2 g d\u2019EPA+DHA par jour si vous mangez peu de poisson gras.'},
+  {m:['magnesium','magn\u00e9sium'], d:'Impliqu\u00e9 dans la contraction musculaire et le sommeil. Carence fr\u00e9quente chez les sportifs. Pr\u00e9f\u00e9rez le bisglycinate ou le citrate, mieux tol\u00e9r\u00e9s que l\u2019oxyde.'},
+  {m:['vitamine d'], d:'Synth\u00e9tis\u00e9e par le soleil, tr\u00e8s souvent insuffisante d\u2019octobre \u00e0 avril sous nos latitudes. Joue sur l\u2019os, l\u2019immunit\u00e9 et la force. Un dosage sanguin vaut mieux qu\u2019une supplémentation \u00e0 l\u2019aveugle.'},
+  {m:['zinc'], d:'Immunit\u00e9, cicatrisation, hormones. Les pertes augmentent avec la transpiration.'},
+  {m:['zma'], d:'Association zinc, magn\u00e9sium et vitamine B6, vendue pour le sommeil et la testost\u00e9rone. Les preuves sur les taux hormonaux sont faibles chez les personnes non carenc\u00e9es.'},
+  {m:['fer'], d:'Transporte l\u2019oxyg\u00e8ne. Les femmes sportives et les coureuses de fond sont les plus expos\u00e9es \u00e0 la carence. <strong>Ne jamais se suppl\u00e9menter sans prise de sang</strong> : l\u2019exc\u00e8s de fer est toxique.'},
+  {m:['collagene','collag\u00e8ne'], d:'Prot\u00e9ine des tendons, ligaments et peau. Quelques donn\u00e9es sur les douleurs articulaires, surtout associ\u00e9e \u00e0 la vitamine C. <strong>Rep\u00e8re</strong> : 10 \u00e0 15 g avant la s\u00e9ance.'},
+  {m:['probiotique'], d:'Bact\u00e9ries b\u00e9n\u00e9fiques pour la flore intestinale. Les effets d\u00e9pendent \u00e9norm\u00e9ment de la souche employ\u00e9e.'},
+  {m:['spiruline'], d:'Micro-algue riche en prot\u00e9ines et en fer. Int\u00e9ressante en appoint, mais les quantit\u00e9s r\u00e9ellement consomm\u00e9es restent faibles.'},
+  {m:['ashwagandha'], d:'Plante adaptog\u00e8ne \u00e9tudi\u00e9e pour le stress et la r\u00e9cup\u00e9ration. Effets modestes. D\u00e9conseill\u00e9e en cas de trouble thyro\u00efdien ou de grossesse.'},
+  {m:['melatonine','m\u00e9latonine'], d:'Hormone du sommeil. Aide surtout \u00e0 recaler un rythme d\u00e9cal\u00e9. \u00c0 petite dose, 0,5 \u00e0 1 mg, plus efficace qu\u2019\u00e0 forte dose.'},
+  {m:['multivitamines','multivitamine'], d:'Filet de s\u00e9curit\u00e9 en cas d\u2019alimentation d\u00e9s\u00e9quilibr\u00e9e ou de d\u00e9ficit calorique. Ne remplace jamais des l\u00e9gumes.'},
+  {m:['l carnitine','carnitine'], d:'Transporte les acides gras vers les mitochondries. Vendue comme br\u00fbleur de graisse, mais les r\u00e9sultats sont d\u00e9cevants chez les personnes non carenc\u00e9es.'},
+  {m:['hmb'], d:'M\u00e9tabolite de la leucine. Un l\u00e9ger int\u00e9r\u00eat chez les d\u00e9butants ou en p\u00e9riode de restriction, n\u00e9gligeable chez les pratiquants entra\u00een\u00e9s.'},
+  {m:['taurine'], d:'Acide amin\u00e9 pr\u00e9sent dans les boissons \u00e9nergisantes. Effets modestes sur l\u2019endurance et la r\u00e9cup\u00e9ration.'}
+];
+
+const CONSEILS_SPORT = [
+  {m:['muscu','musculation','fonte','prise de masse','hypertrophie','bodybuilding'], t:'Musculation',
+   l:['<strong>Prot\u00e9ines</strong> : 1,6 \u00e0 2,2 g par kilo et par jour, alimentation comprise. La whey sert juste \u00e0 combler l\u2019\u00e9cart.',
+      '<strong>Cr\u00e9atine monohydrate</strong> : 3 \u00e0 5 g par jour. C\u2019est de loin le meilleur rapport preuve/prix.',
+      '<strong>Caf\u00e9ine</strong> avant la s\u00e9ance si besoin de vigilance.',
+      'Le reste \u2014 BCAA, glutamine, br\u00fbleurs \u2014 est largement dispensable.']},
+  {m:['course','running','marathon','trail','endurance','cardio','v\u00e9lo','velo','cyclisme','triathlon'], t:'Endurance',
+   l:['<strong>Glucides</strong> pendant l\u2019effort au-del\u00e0 d\u2019une heure : 30 \u00e0 60 g par heure.',
+      '<strong>\u00c9lectrolytes</strong> d\u00e8s qu\u2019il fait chaud ou que la s\u00e9ance d\u00e9passe l\u2019heure.',
+      '<strong>Fer</strong> \u00e0 surveiller, surtout chez les femmes \u2014 mais uniquement sur prise de sang.',
+      '<strong>Om\u00e9ga 3</strong> et <strong>vitamine D</strong> en appoint sur l\u2019ann\u00e9e.']},
+  {m:['crossfit','hiit','fractionn\u00e9','fractionne','circuit'], t:'CrossFit et efforts intenses',
+   l:['<strong>Cr\u00e9atine</strong> : 3 \u00e0 5 g par jour.',
+      '<strong>B\u00e9ta-alanine</strong> : 3 \u00e0 5 g par jour, pertinente sur les efforts de 1 \u00e0 4 minutes.',
+      '<strong>Prot\u00e9ines</strong> autour de 1,8 g par kilo.',
+      '<strong>\u00c9lectrolytes</strong> sur les s\u00e9ances longues et transpirantes.']},
+  {m:['yoga','pilates','marche','souplesse','danse'], t:'Activit\u00e9s douces',
+   l:['Aucun compl\u00e9ment sp\u00e9cifique n\u2019est n\u00e9cessaire.',
+      '<strong>Vitamine D</strong> d\u2019octobre \u00e0 avril, comme pour tout le monde.',
+      '<strong>Magn\u00e9sium</strong> si crampes ou sommeil difficile.']},
+  {m:['perte de poids','secher','s\u00e8che','seche','minceur','maigrir','deficit'], t:'P\u00e9riode de d\u00e9ficit',
+   l:['<strong>Prot\u00e9ines hautes</strong>, 2 \u00e0 2,2 g par kilo : c\u2019est ce qui pr\u00e9serve le muscle et la sati\u00e9t\u00e9.',
+      '<strong>Cr\u00e9atine</strong> \u00e0 maintenir, elle limite la perte de force.',
+      '<strong>Multivitamines</strong> en filet de s\u00e9curit\u00e9 si les apports baissent beaucoup.',
+      'Les br\u00fbleurs de graisse ne font pas maigrir. Le d\u00e9ficit calorique, si.']},
+  {m:['natation','nage','piscine'], t:'Natation',
+   l:['<strong>Prot\u00e9ines</strong> 1,6 g par kilo et <strong>glucides</strong> suffisants : le volume d\u2019entra\u00eenement est \u00e9lev\u00e9.',
+      '<strong>B\u00e9ta-alanine</strong> utile sur les distances de 100 \u00e0 400 m.',
+      '<strong>Vitamine D</strong> \u00e0 surveiller, l\u2019entra\u00eenement se fait en int\u00e9rieur.']}
+];
+
+function conseilSport(question){
+  const q = inspiNorm(question);
+  const trouve = CONSEILS_SPORT.find(c => c.m.some(x => q.indexOf(inspiNorm(x)) !== -1));
+  if(!trouve) return null;
+  return '<strong>' + trouve.t + '</strong><br>' + trouve.l.map(x => '&bull;&nbsp;' + x).join('<br>') +
+    '<br><br><span class="conv-note">Ce sont des rep\u00e8res g\u00e9n\u00e9raux, pas un avis m\u00e9dical. Un compl\u00e9ment ne rattrape jamais une alimentation ou un sommeil insuffisants, et toute suppl\u00e9mentation prolong\u00e9e m\u00e9rite l\u2019avis d\u2019un m\u00e9decin ou d\u2019un di\u00e9t\u00e9ticien.</span>';
+}
+
+function chercherComplement(question){
+  const q = inspiNorm(question);
+  let best = null;
+  COMPLEMENTS.forEach(c => c.m.forEach(mot => {
+    const n = inspiNorm(mot);
+    if(q.indexOf(n) !== -1 && (!best || n.length > best.mot.length)) best = { mot: n, def: c.d };
+  }));
+  return best;
+}
+
+// ===== BASILE : LE PARLER DES ANNÉES 2000 =====
+const ARGOT = [
+  {m:['mdr'], d:'« mort de rire ». L\u2019anc\u00eatre du lol, toujours vaillant.'},
+  {m:['ptdr'], d:'« p\u00e9t\u00e9 de rire ». Un cran au-dessus de mdr.'},
+  {m:['lol'], d:'« laughing out loud ». Aujourd\u2019hui presque ironique tant il fait dat\u00e9.'},
+  {m:['tkt'], d:'« t\u2019inqui\u00e8te ». Se dit pour rassurer, ou pour clore un d\u00e9bat.'},
+  {m:['jsp'], d:'« je sais pas ».'},
+  {m:['jpp'], d:'« j\u2019en peux plus », d\u2019\u00e9puisement ou de fou rire.'},
+  {m:['osef'], d:'« on s\u2019en fiche ».'},
+  {m:['askip'], d:'« \u00e0 ce qu\u2019il para\u00eet ». Introduit une rumeur.'},
+  {m:['wesh','wsh'], d:'Salutation, ou marque d\u2019\u00e9tonnement selon le ton.'},
+  {m:['bg'], d:'« beau gosse ». S\u2019emploie aussi pour f\u00e9liciter : « bg le g\u00e2teau ».'},
+  {m:['bail','bails'], d:'Un truc, une affaire. « C\u2019est quoi ce bail ? »'},
+  {m:['chelou'], d:'Verlan de louche : bizarre.'},
+  {m:['relou'], d:'Verlan de lourd : p\u00e9nible.'},
+  {m:['oklm'], d:'« au calme ». Tranquille, d\u00e9tendu.'},
+  {m:['seum'], d:'Avoir la rage, \u00eatre d\u00e9\u00e7u. « J\u2019ai le seum, mon souffl\u00e9 est retomb\u00e9. »'},
+  {m:['sah'], d:'« s\u00e9rieux, vraiment ». Pour appuyer une affirmation.'},
+  {m:['cheh'], d:'« bien fait ». Se dit avec un sourire narquois.'},
+  {m:['crush'], d:'La personne sur qui on craque.'},
+  {m:['ghosting','ghoster'], d:'Dispara\u00eetre sans explication, ne plus r\u00e9pondre.'},
+  {m:['ratio'], d:'Se faire ratio : recevoir plus de r\u00e9actions n\u00e9gatives que le message d\u2019origine.'},
+  {m:['flemme'], d:'Le manque d\u2019envie \u00e9rig\u00e9 en art de vivre.'},
+  {m:['tema','t\u00e9ma'], d:'Verlan de mater : regarde.'},
+  {m:['zbeul'], d:'Le d\u00e9sordre, la pagaille. Souvent l\u2019\u00e9tat de la cuisine apr\u00e8s une recette.'},
+  {m:['frerot','fr\u00e9rot','frere','fr\u00e8re'], d:'Terme d\u2019amiti\u00e9, l\u2019\u00e9quivalent de « mon pote ».'},
+  {m:['grave'], d:'Marque l\u2019approbation totale. « Grave, c\u2019est trop bon. »'},
+  {m:['deter','d\u00e9ter'], d:'D\u00e9termin\u00e9, \u00e0 fond.'},
+  {m:['boloss'], d:'Quelqu\u2019un de na\u00eff ou maladroit. Se dit surtout entre amis.'},
+  {m:['stylé','style'], d:'Cool, r\u00e9ussi, qui a de l\u2019allure.'},
+  {m:['gênant','genant','malaise'], d:'Se dit d\u2019une situation embarrassante.'},
+  {m:['banger'], d:'Une r\u00e9ussite totale. Un g\u00e2teau banger, c\u2019est un g\u00e2teau parfait.'},
+  {m:['no cap'], d:'« sans mentir ». Pour jurer que c\u2019est vrai.'},
+  {m:['vibe'], d:'L\u2019ambiance, l\u2019\u00e9nergie d\u2019un moment ou d\u2019un lieu.'},
+  {m:['spoiler'], d:'D\u00e9voiler la fin avant l\u2019heure.'},
+  {m:['dm'], d:'« direct message », un message priv\u00e9.'},
+  {m:['fyi'], d:'« for your information », pour info.'},
+  {m:['asap'], d:'« as soon as possible », d\u00e8s que possible.'},
+  {m:['tbh'], d:'« to be honest », pour \u00eatre honn\u00eate.'},
+  {m:['irl'], d:'« in real life », dans la vraie vie.'},
+  {m:['fomo'], d:'La peur de rater quelque chose que font les autres.'},
+  {m:['dispo'], d:'Disponible.'},
+  {m:['zapper'], d:'Oublier, laisser tomber.'},
+  {m:['cringe'], d:'Qui met mal \u00e0 l\u2019aise tellement c\u2019est maladroit.'},
+  {m:['claqu\u00e9','claque au sol'], d:'Rat\u00e9, sans int\u00e9r\u00eat. Le contraire d\u2019un banger.'},
+  {m:['gg'], d:'« good game », bravo.'},
+  {m:['rip'], d:'Se dit d\u2019une chose fichue. « RIP mon caramel. »'},
+  {m:['tg'], d:'Abr\u00e9viation peu aimable pour demander le silence. \u00c0 \u00e9viter.'},
+  {m:['bref'], d:'Pour couper court et conclure.'},
+  {m:['grv'], d:'Abr\u00e9viation de grave.'},
+  {m:['pk'], d:'« pourquoi ».'},
+  {m:['stp','svp'], d:'« s\u2019il te pla\u00eet », « s\u2019il vous pla\u00eet ».'},
+  {m:['dsl'], d:'« d\u00e9sol\u00e9 ».'},
+  {m:['jtm'], d:'« je t\u2019aime ».'},
+  {m:['a+','a2m1'], d:'« \u00e0 plus », « \u00e0 demain ». Grands classiques du MSN des ann\u00e9es 2000.'},
+  {m:['slt'], d:'« salut ».'},
+  {m:['cc'], d:'« coucou ».'},
+  {m:['nrv'], d:'« \u00e9nerv\u00e9 ».'},
+  {m:['bcp'], d:'« beaucoup ».'},
+  {m:['tjrs','tjs'], d:'« toujours ».'},
+  {m:['pcq','pcqe'], d:'« parce que ».'},
+  {m:['qqn'], d:'« quelqu\u2019un ».'},
+  {m:['qqch'], d:'« quelque chose ».'}
+];
+
+function chercherArgot(question){
+  const q = inspiNorm(question);
+  let best = null;
+  ARGOT.forEach(e => e.m.forEach(mot => {
+    const n = inspiNorm(mot);
+    const re = new RegExp('(^|\\s)' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(\\s|$)');
+    if(re.test(q) && (!best || n.length > best.mot.length)) best = { mot: n, def: e.d };
+  }));
+  return best;
+}
 
 function inspiDefinition(question){
   const q = inspiNorm(question);
   let meilleur = null;
   INSPI_GLOSSAIRE.forEach(e => {
     e.m.forEach(mot => {
-      if(q.indexOf(mot) !== -1 && (!meilleur || mot.length > meilleur.mot.length)){
-        meilleur = { mot: mot, def: e.d };
+      const n = inspiNorm(mot);
+      if(!n) return;
+      const re = new RegExp('(^|[^a-z0-9])' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[^a-z0-9])');
+      if(re.test(q) && (!meilleur || n.length > meilleur.mot.length)){
+        meilleur = { mot: n, def: e.d };
       }
     });
   });
@@ -4964,7 +6952,7 @@ const INSPI_CHIPS = ['Pâtes','Viande hachée','Riz','Poulet','Pommes de terre',
 function initInspi(){
   const chat = document.getElementById('inspi-chat');
   if(!chat || chat.children.length) return;
-  inspiBulle('Bonsoir, moi c\u2019est <strong>Basile</strong>&nbsp;\uD83C\uDF3F<br>Le petit assistant de cette cuisine, de garde à toute heure.<br><br>Un mot de la recette que tu ne comprends pas&nbsp;? Un ingrédient qui manque à l\u2019appel&nbsp;? Ou simplement aucune idée pour ce soir&nbsp;?<br><br>Dis-moi ce qu\u2019il reste dans ton frigo, séparé par des virgules, et je te trouve de quoi cuisiner. Tu peux aussi me demander <em>par quoi remplacer le beurre</em>, ou <em>que signifie un fonçage</em>.', false);
+  inspiBulle(salutation() + ', moi c\u2019est <strong>Basile</strong>&nbsp;\uD83C\uDF3F<br>Le petit assistant de cette cuisine, de garde à toute heure.<br><br>Un mot de la recette que tu ne comprends pas&nbsp;? Un ingrédient qui manque à l\u2019appel&nbsp;? Ou simplement aucune idée pour ce soir&nbsp;?<br><br>Dis-moi ce qu\u2019il reste dans ton frigo, séparé par des virgules, et je te trouve de quoi cuisiner. Tu peux aussi me demander <em>par quoi remplacer le beurre</em>, ou <em>que signifie un fonçage</em>.', false);
   const chips = document.getElementById('inspi-chips');
   if(chips && !chips.children.length){
     chips.innerHTML = INSPI_CHIPS.map(c => '<button class="inspi-chip" onclick="ajouterChipInspi(\'' + c.replace(/'/g,"\\'") + '\')">' + c + '</button>').join('');
@@ -5000,12 +6988,39 @@ function envoyerInspi(){
     return inspiRepondre(reponseSubstitut(saisie));
   }
 
-  // question technique : « que signifie un fonçage ? », ou simplement « fonçage »
+  // question de budget : « des recettes à moins de 2 € la part »
+  const bud = questionBudget(saisie);
+  if(bud) return inspiRepondre(bud);
+
+  // conversion : « 200 ml de lait en g », « thermostat 6 »
+  const conv = conversionCuisine(saisie);
+  if(conv) return inspiRepondre(conv);
+
+  // compléments alimentaires selon l'activité
+  const sport = conseilSport(saisie);
+  if(sport && /complement|compl\u00e9ment|prendre|conseil|recommand|quoi prendre|proteine|prot\u00e9ine/i.test(inspiNorm(saisie))){
+    return inspiRepondre(sport);
+  }
+
   const motsSaisie = inspiNorm(saisie).split(' ').filter(Boolean);
+
+  const comp = chercherComplement(saisie);
+  if(comp && (estQuestionTechnique(saisie) || motsSaisie.length <= 4)){
+    return inspiRepondre('<strong>' + comp.mot.charAt(0).toUpperCase() + comp.mot.slice(1) + '</strong><br>' + comp.def +
+      '<br><br><span class="conv-note">Rep\u00e8res g\u00e9n\u00e9raux, pas un avis m\u00e9dical.</span>');
+  }
+
+  const argot = chercherArgot(saisie);
+  if(argot && (estQuestionTechnique(saisie) || motsSaisie.length <= 3)){
+    return inspiRepondre('<strong>' + argot.mot.toUpperCase() + '</strong><br>' + argot.def);
+  }
+
+  // question technique : « que signifie un fonçage ? », ou simplement « fonçage »
   const def = inspiDefinition(saisie);
   if(def && (estQuestionTechnique(saisie) || motsSaisie.length <= 3)){
     return inspiRepondre('<strong>' + def.mot.charAt(0).toUpperCase() + def.mot.slice(1) + '</strong><br>' + def.def);
   }
+  if(!def && sport) return inspiRepondre(sport);
   if(!def && estQuestionTechnique(saisie) && motsSaisie.length <= 8){
     return inspiRepondre('Celui-là, je ne le connais pas encore. Je sais expliquer foncer, sabler, blanchir, crémer, monter des blancs, cuire à blanc, déglacer, nacrer, tempérer le chocolat, filmer au contact et bien d\u2019autres&nbsp;: essaie avec l\u2019un d\u2019eux.');
   }
@@ -5060,6 +7075,8 @@ function envoyerInspi(){
         '<br><br><strong>M\u00E9thode</strong><br>' + inspiEchapper(r.methode) + '</div></div>';
     });
   }
+  const nr = nomsRegimes(profil.regimes);
+  if(nr.length) html += '<div class="inspi-sep">Adapt\u00e9 \u00e0 vos pr\u00e9f\u00e9rences</div><div style="font-size:0.8rem;line-height:1.6">En ouvrant une recette, les ingr\u00e9dients seront d\u00e9j\u00e0 r\u00e9\u00e9crits pour&nbsp;: <strong>' + nr.join(', ') + '</strong>.</div>';
   inspiRepondre(html);
 }
 
