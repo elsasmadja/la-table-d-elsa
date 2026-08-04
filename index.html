@@ -344,6 +344,7 @@ body.shop-open .modal-close{display:none}
 .concept-wrap h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;margin-bottom:1.5rem}
 .concept-wrap p{font-size:0.9rem;color:var(--text-muted);line-height:1.9;font-weight:300;margin-bottom:1.2rem}
 .concept-wrap em{color:var(--sage-dark);font-style:italic}
+.footer-version{display:inline-block;margin-top:0.5rem;font-size:0.62rem;letter-spacing:0.1em;color:var(--brown-light);opacity:0.75}
 .concept-signature{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--brown);margin-top:2rem}
 
 .fans-wrap{background:var(--cream-dark);padding:4rem 3rem}
@@ -1970,7 +1971,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <p class="fans-empty">Oui bon... pour l'instant les fans se font encore désirer. 🦗</p>
   </div>
 
-<footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿</footer>
+<footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿<br><span class="footer-version" id="footer-version">v2026.08.03</span></footer>
 
 <div class="notif-pop" id="notif-pop">
   <button class="notif-pop-close" onclick="fermerPopNotif()" aria-label="Fermer">&#10005;</button>
@@ -3127,7 +3128,12 @@ async function majBoutonNotif(){
   if(!b) return;
   const etat = await etatNotif();
   const bloc = document.getElementById('notif-bloc');
-  if(etat === 'indisponible'){ if(bloc) bloc.style.display = 'none'; return; }
+  if(etat === 'indisponible'){
+    if(bloc) bloc.style.display = 'none';
+    const fv = document.getElementById('footer-version');
+    if(fv) fv.textContent += ' · notifications non gérées par ce navigateur';
+    return;
+  }
   b.classList.toggle('actif', etat === 'actif');
   if(etat === 'actif'){
     b.textContent = 'Me désabonner';
@@ -3192,6 +3198,8 @@ function popNotifRefuse(){
 function fermerPopNotif(){
   const p = document.getElementById('notif-pop');
   if(p) p.classList.remove('open');
+  const bloc = document.getElementById('notif-bloc');
+  if(bloc) bloc.style.display = '';
   try { localStorage.setItem('elsa_notif_pop', String(Date.now())); } catch(e) {}
 }
 
@@ -3204,6 +3212,8 @@ async function proposerNotif(){
   const banniere = document.getElementById('install-banniere');
   if(banniere && banniere.classList.contains('open')) p.classList.add('au-dessus');
   p.classList.add('open');
+  const bloc = document.getElementById('notif-bloc');
+  if(bloc) bloc.style.display = 'none';
 }
 
 window.addEventListener('load', () => setTimeout(proposerNotif, 3500));
