@@ -3217,7 +3217,7 @@ async function basculerNotif(){
     const j = sub.toJSON();
     await supaFetch('/rest/v1/push_abonnes', 'POST', {
       endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth
-    });
+    }, 'return=minimal');
     poserMarqueur(j.endpoint);
   } catch(e) {
     console.error('enregistrement', e);
@@ -5082,14 +5082,14 @@ function reponseSubstitut(texte){
 const SUPA_URL = 'https://xhztlskuznrjenjrcwot.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhoenRsc2t1em5yamVuanJjd290Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5Nzk1NDUsImV4cCI6MjA5NjU1NTU0NX0.Rcq7HlvfE1y1uqxS6mdafW4p_aRusCCfwzSm0DtLQeQ';
 
-async function supaFetch(path, method='GET', body=null) {
+async function supaFetch(path, method='GET', body=null, prefer=null) {
   const opts = {
     method,
     headers: {
       'apikey': SUPA_KEY,
       'Authorization': 'Bearer ' + SUPA_KEY,
       'Content-Type': 'application/json',
-      'Prefer': method === 'POST' ? 'return=representation' : ''
+      'Prefer': prefer !== null ? prefer : (method === 'POST' ? 'return=representation' : '')
     }
   };
   if (body) opts.body = JSON.stringify(body);
