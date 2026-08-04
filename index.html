@@ -3111,6 +3111,13 @@ function avecDelai(promesse, ms, secours){
   return Promise.race([promesse, new Promise(r => setTimeout(() => r(secours), ms))]);
 }
 
+function marqueurNotif(){
+  try { return localStorage.getItem('elsa_notif_ok'); } catch(e) { return null; }
+}
+function poserMarqueur(v){
+  try { v ? localStorage.setItem('elsa_notif_ok', v) : localStorage.removeItem('elsa_notif_ok'); } catch(e) {}
+}
+
 async function etatNotif(){
   if(!pushDisponible()) return 'indisponible';
   if(Notification.permission === 'denied') return 'refuse';
@@ -3118,7 +3125,8 @@ async function etatNotif(){
     const reg = await avecDelai(navigator.serviceWorker.ready, 2500, null);
     if(!reg) return 'inactif';
     const sub = await avecDelai(reg.pushManager.getSubscription(), 2500, null);
-    return sub ? 'actif' : 'inactif';
+    if(!sub) { poserMarqueur(null); return 'inactif'; }
+    return (marqueurNotif() === sub.endpoint) ? 'actif' : 'incomplet';
   } catch(e) { return 'inactif'; }
 }
 
@@ -3135,6 +3143,12 @@ async function majBoutonNotif(){
     return;
   }
   b.classList.toggle('actif', etat === 'actif');
+  if(etat === 'incomplet'){
+    b.classList.remove('actif');
+    b.textContent = 'Terminer l\u2019abonnement';
+    if(t) t.textContent = 'L\u2019abonnement n\u2019a pas été enregistré. Un clic pour réessayer.';
+    return;
+  }
   if(etat === 'actif'){
     b.textContent = 'Me désabonner';
     if(t) t.textContent = 'Vous serez prévenue à chaque nouvelle recette.';
@@ -3165,10 +3179,15 @@ async function basculerNotif(){
   }
 
   const existante = await reg.pushManager.getSubscription();
-  if(existante){
+  if(existante && marqueurNotif() === existante.endpoint){
     try { await supaFetch('/rest/v1/push_abonnes?endpoint=eq.' + encodeURIComponent(existante.endpoint), 'DELETE'); } catch(e) {}
     await existante.unsubscribe();
+    poserMarqueur(null);
     return majBoutonNotif();
+  }
+  // abonnement navigateur orphelin : on repart de zéro proprement
+  if(existante){
+    try { await existante.unsubscribe(); } catch(e) {}
   }
 
   let perm;
@@ -3199,6 +3218,7 @@ async function basculerNotif(){
     await supaFetch('/rest/v1/push_abonnes', 'POST', {
       endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth
     });
+    poserMarqueur(j.endpoint);
   } catch(e) {
     console.error('enregistrement', e);
     try { await sub.unsubscribe(); } catch(err) {}
@@ -3239,7 +3259,7 @@ function fermerPopNotif(){
 async function proposerNotif(){
   if(popNotifRefuse()) return;
   const etat = await etatNotif();
-  if(etat !== 'inactif') return;               // déjà abonnée, refusée ou indisponible
+  if(etat !== 'inactif' && etat !== 'incomplet') return;   // déjà abonnée, refusée ou indisponible
   const p = document.getElementById('notif-pop');
   if(!p) return;
   const banniere = document.getElementById('install-banniere');
