@@ -201,6 +201,22 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .modal-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.6rem 0 0.7rem;padding-bottom:0.4rem;border-bottom:1px solid var(--cream-dark)}/* ── Nombre de parts ── */
 /* ── Mode cuisine plein écran ── */
 /* ── Installation sur l'écran d'accueil ── */
+/* ── Invitation flottante aux notifications ── */
+.notif-pop{display:none;position:fixed;right:1.3rem;bottom:1.3rem;z-index:1350;width:330px;max-width:calc(100vw - 2rem);background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:1.3rem 1.4rem 1.2rem;box-shadow:0 10px 40px rgba(46,42,37,0.18)}
+.notif-pop.open{display:block;animation:notifPop 0.45s cubic-bezier(.2,.8,.3,1)}
+@keyframes notifPop{from{opacity:0;transform:translateY(24px) scale(0.97)}to{opacity:1;transform:none}}
+.notif-pop-icone{width:40px;height:40px;border-radius:50%;background:rgba(122,158,126,0.16);color:var(--sage-dark);display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem}
+.notif-pop strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--text);margin-bottom:0.35rem}
+.notif-pop p{font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+.notif-pop-actions{display:flex;align-items:center;gap:0.7rem}
+.notif-pop-oui{flex:1;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border:none;border-radius:22px;padding:0.75rem 1rem;cursor:pointer}
+.notif-pop-oui:hover{opacity:0.87}
+.notif-pop-non{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;color:var(--text-muted);cursor:pointer;text-decoration:underline;white-space:nowrap}
+.notif-pop-non:hover{color:var(--brown)}
+.notif-pop-close{position:absolute;top:0.6rem;right:0.7rem;background:none;border:none;font-size:0.8rem;color:var(--brown-light);cursor:pointer;padding:0.3rem;line-height:1}
+.notif-pop-close:hover{color:var(--text)}
+.notif-pop.au-dessus{bottom:9.5rem}
+@media(max-width:560px){.notif-pop{left:1rem;right:1rem;width:auto;bottom:1rem}.notif-pop.au-dessus{bottom:11rem}}
 /* ── Abonnement aux nouvelles recettes ── */
 .notif-bloc{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;max-width:680px;margin:0 auto 4rem;padding:1.3rem 1.5rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:10px}
 .notif-txt{display:flex;flex-direction:column;gap:0.25rem;flex:1;min-width:220px}
@@ -1955,6 +1971,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <footer>La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿</footer>
 
+<div class="notif-pop" id="notif-pop">
+  <button class="notif-pop-close" onclick="fermerPopNotif()" aria-label="Fermer">&#10005;</button>
+  <div class="notif-pop-icone">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+  </div>
+  <strong>Une nouvelle recette&nbsp;?</strong>
+  <p>Soyez prévenue dès qu'une recette arrive. Rien d'autre, promis.</p>
+  <div class="notif-pop-actions">
+    <button class="notif-pop-oui" onclick="basculerNotif()">Me prévenir</button>
+    <button class="notif-pop-non" onclick="fermerPopNotif()">Non merci</button>
+  </div>
+</div>
+
 <div class="install-banniere" id="install-banniere">
   <div class="install-txt">
     <strong id="install-titre">Installer La Table d'Elsa</strong>
@@ -3138,7 +3167,38 @@ async function basculerNotif(){
     alert('Impossible d\u2019activer les notifications pour le moment.');
   }
   majBoutonNotif();
+  const pop = document.getElementById('notif-pop');
+  if(pop) pop.classList.remove('open');
 }
+
+
+// invitation flottante : discrète, une fois, et jamais si déjà abonnée
+function popNotifRefuse(){
+  try {
+    const t = localStorage.getItem('elsa_notif_pop');
+    if(!t) return false;
+    return (Date.now() - parseInt(t, 10)) < 30 * 24 * 3600 * 1000; // on repropose après 30 jours
+  } catch(e) { return false; }
+}
+
+function fermerPopNotif(){
+  const p = document.getElementById('notif-pop');
+  if(p) p.classList.remove('open');
+  try { localStorage.setItem('elsa_notif_pop', String(Date.now())); } catch(e) {}
+}
+
+async function proposerNotif(){
+  if(popNotifRefuse()) return;
+  const etat = await etatNotif();
+  if(etat !== 'inactif') return;               // déjà abonnée, refusée ou indisponible
+  const p = document.getElementById('notif-pop');
+  if(!p) return;
+  const banniere = document.getElementById('install-banniere');
+  if(banniere && banniere.classList.contains('open')) p.classList.add('au-dessus');
+  p.classList.add('open');
+}
+
+window.addEventListener('load', () => setTimeout(proposerNotif, 3500));
 
 // ===== INSTALLATION SUR L'ÉCRAN D'ACCUEIL =====
 let invitationInstall = null;
