@@ -220,6 +220,39 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .video-secours.replie{display:none}
 #cuisine-geste{margin-top:0.6rem}
 @media(max-width:560px){.video-boite{padding:1.4rem 1.1rem}}
+/* ── En cuisine : grammages ── */
+#cuisine-ingr{margin-top:1rem}
+.cuis-ingr-titre{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--brown-light);margin-bottom:0.4rem}
+.cuis-ingr-liste{display:flex;flex-wrap:wrap;gap:0.4rem}
+.cuis-ingr{font-size:0.82rem;color:var(--sage-dark);background:rgba(122,158,126,0.14);border-radius:16px;padding:0.35rem 0.8rem}
+.cuis-ingr-tout{margin-top:0.6rem;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.45rem 0.9rem;cursor:pointer}
+.cuis-ingr-tout:hover{border-color:var(--sage);color:var(--sage-dark)}
+.cuis-ingr-complet{display:none;flex-wrap:wrap;gap:0.4rem;margin-top:0.6rem;max-height:34vh;overflow-y:auto}
+.cuis-ingr-complet.open{display:flex}
+.cuis-ingr-complet .cuis-ingr{background:var(--white);color:var(--text-muted);border:1px solid var(--cream-dark)}
+
+/* ── Bulle SOS Cuisine ── */
+.sos-bulle{position:absolute;right:1.2rem;bottom:calc(6.2rem + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:0.45rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:28px;padding:0.75rem 1.1rem;cursor:pointer;box-shadow:0 6px 20px rgba(46,42,37,0.22);font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
+.sos-bulle:hover{opacity:0.9}
+.cuisine-overlay.sos-ouvert .sos-bulle{display:none}
+.sos-ico{font-size:1rem;line-height:1}
+.sos-panneau{display:none;position:absolute;right:1.2rem;bottom:calc(6.2rem + env(safe-area-inset-bottom));left:1.2rem;max-width:420px;margin-left:auto;z-index:30;background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;box-shadow:0 10px 40px rgba(46,42,37,0.22);overflow:hidden}
+.sos-panneau.open{display:flex;flex-direction:column}
+.sos-tete{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;border-bottom:1px solid var(--cream-dark);background:var(--cream)}
+.sos-tete strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text)}
+.sos-tete span{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light)}
+.sos-fermer{background:none;border:none;font-size:0.9rem;color:var(--text-muted);cursor:pointer;padding:0.3rem}
+.sos-chat{display:flex;flex-direction:column;gap:0.7rem;padding:0.9rem 1rem;max-height:44vh;overflow-y:auto}
+.sos-bar{display:flex;gap:0.4rem;padding:0.7rem 0.8rem;border-top:1px solid var(--cream-dark)}
+.sos-bar input{flex:1;padding:0.65rem 0.85rem;border:1px solid var(--cream-dark);border-radius:20px;font-family:Jost,sans-serif;font-size:0.83rem;background:var(--cream);color:var(--text)}
+.sos-bar input:focus{outline:none;border-color:var(--sage)}
+.sos-bar button{font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sage-dark);color:var(--white);border:none;border-radius:20px;padding:0 1rem;cursor:pointer}
+@media(max-width:560px){
+  .sos-lib{display:none}
+  .sos-bulle{padding:0.85rem;border-radius:50%}
+  .sos-panneau{left:0.8rem;right:0.8rem;bottom:calc(5.6rem + env(safe-area-inset-bottom))}
+  .sos-chat{max-height:38vh}
+}
 /* ── Mode cuisine plein écran ── */
 /* ── Installation sur l'écran d'accueil ── */
 /* ── Invitation flottante aux notifications ── */
@@ -344,6 +377,16 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .compte-raccourci strong{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--sage-dark);line-height:1}
 .compte-raccourci span{font-size:0.72rem;color:var(--text-muted);text-align:center;line-height:1.4}
 .compte-bloc .portion-stepper{flex-shrink:0}
+.compte-suggestion{background:var(--cream)}
+.sugg-intro{margin:0 0 0.8rem}
+.sugg-texte{width:100%;padding:0.85rem 1rem;border:1px solid var(--cream-dark);border-radius:8px;background:var(--white);font-family:Jost,sans-serif;font-size:0.87rem;color:var(--text);line-height:1.6;resize:vertical}
+.sugg-texte:focus{outline:none;border-color:var(--sage)}
+.sugg-bas{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:0.7rem}
+.sugg-compteur{font-size:0.7rem;color:var(--brown-light)}
+.sugg-compteur.court{color:var(--brown)}
+.sugg-retour{font-size:0.8rem;line-height:1.6;margin-top:0.7rem}
+.sugg-retour.ok{color:var(--sage-dark)}
+.sugg-retour.erreur{color:var(--brown)}
 .profil-actif{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;font-size:0.78rem;color:var(--sage-dark);background:rgba(122,158,126,0.13);border-radius:8px;padding:0.6rem 0.9rem;margin-top:1rem}
 .profil-actif button{background:none;border:none;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;text-decoration:underline;margin-left:auto}
 .profil-actif button:hover{color:var(--brown)}
@@ -351,6 +394,30 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .cout-ligne strong{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--brown)}
 .cout-ligne span{font-size:0.76rem}
 .cout-partiel{color:var(--brown-light);font-style:italic}
+/* ── Saison, moule, rétro-planning ── */
+.saison-ligne{font-size:0.8rem;color:var(--text-muted);background:var(--cream);border-radius:8px;padding:0.6rem 0.9rem;margin-top:0.6rem}
+.saison-ligne.maintenant{background:rgba(122,158,126,0.14);color:var(--sage-dark)}
+.saison-ligne strong{color:var(--sage-dark)}
+.moule-ctrl{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;background:var(--cream);border:1px solid var(--cream-dark);border-radius:8px;padding:0.7rem 0.95rem;margin-top:0.6rem}
+.moule-label{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;color:var(--sage-dark)}
+.moule-ctrl select{appearance:none;-webkit-appearance:none;font-family:Jost,sans-serif;font-size:0.8rem;color:var(--text);background:var(--white) url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238B6347' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.7rem center/13px;border:1px solid var(--cream-dark);border-radius:20px;padding:0.5rem 2rem 0.5rem 0.9rem;cursor:pointer}
+.moule-info{width:100%;font-size:0.76rem;color:var(--text-muted);line-height:1.5}
+.moule-info strong{color:var(--brown)}
+.retro-bloc{width:100%;display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--cream-dark)}
+.retro-heure{flex:0 0 auto;min-width:120px}
+.retro-zone{width:100%}
+.retro-jour{margin-top:0.9rem}
+.retro-tete{display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.35rem}
+.retro-tete strong{font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--white);background:var(--sage-dark);border-radius:14px;padding:3px 10px}
+.retro-tete span{font-size:0.78rem;color:var(--text-muted)}
+.retro-tete em{font-style:normal;font-size:0.74rem;color:var(--brown);margin-left:auto}
+.retro-etape{display:flex;align-items:baseline;gap:0.6rem;padding:0.4rem 0;border-bottom:1px dashed var(--cream-dark);font-size:0.8rem;color:var(--text-muted)}
+.retro-h{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);min-width:62px;font-variant-numeric:tabular-nums}
+.retro-txt{flex:1;line-height:1.5}
+.retro-duree{font-size:0.7rem;color:var(--brown-light);white-space:nowrap}
+.retro-duree.sure{color:var(--sage-dark);font-weight:500}
+.retro-attente{display:block;font-style:normal;font-size:0.72rem;color:var(--brown-light);margin-top:0.15rem}
+.retro-note{font-size:0.73rem;color:var(--brown-light);line-height:1.6;margin-top:0.7rem;font-style:italic}
 /* ── Filtres prix et temps ── */
 .filtres{display:flex;align-items:flex-end;gap:0.9rem;flex-wrap:wrap;padding:0 3rem 1.4rem}
 .filtre-select{display:flex;flex-direction:column;gap:0.3rem}
@@ -1091,6 +1158,10 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
 .inspi-msg.moi .inspi-bulle{background:var(--sage-dark);color:var(--white)}
 .inspi-bulle strong{font-weight:600}
 .inspi-bulle em{font-style:normal;color:var(--sage-dark);font-weight:600}
+.ratt-bloc{margin-top:0.6rem;font-size:0.83rem;line-height:1.6}
+.ratt-bloc span{display:block;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--brown-light);margin-bottom:0.2rem}
+.ratt-bloc.sauve{background:rgba(122,158,126,0.14);border-radius:6px;padding:0.6rem 0.75rem}
+.ratt-bloc.sauve span{color:var(--sage-dark)}
 .conv-note{display:block;font-size:0.74rem;color:var(--text-muted);line-height:1.55;margin-top:0.4rem;font-style:italic}
 .inspi-carte{background:var(--white);border:1px solid var(--cream-dark);border-left:3px solid var(--sage);border-radius:8px;padding:0.8rem 0.9rem;margin-top:0.65rem}
 .inspi-carte-tag{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light);font-weight:500}
@@ -2168,9 +2239,26 @@ document.addEventListener('DOMContentLoaded', function() {
     <p class="cuisine-texte" id="cuisine-texte"></p>
     <button class="cuisine-relire" id="voix-relire" onclick="lireEtape()">&#9654;&nbsp; Relire l'étape</button>
     <div id="cuisine-geste"></div>
+    <div id="cuisine-ingr"></div>
     <div class="cuisine-photos" id="cuisine-photos"></div>
     <div id="cuisine-minuteur"></div>
   </div>
+  <button class="sos-bulle" onclick="ouvrirSOS()" aria-label="Demander à Basile">
+    <span class="sos-ico">&#127807;</span><span class="sos-lib">SOS Cuisine</span>
+  </button>
+
+  <div class="sos-panneau" id="sos-panneau">
+    <div class="sos-tete">
+      <div><strong>Basile</strong><span>SOS Cuisine</span></div>
+      <button class="sos-fermer" onclick="fermerSOS()">&#10005;</button>
+    </div>
+    <div class="sos-chat" id="sos-chat"></div>
+    <div class="sos-bar">
+      <input type="text" id="sos-input" placeholder="Ma ganache a tranché..." autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();envoyerInspi();}">
+      <button onclick="envoyerInspi()">Envoyer</button>
+    </div>
+  </div>
+
   <div class="cuisine-nav">
     <button class="cuisine-nav-btn ghost" id="cuisine-prec" onclick="etapePrecedente()">Précédent</button>
     <button class="cuisine-nav-btn" id="cuisine-suiv" onclick="etapeSuivante()">Suivant</button>
@@ -3180,6 +3268,8 @@ function openModal(id) {
     photosHtml+'<div class="modal-body"><div class="modal-tag">'+r.tag+'</div><h2 class="modal-title">'+r.title+'</h2>'+
     nutritionHtml+
     coutHtml(id)+
+    badgeSaisonHtml(id)+
+    mouleHtml(id)+
     // barre d'outils compacte : une seule ligne au lieu de quatre blocs
     '<div class="outils">'+
       '<button class="outil primaire" onclick="ouvrirCuisine()"><span class="outil-ico">&#127859;</span>Mode cuisine</button>'+
@@ -4062,6 +4152,98 @@ function clicOverlayVideo(e){
   if(e.target === document.getElementById('video-overlay')) fermerVideo();
 }
 
+// ===== EN CUISINE : GRAMMAGES ET SOS =====
+let ingredientsCourants = [];   // { texte, section } mis \u00e0 l'\u00e9chelle et adapt\u00e9s
+
+function memoriserIngredients(){
+  ingredientsCourants = [];
+  let section = '';
+  document.querySelectorAll('#modal-content .ingredient-list li').forEach(li => {
+    const brut = li.dataset.brut;
+    if(brut === undefined) return;
+    if(brut.indexOf('\u2014 ') === 0){
+      // intertitre : « \u2014 P\u00e2te sucr\u00e9e (J-1) \u2014 » -> « pate sucree »
+      section = inspiNorm(brut.replace(/\u2014/g, '').replace(/\([^)]*\)/g, ''));
+      return;
+    }
+    ingredientsCourants.push({ texte: li.textContent.trim(), section: section });
+  });
+}
+
+// La plupart des \u00e9tapes annoncent leur pr\u00e9paration : « P\u00e2te sucr\u00e9e : m\u00e9langez... ».
+// On rend alors les ingr\u00e9dients de cette section-l\u00e0, et pas tout le sucre de la recette.
+function ingredientsDeLEtape(texte){
+  const n = inspiNorm(texte);
+  const tete = n.split(':')[0].trim();
+  const sections = [...new Set(ingredientsCourants.map(x => x.section).filter(Boolean))];
+  let choisie = null;
+  sections.forEach(sec => {
+    if(sec.length > 4 && (tete.indexOf(sec) !== -1 || sec.indexOf(tete) !== -1) &&
+       (!choisie || sec.length > choisie.length)) choisie = sec;
+  });
+  if(choisie) return ingredientsCourants.filter(x => x.section === choisie).map(x => x.texte);
+
+  // sinon, on retombe sur les mots, mais seulement les plus caract\u00e9ristiques
+  const vus = {};
+  return ingredientsCourants.filter(x => {
+    const mots = inspiMots(x.texte).filter(m => m.length > 4);
+    if(!mots.some(m => n.indexOf(m) !== -1)) return false;
+    if(vus[x.texte]) return false;
+    vus[x.texte] = 1;
+    return true;
+  }).map(x => x.texte).slice(0, 6);
+}
+
+function afficherIngredientsEtape(texte){
+  const z = document.getElementById('cuisine-ingr');
+  if(!z) return;
+  const util = ingredientsDeLEtape(texte);
+  if(!util.length && !ingredientsCourants.length){ z.innerHTML = ''; return; }
+  const liste = util.length ? util : [];
+  z.innerHTML =
+    (liste.length
+      ? '<div class="cuis-ingr-titre">Pour cette \u00e9tape</div><div class="cuis-ingr-liste">' +
+        liste.map(i => '<span class="cuis-ingr">' + i + '</span>').join('') + '</div>'
+      : '') +
+    '<button class="cuis-ingr-tout" onclick="basculerTousIngredients(this)">' +
+      (liste.length ? 'Voir tous les ingr\u00e9dients' : 'Voir les ingr\u00e9dients') + '</button>' +
+    '<div class="cuis-ingr-complet" id="cuis-ingr-complet">' +
+      ingredientsCourants.map(i => '<span class="cuis-ingr">' + i.texte + '</span>').join('') + '</div>';
+}
+
+function basculerTousIngredients(btn){
+  const c = document.getElementById('cuis-ingr-complet');
+  if(!c) return;
+  const ouvert = c.classList.toggle('open');
+  btn.textContent = ouvert ? 'Masquer la liste' : 'Voir tous les ingr\u00e9dients';
+}
+
+// ── la petite fenêtre de Basile, par-dessus le mode cuisine
+function ouvrirSOS(){
+  const p = document.getElementById('sos-panneau');
+  if(!p) return;
+  p.classList.add('open');
+  const ov = document.getElementById('cuisine-overlay');
+  if(ov) ov.classList.add('sos-ouvert');
+  inspiZone = { chat: 'sos-chat', input: 'sos-input' };
+  const chat = document.getElementById('sos-chat');
+  if(chat && !chat.children.length){
+    const e = cuisineEtapes[cuisineIndex];
+    inspiBulle(salutation() + '&nbsp;! Un souci sur cette \u00e9tape&nbsp;?<br>' +
+      'Dis-moi ce qui se passe \u2014 <em>ma ganache a tranch\u00e9</em>, <em>c\u2019est quoi foncer</em>, ' +
+      '<em>200 ml de lait en g</em>, <em>par quoi remplacer le beurre</em>.', false);
+  }
+  setTimeout(() => { const i = document.getElementById('sos-input'); if(i) i.focus(); }, 120);
+}
+
+function fermerSOS(){
+  const p = document.getElementById('sos-panneau');
+  if(p) p.classList.remove('open');
+  const ov = document.getElementById('cuisine-overlay');
+  if(ov) ov.classList.remove('sos-ouvert');
+  inspiZone = { chat: 'inspi-chat', input: 'inspi-input' };
+}
+
 // ===== MODE CUISINE PLEIN ÉCRAN =====
 let cuisineEtapes = [];
 let cuisineIndex = 0;
@@ -4106,6 +4288,7 @@ async function ouvrirCuisine(){
   document.getElementById('cuisine-titre').textContent = cuisineTitre;
   document.getElementById('cuisine-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  memoriserIngredients();
   const bv = document.getElementById('voix-btn');
   if(bv) bv.style.display = voixDisponible() ? 'flex' : 'none';
   majBoutonVoix();
@@ -4119,6 +4302,7 @@ async function ouvrirCuisine(){
 function fermerCuisine(){
   arreterMinuteur();
   stopperVoix();
+  fermerSOS();
   document.getElementById('cuisine-overlay').classList.remove('open');
   document.removeEventListener('keydown', clavierCuisine);
   const modal = document.getElementById('modal-overlay');
@@ -4149,6 +4333,7 @@ function afficherEtape(){
   const photos = document.getElementById('cuisine-photos');
   photos.innerHTML = (e.photos || []).map(src => '<img src="' + src + '" alt="">').join('');
 
+  afficherIngredientsEtape(e.text);
   const zoneGeste = document.getElementById('cuisine-geste');
   const geste = detecterGeste(e.text);
   if(zoneGeste){
@@ -4435,6 +4620,199 @@ function questionBudget(saisie){
     '<div class="conv-note">Estimations \u00e0 partir de prix moyens : comptez une marge selon l\u2019enseigne et la saison.</div>';
 }
 
+// ===== SAISONNALITÉ =====
+// Saisons de disponibilité en France. Seuls les produits vraiment saisonniers
+// comptent : la farine ou le beurre n'imposent aucune saison.
+const SAISONS = ['printemps', 'ete', 'automne', 'hiver'];
+const NOM_SAISON = { printemps: 'Printemps', ete: '\u00c9t\u00e9', automne: 'Automne', hiver: 'Hiver' };
+const SAISON_INGREDIENTS = {
+  'fraise':['printemps','ete'], 'rhubarbe':['printemps'], 'asperge':['printemps'],
+  'petits pois':['printemps'], 'cerise':['printemps','ete'],
+  'abricot':['ete'], 'peche':['ete'], 'nectarine':['ete'], 'framboise':['ete'],
+  'myrtille':['ete'], 'melon':['ete'], 'courgette':['ete'], 'aubergine':['ete'],
+  'poivron':['ete'], 'tomate':['ete'], 'basilic':['ete'],
+  'mure':['ete','automne'], 'prune':['ete','automne'], 'figue':['automne'],
+  'raisin':['automne'],
+  'champignon':['automne'],
+  'potiron':['automne','hiver'], 'courge':['automne','hiver'], 'coing':['automne','hiver'],
+  'pomme':['automne','hiver'], 'poire':['automne','hiver'], 'kaki':['automne','hiver'],
+  'chou fleur':['automne','hiver'], 'brocoli':['automne','hiver'], 'poireau':['automne','hiver'],
+  'navet':['automne','hiver'], 'epinard':['printemps','automne'],
+  'orange':['hiver'], 'clementine':['hiver']
+};
+
+function saisonActuelle(){
+  const m = new Date().getMonth() + 1;
+  if(m >= 3 && m <= 5) return 'printemps';
+  if(m >= 6 && m <= 8) return 'ete';
+  if(m >= 9 && m <= 11) return 'automne';
+  return 'hiver';
+}
+
+function saisonsRecette(id){
+  const r = recipes[id];
+  if(!r || !r.ingredients) return null;
+  const contraintes = [];
+  r.ingredients.forEach(x => {
+    if(estIntertitre(x)) return;
+    const t = inspiNorm(x);
+    if(/surgele|congele|conserve|sirop|au sirop|seche/.test(t)) return;
+    Object.keys(SAISON_INGREDIENTS).sort((a,b) => b.length - a.length).some(c => {
+      const n = inspiNorm(c);
+      const re = new RegExp('(^|[^a-z0-9])' + n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '(?:s|x)?($|[^a-z0-9])');
+      if(re.test(t)){ contraintes.push(SAISON_INGREDIENTS[c]); return true; }
+      return false;
+    });
+  });
+  if(!contraintes.length) return null;                    // aucune contrainte : toute l'ann\u00e9e
+  let inter = SAISONS.filter(s => contraintes.every(c => c.indexOf(s) !== -1));
+  if(!inter.length) inter = SAISONS.filter(s => contraintes.some(c => c.indexOf(s) !== -1));
+  return inter;
+}
+
+function badgeSaisonHtml(id){
+  const s = saisonsRecette(id);
+  if(!s) return '';
+  const now = saisonActuelle();
+  const cur = s.indexOf(now) !== -1;
+  return '<div class="saison-ligne' + (cur ? ' maintenant' : '') + '">' +
+    (cur ? 'De saison en ce moment' : 'Meilleure saison') + '&nbsp;: <strong>' +
+    s.map(x => NOM_SAISON[x]).join(', ') + '</strong></div>';
+}
+
+// ===== ADAPTATION AU MOULE =====
+const MOULES = [18, 20, 22, 24, 26, 28];
+
+// « cercle de 16 cm », « moule \u00e0 tarte de 20 cm »...
+function mouleRecette(id){
+  const r = recipes[id];
+  if(!r) return null;
+  const textes = (r.steps || []).map(s => (typeof s === 'string') ? s : s.text).concat(r.ingredients || []);
+  for(const t of textes){
+    const m = /(?:cercle|moule|plat)[^.]{0,40}?(\d{2})\s*cm/i.exec(t);
+    if(m){ const d = parseInt(m[1], 10); if(d >= 14 && d <= 32) return d; }
+  }
+  return null;
+}
+
+let mouleRef = null;
+
+function mouleHtml(id){
+  mouleRef = mouleRecette(id);
+  if(!mouleRef) return '';
+  const choix = MOULES.indexOf(mouleRef) === -1 ? [mouleRef].concat(MOULES).sort((a,b) => a-b) : MOULES;
+  return '<div class="moule-ctrl">' +
+    '<span class="moule-label">Mon moule</span>' +
+    '<select id="moule-select" onchange="changerMoule(this.value)">' +
+      choix.map(d => '<option value="' + d + '"' + (d === mouleRef ? ' selected' : '') + '>' + d + ' cm' +
+        (d === mouleRef ? ' \u00b7 celui de la recette' : '') + '</option>').join('') +
+    '</select>' +
+    '<span class="moule-info" id="moule-info"></span>' +
+  '</div>';
+}
+
+function changerMoule(val){
+  const d = parseInt(val, 10);
+  if(!mouleRef || !d) return;
+  const facteur = (d * d) / (mouleRef * mouleRef);      // rapport des surfaces, pas des diam\u00e8tres
+  const info = document.getElementById('moule-info');
+  if(portionsBase) appliquerPortions(Math.max(1, Math.round(portionsBase * facteur)));
+  if(info){
+    if(d === mouleRef){ info.textContent = ''; return; }
+    const pct = Math.round((facteur - 1) * 100);
+    info.innerHTML = 'Quantit\u00e9s <strong>' + (pct > 0 ? '+' : '') + pct + '\u2009%</strong>' +
+      ' \u00b7 ' + (d > mouleRef
+        ? 'la pr\u00e9paration sera plus fine, surveillez la cuisson un peu plus t\u00f4t'
+        : 'la pr\u00e9paration sera plus \u00e9paisse, comptez quelques minutes de plus');
+  }
+}
+
+// ===== RÉTRO-PLANNING À L'HEURE =====
+const TRAVAIL_DEFAUT = 8;      // minutes pour une \u00e9tape sans dur\u00e9e annonc\u00e9e
+const DEBUT_VEILLE = 14 * 60;  // les jours pr\u00e9c\u00e9dents commencent l'apr\u00e8s-midi
+const REPOS_LONG = 120;        // au-del\u00e0, c'est de l'attente, pas du travail
+
+// « laissez reposer une nuit » n'occupe pas la cuisine : on ne l'additionne pas
+// au temps de travail, on l'affiche \u00e0 part.
+function estRepos(texte){
+  return /repos|repose|refroidi|frigo|r\u00e9frig\u00e9rateur|cong\u00e9lateur|infuser|une nuit|cro\u00fbter|prendre au froid|mariner|lever/i.test(texte);
+}
+
+function minutesEnHeure(min){
+  let m = ((min % 1440) + 1440) % 1440;
+  const h = Math.floor(m / 60);
+  return String(h).padStart(2, '0') + ' h ' + String(Math.round(m % 60)).padStart(2, '0');
+}
+
+function dureeLisible(min){
+  if(min < 60) return min + ' min';
+  const h = Math.floor(min / 60), r = min % 60;
+  return h + ' h' + (r ? ' ' + String(r).padStart(2,'0') : '');
+}
+
+function retroPlanning(heureCible){
+  if(!cuisineEtapes || !cuisineEtapes.length) return null;
+  const parJour = {};
+  cuisineEtapes.forEach((e, i) => {
+    const j = e.day || 'Jour J';
+    const d = detecterDuree(e.text);
+    const dm = d ? Math.round(d / 60) : null;
+    const attente = (dm !== null && dm > REPOS_LONG && estRepos(e.text));
+    (parJour[j] = parJour[j] || []).push({
+      i: i, e: e,
+      travail: attente ? TRAVAIL_DEFAUT : (dm === null ? TRAVAIL_DEFAUT : dm),
+      minutee: dm !== null && !attente,
+      attente: attente ? dm : null
+    });
+  });
+  const jours = Object.keys(parJour).sort((a, b) => decalageJour(b) - decalageJour(a));
+  return jours.map(j => {
+    const liste = parJour[j];
+    const total = liste.reduce((s, x) => s + x.travail, 0);
+    const dernier = decalageJour(j) === 0;
+    let t = dernier ? (heureCible - total) : DEBUT_VEILLE;
+    const debut = t;
+    const etapes = liste.map(x => {
+      const o = { h: t, num: x.i + 1, texte: x.e.text, duree: x.travail, minutee: x.minutee, attente: x.attente };
+      t += x.travail;
+      return o;
+    });
+    return { jour: j, debut: debut, fin: t, total: total, dernier: dernier, etapes: etapes };
+  });
+}
+
+function decalageJour(label){
+  if(label === 'Jour J') return 0;
+  const m = /^J-(\d+)$/.exec(label);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
+function afficherRetro(){
+  const zone = document.getElementById('retro-zone');
+  const champ = document.getElementById('retro-heure');
+  if(!zone || !champ) return;
+  if(!champ.value){ zone.innerHTML = ''; return; }
+  const p = champ.value.split(':');
+  const cible = parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  const plan = retroPlanning(cible);
+  if(!plan) { zone.innerHTML = ''; return; }
+  const dateBase = planningDates[currentRecipeId] ? parseISO(planningDates[currentRecipeId]) : null;
+
+  zone.innerHTML = plan.map(j => {
+    const d = dateBase ? addDays(dateBase, -decalageJour(j.jour)) : null;
+    return '<div class="retro-jour">' +
+      '<div class="retro-tete"><strong>' + j.jour + '</strong>' + (d ? '<span>' + dateLongue(d) + '</span>' : '') +
+        '<em>' + minutesEnHeure(j.debut) + ' \u2192 ' + minutesEnHeure(j.fin) + ' \u00b7 ' + dureeLisible(j.total) + ' de travail</em></div>' +
+      j.etapes.map(e =>
+        '<div class="retro-etape"><span class="retro-h">' + minutesEnHeure(e.h) + '</span>' +
+          '<span class="retro-txt">' + e.texte.slice(0, 90) + (e.texte.length > 90 ? '\u2026' : '') +
+            (e.attente ? '<em class="retro-attente">puis ' + dureeLisible(e.attente) + ' d\u2019attente</em>' : '') + '</span>' +
+          '<span class="retro-duree' + (e.minutee ? ' sure' : '') + '">' + dureeLisible(e.duree) + '</span></div>').join('') +
+      '</div>';
+  }).join('') +
+  '<p class="retro-note">Le dernier jour est calcul\u00e9 \u00e0 rebours depuis l\u2019heure choisie. Les jours pr\u00e9c\u00e9dents d\u00e9marrent \u00e0 ' + minutesEnHeure(DEBUT_VEILLE) + ', d\u00e9calez-les librement. Les temps de repos ne comptent pas comme du travail.</p>';
+}
+
 // ===== FILTRES PRIX ET TEMPS =====
 const FILTRES_PRIX = [
   { id: 'tous', lib: 'Tous les prix', max: null },
@@ -4442,6 +4820,14 @@ const FILTRES_PRIX = [
   { id: 'p2',   lib: 'moins de 2 \u20ac', max: 2 },
   { id: 'p4',   lib: 'moins de 4 \u20ac', max: 4 }
 ];
+const FILTRES_SAISON = [
+  { id: 'tous', lib: 'Toutes les saisons' },
+  { id: 'now',  lib: 'De saison en ce moment' },
+  { id: 'printemps', lib: 'Printemps' }, { id: 'ete', lib: '\u00c9t\u00e9' },
+  { id: 'automne', lib: 'Automne' }, { id: 'hiver', lib: 'Hiver' }
+];
+let filtreSaison = 'tous';
+
 const FILTRES_TEMPS = [
   { id: 'tous', lib: 'Tous les temps', max: null },
   { id: 't30',  lib: 'moins de 30 min', max: 30 },
@@ -4506,6 +4892,7 @@ function barreFiltresHtml(){
   return '<div class="filtres">' +
     liste('Prix par part', FILTRES_PRIX, filtrePrix, 'prix') +
     liste('Temps', FILTRES_TEMPS, filtreTemps, 'temps') +
+    liste('Saison', FILTRES_SAISON, filtreSaison, 'saison') +
     '<button class="filtre-reset" onclick="majFiltre(\'reset\',\'tous\')">Tout afficher</button>' +
     '<div class="filtre-bilan" id="filtre-bilan"></div>' +
   '</div>';
@@ -4525,13 +4912,14 @@ function poserFiltres(){
 function majFiltre(type, val){
   if(type === 'prix') filtrePrix = val;
   else if(type === 'temps') filtreTemps = val;
-  else { filtrePrix = 'tous'; filtreTemps = 'tous'; }
+  else if(type === 'saison') filtreSaison = val;
+  else { filtrePrix = 'tous'; filtreTemps = 'tous'; filtreSaison = 'tous'; }
   // on resynchronise toutes les barres, y compris celles des autres onglets
   document.querySelectorAll('.filtres select').forEach(sel => {
     const est = sel.closest('.filtre-select').querySelector('.filtre-titre').textContent;
-    sel.value = (est.indexOf('Prix') === 0) ? filtrePrix : filtreTemps;
+    sel.value = (est.indexOf('Prix') === 0) ? filtrePrix : (est.indexOf('Saison') === 0 ? filtreSaison : filtreTemps);
   });
-  const actif = filtrePrix !== 'tous' || filtreTemps !== 'tous';
+  const actif = filtrePrix !== 'tous' || filtreTemps !== 'tous' || filtreSaison !== 'tous';
   document.querySelectorAll('.filtre-reset').forEach(b => b.classList.toggle('visible', actif));
   appliquerFiltres();
 }
@@ -4539,7 +4927,8 @@ function majFiltre(type, val){
 function appliquerFiltres(){
   const fp = FILTRES_PRIX.find(f => f.id === filtrePrix);
   const ft = FILTRES_TEMPS.find(f => f.id === filtreTemps);
-  const actif = (fp && fp.max !== null) || (ft && ft.max !== null);
+  const saisonVoulue = (filtreSaison === 'now') ? saisonActuelle() : (filtreSaison === 'tous' ? null : filtreSaison);
+  const actif = (fp && fp.max !== null) || (ft && ft.max !== null) || saisonVoulue !== null;
 
   document.querySelectorAll('.tab-content').forEach(tab => {
     if(!tab.querySelector('.patisserie-grid, .recipe-grid')) return;
@@ -4558,6 +4947,10 @@ function appliquerFiltres(){
           if(garder && ft && ft.max !== null){
             const d = dureeDeCarte(carte);
             if(d === null || d > ft.max) garder = false;
+          }
+          if(garder && saisonVoulue){
+            const sr = saisonsRecette(id);
+            if(sr && sr.indexOf(saisonVoulue) === -1) garder = false;   // sans contrainte = toute l'ann\u00e9e
           }
         }
       }
@@ -4706,6 +5099,18 @@ function initCompte(){
       '</div>' +
     '</div>' +
 
+    // ── suggestions
+    '<div class="compte-bloc compte-suggestion">' +
+      '<div class="compte-label">Une id\u00e9e \u00e0 me souffler&nbsp;?</div>' +
+      '<p class="compte-aide sugg-intro">Vous aimeriez que j\u2019essaye une recette, une association de saveurs, une technique&nbsp;? \u00c9crivez-le-moi ici, je lis tout.</p>' +
+      '<textarea class="sugg-texte" id="sugg-texte" rows="3" maxlength="600" placeholder="Un g\u00e2teau pistache-framboise, \u00e7a donnerait quoi&nbsp;?" oninput="majCompteurSugg()"></textarea>' +
+      '<div class="sugg-bas">' +
+        '<span class="sugg-compteur" id="sugg-compteur">600 caract\u00e8res</span>' +
+        '<button class="compte-action" id="sugg-btn" onclick="envoyerSuggestion()">Envoyer</button>' +
+      '</div>' +
+      '<div class="sugg-retour" id="sugg-retour"></div>' +
+    '</div>' +
+
     // ── confidentialité
     '<div class="compte-bloc compte-note">' +
       '<strong>O\u00f9 sont conserv\u00e9es ces informations&nbsp;?</strong>' +
@@ -4714,6 +5119,7 @@ function initCompte(){
     '</div>';
 
   majEtatNotifCompte();
+  majCompteurSugg();
 }
 
 function interrupteur(cle, titre, aide){
@@ -4743,6 +5149,44 @@ function majPortionsProfil(delta){
   sauverProfil();
   const el = document.getElementById('compte-portions');
   if(el) el.textContent = profil.portions;
+}
+
+async function envoyerSuggestion(){
+  const champ = document.getElementById('sugg-texte');
+  const btn = document.getElementById('sugg-btn');
+  const retour = document.getElementById('sugg-retour');
+  if(!champ || !retour) return;
+  const texte = champ.value.trim();
+  if(texte.length < 5){
+    retour.className = 'sugg-retour erreur';
+    retour.textContent = '\u00c9crivez-moi quelques mots de plus.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Envoi\u2026';
+  try {
+    await supaFetch('/rest/v1/suggestions', 'POST', {
+      prenom: profil.prenom || null,
+      texte: texte
+    }, 'return=minimal');
+    champ.value = '';
+    retour.className = 'sugg-retour ok';
+    retour.textContent = 'C\u2019est envoy\u00e9, merci ! Je la lirai avec attention.';
+  } catch(e) {
+    console.error(e);
+    retour.className = 'sugg-retour erreur';
+    retour.textContent = 'L\u2019envoi n\u2019a pas fonctionn\u00e9. R\u00e9essayez dans un moment.';
+  }
+  btn.disabled = false; btn.textContent = 'Envoyer';
+  majCompteurSugg();
+}
+
+function majCompteurSugg(){
+  const champ = document.getElementById('sugg-texte');
+  const c = document.getElementById('sugg-compteur');
+  if(!champ || !c) return;
+  const reste = 600 - champ.value.length;
+  c.textContent = reste + ' caract\u00e8re' + (reste > 1 ? 's' : '');
+  c.classList.toggle('court', reste < 60);
 }
 
 function majPrenom(v){
@@ -5345,6 +5789,12 @@ function planWrapHtml(id, days){
     '<input type="date" class="plan-date" id="plan-date" min="'+aujourdhuiISO()+'" value="'+saved+'" onchange="applyPlanning(this.value)">'+
     '<button class="plan-reset" onclick="applyPlanning(\'\')">Effacer</button>'+
     '<div class="plan-info" id="plan-info"></div>'+
+    '<div class="retro-bloc">'+
+      '<span class="plan-label">\u00c0 quelle heure&nbsp;?</span>'+
+      '<input type="time" class="plan-date retro-heure" id="retro-heure" value="20:00" onchange="afficherRetro()">'+
+      '<button class="plan-reset" onclick="afficherRetro()">Calculer mon planning</button>'+
+      '<div class="retro-zone" id="retro-zone"></div>'+
+    '</div>'+
   '</div>';
 }
 
@@ -6909,6 +7359,184 @@ function chercherArgot(question){
   return best;
 }
 
+// ===== RATTRAPAGES : quand ça tourne mal =====
+// Chaque entrée : les formulations qui la déclenchent, la cause, le sauvetage
+// possible sur le moment, et comment l'éviter la prochaine fois.
+const RATTRAPAGES = [
+  {m:['ganache tranche','ganache granuleuse','ganache separee','ganache huileuse','ganache qui tranche'],
+   p:'Ganache tranch\u00e9e', c:'L\u2019\u00e9mulsion a cass\u00e9 : trop de chaleur, ou la cr\u00e8me vers\u00e9e d\u2019un coup.',
+   s:'Mixez au mixeur plongeant, t\u00eate bien immerg\u00e9e, sans faire entrer d\u2019air. Si elle reste huileuse, ajoutez 1 c.\u00e0.s de cr\u00e8me chaude et remixez.',
+   e:'Versez la cr\u00e8me en trois fois et m\u00e9langez depuis le centre, en petits cercles.'},
+  {m:['ganache trop liquide','ganache ne prend pas','ganache coule'],
+   p:'Ganache trop liquide', c:'Trop de cr\u00e8me pour la quantit\u00e9 de chocolat, ou un chocolat trop pauvre en cacao.',
+   s:'Ajoutez 20 \u00e0 30 g de chocolat fondu et laissez prendre 2 h au frais. Une ganache mont\u00e9e demande 12 h de repos avant d\u2019\u00eatre fouett\u00e9e.',
+   e:'Comptez 2 parts de chocolat noir pour 1 de cr\u00e8me, 3 pour 1 avec du chocolat blanc.'},
+  {m:['caramel cristallise','caramel qui masse','caramel granuleux','caramel sableux'],
+   p:'Caramel cristallis\u00e9', c:'Le sucre a recristallis\u00e9, souvent parce qu\u2019on a remu\u00e9 ou qu\u2019un grain est retomb\u00e9 dans la casserole.',
+   s:'Ajoutez 2 c.\u00e0.s d\u2019eau et refaites fondre \u00e0 feu doux sans remuer. C\u2019est r\u00e9cup\u00e9rable dans la plupart des cas.',
+   e:'Ne remuez jamais : inclinez la casserole. Nettoyez les parois avec un pinceau humide.'},
+  {m:['caramel brule','caramel amer','caramel trop fonce'],
+   p:'Caramel br\u00fbl\u00e9', c:'Quelques secondes de trop : entre l\u2019ambre et le br\u00fbl\u00e9, il n\u2019y a presque rien.',
+   s:'Rien \u00e0 sauver, l\u2019amertume ne part pas. Recommencez, et sortez la casserole du feu d\u00e8s la couleur ambr\u00e9e.',
+   e:'Retirez du feu 5 secondes avant la couleur voulue : la chaleur r\u00e9siduelle finit le travail.'},
+  {m:['blancs ne montent pas','blancs qui ne montent pas','blancs restent liquides'],
+   p:'Blancs qui ne montent pas', c:'Une trace de gras ou de jaune dans les blancs, ou un bol mal s\u00e9ch\u00e9.',
+   s:'Rien \u00e0 faire avec ceux-l\u00e0. Recommencez dans un bol inox ou verre essuy\u00e9 au vinaigre blanc.',
+   e:'S\u00e9parez les \u0153ufs un par un dans un ramequin \u00e0 part, jamais au-dessus du saladier.'},
+  {m:['blancs graines','blancs grainent','meringue granuleuse'],
+   p:'Blancs grain\u00e9s', c:'Trop fouett\u00e9s, ou le sucre ajout\u00e9 trop t\u00f4t.',
+   s:'Incorporez un blanc frais non mont\u00e9 et fouettez 20 secondes : \u00e7a redonne souvent de la souplesse.',
+   e:'Serrez avec le sucre en fin de montage, en pluie, et arr\u00eatez au bec d\u2019oiseau.'},
+  {m:['chantilly graine','chantilly beurre','chantilly trop fouettee','creme devenue beurre'],
+   p:'Chantilly grain\u00e9e', c:'Un tour de fouet de trop : la mati\u00e8re grasse s\u2019est s\u00e9par\u00e9e.',
+   s:'Ajoutez 2 c.\u00e0.s de cr\u00e8me liquide froide et m\u00e9langez \u00e0 la main, d\u00e9licatement. Si c\u2019est d\u00e9j\u00e0 du beurre, gardez-le pour une p\u00e2te.',
+   e:'Arr\u00eatez d\u00e8s que le fouet laisse des sillons nets. Bol et cr\u00e8me tr\u00e8s froids.'},
+  {m:['chantilly ne monte pas','creme ne monte pas'],
+   p:'Chantilly qui ne monte pas', c:'Cr\u00e8me pas assez grasse ou pas assez froide. En dessous de 30 % de mati\u00e8re grasse, c\u2019est impossible.',
+   s:'Placez bol et cr\u00e8me 15 min au cong\u00e9lateur et recommencez. Une pointe de mascarpone aide \u00e0 la faire tenir.',
+   e:'Prenez une cr\u00e8me enti\u00e8re \u00e0 30 % minimum, jamais all\u00e9g\u00e9e.'},
+  {m:['creme anglaise tranche','anglaise granuleuse','oeufs cuits dans la creme'],
+   p:'Cr\u00e8me anglaise tranch\u00e9e', c:'Elle a d\u00e9pass\u00e9 83\u00b0C : les jaunes ont coagul\u00e9.',
+   s:'Mixez-la aussit\u00f4t au mixeur plongeant et passez au chinois. On rattrape une anglaise l\u00e9g\u00e8rement tranch\u00e9e, pas une omelette.',
+   e:'Feu doux, cuill\u00e8re en bois, mouvement en huit, et un thermom\u00e8tre si vous en avez un.'},
+  {m:['grumeaux dans la creme','creme patissiere grumeleuse','patissiere avec des grumeaux'],
+   p:'Grumeaux dans la cr\u00e8me p\u00e2tissi\u00e8re', c:'La f\u00e9cule mal d\u00e9lay\u00e9e, ou le lait vers\u00e9 trop vite.',
+   s:'Mixez au mixeur plongeant, puis passez au chinois. Le r\u00e9sultat est parfait.',
+   e:'D\u00e9layez la ma\u00efzena dans les jaunes avant tout lait, et versez le lait chaud en filet.'},
+  {m:['creme patissiere trop liquide','patissiere pas assez epaisse'],
+   p:'Cr\u00e8me p\u00e2tissi\u00e8re trop liquide', c:'Pas assez cuite : la f\u00e9cule n\u2019a pas atteint son plein pouvoir \u00e9paississant.',
+   s:'Remettez sur le feu et laissez bouillir 2 minutes en fouettant sans arr\u00eat. Elle \u00e9paissit d\u2019un coup.',
+   e:'Comptez 40 g de ma\u00efzena par litre de lait, et 2 minutes d\u2019\u00e9bullition franche.'},
+  {m:['pate se retracte','pate qui retrecit','tarte qui retracte','bords qui tombent'],
+   p:'P\u00e2te qui se r\u00e9tracte \u00e0 la cuisson', c:'Le gluten a \u00e9t\u00e9 trop travaill\u00e9, ou la p\u00e2te n\u2019a pas assez repos\u00e9.',
+   s:'En cours de cuisson, rien \u00e0 faire. Sur une p\u00e2te crue, remettez-la 1 h au frais avant d\u2019enfourner.',
+   e:'P\u00e9trissez le minimum, laissez reposer 6 h au frais, et faites croûter le fond fonc\u00e9 au cong\u00e9lateur.'},
+  {m:['pate collante','pate colle','pate trop molle'],
+   p:'P\u00e2te trop collante', c:'Trop chaude, ou trop de liquide.',
+   s:'Filmez et remettez 30 min au frigo, sans ajouter de farine : la farine dess\u00e8che et durcit la p\u00e2te.',
+   e:'Travaillez avec du beurre bien froid, rapidement, et \u00e9tez entre deux feuilles de papier cuisson.'},
+  {m:['pate casse','pate qui se dechire','pate friable'],
+   p:'P\u00e2te qui casse \u00e0 l\u2019\u00e9talage', c:'Trop froide, ou trop de mati\u00e8re grasse par rapport au liquide.',
+   s:'Laissez-la 10 min \u00e0 temp\u00e9rature ambiante et tapez-la au rouleau pour l\u2019assouplir avant d\u2019\u00e9taler.',
+   e:'Sortez-la 10 minutes avant, et travaillez-la du plat de la main d\u2019abord.'},
+  {m:['fond detrempe','tarte detrempee','pate molle dessous'],
+   p:'Fond de tarte d\u00e9tremp\u00e9', c:'La garniture humide a p\u00e9n\u00e9tr\u00e9 la p\u00e2te.',
+   s:'Trop tard une fois mont\u00e9e. La prochaine fois, chablonnez : une fine couche de chocolat fondu ou de blanc d\u2019\u0153uf sur le fond cuit.',
+   e:'Cuisez \u00e0 blanc, chablonnez, et garnissez au dernier moment.'},
+  {m:['gateau retombe','gateau creuse au centre','affaisse au centre'],
+   p:'G\u00e2teau qui retombe au centre', c:'Four ouvert trop t\u00f4t, ou pas assez cuit \u00e0 c\u0153ur.',
+   s:'Creusez le centre et remplissez-le de cr\u00e8me ou de fruits : \u00e7a devient un choix.',
+   e:'N\u2019ouvrez pas le four avant les trois quarts du temps, et testez avec la pointe d\u2019un couteau.'},
+  {m:['gateau trop sec','gateau sec'],
+   p:'G\u00e2teau trop sec', c:'Cuisson trop longue ou four trop chaud.',
+   s:'Imbibez au pinceau avec un sirop ti\u00e8de (50 g d\u2019eau, 50 g de sucre, un parfum). \u00c7a sauve la plupart des cas.',
+   e:'Sortez d\u00e8s que la pointe ressort avec quelques miettes humides, pas s\u00e8che.'},
+  {m:['pas cuit au centre','cru au milieu','cru au centre'],
+   p:'Cru au centre, cuit dehors', c:'Four trop chaud : la surface prend avant que le c\u0153ur ne cuise.',
+   s:'Couvrez d\u2019aluminium et poursuivez 15 min \u00e0 150\u00b0C.',
+   e:'Baissez de 10 \u00e0 20\u00b0C et allongez le temps. Les gros g\u00e2teaux cuisent doucement.'},
+  {m:['macarons craquelent','macarons fendus','macarons sans collerette'],
+   p:'Macarons craquel\u00e9s ou sans collerette', c:'Cro\u00fbtage insuffisant, ou macaronnage rat\u00e9.',
+   s:'Rien \u00e0 rattraper sur la plaque en cours. Ils resteront bons \u00e0 manger.',
+   e:'Laissez cro\u00fbter jusqu\u2019\u00e0 ce que le doigt ne colle plus, et arr\u00eatez le macaronnage d\u00e8s le ruban.'},
+  {m:['macarons creux','coques creuses'],
+   p:'Macarons creux', c:'Trop d\u2019air dans l\u2019appareil, ou four trop chaud au d\u00e9part.',
+   s:'Garnissez g\u00e9n\u00e9reusement et laissez maturer 24 h au frais : la coque se retasse.',
+   e:'Macaronnez un peu plus, et baissez de 10\u00b0C.'},
+  {m:['meringue perle','meringue rend de l eau','gouttes sur la meringue'],
+   p:'Meringue qui perle', c:'Sucre mal dissous, ou humidit\u00e9 ambiante.',
+   s:'Rien \u00e0 faire une fois cuite. \u00c9pongez d\u00e9licatement et servez rapidement.',
+   e:'Ajoutez le sucre progressivement et laissez tourner 2 min de plus pour qu\u2019il fonde compl\u00e8tement.'},
+  {m:['chocolat epaissi','chocolat a saisi','chocolat pateux','chocolat qui durcit'],
+   p:'Chocolat qui a saisi', c:'Une goutte d\u2019eau, ou une surchauffe.',
+   s:'Ajoutez 1 c.\u00e0.c d\u2019huile neutre ou de cr\u00e8me chaude et m\u00e9langez : il redevient fluide, mais ne sera plus utilisable pour un enrobage brillant.',
+   e:'Bain-marie sans contact avec l\u2019eau, ustensiles parfaitement secs.'},
+  {m:['chocolat blanchi','chocolat terne','voile blanc sur le chocolat'],
+   p:'Chocolat blanchi', c:'Mal temp\u00e9r\u00e9, ou conserv\u00e9 au frigo.',
+   s:'Refondez-le et temp\u00e9rez correctement : 50\u00b0C, puis 28, puis 31.',
+   e:'Conservez-le \u00e0 16-18\u00b0C, jamais au r\u00e9frig\u00e9rateur.'},
+  {m:['choux retombent','choux degonflent','choux plats'],
+   p:'Choux qui retombent', c:'Four ouvert trop t\u00f4t, ou p\u00e2te trop humide.',
+   s:'Ils ne regonfleront pas. Utilisez-les \u00e9cras\u00e9s dans un dessert \u00e0 la cuill\u00e8re.',
+   e:'Dess\u00e9chez bien la panade, n\u2019ouvrez pas le four, et laissez-les s\u00e9cher 5 min four \u00e9teint.'},
+  {m:['brioche ne leve pas','pate ne leve pas','pate qui ne monte pas'],
+   p:'P\u00e2te lev\u00e9e qui ne monte pas', c:'Levure tu\u00e9e par le sel ou un liquide trop chaud, ou pi\u00e8ce trop froide.',
+   s:'Placez le saladier dans le four \u00e0 30\u00b0C avec un bol d\u2019eau chaude et attendez une heure de plus. Si rien ne bouge, la levure est morte.',
+   e:'Ne mettez jamais le sel au contact direct de la levure, et un liquide \u00e0 35\u00b0C maximum.'},
+  {m:['glacage bulles','glacage miroir bulles'],
+   p:'Bulles dans le gla\u00e7age miroir', c:'De l\u2019air incorpor\u00e9 au mixage.',
+   s:'Passez au chinois et laissez reposer 30 min, filmé au contact, avant de couler.',
+   e:'Mixez t\u00eate immerg\u00e9e, r\u00e9cipient inclin\u00e9, sans jamais la remonter.'},
+  {m:['glacage coule','glacage ne tient pas','glacage transparent'],
+   p:'Gla\u00e7age qui coule ou ne couvre pas', c:'Vers\u00e9 trop chaud, ou entremets pas assez froid.',
+   s:'R\u00e9cup\u00e9rez le gla\u00e7age, remettez l\u2019entremets 30 min au cong\u00e9lateur, et recoulez \u00e0 33\u00b0C.',
+   e:'Gla\u00e7age entre 30 et 35\u00b0C, entremets sortant du cong\u00e9lateur.'},
+  {m:['gelatine ne prend pas','ca ne gelifie pas','mousse ne prend pas'],
+   p:'La g\u00e9latine n\u2019a pas pris', c:'Dilu\u00e9e dans un liquide trop chaud, ou pr\u00e9sence d\u2019ananas, kiwi ou papaye crus qui la d\u00e9truisent.',
+   s:'Refaites fondre l\u2019appareil \u00e0 40\u00b0C et ajoutez de la g\u00e9latine r\u00e9hydrat\u00e9e, puis 6 h de froid.',
+   e:'Incorporez-la entre 40 et 60\u00b0C, jamais dans un liquide bouillant.'},
+  {m:['agar ne prend pas','agar agar liquide'],
+   p:'L\u2019agar-agar n\u2019a pas pris', c:'Il n\u2019a pas bouilli : sans \u00e9bullition, il ne g\u00e9lifie pas.',
+   s:'Reportez le m\u00e9lange \u00e0 \u00e9bullition 30 secondes, puis laissez refroidir.',
+   e:'2 g pour 500 ml, et 30 secondes de gros bouillons obligatoires.'},
+  {m:['praline reste en poudre','praline ne devient pas liquide','praline pateux'],
+   p:'Pralin\u00e9 qui reste en poudre', c:'Pas assez mix\u00e9 : il faut du temps pour que l\u2019huile des fruits secs sorte.',
+   s:'Continuez de mixer par \u00e0-coups, 5 \u00e0 10 minutes en tout, en raclant les bords. Si le robot chauffe, laissez-le souffler.',
+   e:'Torr\u00e9fiez bien les fruits secs : les fruits ti\u00e8des lib\u00e8rent leur huile beaucoup plus vite.'},
+  {m:['compotee trop liquide','confiture trop liquide','coulis trop liquide'],
+   p:'Compot\u00e9e trop liquide', c:'Pas assez r\u00e9duite, ou fruits tr\u00e8s aqueux.',
+   s:'Poursuivez la cuisson \u00e0 d\u00e9couvert, ou liez avec 1 c.\u00e0.c de ma\u00efzena d\u00e9lay\u00e9e dans un peu d\u2019eau froide.',
+   e:'Comptez 20 \u00e0 25 minutes \u00e0 feu doux, et \u00e9gouttez les fruits surgel\u00e9s avant cuisson.'},
+  {m:['flan retombe','flan grésille','flan bulle','flan souffle'],
+   p:'Flan qui gonfle puis retombe', c:'Four trop chaud : l\u2019appareil bout et se remplit d\u2019air.',
+   s:'Rien \u00e0 faire, mais le go\u00fbt reste bon. La surface se lissera un peu en refroidissant.',
+   e:'160\u00b0C pendant l\u2019essentiel de la cuisson, et seulement quelques minutes \u00e0 210\u00b0C pour colorer.'},
+  {m:['riz au lait accroche','ca attache au fond','ca a attache'],
+   p:'\u00c7a a attach\u00e9 au fond', c:'Feu trop vif ou pas assez remu\u00e9.',
+   s:'Transvasez imm\u00e9diatement dans une autre casserole sans racler le fond : le go\u00fbt de br\u00fbl\u00e9 reste au fond.',
+   e:'Feu doux, casserole \u00e0 fond \u00e9pais, et une spatule qui racle vraiment le fond.'},
+  {m:['sauce tranche','beurre blanc tranche','sauce separee'],
+   p:'Sauce mont\u00e9e au beurre tranch\u00e9e', c:'Trop chaude : l\u2019\u00e9mulsion a l\u00e2ch\u00e9.',
+   s:'Hors du feu, fouettez 1 c.\u00e0.s de cr\u00e8me froide, puis r\u00e9incorporez la sauce en filet.',
+   e:'Ajoutez le beurre froid par petits morceaux, hors du feu, sans jamais faire bouillir.'},
+  {m:['gnocchi se defont','gnocchis collent'],
+   p:'Gnocchi qui se d\u00e9font', c:'Trop d\u2019eau dans la pomme de terre, ou pas assez de farine.',
+   s:'Ajoutez 1 c.\u00e0.s de farine \u00e0 la p\u00e2te restante et testez un gnocchi avant de cuire le reste.',
+   e:'Cuisez les pommes de terre au four, pas \u00e0 l\u2019eau, et \u00e9crasez-les encore chaudes.'},
+  {m:['trop sale','plat trop sale'],
+   p:'Trop sal\u00e9', c:'Le sel s\u2019ajoute, il ne se retire pas.',
+   s:'Allongez avec un liquide non sal\u00e9, ajoutez une pomme de terre crue en cuisson, ou une pointe de sucre ou d\u2019acidit\u00e9 pour \u00e9quilibrer.',
+   e:'Salez en fin de cuisson pour les pr\u00e9parations qui r\u00e9duisent.'},
+  {m:['trop sucre','dessert trop sucre'],
+   p:'Trop sucr\u00e9', c:'Peu de marge de man\u0153uvre une fois la pr\u00e9paration faite.',
+   s:'Cassez le sucre avec de l\u2019acidit\u00e9 : jus de citron, fruits rouges, ou une pinc\u00e9e de fleur de sel.',
+   e:'R\u00e9duisez le sucre d\u2019un tiers \u00e0 l\u2019essai suivant : la plupart des recettes le supportent.'}
+];
+
+// On ne cherche pas la phrase exacte : « ma ganache a tranch\u00e9 » doit
+// retrouver la cl\u00e9 « ganache tranche ». Tous les mots de la cl\u00e9 doivent
+// \u00eatre pr\u00e9sents dans la question, dans n'importe quel ordre.
+function chercherRattrapage(question){
+  const q = ' ' + inspiNorm(question) + ' ';
+  let best = null;
+  RATTRAPAGES.forEach(r => r.m.forEach(mot => {
+    const mots = inspiNorm(mot).split(' ').filter(x => x.length >= 4);
+    if(!mots.length) return;
+    const tous = mots.every(x => q.indexOf(' ' + x) !== -1 || q.indexOf(x + ' ') !== -1);
+    if(!tous) return;
+    const score = mots.reduce((a, x) => a + x.length, 0);
+    if(!best || score > best.score) best = { r: r, score: score };
+  }));
+  return best ? best.r : null;
+}
+
+function reponseRattrapage(r){
+  return '<strong>' + r.p + '</strong>' +
+    '<div class="ratt-bloc"><span>Pourquoi</span>' + r.c + '</div>' +
+    '<div class="ratt-bloc sauve"><span>Ce qu\u2019on peut faire maintenant</span>' + r.s + '</div>' +
+    '<div class="ratt-bloc"><span>La prochaine fois</span>' + r.e + '</div>';
+}
+
 function inspiDefinition(question){
   const q = inspiNorm(question);
   let meilleur = null;
@@ -6935,8 +7563,10 @@ function inspiEchapper(t){
   return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+let inspiZone = { chat: 'inspi-chat', input: 'inspi-input' };
+
 function inspiBulle(html, moi){
-  const chat = document.getElementById('inspi-chat');
+  const chat = document.getElementById(inspiZone.chat);
   if(!chat) return;
   const d = document.createElement('div');
   d.className = 'inspi-msg' + (moi ? ' moi' : '');
@@ -6976,7 +7606,7 @@ function resetInspi(){
 }
 
 function envoyerInspi(){
-  const input = document.getElementById('inspi-input');
+  const input = document.getElementById(inspiZone.input);
   if(!input) return;
   const saisie = input.value.trim();
   if(!saisie) return;
@@ -6987,6 +7617,10 @@ function envoyerInspi(){
   if(/remplac|a la place|substitu|j ?ai pas|je n ?ai pas|manque/i.test(inspiNorm(saisie))){
     return inspiRepondre(reponseSubstitut(saisie));
   }
+
+  // un ratage en cours : c'est le plus urgent
+  const ratt = chercherRattrapage(saisie);
+  if(ratt) return inspiRepondre(reponseRattrapage(ratt));
 
   // question de budget : « des recettes à moins de 2 € la part »
   const bud = questionBudget(saisie);
