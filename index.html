@@ -485,6 +485,8 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .adr-infos{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;padding-top:1.2rem;border-top:1px solid var(--cream-dark)}
 .adr-infos>div{font-size:0.87rem;color:var(--text)}
 .adr-infos span{display:block;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light);margin-bottom:0.2rem}
+.adr-une{font-size:0.85rem;color:var(--text);line-height:1.7}
+.adr-une + .adr-une{border-top:1px dashed var(--cream-dark);padding-top:0.2rem;margin-top:0.2rem}
 .adr-lien{margin-left:auto;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;background:var(--sage-dark);color:var(--white);border-radius:22px;padding:0.7rem 1.2rem;text-decoration:none}
 .adr-lien:hover{opacity:0.88}
 @media(max-width:640px){
@@ -5189,58 +5191,57 @@ const ADRESSES = [
     id: 'pralus',
     nom: 'Chocolaterie Pralus',
     ville: 'Paris',
-    quartier: '\u00c0 compl\u00e9ter',
+    quartier: 'Marais',
     type: 'Chocolaterie',
     note: 5,
     prix: '\u20ac\u20ac',
     photos: ['images/adresse-pralus.jpg', 'images/adresse-pralus-2.jpg'],
     visite: 'Ao\u00fbt 2026',
     resume: 'La maison de la Praluline, cette brioche aux pralines roses qu\u2019on ne trouve nulle part ailleurs.',
-    gouter: ['La Praluline', 'Les tablettes Barres Infernales', 'Le pralin\u00e9 en pot'],
+    gouter: ['La brioche praline rose'],
     texte: [
-      '\u00c0 remplacer par votre r\u00e9cit : ce que vous avez command\u00e9, l\u2019ambiance de la boutique, ce qui vous a plu.',
-      'Un deuxi\u00e8me paragraphe pour le d\u00e9tail qui fait la diff\u00e9rence \u2014 une texture, un accueil, un prix.'
+      'Une brioche moelleuse, g\u00e9n\u00e9reusement garnie de pralines roses concass\u00e9es, cuite en grosses boules dor\u00e9es. La maison en a fait sa sp\u00e9cialit\u00e9 depuis Roanne, et la vitrine ne d\u00e9semplit pas.'
     ],
     verdict: 'Enti\u00e8rement valid\u00e9. J\u2019y retourne sans h\u00e9siter.',
-    adresse: '\u00c0 compl\u00e9ter'
+    adresses: ['9 rue des Petits-Carreaux, 75002 Paris',
+               '35 rue Rambuteau, 75004 Paris',
+               '44 rue Cler, 75007 Paris']
   },
   {
     id: 'grolet',
-    nom: 'Caf\u00e9 Grolet',
+    nom: 'C\u00e9dric Grolet Caf\u00e9',
     ville: 'Paris',
-    quartier: '\u00c0 compl\u00e9ter',
+    quartier: 'Op\u00e9ra',
     type: 'P\u00e2tisserie',
     note: 5,
     prix: '\u20ac\u20ac',
     photos: ['images/adresse-grolet.jpg', 'images/adresse-grolet-2.jpg'],
     visite: 'Ao\u00fbt 2026',
-    resume: 'La pizza-cookie \u00e0 partager, huit parts et huit parfums diff\u00e9rents. Un super rapport qualit\u00e9-prix.',
-    gouter: ['La pizza-cookie \u00e0 partager', 'La part poire-chocolat', 'La part pistache'],
+    resume: 'La pizza-cookie \u00e0 partager, huit parts et autant de parfums, dans une bo\u00eete \u00e0 pizza.',
+    gouter: ['La pizza-cookie'],
     texte: [
-      '\u00c0 remplacer par votre r\u00e9cit : huit parts, huit parfums, et de quoi r\u00e9galer plusieurs personnes pour le prix d\u2019une p\u00e2tisserie individuelle ailleurs.',
-      'Un deuxi\u00e8me paragraphe si vous voulez d\u00e9tailler les parfums que vous avez pr\u00e9f\u00e9r\u00e9s.'
+      'Huit parts, chacune son parfum, servies dans une bo\u00eete \u00e0 pizza. C\u2019est l\u2019adresse la plus abordable du chef, et de loin celle qui se partage le mieux.'
     ],
     verdict: 'Super rapport qualit\u00e9-prix. Valid\u00e9 sans r\u00e9serve.',
-    adresse: '\u00c0 compl\u00e9ter'
+    adresses: ['6 rue Danielle Casanova, 75002 Paris']
   },
   {
     id: 'neulo',
-    nom: 'Neulo',
+    nom: 'N\u00e8ulo',
     ville: 'Paris',
-    quartier: '\u00c0 compl\u00e9ter',
+    quartier: 'Marais',
     type: 'P\u00e2tisserie',
     note: 4,
     prix: '\u20ac\u20ac',
-    photos: [],
+    photos: ['images/adresse-neulo.jpg'],
     visite: 'Ao\u00fbt 2026',
-    resume: 'Excellent sur les fruits. La gamme d\u2019hiver m\u2019a moins convaincue.',
-    gouter: ['Les p\u00e2tisseries aux fruits'],
+    resume: 'La maison du flan, d\u00e9clin\u00e9 en une dizaine de parfums qui changent au fil des saisons.',
+    gouter: ['Les flans aux fruits'],
     texte: [
-      'Les cr\u00e9ations aux fruits sont vraiment tr\u00e8s bonnes : c\u2019est l\u00e0 que la maison donne le meilleur.',
-      'En revanche, j\u2019ai \u00e9t\u00e9 d\u00e9\u00e7ue par la gamme d\u2019hiver, en retrait par rapport au reste.'
+      'Les flans aux fruits sont vraiment tr\u00e8s bons : c\u2019est l\u00e0 que la maison donne le meilleur. En revanche, la gamme d\u2019hiver m\u2019a d\u00e9\u00e7ue, nettement en retrait par rapport au reste.'
     ],
     verdict: 'Tr\u00e8s bon sur les fruits, moins convaincant en hiver. J\u2019y retourne \u00e0 la belle saison.',
-    adresse: '\u00c0 compl\u00e9ter'
+    adresses: ['46 rue Sainte-Croix de la Bretonnerie, 75004 Paris']
   }
 ];
 
@@ -5265,7 +5266,8 @@ function initAdresses(){
         (a.photos && a.photos.length ? '<img src="' + a.photos[0] + '" alt="' + a.nom + '" loading="lazy">' : '<span>photo \u00e0 venir</span>') +
         '<span class="adr-note">' + a.note + '/5</span></div>' +
       '<div class="adr-corps">' +
-        '<div class="adr-meta">' + a.type + ' &middot; ' + a.ville + '</div>' +
+        '<div class="adr-meta">' + a.type + ' &middot; ' + a.ville +
+          ((a.adresses && a.adresses.length > 1) ? ' &middot; ' + a.adresses.length + ' boutiques' : '') + '</div>' +
         '<h3>' + a.nom + '</h3>' +
         '<div class="adr-etoiles">' + etoilesHtml(a.note) + '</div>' +
         '<p>' + a.resume + '</p>' +
@@ -5276,7 +5278,8 @@ function initAdresses(){
 function ouvrirAdresse(id){
   const a = ADRESSES.find(x => x.id === id);
   if(!a) return;
-  const lien = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.nom + ' ' + a.adresse);
+  const liste = a.adresses || [a.adresse];
+  const lien = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a.nom + ' ' + liste[0]);
   document.getElementById('adresse-contenu').innerHTML =
     (a.photos && a.photos.length ? '<div class="adr-art-photo"><img src="' + a.photos[0] + '" alt="' + a.nom + '"></div>' : '') +
     '<div class="adr-art-corps">' +
@@ -5295,7 +5298,8 @@ function ouvrirAdresse(id){
             '<img src="' + f + '" alt="' + a.nom + '" loading="lazy">').join('') + '</div>' : '') +
       '<div class="adr-verdict"><span>Le verdict</span>' + a.verdict + '</div>' +
       '<div class="adr-infos">' +
-        '<div><span>L\u2019adresse</span>' + a.adresse + '</div>' +
+        '<div><span>' + (liste.length > 1 ? 'Les ' + liste.length + ' boutiques' : 'L\u2019adresse') + '</span>' +
+          liste.map(x => '<div class="adr-une">' + x + '</div>').join('') + '</div>' +
         '<div><span>Visit\u00e9 en</span>' + a.visite + '</div>' +
         '<a class="adr-lien" href="' + lien + '" target="_blank" rel="noopener">Ouvrir dans Plans</a>' +
       '</div>' +
