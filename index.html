@@ -6,6 +6,8 @@
 <title>La Table d'Elsa</title>
 <meta name="version-site" content="2026-08-03-notifications">
 <meta name="description" content="Des recettes testées, retestées, et partagées avec ceux que j'aime. Du bon, du vrai, du fait maison.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#4E6E52">
 <meta name="mobile-web-app-capable" content="yes">
@@ -443,6 +445,29 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .col-ingredients .ingredient-list li.ing-adapte::before{content:'';border-color:var(--sage)}
 .col-ingredients .ingredient-list li.intertitre{cursor:default;text-decoration:none}
 .col-ingredients .ingredient-list li.intertitre::before{display:none}
+/* ── Carte des bonnes adresses ── */
+.carte-bloc{max-width:1200px;margin:0 auto 2.4rem;padding:0 3rem}
+#adresses-carte{height:420px;border-radius:12px;border:1px solid var(--cream-dark);background:var(--cream);z-index:1}
+.carte-legende{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.6rem;font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)}
+.carte-cles{display:flex;align-items:center;gap:0.35rem}
+.cle{display:inline-block;width:12px;height:12px;border-radius:50%;margin-left:0.6rem}
+.cle.bon{background:#4E6E52}.cle.moyen{background:#C4A882}.cle.faible{background:#8B6347}
+.marqueur-adresse span{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;color:#FDFAF6;font-family:Jost,sans-serif;font-size:0.78rem;font-weight:600;border:2px solid #FDFAF6;box-shadow:0 2px 8px rgba(46,42,37,0.3)}
+.popup-adr{display:flex;gap:0.6rem;align-items:flex-start}
+.popup-adr img{width:74px;height:74px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.popup-corps{display:flex;flex-direction:column;gap:0.15rem;min-width:120px}
+.popup-type{font-family:Jost,sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light)}
+.popup-adr strong{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--text);line-height:1.2}
+.popup-note{color:var(--brown-light);line-height:1}
+.popup-corps button{margin-top:0.3rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sage-dark);color:var(--white);border:none;border-radius:16px;padding:0.4rem 0.8rem;cursor:pointer}
+.leaflet-popup-content{margin:0.7rem 0.8rem}
+.leaflet-popup-content-wrapper{border-radius:10px}
+.adr-voir-carte{margin-top:0.7rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:16px;padding:0.4rem 0.8rem;cursor:pointer}
+.adr-voir-carte:hover{border-color:var(--sage);color:var(--sage-dark)}
+@media(max-width:640px){
+  .carte-bloc{padding:0 1.2rem;margin-bottom:1.8rem}
+  #adresses-carte{height:320px}
+}
 /* ── Bonnes adresses ── */
 .adr-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--text-muted);max-width:520px;margin:-1rem auto 2.4rem}
 .adr-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.6rem;padding:0 3rem 5rem;max-width:1200px;margin:0 auto}
@@ -2185,6 +2210,13 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="section-count">Testées et approuvées</span>
   </div>
   <p class="adr-intro">Les maisons où je suis allée, ce que j’y ai goûté, et si j’y retourne.</p>
+  <div class="carte-bloc">
+    <div id="adresses-carte"></div>
+    <div class="carte-legende">
+      <span id="carte-info">Chargement de la carte…</span>
+      <span class="carte-cles"><i class="cle bon"></i>4 et 5<i class="cle moyen"></i>3<i class="cle faible"></i>1 et 2</span>
+    </div>
+  </div>
   <div class="adr-grille" id="adresses-grille"></div>
 </div>
 
@@ -5183,10 +5215,424 @@ function appliquerFiltres(){
   });
 }
 
+// ===== CARTE DES BONNES ADRESSES =====
+// Fonds de carte OpenStreetMap via Leaflet. Les coordonnées sont cherchées
+// une seule fois puis mémorisées : les visites suivantes n'appellent rien.
+let carteAdresses = null;
+let marqueursAdresses = [];
+
+function coordsMemorisees(){
+  try { return JSON.parse(localStorage.getItem('elsa_geo') || '{}'); } catch(e) { return {}; }
+}
+function memoriserCoords(cle, latlng){
+  try {
+    const c = coordsMemorisees();
+    c[cle] = latlng;
+    localStorage.setItem('elsa_geo', JSON.stringify(c));
+  } catch(e) {}
+}
+
+function adresseComplete(a){
+  return a.adresses && a.adresses[0] && a.adresses[0].indexOf('compl\u00e9ter') === -1;
+}
+
+async function chercherCoords(texte){
+  const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(texte);
+  const rep = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if(!rep.ok) throw new Error('geocodage');
+  const j = await rep.json();
+  if(!j.length) throw new Error('introuvable');
+  return [parseFloat(j[0].lat), parseFloat(j[0].lon)];
+}
+
+function iconeNote(note){
+  const couleur = note >= 4 ? '#4E6E52' : (note === 3 ? '#C4A882' : '#8B6347');
+  return L.divIcon({
+    className: 'marqueur-adresse',
+    html: '<span style="background:' + couleur + '">' + note + '</span>',
+    iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -14]
+  });
+}
+
+function popupAdresse(a){
+  return '<div class="popup-adr">' +
+    (a.photos && a.photos.length ? '<img src="' + a.photos[0] + '" alt="">' : '') +
+    '<div class="popup-corps">' +
+      '<div class="popup-type">' + a.type + '</div>' +
+      '<strong>' + a.nom + '</strong>' +
+      '<div class="popup-note">' + etoilesHtml(a.note, 12) + '</div>' +
+      '<button onclick="ouvrirAdresse(\'' + a.id + '\')">Lire l\u2019article</button>' +
+    '</div></div>';
+}
+
+async function initCarte(){
+  const zone = document.getElementById('adresses-carte');
+  if(!zone || typeof L === 'undefined') return;
+  if(carteAdresses){ setTimeout(() => carteAdresses.invalidateSize(), 60); return; }
+
+  carteAdresses = L.map('adresses-carte', { scrollWheelZoom: false }).setView([48.86, 2.35], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(carteAdresses);
+
+  const cache = coordsMemorisees();
+  const aPlacer = ADRESSES.filter(adresseComplete);
+  const points = [];
+
+  for(const a of aPlacer){
+    const cle = a.id;
+    let ll = a.coord || cache[cle];
+    if(!ll){
+      try {
+        ll = await chercherCoords(a.adresses[0] + ', France');
+        memoriserCoords(cle, ll);
+        await new Promise(r => setTimeout(r, 1100));   // on ne bouscule pas le service
+      } catch(e) { continue; }
+    }
+    const m = L.marker(ll, { icon: iconeNote(a.note) }).addTo(carteAdresses);
+    m.bindPopup(popupAdresse(a), { maxWidth: 240 });
+    marqueursAdresses.push({ id: a.id, m: m });
+    points.push(ll);
+  }
+
+  if(points.length) carteAdresses.fitBounds(points, { padding: [40, 40], maxZoom: 14 });
+  const info = document.getElementById('carte-info');
+  if(info) info.textContent = points.length + ' adresse' + (points.length > 1 ? 's' : '') + ' sur la carte';
+}
+
+// depuis une carte de la grille, on peut aussi filer sur le marqueur
+function voirSurCarte(id){
+  const t = marqueursAdresses.find(x => x.id === id);
+  if(!t) return;
+  document.getElementById('adresses-carte').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  carteAdresses.setView(t.m.getLatLng(), 15, { animate: true });
+  setTimeout(() => t.m.openPopup(), 400);
+}
+
 // ===== BONNES ADRESSES =====
 // Pour ajouter une adresse, copiez un bloc ci-dessous et modifiez-le.
 // La photo va dans le dossier images/ sous le nom indiqué.
 const ADRESSES = [
+  {
+    id: 'grazziela',
+    nom: 'Grazziela',
+    ville: 'Noisy-le-Grand',
+    quartier: 'Noisy-le-Grand',
+    type: 'Italien',
+    note: 4,
+    prix: '€€',
+    photos: ['images/adresse-grazziela.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'La stracciatella est incroyable : crémeuse, généreuse, à elle seule elle vaut le déplacement.',
+    gouter: ['La stracciatella'],
+    texte: ['La stracciatella est incroyable : crémeuse, généreuse, à elle seule elle vaut le déplacement.'],
+    verdict: 'Une valeur sûre pour la stracciatella.',
+    adresses: ['56 avenue Aristide Briand, 93160 Noisy-le-Grand']
+  },
+  {
+    id: 'jojosdough',
+    nom: 'Jojo’s Dough',
+    ville: 'Paris',
+    quartier: 'Arts-et-M\u00e9tiers',
+    type: 'Cookies',
+    note: 4,
+    prix: '€€',
+    photos: ['images/adresse-jojosdough.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Des cookies très gourmands, aux parfums travaillés, mais franchement costauds.',
+    gouter: ['Les cookies gourmands'],
+    texte: ['Des cookies très gourmands, aux parfums travaillés, mais franchement costauds.'],
+    verdict: 'Très bon, mais à prendre seulement si on a faim.',
+    adresses: ['6 rue des Gravilliers, 75003 Paris']
+  },
+  {
+    id: 'meurice',
+    nom: 'Le Meurice — Cédric Grolet',
+    ville: 'Paris',
+    quartier: 'Tuileries',
+    type: 'Pâtisserie',
+    note: 5,
+    prix: '€€€',
+    photos: ['images/adresse-meurice.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Les trompe-l’œil du chef, dans leur écrin, à l’hôtel Le Meurice.',
+    gouter: ['Les fruits en trompe-l’œil'],
+    texte: ['Les trompe-l’œil du chef, dans leur écrin, à l’hôtel Le Meurice.'],
+    verdict: 'En vaut le prix.',
+    adresses: ['Hôtel Le Meurice, 228 rue de Rivoli, 75001 Paris']
+  },
+  {
+    id: 'maslow',
+    nom: 'Maslow Temple',
+    ville: 'Paris',
+    quartier: 'Marais',
+    type: 'Végétarien',
+    note: 1,
+    prix: '€€€',
+    photos: ['images/adresse-maslow.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Le plus grand restaurant végétarien de Paris, sur trois niveaux face au Carreau du Temple.',
+    gouter: ['L’okonomiyaki'],
+    texte: ['Le plus grand restaurant végétarien de Paris, sur trois niveaux face au Carreau du Temple.'],
+    verdict: '60 € plus tard, je suis ressortie le ventre vide. Je ne recommande pas.',
+    adresses: ['32 rue de Picardie, 75003 Paris']
+  },
+  {
+    id: 'tatathai',
+    nom: 'Tata Thaï',
+    ville: 'Torcy',
+    quartier: 'Seine-et-Marne',
+    type: 'Thaïlandais',
+    note: 5,
+    prix: '€€',
+    photos: ['images/adresse-tatathai.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Une cuisine thaï généreuse, servie par une équipe adorable.',
+    gouter: ['Le poulet frit et le riz sauté'],
+    texte: ['Une cuisine thaï généreuse, servie par une équipe adorable.'],
+    verdict: 'Super bon, et un accueil qui fait toute la différence.',
+    adresses: ['52 rue de Paris, 77200 Torcy']
+  },
+  {
+    id: 'fellows',
+    nom: 'Fellows',
+    ville: 'Paris',
+    quartier: 'Faubourg Saint-Denis',
+    type: 'Pâtes fraîches',
+    note: 2,
+    prix: '€€',
+    photos: ['images/adresse-fellows.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Un comptoir de pâtes fraîches maison, entièrement végétarien.',
+    gouter: ['Les pâtes du jour'],
+    texte: ['Un comptoir de pâtes fraîches maison, entièrement végétarien.'],
+    verdict: 'Peu de choix et cher pour ce que c’est.',
+    adresses: ['84 rue du Faubourg Saint-Denis, 75010 Paris']
+  },
+  {
+    id: 'marquise',
+    nom: 'Maison Marquise',
+    ville: 'Chevilly-Larue',
+    quartier: 'Val-de-Marne',
+    type: 'Boulangerie',
+    note: 5,
+    prix: '€€',
+    photos: ['images/adresse-marquise.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Une boulangerie au choix immense, avec des parfums qu’on ne trouve pas ailleurs.',
+    gouter: ['Le cookie tiramisu'],
+    texte: ['Une boulangerie au choix immense, avec des parfums qu’on ne trouve pas ailleurs.'],
+    verdict: 'Mention spéciale pour le cookie tiramisu, qui est incroyable.',
+    adresses: ['25 rue Henri Crette, 94550 Chevilly-Larue']
+  },
+  {
+    id: 'pleincoeur',
+    nom: 'Pleincœur',
+    ville: 'Paris',
+    quartier: 'Batignolles',
+    type: 'Boulangerie',
+    note: 3,
+    prix: '€€',
+    photos: ['images/adresse-pleincoeur.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Viennoiseries soignées et quelques pâtisseries, dans un cadre très épuré.',
+    gouter: ['Le pain au chocolat'],
+    texte: ['Viennoiseries soignées et quelques pâtisseries, dans un cadre très épuré.'],
+    verdict: 'Bon, mais rien de surprenant et très peu d’options en pâtisserie.',
+    adresses: ['64 rue des Batignolles, 75017 Paris', 'Atelier Noisette &amp; Chocolat \u2014 12 rue Mstislav Rostropovitch, 75017 Paris']
+  },
+  {
+    id: 'immersion',
+    nom: 'Immersion',
+    ville: 'Paris',
+    quartier: 'Trois adresses',
+    type: 'Brunch',
+    note: 3,
+    prix: '€€',
+    photos: ['images/adresse-immersion.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Un brunch complet, entre pancakes, gaufres et assiettes salées.',
+    gouter: ['Les gaufres'],
+    texte: ['Un brunch complet, entre pancakes, gaufres et assiettes salées.'],
+    verdict: 'Un bon brunch, sans fausse note.',
+    adresses: ['83 avenue de la Bourdonnais, 75007 Paris', '23 rue Danielle Casanova, 75001 Paris', '8-10 rue Lucien Sampaix, 75010 Paris']
+  },
+  {
+    id: 'matizza',
+    nom: 'Mat’izza',
+    ville: 'Paris',
+    quartier: 'Nation',
+    type: 'Pizzeria',
+    note: 5,
+    prix: '€€',
+    photos: ['images/adresse-matizza.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Une petite pizzeria napolitaine, produits frais et italiens.',
+    gouter: ['La pizza burrata et jambon cru'],
+    texte: ['Une petite pizzeria napolitaine, produits frais et italiens.'],
+    verdict: 'Super bon, et un personnel très agréable.',
+    adresses: ['2 rue Gu\u00e9not, 75011 Paris']
+  },
+  {
+    id: 'kozy',
+    nom: 'Kozy',
+    ville: 'Paris',
+    quartier: 'Trois adresses',
+    type: 'Brunch',
+    note: 3,
+    prix: '€€',
+    photos: ['images/adresse-kozy.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Pancakes, avocado toasts et burritos, dans une salle à carreaux bleus.',
+    gouter: ['Les pancakes'],
+    texte: ['Pancakes, avocado toasts et burritos, dans une salle à carreaux bleus.'],
+    verdict: 'Un bon choix sur la carte, sans plus.',
+    adresses: ['54 rue des Martyrs, 75009 Paris', '55 rue Cler, 75007 Paris', '6 rue du Petit Pont, 75005 Paris']
+  },
+  {
+    id: 'ritz',
+    nom: 'Ritz Paris — Le Comptoir',
+    ville: 'Paris',
+    quartier: 'Vendôme',
+    type: 'Pâtisserie',
+    note: 5,
+    prix: '€€€',
+    photos: ['images/adresse-ritz.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'La boutique de pâtisserie du Ritz, rue Cambon.',
+    gouter: ['Le flan'],
+    texte: ['La boutique de pâtisserie du Ritz, rue Cambon.'],
+    verdict: 'Mention spéciale pour le flan, excellent.',
+    adresses: ['38 rue Cambon, 75001 Paris']
+  },
+  {
+    id: 'chani',
+    nom: 'Chani',
+    ville: 'Noisy-le-Grand',
+    quartier: 'Noisy-le-Grand',
+    type: 'Indien',
+    note: 5,
+    prix: '€€',
+    photos: ['images/adresse-chani.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Currys parfumés et naans au fromage, dans une salle chaleureuse.',
+    gouter: ['Le curry et le naan au fromage'],
+    texte: ['Currys parfumés et naans au fromage, dans une salle chaleureuse.'],
+    verdict: 'Très bon restaurant indien.',
+    adresses: ['14 avenue Emile Cossonneau, 93160 Noisy-le-Grand']
+  },
+  {
+    id: 'panda',
+    nom: 'Panda Kitchen',
+    ville: 'Lognes',
+    quartier: 'Lognes',
+    type: 'Sushis',
+    note: 5,
+    prix: '€€',
+    photos: ['images/adresse-panda.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Sushis, makis et poulet frit, avec un rapport qualité-prix rare.',
+    gouter: ['Les plateaux de makis'],
+    texte: ['Sushis, makis et poulet frit, avec un rapport qualité-prix rare.'],
+    verdict: 'Bon rapport qualité-prix, on y revient.',
+    adresses: ['11 place des Libert\u00e9s Publiques, 77185 Lognes']
+  },
+  {
+    id: 'ptitbreton',
+    nom: 'Cr\u00eaperie Le P\u2019tit Breton',
+    ville: 'Paris',
+    quartier: 'Op\u00e9ra et Lorette',
+    type: 'Cr\u00eaperie',
+    note: 5,
+    prix: '\u20ac',
+    photos: ['images/adresse-ptitbreton.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'La premi\u00e8re cr\u00eaperie \u00e0 volont\u00e9 de France : galettes et cr\u00eapes sans compter.',
+    gouter: ['La formule cr\u00eapes \u00e0 volont\u00e9'],
+    texte: [
+      'Les cr\u00eapes sont vraiment bonnes, et le choix est large : on encha\u00eene le sal\u00e9 puis le sucr\u00e9 sans se lasser. Le rapport qualit\u00e9-prix est difficile \u00e0 battre \u00e0 Paris.'
+    ],
+    verdict: 'Enti\u00e8rement valid\u00e9. \u00c0 faire le ventre vide.',
+    adresses: ['12 rue de Port-Mahon, 75002 Paris',
+               '5 rue Notre-Dame-de-Lorette, 75009 Paris']
+  },
+  {
+    id: 'gomu',
+    nom: 'Gomu',
+    ville: 'Paris',
+    quartier: 'Plusieurs quartiers',
+    type: 'Burger',
+    note: 4,
+    prix: '\u20ac\u20ac',
+    photos: ['images/adresse-gomu.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Des burgers servis dans du pain bao, entre street food asiatique et fast-food am\u00e9ricain.',
+    gouter: ['Le bao-burger'],
+    texte: [
+      'Vraiment pas mal, et \u00e7a change des burgers habituels : le pain bao apporte une texture moelleuse inattendue. \u00c7a reste cher pour ce que c\u2019est.'
+    ],
+    verdict: 'Bonne d\u00e9couverte, mais le prix temp\u00e8re l\u2019enthousiasme.',
+    adresses: ['54 rue du Faubourg du Temple, 75011 Paris',
+               '76 rue Rambuteau, 75001 Paris',
+               '10 boulevard Poissonni\u00e8re, 75009 Paris']
+  },
+  {
+    id: 'holycookie',
+    nom: 'Holy Cookie',
+    ville: 'Paris',
+    quartier: 'Marais, Odéon, Wagram',
+    type: 'Cookies',
+    note: 3,
+    prix: '\u20ac\u20ac',
+    photos: ['images/adresse-holycookie.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'De gros cookies servis chauds, \u00e0 manger \u00e0 la cuill\u00e8re dans leur bo\u00eete.',
+    gouter: ['Le cookie \u00e0 partager'],
+    texte: [
+      'Il ressemble davantage \u00e0 un mi-cuit qu\u2019\u00e0 un cookie : ceux qui cherchent du croquant seront surpris. Assez cher, mais la taille permet largement de partager \u00e0 plusieurs.'
+    ],
+    verdict: 'Correct sans plus. \u00c0 prendre \u00e0 plusieurs, et en connaissance de cause.',
+    adresses: ['18 rue des \u00c9couffes, 75004 Paris',
+               '70 rue Saint-Andr\u00e9 des Arts, 75006 Paris',
+               '8 rue Rennequin, 75017 Paris']
+  },
+  {
+    id: 'keopi',
+    nom: 'Keopi',
+    ville: 'Paris',
+    quartier: 'Passage Verdeau',
+    type: 'Brunch',
+    note: 2,
+    prix: '\u20ac\u20ac',
+    photos: ['images/adresse-keopi.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'Un brunch aux inspirations cor\u00e9ennes, dans un passage couvert du 9e.',
+    gouter: ['La gaufre au poulet frit'],
+    texte: [
+      'Le cadre du passage Verdeau est charmant et les assiettes sont belles, mais l\u2019addition est \u00e9lev\u00e9e et les go\u00fbts manquent de relief.'
+    ],
+    verdict: 'Cher, et pas assez de go\u00fbt pour le justifier.',
+    adresses: ['23 passage Verdeau, 75009 Paris']
+  },
+  {
+    id: 'angelina',
+    nom: 'Angelina',
+    ville: 'Paris',
+    quartier: 'Rivoli',
+    type: 'Salon de th\u00e9',
+    note: 2,
+    prix: '\u20ac\u20ac\u20ac',
+    photos: ['images/adresse-angelina.jpg'],
+    visite: 'Ao\u00fbt 2026',
+    resume: 'L\u2019institution du chocolat chaud, ouverte en 1903 rue de Rivoli.',
+    gouter: ['Le chocolat chaud l\u2019Africain'],
+    texte: [
+      'Trop cot\u00e9e pour ce qu\u2019elle propose : le choix de p\u00e2tisseries est restreint et rien ne surprend vraiment au niveau des go\u00fbts. Le cadre reste magnifique.'
+    ],
+    verdict: 'Surcot\u00e9e. On y va pour le lieu, pas pour l\u2019assiette.',
+    adresses: ['226 rue de Rivoli, 75001 Paris']
+  },
   {
     id: 'pralus',
     nom: 'Chocolaterie Pralus',
@@ -5271,6 +5717,7 @@ function initAdresses(){
         '<h3>' + a.nom + '</h3>' +
         '<div class="adr-etoiles">' + etoilesHtml(a.note) + '</div>' +
         '<p>' + a.resume + '</p>' +
+        (adresseComplete(a) ? '<button class="adr-voir-carte" onclick="event.stopPropagation();voirSurCarte(\'' + a.id + '\')">Voir sur la carte</button>' : '') +
       '</div>' +
     '</article>').join('');
 }
@@ -6340,7 +6787,7 @@ function activateTab(t) {
   if(t==='feed') loadFeed();
   if(t==='inspiration') initInspi();
   if(t==='compte') initCompte();
-  if(t==='adresses') initAdresses();
+  if(t==='adresses'){ initAdresses(); setTimeout(initCarte, 120); }
   if(['healthy','patisserie','sale','viennoiserie','gouter'].indexOf(t) !== -1){ poserFiltres(); appliquerFiltres(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
