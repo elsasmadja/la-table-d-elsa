@@ -446,27 +446,46 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .col-ingredients .ingredient-list li.intertitre{cursor:default;text-decoration:none}
 .col-ingredients .ingredient-list li.intertitre::before{display:none}
 /* ── Carte des bonnes adresses ── */
-.carte-bloc{max-width:1200px;margin:0 auto 2.4rem;padding:0 3rem}
-#adresses-carte{height:420px;border-radius:12px;border:1px solid var(--cream-dark);background:var(--cream);z-index:1}
-.carte-legende{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.6rem;font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)}
-.carte-cles{display:flex;align-items:center;gap:0.35rem}
-.cle{display:inline-block;width:12px;height:12px;border-radius:50%;margin-left:0.6rem}
+.carte-bloc{max-width:1200px;margin:0 auto 2.6rem;padding:0 3rem}
+.carte-cadre{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--cream-dark);box-shadow:0 6px 26px rgba(46,42,37,0.07)}
+#adresses-carte{height:480px;background:var(--cream);z-index:1}
+/* les tuiles sont réchauffées pour s'accorder au reste du site */
+#adresses-carte .leaflet-tile-pane{filter:sepia(0.32) saturate(0.78) hue-rotate(-8deg) brightness(1.03) contrast(0.96)}
+.leaflet-container{background:var(--cream)!important;font-family:Jost,sans-serif}
+.leaflet-control-attribution{background:rgba(253,250,246,0.85)!important;font-size:0.6rem!important;color:var(--brown-light)!important}
+.leaflet-control-attribution a{color:var(--brown)!important}
+.leaflet-bar a{background:var(--white)!important;color:var(--text)!important;border-bottom-color:var(--cream-dark)!important}
+.leaflet-bar a:hover{background:var(--cream)!important}
+
+.marqueur-adresse{line-height:0}
+.mk-photo{display:block;width:46px;height:46px;border-radius:50%;border:2.5px solid;background-size:cover;background-position:center;box-shadow:0 3px 12px rgba(46,42,37,0.28);transition:transform 0.2s}
+.marqueur-adresse:hover .mk-photo{transform:scale(1.12)}
+.mk-note{position:absolute;right:-2px;bottom:-2px;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;color:#FDFAF6;font-family:Jost,sans-serif;font-size:0.63rem;font-weight:600;font-style:normal;border:2px solid #FDFAF6}
+
+.carte-legende{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:0.8rem;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--brown-light)}
+.carte-cles{display:flex;align-items:center;gap:0.3rem}
+.cle{display:inline-block;width:11px;height:11px;border-radius:50%;margin:0 0.3rem 0 0.8rem}
 .cle.bon{background:#4E6E52}.cle.moyen{background:#C4A882}.cle.faible{background:#8B6347}
-.marqueur-adresse span{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;color:#FDFAF6;font-family:Jost,sans-serif;font-size:0.78rem;font-weight:600;border:2px solid #FDFAF6;box-shadow:0 2px 8px rgba(46,42,37,0.3)}
-.popup-adr{display:flex;gap:0.6rem;align-items:flex-start}
-.popup-adr img{width:74px;height:74px;object-fit:cover;border-radius:8px;flex-shrink:0}
-.popup-corps{display:flex;flex-direction:column;gap:0.15rem;min-width:120px}
-.popup-type{font-family:Jost,sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light)}
-.popup-adr strong{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--text);line-height:1.2}
-.popup-note{color:var(--brown-light);line-height:1}
-.popup-corps button{margin-top:0.3rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sage-dark);color:var(--white);border:none;border-radius:16px;padding:0.4rem 0.8rem;cursor:pointer}
-.leaflet-popup-content{margin:0.7rem 0.8rem}
-.leaflet-popup-content-wrapper{border-radius:10px}
+
+.popup-adr{display:flex;gap:0.7rem;align-items:flex-start}
+.popup-adr img{width:78px;height:78px;object-fit:cover;border-radius:9px;flex-shrink:0}
+.popup-corps{display:flex;flex-direction:column;gap:0.15rem;min-width:130px}
+.popup-type{font-family:Jost,sans-serif;font-size:0.57rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--brown-light)}
+.popup-adr strong{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:400;color:var(--text);line-height:1.15}
+.popup-note{color:var(--brown-light);line-height:1;margin-top:0.1rem}
+.popup-corps button{margin-top:0.45rem;font-family:Jost,sans-serif;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sage-dark);color:var(--white);border:none;border-radius:16px;padding:0.42rem 0.85rem;cursor:pointer}
+.popup-corps button:hover{opacity:0.88}
+.leaflet-popup-content{margin:0.8rem 0.9rem}
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 8px 30px rgba(46,42,37,0.2)}
+.leaflet-popup-tip{box-shadow:none}
+
 .adr-voir-carte{margin-top:0.7rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;background:none;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:16px;padding:0.4rem 0.8rem;cursor:pointer}
 .adr-voir-carte:hover{border-color:var(--sage);color:var(--sage-dark)}
 @media(max-width:640px){
   .carte-bloc{padding:0 1.2rem;margin-bottom:1.8rem}
-  #adresses-carte{height:320px}
+  #adresses-carte{height:340px}
+  .mk-photo{width:38px;height:38px}
+  .mk-note{width:17px;height:17px;font-size:0.56rem}
 }
 /* ── Bonnes adresses ── */
 .adr-intro{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--text-muted);max-width:520px;margin:-1rem auto 2.4rem}
@@ -2211,7 +2230,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
   <p class="adr-intro">Les maisons où je suis allée, ce que j’y ai goûté, et si j’y retourne.</p>
   <div class="carte-bloc">
-    <div id="adresses-carte"></div>
+    <div class="carte-cadre"><div id="adresses-carte"></div></div>
     <div class="carte-legende">
       <span id="carte-info">Chargement de la carte…</span>
       <span class="carte-cles"><i class="cle bon"></i>4 et 5<i class="cle moyen"></i>3<i class="cle faible"></i>1 et 2</span>
@@ -5245,12 +5264,17 @@ async function chercherCoords(texte){
   return [parseFloat(j[0].lat), parseFloat(j[0].lon)];
 }
 
-function iconeNote(note){
-  const couleur = note >= 4 ? '#4E6E52' : (note === 3 ? '#C4A882' : '#8B6347');
+// Un repère = la photo du lieu, cerclée de la couleur de sa note.
+function iconeAdresse(a){
+  const couleur = a.note >= 4 ? '#4E6E52' : (a.note === 3 ? '#C4A882' : '#8B6347');
+  const fond = (a.photos && a.photos.length)
+    ? 'background-image:url(' + a.photos[0] + ')'
+    : 'background:#EDE7DA';
   return L.divIcon({
     className: 'marqueur-adresse',
-    html: '<span style="background:' + couleur + '">' + note + '</span>',
-    iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -14]
+    html: '<span class="mk-photo" style="' + fond + ';border-color:' + couleur + '"></span>' +
+          '<i class="mk-note" style="background:' + couleur + '">' + a.note + '</i>',
+    iconSize: [52, 52], iconAnchor: [26, 26], popupAnchor: [0, -26]
   });
 }
 
@@ -5271,9 +5295,9 @@ async function initCarte(){
   if(carteAdresses){ setTimeout(() => carteAdresses.invalidateSize(), 60); return; }
 
   carteAdresses = L.map('adresses-carte', { scrollWheelZoom: false }).setView([48.86, 2.35], 11);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19, subdomains: 'abcd',
+    attribution: '&copy; OpenStreetMap, &copy; CARTO'
   }).addTo(carteAdresses);
 
   const cache = coordsMemorisees();
@@ -5290,7 +5314,7 @@ async function initCarte(){
         await new Promise(r => setTimeout(r, 1100));   // on ne bouscule pas le service
       } catch(e) { continue; }
     }
-    const m = L.marker(ll, { icon: iconeNote(a.note) }).addTo(carteAdresses);
+    const m = L.marker(ll, { icon: iconeAdresse(a) }).addTo(carteAdresses);
     m.bindPopup(popupAdresse(a), { maxWidth: 240 });
     marqueursAdresses.push({ id: a.id, m: m });
     points.push(ll);
