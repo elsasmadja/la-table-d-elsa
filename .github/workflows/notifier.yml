@@ -1,0 +1,57 @@
+# Envoi automatique de la notification « nouvelle recette »
+#
+# Se déclenche à chaque fois que derniere-recette.json est modifié et poussé
+# sur la branche main. Peut aussi être lancé à la main depuis l'onglet Actions.
+#
+# Nécessite un secret de dépôt nommé SUPABASE_KEY :
+#   GitHub > Settings > Secrets and variables > Actions > New repository secret
+
+name: Notifier les abonnés
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'derniere-recette.json'
+  workflow_dispatch:
+
+jobs:
+  notifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Laisser GitHub Pages publier la nouvelle version
+        run: sleep 45
+
+      - name: Afficher le message qui sera envoyé
+        run: cat derniere-recette.json
+
+      - name: Déclencher l'envoi
+        env:
+          CLE: ${{ secrets.SUPABASE_KEY }}
+        run: |
+          if [ -z "$CLE" ]; then
+            echo "Le secret SUPABASE_KEY n'est pas défini dans les réglages du dépôt."
+            exit 1
+          fi
+
+          REPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://xhztlskuznrjenjrcwot.supabase.co/functions/v1/notifier" \
+            -H "Authorization: Bearer $CLE" \
+            -H "Content-Type: application/json")
+
+          CODE=$(echo "$REPONSE" | tail -n1)
+          CORPS=$(echo "$REPONSE" | sed '$d')
+
+          echo "Code HTTP : $CODE"
+          echo "Réponse   : $CORPS"
+
+          if [ "$CODE" != "200" ]; then
+            echo "L'envoi a échoué."
+            exit 1
+          fi
+
+          echo "$CORPS" | grep -q '"envoyes"' || { echo "Réponse inattendue."; exit 1; }
+          echo "Notification envoyée."
