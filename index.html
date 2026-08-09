@@ -2633,7 +2633,7 @@ const recipes = {
       "Jour J — Répétez : coulis, fraises, puis une dernière couche de crème que vous lissez soigneusement sur le dessus.",
       {text:"Jour J — Réservez au frais 4 heures minimum. Pour la finition, pochez le décor qui vous plaît : ici une simple fleur pochée, avec un cercle de coulis au centre recouvert de fraises coupées en deux.", img:["images/pochage-fraise.jpg"]}
     ],
-    astuce:"Mon coulis était trop sucré la première fois : j'étais partie sur 300 g de sucre pour 300 g de fraises. Comptez plutôt 160 à 200 g, c'est ce que j'ai mis dans la recette. Tout se prépare la veille — le jour J, il ne reste qu'à monter la chantache et à assembler."
+    astuce:"Mon coulis était trop sucré la première fois : j'étais partie sur 300 g de sucre pour 300 g de fraises. Comptez plutôt 160 à 200 g. Tout se prépare la veille — le jour J, il ne reste qu'à monter la chantache et à assembler."
   },
   crepes:{tag:"Go\u00fbter · Crêpes",title:"Les crêpes de Pierre Hermé",kcal:123,proteines:"5,1",glucides:"14,8",lipides:"4,6",portions:"1 crêpe / 12",
     ingredients:[
@@ -3539,7 +3539,10 @@ function openModal(id) {
   let photosHtml='';
   // For card photos: first image is always the card thumbnail
   // For modal: if recipe is nutelball use all images as carousel, otherwise use photos[1:] or photos[0]
-  const modalPhotos = (id === 'nutelball' || id === 'suisse' || id === 'flancacahuete' || id === 'ensoleillee' || id === 'myrtille') ? photos : (photos.length > 1 ? photos.slice(1) : photos);
+  // Historiquement, IMGS[0] servait de vignette et la fiche l'ignorait.
+  // Les recettes listées ici fournissent directement leur carrousel complet.
+  const CARROUSEL_COMPLET = ['nutelball','suisse','flancacahuete','ensoleillee','myrtille','bombefraise','crepes'];
+  const modalPhotos = CARROUSEL_COMPLET.indexOf(id) !== -1 ? photos : (photos.length > 1 ? photos.slice(1) : photos);
   if(modalPhotos.length===0){
     photosHtml='<div class="recipe-card-placeholder" style="border-radius:6px 6px 0 0;aspect-ratio:4/3"><span style="font-size:2rem">🍪</span><p style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">Photo à venir</p></div>';
   } else if(modalPhotos.length===1){
