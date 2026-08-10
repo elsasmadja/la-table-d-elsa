@@ -58,6 +58,7 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 /* ── HOME : hero plein écran ── */
 .hero-full{position:relative;height:calc(100vh - 70px);height:calc(100svh - 70px);min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+@media(max-width:640px){.hero-bg{object-position:center 50%}}
 .hero-veil{position:absolute;inset:0;background:radial-gradient(ellipse 72% 55% at 50% 46%,rgba(28,24,20,0.44) 0%,rgba(28,24,20,0.22) 58%,rgba(28,24,20,0.04) 100%),linear-gradient(to bottom,rgba(28,24,20,0.3) 0%,rgba(28,24,20,0.14) 40%,rgba(28,24,20,0.5) 100%)}
 .hero-inner{position:relative;z-index:2;text-align:center;padding:2rem;max-width:640px}
 .hero-inner h1{font-family:'Cormorant Garamond',serif;font-size:4.4rem;font-weight:400;line-height:1.12;color:#fff;margin-bottom:0;text-shadow:0 1px 2px rgba(0,0,0,0.7),0 2px 10px rgba(0,0,0,0.55),0 6px 34px rgba(0,0,0,0.5)}
@@ -458,6 +459,7 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .col-ingredients .ingredient-list li.intertitre{cursor:default;text-decoration:none}
 .col-ingredients .ingredient-list li.intertitre::before{display:none}
 /* ── Portrait dans la présentation ── */
+.concept-wrap h2{text-wrap:balance}
 .concept-avec-photo{position:relative}
 .concept-photo{float:left;width:170px;height:170px;object-fit:cover;border-radius:12px;margin:0.4rem 1.6rem 0.8rem 0;shape-outside:margin-box}
 @media(max-width:640px){
@@ -1642,12 +1644,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <div class="concept-wrap concept-avec-photo">
     <img class="concept-photo" src="images/elsa-cuisine.jpg" alt="Elsa dans sa cuisine" loading="lazy">
-    <h2>Bienvenue dans ma cuisine ✨</h2>
-    <p>Ce petit coin d'internet, c'est mon carnet de recettes à moi — partagé avec vous, parce que vous me demandez tout le temps <em>« et c'est quoi ta recette ? »</em>.</p>
-    <p>Ici vous trouverez deux univers qui me ressemblent : les recettes <em>healthy</em> que je cuisine au quotidien pour prendre soin de moi, et les pâtisseries et viennoiseries que je prépare avec amour pour les moments qu'on partage.</p>
-    <p>Pas de prise de tête, pas de discours compliqué. Juste des recettes testées et approuvées, avec les vraies quantités, les vrais temps, et les vraies astuces.</p>
-    <p>Bonne cuisine 🌿</p>
-    <div class="concept-signature">— Elsa</div>
+    <h2>Bienvenue dans&nbsp;ma&nbsp;cuisine&nbsp;✨</h2>
+  <p>Tout a commencé par une question qu'on me pose sans arrêt, à chaque fois que je pose un gâteau sur la table&nbsp;: <em>« mais c'est quoi, ta recette&nbsp;? »</em></p>
+  <p>Alors j'ai arrêté de répondre par messages. Ce petit coin d'internet, c'est mon carnet de recettes, celui que je griffonnais avant, avec les ratures, les quantités corrigées et les astuces trouvées au troisième essai.</p>
+  <p>Vous y trouverez ce que je cuisine vraiment&nbsp;: les recettes <em>healthy</em> de mes semaines, et les pâtisseries que je prépare quand il y a du monde à la maison. Rien d'inaccessible, rien de figé.</p>
+  <p>Chaque recette a été faite, refaite, et goûtée par ceux que j'aime. Les vraies quantités, les vrais temps, et les petites choses qu'on n'écrit jamais mais qui changent tout.</p>
+  <p>Faites-les, ratez-les un peu, recommencez. C'est comme ça qu'on apprend, et c'est là tout le plaisir.</p>
+  <p>Bonne cuisine&nbsp;🌿</p>
+  <div class="concept-signature">— Elsa</div>
   </div>
 
   <div class="notif-bloc" id="notif-bloc">
@@ -3756,7 +3760,12 @@ function openModalComingPhotos(id, name) {
 // intégrée au fichier. Sinon, on garde celle-ci : aucun risque d'écran noir.
 (function(){
   // Ordre de priorité : le premier fichier trouvé remplace l'image intégrée.
-  const candidats = ['images/hero.jpg', 'images/bombe-fraise.jpg'];
+  // Sur un écran étroit, une image portrait cadrée sur le gâteau évite que
+  // le recadrage automatique ne rogne l'essentiel.
+  const etroit = Math.min(window.innerWidth, window.innerHeight) <= 640;
+  const candidats = etroit
+    ? ['images/hero-mobile.jpg', 'images/hero.jpg', 'images/bombe-fraise.jpg']
+    : ['images/hero.jpg', 'images/bombe-fraise.jpg'];
   (function essayer(i){
     if(i >= candidats.length) return;
     const probe = new Image();
