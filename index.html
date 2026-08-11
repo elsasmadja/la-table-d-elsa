@@ -9028,6 +9028,62 @@ function motDeReconfort(question){
 // Chaque entrée : les formulations qui la déclenchent, la cause, le sauvetage
 // possible sur le moment, et comment l'éviter la prochaine fois.
 const RATTRAPAGES = [
+  {m:['creme patissiere tranche','creme tranche','creme granuleuse','creme patissiere granuleuse','creme separee'],
+   p:'Cr\u00e8me p\u00e2tissi\u00e8re tranch\u00e9e ou grumeleuse', c:'Trop de chaleur d\u2019un coup, ou la f\u00e9cule mal d\u00e9lay\u00e9e : les jaunes ont cuit en petits grains.',
+   s:'Retirez du feu, mixez au mixeur plongeant et passez au chinois. Neuf fois sur dix, elle redevient parfaitement lisse.',
+   e:'D\u00e9layez bien la ma\u00efzena dans les jaunes avant tout lait, et versez le lait chaud en filet en fouettant.'},
+  {m:['creme ne prend pas','creme reste liquide','patissiere ne prend pas','mousse ne prend pas','ca ne prend pas'],
+   p:'La cr\u00e8me ne prend pas', c:'Cuisson trop courte pour une p\u00e2tissi\u00e8re, g\u00e9latine mal dissoute pour une mousse.',
+   s:'Une p\u00e2tissi\u00e8re : remettez sur le feu et laissez bouillir 2 minutes en fouettant. Une mousse : refaites fondre \u00e0 40\u00b0C et ajoutez de la g\u00e9latine r\u00e9hydrat\u00e9e, puis 6 h de froid.',
+   e:'Deux minutes d\u2019\u00e9bullition franche pour la p\u00e2tissi\u00e8re, g\u00e9latine incorpor\u00e9e entre 40 et 60\u00b0C pour les mousses.'},
+  {m:['caramel trop dur','caramel dur','caramel colle aux dents','caramel casse'],
+   p:'Caramel trop dur', c:'Cuit trop longtemps, ou pas assez de cr\u00e8me pour l\u2019assouplir.',
+   s:'Refaites-le fondre \u00e0 feu doux avec 2 c.\u00e0.s de cr\u00e8me chaude, il redevient souple.',
+   e:'Sortez-le du feu \u00e0 la couleur ambr\u00e9e et d\u00e9tendez toujours avec de la cr\u00e8me chaude, jamais froide.'},
+  {m:['pate trop liquide','appareil trop liquide','pate coule'],
+   p:'P\u00e2te trop liquide', c:'Trop de liquide, ou une farine qui absorbe moins que pr\u00e9vu.',
+   s:'Ajoutez la farine par cuill\u00e8re, jamais d\u2019un coup, et laissez reposer 20 minutes : elle \u00e9paissit toute seule en s\u2019hydratant.',
+   e:'Gardez 10 % du liquide de c\u00f4t\u00e9 et ajustez \u00e0 la fin, selon ce que la p\u00e2te demande.'},
+  {m:['glacage trop epais','glacage epais','glacage fige'],
+   p:'Gla\u00e7age trop \u00e9pais', c:'Refroidi en dessous de sa temp\u00e9rature de travail.',
+   s:'R\u00e9chauffez tr\u00e8s doucement au bain-marie jusqu\u2019\u00e0 33\u00b0C, sans jamais fouetter.',
+   e:'Coulez toujours entre 30 et 35\u00b0C, et gardez un thermom\u00e8tre \u00e0 c\u00f4t\u00e9.'},
+  {m:['a deborde du four','deborde du moule','ca deborde'],
+   p:'La pr\u00e9paration a d\u00e9bord\u00e9', c:'Moule trop rempli, ou trop de levure pour la quantit\u00e9 de p\u00e2te.',
+   s:'Rien \u00e0 faire pour cette fois. Glissez une plaque sous le moule pour \u00e9viter que \u00e7a br\u00fble au fond du four.',
+   e:'Ne remplissez jamais au-del\u00e0 des deux tiers, et respectez les quantit\u00e9s de levure.'},
+  {m:['colle au moule','demoulage rate','impossible a demouler','ca ne se demoule pas'],
+   p:'\u00c7a colle au moule', c:'Moule mal pr\u00e9par\u00e9, ou d\u00e9moulage tent\u00e9 trop chaud.',
+   s:'Passez une lame fine le long des bords, puis posez le moule 30 secondes sur un torchon tr\u00e8s chaud et humide.',
+   e:'Beurrez puis farinez, ou chemisez de papier cuisson. Et attendez 10 minutes de refroidissement avant de d\u00e9mouler.'},
+  {m:['mousse retombee','mousse retombe','appareil retombe','ca retombe'],
+   p:'La mousse est retomb\u00e9e', c:'M\u00e9lange trop br\u00e2l\u00e9 \u00e0 la maryse : l\u2019air incorpor\u00e9 est reparti.',
+   s:'Elle ne regonflera pas. Servez-la en verrine, personne ne verra la diff\u00e9rence.',
+   e:'Incorporez en trois fois, de bas en haut, en tournant le bol \u00e0 chaque mouvement.'},
+  {m:['trop liquide au montage','entremets mou','ca ne tient pas au montage'],
+   p:'L\u2019entremets ne tient pas', c:'Insert ou cr\u00e8me pas assez pris au moment du montage.',
+   s:'Remettez le tout 2 h au cong\u00e9lateur avant de continuer. Un montage se fait sur des \u00e9l\u00e9ments bien froids.',
+   e:'Chaque couche doit \u00eatre prise avant d\u2019ajouter la suivante, sans exception.'},
+  {m:['biscuit trop dur','biscuit dur','genoise dure'],
+   p:'Biscuit trop dur', c:'Trop travaill\u00e9 apr\u00e8s l\u2019ajout de farine, ou trop cuit.',
+   s:'Imbibez g\u00e9n\u00e9reusement d\u2019un sirop ti\u00e8de au pinceau, c\u2019est fait pour \u00e7a.',
+   e:'M\u00e9langez juste ce qu\u2019il faut apr\u00e8s la farine, et sortez d\u00e8s que la pointe ressort avec des miettes humides.'},
+  {m:['pas assez sucre','manque de gout','fade','sans gout'],
+   p:'C\u2019est fade', c:'Manque de sel, d\u2019acidit\u00e9 ou de vanille : le sucre seul ne donne pas de go\u00fbt.',
+   s:'Une pinc\u00e9e de fleur de sel, quelques gouttes de citron, ou de la vanille : le go\u00fbt remonte imm\u00e9diatement.',
+   e:'Salez toujours l\u00e9g\u00e8rement vos p\u00e2tes sucr\u00e9es, et n\u2019oubliez pas l\u2019acidit\u00e9 dans les desserts riches.'},
+  {m:['chantilly liquide','chantilly retombe','chantilly molle'],
+   p:'Chantilly qui retombe', c:'Pas assez mont\u00e9e, ou temp\u00e9rature trop \u00e9lev\u00e9e.',
+   s:'Remettez 15 min au frais et refouettez doucement. Une pointe de mascarpone la stabilise durablement.',
+   e:'Cr\u00e8me \u00e0 30 % minimum, bol et fouet sortis du cong\u00e9lateur.'},
+  {m:['trop epais','sauce trop epaisse','coulis trop epais'],
+   p:'C\u2019est trop \u00e9pais', c:'R\u00e9duction trop pouss\u00e9e, ou trop de liant.',
+   s:'D\u00e9tendez avec un peu d\u2019eau, de lait ou de jus, ajout\u00e9 ti\u00e8de et en filet.',
+   e:'R\u00e9duisez par \u00e9tapes en go\u00fbtant, il est toujours plus facile d\u2019\u00e9paissir que d\u2019all\u00e9ger.'},
+  {m:['brule au fond','ca brule','ca a brule'],
+   p:'\u00c7a br\u00fble', c:'Feu trop vif, ou casserole \u00e0 fond fin.',
+   s:'Transvasez imm\u00e9diatement sans racler le fond : le go\u00fbt de br\u00fbl\u00e9 y reste. Go\u00fbtez avant de continuer.',
+   e:'Feu doux et fond \u00e9pais pour tout ce qui contient du sucre ou du lait.'},
   {m:['ganache tranche','ganache granuleuse','ganache separee','ganache huileuse','ganache qui tranche'],
    p:'Ganache tranch\u00e9e', c:'Le gras et le liquide se sont s\u00e9par\u00e9s, comme une vinaigrette qui retombe. Trop de chaleur, ou la cr\u00e8me vers\u00e9e d\u2019un seul coup.',
    s:'Mixez au mixeur plongeant, t\u00eate bien immerg\u00e9e, sans faire entrer d\u2019air. Si elle reste huileuse, ajoutez 1 c.\u00e0.s de cr\u00e8me chaude et remixez.',
@@ -9178,21 +9234,59 @@ const RATTRAPAGES = [
    e:'R\u00e9duisez le sucre d\u2019un tiers \u00e0 l\u2019essai suivant : la plupart des recettes le supportent.'}
 ];
 
-// On ne cherche pas la phrase exacte : « ma ganache a tranch\u00e9 » doit
-// retrouver la cl\u00e9 « ganache tranche ». Tous les mots de la cl\u00e9 doivent
-// \u00eatre pr\u00e9sents dans la question, dans n'importe quel ordre.
+// Deux passes. D'abord la correspondance stricte : tous les mots de la clé
+// présents. Ensuite, une passe souple qui croise le sujet (crème, caramel,
+// pâte...) et le symptôme (tranché, dur, liquide...), pour attraper les
+// formulations qu'on n'avait pas prévues.
+const SUJETS = ['creme','ganache','caramel','chantilly','pate','biscuit','genoise','glacage',
+                'mousse','chocolat','meringue','blanc','jaune','praline','compotee','confiture',
+                'macaron','chou','brioche','gelatine','agar','flan','sauce','entremets','gnocchi',
+                'appareil','coulis','sirop','tarte','gateau','moule','four'];
+const SYMPTOMES = ['tranche','granuleux','graineux','graine','liquide','epais','dur','mou','sec',
+                   'brule','amer','cristallise','retombe','retracte','colle','deborde','creux',
+                   'craquele','bulle','fade','sale','sucre','cru','perle','saisi','blanchi',
+                   'monte','prend','defont','detrempe'];
+
+function motsPresents(q, liste){
+  return liste.filter(m => q.indexOf(' ' + m) !== -1 || q.indexOf(m + ' ') !== -1);
+}
+
 function chercherRattrapage(question){
   const q = ' ' + inspiNorm(question) + ' ';
+
+  // passe stricte
   let best = null;
   RATTRAPAGES.forEach(r => r.m.forEach(mot => {
     const mots = inspiNorm(mot).split(' ').filter(x => x.length >= 4);
     if(!mots.length) return;
-    const tous = mots.every(x => q.indexOf(' ' + x) !== -1 || q.indexOf(x + ' ') !== -1);
-    if(!tous) return;
+    if(!mots.every(x => q.indexOf(' ' + x) !== -1 || q.indexOf(x + ' ') !== -1)) return;
     const score = mots.reduce((a, x) => a + x.length, 0);
     if(!best || score > best.score) best = { r: r, score: score };
   }));
-  return best ? best.r : null;
+  if(best) return best.r;
+
+  // passe souple : un sujet et un symptôme suffisent
+  const sujets = motsPresents(q, SUJETS);
+  const symptomes = motsPresents(q, SYMPTOMES);
+  if(!sujets.length || !symptomes.length) return null;
+
+  let meilleur = null;
+  RATTRAPAGES.forEach(r => {
+    const cles = ' ' + r.m.join(' ') + ' ';
+    let score = 0;
+    sujets.forEach(x => { if(cles.indexOf(x) !== -1) score += 3; });
+    symptomes.forEach(x => { if(cles.indexOf(x) !== -1) score += 2; });
+    if(score >= 5 && (!meilleur || score > meilleur.score)) meilleur = { r: r, score: score };
+  });
+  return meilleur ? meilleur.r : null;
+}
+
+// Un message qui décrit un problème ne doit jamais recevoir une suggestion
+// de recette en réponse : mieux vaut avouer qu'on ne sait pas.
+function ressembleAUnProbleme(question){
+  const q = ' ' + inspiNorm(question) + ' ';
+  return motsPresents(q, SYMPTOMES).length > 0 ||
+         /rate|loupe|marche pas|probleme|au secours|catastrophe|comment rattraper|je fais quoi/.test(q);
 }
 
 function reponseRattrapage(r){
@@ -9285,6 +9379,14 @@ function envoyerInspi(){
 
   // un ratage en cours : c'est le plus urgent
   const ratt = chercherRattrapage(saisie);
+  if(!ratt && ressembleAUnProbleme(saisie)){
+    const mot = motDeReconfort(saisie);
+    return inspiRepondre((mot ? '<div class="ratt-ecoute">' + mot + '</div>' : '') +
+      'Celui-l\u00e0, je ne le connais pas encore, et je pr\u00e9f\u00e8re te le dire plut\u00f4t que d\u2019inventer.<br><br>' +
+      'Essaie de me le d\u00e9crire autrement, en nommant la pr\u00e9paration et ce qui cloche&nbsp;: ' +
+      '<em>ma ganache a tranch\u00e9</em>, <em>mon caramel est trop dur</em>, <em>ma p\u00e2te se r\u00e9tracte</em>. ' +
+      'Je connais ' + RATTRAPAGES.length + ' ratages, il y a des chances que le tien en fasse partie.');
+  }
   if(ratt){
     const mot = motDeReconfort(saisie);
     return inspiRepondre((mot ? '<div class="ratt-ecoute">' + mot + '</div>' : '') + reponseRattrapage(ratt));
