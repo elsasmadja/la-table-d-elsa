@@ -461,6 +461,7 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 /* ── Portrait dans la présentation ── */
 .concept-wrap.concept-avec-photo{display:grid;grid-template-columns:320px 1fr;gap:3.4rem;align-items:start;text-align:left;max-width:1040px;padding:4rem 2rem}
 .concept-texte h2{text-wrap:balance;text-align:left;margin-top:-0.4rem}
+.titre-etincelle{display:inline-block;width:0.6em;height:0.6em;margin-left:0.32em;color:var(--brown-light);vertical-align:0.08em}
 .concept-texte p:last-of-type{margin-bottom:0.6rem}
 .concept-visuel{position:relative;margin:0}
 .concept-visuel::before{content:'';position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--sage);border-radius:14px;z-index:0}
@@ -1687,7 +1688,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <img class="concept-photo" src="images/elsa-cuisine.jpg" alt="Elsa dans sa cuisine" loading="lazy">
     </figure>
     <div class="concept-texte">
-    <h2>Bienvenue dans&nbsp;ma&nbsp;cuisine&nbsp;✨</h2>
+    <h2>Bienvenue dans&nbsp;ma&nbsp;cuisine<svg class="titre-etincelle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5c0 5 3.5 8.5 8.5 8.5-5 0-8.5 3.5-8.5 8.5 0-5-3.5-8.5-8.5-8.5 5 0 8.5-3.5 8.5-8.5z"/><path d="M5.5 15.5c0 2-1.4 3.4-3.4 3.4 2 0 3.4 1.4 3.4 3.4 0-2 1.4-3.4 3.4-3.4-2 0-3.4-1.4-3.4-3.4z"/></svg></h2>
   <p>Tout a commencé par une question qu'on me pose sans arrêt, à chaque fois que je pose un gâteau sur la table&nbsp;: <em>« mais c'est quoi, ta recette&nbsp;? »</em></p>
   <p>Alors j'ai arrêté de répondre par messages. Ce petit coin d'internet, c'est mon carnet de recettes, celui que je griffonnais avant, avec les ratures, les quantités corrigées et les astuces trouvées au troisième essai.</p>
   <p>Vous y trouverez ce que je cuisine vraiment&nbsp;: les recettes <em>healthy</em> de mes semaines, et les pâtisseries que je prépare quand il y a du monde à la maison. Rien d'inaccessible, rien de figé.</p>
