@@ -459,14 +459,15 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .col-ingredients .ingredient-list li.intertitre{cursor:default;text-decoration:none}
 .col-ingredients .ingredient-list li.intertitre::before{display:none}
 /* ── Portrait dans la présentation ── */
-.concept-avec-photo{display:grid;grid-template-columns:300px 1fr;gap:3rem;align-items:center;text-align:left;max-width:1060px}
-.concept-texte h2{text-wrap:balance;text-align:left}
+.concept-wrap.concept-avec-photo{display:grid;grid-template-columns:320px 1fr;gap:3.4rem;align-items:start;text-align:left;max-width:1040px;padding:4rem 2rem}
+.concept-texte h2{text-wrap:balance;text-align:left;margin-top:-0.4rem}
+.concept-texte p:last-of-type{margin-bottom:0.6rem}
 .concept-visuel{position:relative;margin:0}
 .concept-visuel::before{content:'';position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--sage);border-radius:14px;z-index:0}
 .concept-photo{position:relative;z-index:1;display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:0 10px 34px rgba(46,42,37,0.14)}
 .concept-visuel figcaption{position:relative;z-index:1;margin-top:1.3rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--brown-light);text-align:center}
 @media(max-width:820px){
-  .concept-avec-photo{grid-template-columns:1fr;gap:1.8rem;text-align:center}
+  .concept-wrap.concept-avec-photo{grid-template-columns:1fr;gap:1.8rem;text-align:center}
   .concept-texte h2{text-align:center}
   .concept-visuel{max-width:260px;margin:0 auto}
   .concept-visuel::before{inset:10px -10px -10px 10px}
