@@ -490,6 +490,14 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
   .cuisine-appel{padding:0.9rem 1rem;gap:0.8rem}
   .cuisine-appel-txt em{font-size:0.7rem}
 }
+/* ── Multiplicateur par section ── */
+.ingredient-list li.intertitre{display:flex;align-items:center;justify-content:space-between;gap:0.6rem}
+.sect-mult{display:inline-flex;align-items:center;gap:0.1rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:16px;padding:1px;flex-shrink:0}
+.sect-mult button{background:none;border:none;width:22px;height:22px;border-radius:50%;color:var(--sage-dark);font-size:0.8rem;line-height:1;cursor:pointer;padding:0}
+.sect-mult button:hover{background:var(--sage-dark);color:var(--white)}
+.sect-mult b{font-family:Jost,sans-serif;font-size:0.66rem;font-weight:500;color:var(--text-muted);min-width:30px;text-align:center;letter-spacing:0.02em}
+.sect-mult.actif{background:rgba(122,158,126,0.16);border-color:var(--sage)}
+.sect-mult.actif b{color:var(--sage-dark);font-weight:600}
 /* ── Petites icônes des vignettes et de l'interface ── */
 .meta-ico{width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:0.35rem;flex-shrink:0}
 .meta-cat{font-family:Jost,sans-serif;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark)}
@@ -3791,6 +3799,7 @@ function openModal(id) {
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   currentRecipeId = id;
+  facteursSection = {};
   if (regimesActifs.length) { rendreIngredients(); majNotesRegimes(); }
   if (profil.portions && portionsBase && /^(part|portion)/.test(portionsUnite)) appliquerPortions(profil.portions);
   if (profil.ingOuverts) {
@@ -7193,16 +7202,64 @@ function adapterIngredient(txt){
   return { texte: out, modifie: modifie };
 }
 
+// Multiplicateurs par section : « je veux une fois et demie de crème
+// pâtissière » sans toucher au reste de la recette.
+let facteursSection = {};
+const PALIERS = [0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3];
+
+function cleSection(txt){
+  return inspiNorm(txt.replace(/\u2014/g, '').replace(/\([^)]*\)/g, ''));
+}
+
+function fmtFacteur(v){
+  return ('\u00d7' + (Math.round(v * 100) / 100)).replace('.', ',');
+}
+
+function changerFacteur(cle, sens){
+  const actuel = facteursSection[cle] || 1;
+  let i = PALIERS.indexOf(actuel);
+  if(i === -1) i = PALIERS.indexOf(1);
+  i = Math.max(0, Math.min(PALIERS.length - 1, i + sens));
+  facteursSection[cle] = PALIERS[i];
+  rendreIngredients();
+}
+
 function rendreIngredients(){
   const f = (portionsBase && portionsActuel) ? (portionsActuel / portionsBase) : 1;
+  let sectionCourante = '';
   document.querySelectorAll('#modal-content .ingredient-list li').forEach(li => {
     const brut = li.dataset.brut;
-    if(brut === undefined) return;
-    const misEchelle = scaleIngredient(brut, f);
+
+    if(brut === undefined){                      // c'est un intertitre
+      const t = li.querySelector('span') ? li.querySelector('span').textContent : li.textContent;
+      sectionCourante = cleSection(t);
+      majBadgeSection(li, sectionCourante);
+      return;
+    }
+    const fs = facteursSection[sectionCourante] || 1;
+    const misEchelle = scaleIngredient(brut, f * fs);
     const res = adapterIngredient(misEchelle);
     li.textContent = res.texte;
     li.classList.toggle('ing-adapte', res.modifie);
   });
+}
+
+// le petit réglage posé à droite de chaque intertitre
+function majBadgeSection(li, cle){
+  const v = facteursSection[cle] || 1;
+  let z = li.querySelector('.sect-mult');
+  if(!z){
+    z = document.createElement('span');
+    z.className = 'sect-mult';
+    z.innerHTML = '<button type="button" title="Moins">\u2212</button>' +
+                  '<b></b>' +
+                  '<button type="button" title="Plus">+</button>';
+    z.querySelector('button:first-child').onclick = e => { e.stopPropagation(); changerFacteur(cle, -1); };
+    z.querySelector('button:last-child').onclick  = e => { e.stopPropagation(); changerFacteur(cle, 1); };
+    li.appendChild(z);
+  }
+  z.querySelector('b').textContent = fmtFacteur(v);
+  z.classList.toggle('actif', v !== 1);
 }
 
 function majNotesRegimes(){
