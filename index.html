@@ -490,6 +490,168 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
   .cuisine-appel{padding:0.9rem 1rem;gap:0.8rem}
   .cuisine-appel-txt em{font-size:0.7rem}
 }
+/* ── Invitation à jouer pendant la cuisson ── */
+.jeu-pop{display:none;position:absolute;left:1.2rem;right:1.2rem;bottom:calc(6.2rem + env(safe-area-inset-bottom));max-width:460px;margin:0 auto;z-index:40;align-items:center;gap:0.85rem;background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:0.9rem 1rem;box-shadow:0 10px 34px rgba(46,42,37,0.24);animation:remonteJeu 0.4s ease}
+.jeu-pop.open{display:flex}
+@keyframes remonteJeu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.jeu-pop-ico{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(122,158,126,0.16);color:var(--sage-dark);flex-shrink:0}
+.jeu-pop-ico svg{width:20px;height:20px}
+.jeu-pop-txt{display:flex;flex-direction:column;gap:0.1rem;flex:1;min-width:0}
+.jeu-pop-txt strong{font-family:Jost,sans-serif;font-size:0.76rem;letter-spacing:0.06em;font-weight:500;color:var(--text)}
+.jeu-pop-txt span{font-size:0.74rem;color:var(--text-muted);line-height:1.45}
+.jeu-pop-oui{background:var(--sage-dark);color:var(--white);border:none;border-radius:20px;padding:0.6rem 1.1rem;font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
+.jeu-pop-non{background:none;border:none;color:var(--brown-light);font-size:0.8rem;cursor:pointer;padding:0.3rem;flex-shrink:0}
+.jeu-pop-non:hover{color:var(--text)}
+@media(max-width:560px){
+  .jeu-pop{left:0.8rem;right:0.8rem;bottom:calc(5.6rem + env(safe-area-inset-bottom));gap:0.6rem;padding:0.8rem}
+  .jeu-pop-txt span{font-size:0.7rem}
+  .jeu-pop-oui{padding:0.55rem 0.9rem}
+}
+/* ── Puissance 4 ── */
+.p4-grille{display:grid;grid-template-columns:repeat(7,1fr);gap:0.4rem;background:var(--sage-dark);border-radius:12px;padding:0.5rem;margin-top:0.6rem}
+.p4-case{aspect-ratio:1;border-radius:50%;border:none;background:var(--cream);cursor:pointer;padding:0;transition:transform 0.15s,background 0.2s}
+.p4-case:hover:not(:disabled){transform:scale(1.08)}
+.p4-case:disabled{cursor:default}
+.p4-case.moi{background:#C0554A}
+.p4-case.lui{background:#E8C86A}
+.p4-case.gagnante{box-shadow:0 0 0 3px var(--white);animation:pulseP4 1s infinite}
+@keyframes pulseP4{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+/* ── Le pendu ── */
+.pendu-indice{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--text-muted);text-align:center;margin:1rem 0 0.6rem}
+.pendu-mot{font-family:'Cormorant Garamond',serif;font-size:2.1rem;letter-spacing:0.12em;text-align:center;color:var(--text);word-break:break-word;line-height:1.3}
+.pendu-mot.gagne{color:var(--sage-dark)}
+.pendu-mot.perdu{color:var(--brown)}
+.pendu-vies{display:flex;justify-content:center;gap:0.35rem;margin:1rem 0 1.2rem}
+.pendu-vies span{width:11px;height:11px;border-radius:50%;background:var(--sage);transition:background 0.3s}
+.pendu-vies span.perdue{background:var(--cream-dark)}
+.pendu-clavier{display:grid;grid-template-columns:repeat(7,1fr);gap:0.35rem}
+.pendu-clavier button{aspect-ratio:1;background:var(--white);border:1px solid var(--cream-dark);border-radius:8px;font-family:Jost,sans-serif;font-size:0.85rem;color:var(--text);cursor:pointer;padding:0;transition:all 0.15s}
+.pendu-clavier button:hover:not(:disabled){border-color:var(--sage);background:rgba(122,158,126,0.1)}
+.pendu-clavier button.juste{background:rgba(122,158,126,0.2);border-color:var(--sage);color:var(--sage-dark)}
+.pendu-clavier button.rate{background:var(--cream);color:var(--cream-dark);border-color:var(--cream-dark)}
+.pendu-clavier button:disabled{cursor:default}
+@media(max-width:560px){
+  .pendu-mot{font-size:1.7rem;letter-spacing:0.08em}
+  .pendu-clavier{gap:0.28rem}
+  .p4-grille{gap:0.28rem;padding:0.35rem}
+}
+/* ── Invitation à découvrir le guide ── */
+.guide-invit{display:none;position:fixed;left:1.2rem;right:1.2rem;bottom:1.2rem;max-width:430px;margin:0 auto;z-index:1800;align-items:center;gap:0.85rem;background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:0.95rem 1rem;box-shadow:0 12px 38px rgba(46,42,37,0.2);animation:remonteGuide 0.45s ease}
+.guide-invit.open{display:flex}
+@keyframes remonteGuide{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.gi-ico{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(122,158,126,0.16);color:var(--sage-dark);flex-shrink:0}
+.gi-ico svg{width:20px;height:20px}
+.gi-txt{display:flex;flex-direction:column;gap:0.1rem;flex:1;min-width:0}
+.gi-txt strong{font-family:Jost,sans-serif;font-size:0.78rem;font-weight:500;color:var(--text)}
+.gi-txt span{font-size:0.74rem;color:var(--text-muted);line-height:1.45}
+.gi-oui{background:var(--sage-dark);color:var(--white);border:none;border-radius:20px;padding:0.6rem 1rem;font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
+.gi-non{background:none;border:none;color:var(--brown-light);font-size:0.8rem;cursor:pointer;padding:0.3rem;flex-shrink:0}
+
+/* ── Le guide ── */
+.guide-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.78);z-index:2500;overflow-y:auto;padding:2rem 1rem}
+.guide-overlay.open{display:block}
+.guide-boite{max-width:700px;margin:0 auto;background:var(--cream);border-radius:16px;padding:1.8rem 1.8rem 2rem}
+.guide-entete{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}
+.guide-eyebrow{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--brown-light)}
+.guide-entete h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--text);margin:0.2rem 0 0.5rem}
+.guide-entete p{font-size:0.84rem;color:var(--text-muted);line-height:1.65;max-width:440px}
+.guide-close{background:var(--cream-dark);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--text);cursor:pointer;flex-shrink:0}
+.guide-close:hover{background:var(--text);color:var(--white)}
+.guide-bloc{background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;margin-bottom:0.6rem;overflow:hidden}
+.guide-tete{display:flex;align-items:center;gap:0.85rem;width:100%;background:none;border:none;padding:1rem 1.1rem;cursor:pointer;text-align:left}
+.guide-ico{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--cream);color:var(--sage-dark);flex-shrink:0}
+.guide-ico svg{width:18px;height:18px}
+.guide-titre{flex:1;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text)}
+.guide-chevron{color:var(--brown-light);font-size:1.2rem;transition:transform 0.25s}
+.guide-bloc.ouvert .guide-chevron{transform:rotate(90deg)}
+.guide-bloc.ouvert{border-color:var(--sage)}
+.guide-detail{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.guide-bloc.ouvert .guide-detail{max-height:640px}
+.guide-detail ul{list-style:none;padding:0 1.2rem 1.1rem 4.1rem}
+.guide-detail li{position:relative;font-size:0.86rem;color:var(--text-muted);line-height:1.75;padding:0.32rem 0}
+.guide-detail li::before{content:'';position:absolute;left:-1rem;top:1.05rem;width:5px;height:5px;border-radius:50%;background:var(--sage)}
+.guide-detail b{color:var(--text);font-weight:500}
+.guide-fin{display:block;width:100%;margin-top:1.2rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:0.95rem;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+@media(max-width:640px){
+  .guide-overlay{padding:1rem 0.6rem}
+  .guide-boite{padding:1.3rem 1.1rem 1.6rem}
+  .guide-entete h3{font-size:1.6rem}
+  .guide-detail ul{padding-left:3rem}
+  .guide-invit{left:0.8rem;right:0.8rem;bottom:0.8rem;gap:0.6rem;padding:0.85rem}
+}
+/* ── En attendant le four : les jeux ── */
+.jeux-bulle{position:absolute;right:1.2rem;bottom:calc(10.4rem + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:0.45rem;background:var(--white);color:var(--brown);border:1px solid var(--cream-dark);border-radius:28px;padding:0.7rem 1.05rem;cursor:pointer;box-shadow:0 4px 16px rgba(46,42,37,0.14);font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
+.jeux-bulle svg{width:19px;height:19px}
+.jeux-bulle:hover{background:var(--cream)}
+.cuisine-overlay.sos-ouvert .jeux-bulle{display:none}
+
+.jeux-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.76);z-index:2400;overflow-y:auto;padding:2rem 1rem}
+.jeux-overlay.open{display:block}
+.jeux-boite{max-width:620px;margin:0 auto;background:var(--cream);border-radius:16px;padding:1.6rem 1.6rem 2rem}
+.jeux-tete{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.jeux-eyebrow{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--brown-light)}
+.jeux-tete h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--text);margin-top:0.2rem}
+.jeux-close{background:var(--cream-dark);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--text);cursor:pointer;flex-shrink:0}
+.jeux-close:hover{background:var(--text);color:var(--white)}
+.jeux-timer{font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.08em;color:var(--sage-dark);margin-top:0.8rem;display:none;align-items:center;gap:0.45rem}
+.jeux-timer.actif{display:flex}
+.jt-pastille{width:8px;height:8px;border-radius:50%;background:var(--sage-dark);animation:pulseJeu 1.6s infinite}
+@keyframes pulseJeu{0%,100%{opacity:1}50%{opacity:0.25}}
+.jeux-intro{font-size:0.86rem;color:var(--text-muted);line-height:1.7;margin:1rem 0 1.2rem}
+.jeux-liste{display:flex;flex-direction:column;gap:0.6rem}
+.jeu-carte{display:flex;flex-direction:column;gap:0.2rem;text-align:left;background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:1rem 1.1rem;cursor:pointer;transition:all 0.2s}
+.jeu-carte:hover{border-color:var(--sage);transform:translateX(3px)}
+.jeu-carte strong{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--text)}
+.jeu-carte span{font-size:0.8rem;color:var(--text-muted);line-height:1.55}
+
+.jeu-entete{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1rem 0 0.8rem}
+.jeu-retour{background:none;border:none;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0}
+.jeu-retour:hover{color:var(--sage-dark)}
+.jeu-score{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.08em;color:var(--brown-light)}
+.jeu-barre{height:3px;background:var(--cream-dark);border-radius:2px;overflow:hidden;margin-bottom:1rem}
+.jeu-barre i{display:block;height:100%;background:var(--sage-dark);transition:width 0.3s}
+.jeu-num{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--brown-light)}
+.jeu-question{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--text);line-height:1.3;margin:0.4rem 0 1.1rem}
+.jeu-choix{display:flex;flex-direction:column;gap:0.5rem}
+.jeu-choix.deux{flex-direction:row}
+.jeu-choix.deux button{flex:1}
+.jeu-choix button{background:var(--white);border:1px solid var(--cream-dark);border-radius:10px;padding:0.85rem 1rem;font-family:Jost,sans-serif;font-size:0.9rem;color:var(--text);cursor:pointer;text-align:left;transition:all 0.2s}
+.jeu-choix.deux button{text-align:center}
+.jeu-choix button:hover:not(:disabled){border-color:var(--sage);background:rgba(122,158,126,0.08)}
+.jeu-choix button:disabled{opacity:0.5;cursor:default}
+.jeu-dessin{display:block;width:120px;height:120px;margin:0.6rem auto 1.2rem;background:var(--white);border-radius:14px;border:1px solid var(--cream-dark);padding:0.7rem}
+.jeu-dessin svg{width:100%;height:100%}
+.jeu-poids{display:flex;gap:0.5rem}
+.jeu-poids input{flex:1;padding:0.85rem 1rem;border:1px solid var(--cream-dark);border-radius:10px;background:var(--white);font-family:Jost,sans-serif;font-size:0.95rem;color:var(--text)}
+.jeu-poids input:focus{outline:none;border-color:var(--sage)}
+.jeu-poids button{background:var(--sage-dark);color:var(--white);border:none;border-radius:10px;padding:0 1.3rem;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}
+.jeu-retour-rep{margin-top:1rem;border-radius:10px;padding:0;font-size:0.87rem;line-height:1.6}
+.jeu-retour-rep.juste,.jeu-retour-rep.faux{padding:0.9rem 1.1rem}
+.jeu-retour-rep.juste{background:rgba(122,158,126,0.14);color:var(--sage-dark)}
+.jeu-retour-rep.faux{background:rgba(139,99,71,0.1);color:var(--brown)}
+.jeu-retour-rep strong{display:block;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem}
+.jeu-retour-rep span{display:block;color:var(--text-muted)}
+.jeu-suivant{margin-top:0.8rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:22px;padding:0.65rem 1.3rem;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}
+.jeu-fin{text-align:center;padding:1.6rem 0 0.6rem}
+.jeu-fin-score{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--sage-dark);line-height:1}
+.jeu-fin-score span{font-size:1.2rem;color:var(--brown-light);margin-left:0.3rem}
+.jeu-fin p{font-size:0.95rem;color:var(--text-muted);margin:0.8rem 0 1.4rem}
+.jeu-rejouer{background:var(--sage-dark);color:var(--white);border:none;border-radius:24px;padding:0.8rem 1.6rem;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.11em;text-transform:uppercase;cursor:pointer;margin-right:0.8rem}
+
+.memory-grille{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;margin-top:0.4rem}
+.memory-carte{aspect-ratio:1;background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:0.5rem;cursor:pointer;transition:all 0.25s}
+.memory-carte svg{width:100%;height:100%}
+.memory-dos{display:block;width:100%;height:100%;border-radius:8px;background:repeating-linear-gradient(45deg,var(--cream),var(--cream) 6px,var(--cream-dark) 6px,var(--cream-dark) 12px)}
+.memory-carte.vue{border-color:var(--sage)}
+.memory-carte.trouvee{background:rgba(122,158,126,0.14);border-color:var(--sage);opacity:0.72}
+@media(max-width:640px){
+  .jeux-overlay{padding:1rem 0.6rem}
+  .jeux-boite{padding:1.2rem 1rem 1.6rem}
+  .jeux-bulle{padding:0.75rem;border-radius:50%}
+  .jeux-lib{display:none}
+  .memory-grille{gap:0.45rem}
+}
 /* ── Multiplicateur par section ── */
 .ingredient-list li.intertitre{display:flex;align-items:center;justify-content:space-between;gap:0.6rem}
 .sect-mult{display:inline-flex;align-items:center;gap:0.1rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:16px;padding:1px;flex-shrink:0}
@@ -909,7 +1071,26 @@ body.shop-open .modal-close{display:none}
   .search-wrap{padding:1rem 1.5rem}
 }
 
-footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.1em;border-top:1px solid var(--cream-dark);background:var(--white)}
+/* ── Pied de page ── */
+footer{padding:0;border-top:1px solid var(--cream-dark);background:var(--white);text-align:left;letter-spacing:normal}
+.pied{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:2.6rem;max-width:1040px;margin:0 auto;padding:3rem 2rem 2.2rem}
+.pied-col{display:flex;flex-direction:column;gap:0.5rem}
+.pied-marque{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text);letter-spacing:0.02em}
+.pied-marque em{color:var(--sage-dark);font-style:italic}
+.pied-col p{font-size:0.82rem;color:var(--text-muted);line-height:1.7;max-width:280px}
+.pied-titre{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--brown-light);margin-bottom:0.2rem}
+.pied-col a{font-size:0.84rem;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.pied-col a:hover{color:var(--sage-dark)}
+.pied-contact{display:inline-flex;align-items:center;gap:0.5rem}
+.pied-contact svg{width:16px;height:16px;flex-shrink:0;color:var(--brown-light)}
+.pied-note{font-size:0.76rem!important;color:var(--brown-light)!important;margin-top:0.4rem;font-style:italic}
+.pied-bas{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;max-width:1040px;margin:0 auto;padding:1.1rem 2rem 1.6rem;border-top:1px solid var(--cream-dark);font-size:0.7rem;color:var(--brown-light);letter-spacing:0.08em}
+@media(max-width:820px){
+  .pied{grid-template-columns:1fr;gap:1.8rem;padding:2.4rem 1.4rem 1.6rem;text-align:center}
+  .pied-col{align-items:center}
+  .pied-col p{max-width:none}
+  .pied-bas{flex-direction:column;gap:0.4rem;padding:1rem 1.4rem 1.4rem;text-align:center}
+}
 
 @media(max-width:640px){
   /* ── NAV MOBILE : logo + hamburger → menu déroulant ── */
@@ -2556,7 +2737,32 @@ document.addEventListener('DOMContentLoaded', function() {
     <p class="fans-empty">Oui bon... pour l'instant les fans se font encore désirer. 🦗</p>
   </div>
 
-<footer><a href="recettes/" style="color:var(--brown-light);text-decoration:none">Toutes les recettes</a> · La table d'Elsa · Un blog cuisine personnel · Partagé avec amour 🌿<br><span class="footer-version" id="footer-version">v2026.08.03</span></footer>
+<footer>
+  <div class="pied">
+    <div class="pied-col">
+      <div class="pied-marque">La table <em>d'Elsa</em></div>
+      <p>Des recettes testées, retestées, et partagées avec ceux que j'aime.</p>
+    </div>
+    <div class="pied-col">
+      <span class="pied-titre">Le site</span>
+      <a href="#" data-tab="patisserie">Les recettes</a>
+      <a href="recettes/">Toutes les fiches</a>
+      <a href="#" data-tab="adresses">Bonnes adresses</a>
+      <a href="#" data-tab="inspiration">SOS Cuisine</a>
+      <a href="#" onclick="event.preventDefault();ouvrirGuide()">Guide du site</a>
+    </div>
+    <div class="pied-col">
+      <span class="pied-titre">Me contacter</span>
+      <a class="pied-contact" href="mailto:contact@latabledelsa.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>contact@latabledelsa.fr</a>
+      <a class="pied-contact" href="https://www.instagram.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <p class="pied-note">Une question, une suggestion, une adresse à me faire découvrir&nbsp;? Écrivez-moi.</p>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <span>La table d'Elsa &middot; Un blog cuisine personnel</span>
+    <span class="footer-version" id="footer-version">v2026.08.03</span>
+  </div>
+</footer>
 
 <div class="notif-pop" id="notif-pop">
   <button class="notif-pop-close" onclick="fermerPopNotif()" aria-label="Fermer">&#10005;</button>
@@ -2579,6 +2785,42 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="install-actions">
     <button class="install-oui" id="install-oui" onclick="lancerInstallation()">Installer</button>
     <button class="install-non" onclick="masquerInstall(true)">Plus tard</button>
+  </div>
+</div>
+
+<div class="guide-invit" id="guide-invit">
+  <span class="gi-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8.2v.2"/></svg></span>
+  <span class="gi-txt"><strong>Première visite&nbsp;?</strong><span>Découvrez tout ce que ce site sait faire.</span></span>
+  <button class="gi-oui" onclick="ouvrirGuide()">Le guide</button>
+  <button class="gi-non" onclick="refuserGuide()" aria-label="Non merci">&#10005;</button>
+</div>
+
+<div class="guide-overlay" id="guide-overlay" onclick="clicOverlayGuide(event)">
+  <div class="guide-boite">
+    <div class="guide-entete">
+      <div>
+        <span class="guide-eyebrow">Le guide</span>
+        <h3>Tout ce que ce site sait faire</h3>
+        <p>Dix minutes de lecture au maximum, et vous saurez tout. Cliquez sur une rubrique pour la déplier.</p>
+      </div>
+      <button class="guide-close" onclick="fermerGuide()">&#10005;</button>
+    </div>
+    <div class="guide-corps" id="guide-corps"></div>
+    <button class="guide-fin" onclick="fermerGuide()">C'est parti, je cuisine</button>
+  </div>
+</div>
+
+<div class="jeux-overlay" id="jeux-overlay" onclick="clicOverlayJeux(event)">
+  <div class="jeux-boite">
+    <div class="jeux-tete">
+      <div>
+        <span class="jeux-eyebrow">En attendant le four</span>
+        <h3>Cinq minutes pour soi</h3>
+      </div>
+      <button class="jeux-close" onclick="fermerJeux()">&#10005;</button>
+    </div>
+    <div class="jeux-timer" id="jeux-timer"></div>
+    <div class="jeux-corps" id="jeux-corps"></div>
   </div>
 </div>
 
@@ -2633,6 +2875,18 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="cuisine-photos" id="cuisine-photos"></div>
     <div id="cuisine-minuteur"></div>
   </div>
+  <div class="jeu-pop" id="jeu-pop">
+    <span class="jeu-pop-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.8" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.4" cy="14.2" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+    <span class="jeu-pop-txt"></span>
+    <button class="jeu-pop-oui" onclick="jouerDepuisPop()">Jouer</button>
+    <button class="jeu-pop-non" onclick="fermerPropositionJeu(true)" aria-label="Non merci">&#10005;</button>
+  </div>
+
+  <button class="jeux-bulle" onclick="ouvrirJeux()" aria-label="Jouer en attendant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="11.8" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.4" cy="14.2" r="1.1" fill="currentColor" stroke="none"/></svg>
+    <span class="jeux-lib">Jouer</span>
+  </button>
+
   <button class="sos-bulle" onclick="ouvrirSOS()" aria-label="Demander à Basile">
     <span class="sos-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5z"/><path d="M4 21c2-5.5 5.5-9 11-11.5"/></svg></span><span class="sos-lib">SOS Cuisine</span>
   </button>
@@ -4807,6 +5061,7 @@ async function ouvrirCuisine(){
   document.getElementById('cuisine-titre').textContent = cuisineTitre;
   document.getElementById('cuisine-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  jeuPropose = false; jeuRefuse = false;
   memoriserIngredients();
   const bv = document.getElementById('voix-btn');
   if(bv) bv.style.display = voixDisponible() ? 'flex' : 'none';
@@ -4905,6 +5160,8 @@ function lancerMinuteur(sec){
   minuteurRestant = sec;
   minuteurEnPause = false;
   dessinerMinuteur();
+  // au-delà de trois minutes d'attente, on propose de patienter en jouant
+  if(sec >= 180) setTimeout(() => proposerJeu(sec), 2200);
   clearInterval(minuteurId);
   minuteurId = setInterval(() => {
     if(minuteurEnPause) return;
@@ -4913,6 +5170,7 @@ function lancerMinuteur(sec){
       clearInterval(minuteurId);
       minuteurId = null;
       sonnerie();
+      fermerPropositionJeu();
       const z = document.getElementById('cuisine-minuteur');
       z.innerHTML = '<div class="cuisine-timer fini">C\u2019est pr\u00eat&nbsp;!<button class="cuisine-timer-btn" onclick="lancerMinuteur(' + minuteurTotal + ')">Relancer</button></div>';
       return;
@@ -4925,6 +5183,7 @@ function dessinerMinuteur(){
   const z = document.getElementById('cuisine-minuteur');
   if(!z) return;
   z.innerHTML = '<div class="cuisine-timer">' +
+    (typeof majTimerJeux === 'function' ? (majTimerJeux(), '') : '') +
     '<span class="cuisine-timer-val">' + formatDuree(minuteurRestant) + '</span>' +
     '<button class="cuisine-timer-mini" onclick="basculerPause(this)">' + (minuteurEnPause ? 'Reprendre' : 'Pause') + '</button>' +
     '<button class="cuisine-timer-mini" onclick="arreterMinuteur();afficherEtape()">Annuler</button>' +
@@ -5918,6 +6177,679 @@ function voirSurCarte(id){
   document.getElementById('adresses-carte').scrollIntoView({ behavior: 'smooth', block: 'center' });
   carteAdresses.setView(t.m.getLatLng(), 15, { animate: true });
   setTimeout(() => t.m.openPopup(), 400);
+}
+
+// ===== EN ATTENDANT LE FOUR : CINQ PETITS JEUX =====
+// Pensés pour être joués d'une main, interrompus n'importe quand, et posés
+// dès que le minuteur sonne. Aucun score enregistré ailleurs que sur l'appareil.
+
+const QUIZ = [
+  ['À quelle température le beurre devient-il « pommade » ?', ['4°C', '18 à 20°C', '35°C'], 1,
+   'Assez mou pour laisser l\u2019empreinte du doigt, mais jamais fondu.'],
+  ['Que se passe-t-il si on incorpore la gélatine dans un liquide bouillant ?', ['Elle gélifie mieux', 'Elle perd son pouvoir', 'Aucun effet'], 1,
+   'Au-delà de 60°C, elle se dégrade. On l\u2019incorpore entre 40 et 60°C.'],
+  ['Combien de temps faut-il laisser reposer une pâte à crêpes ?', ['Pas besoin', '1 heure', '12 heures minimum'], 1,
+   'Une heure suffit : la farine s\u2019hydrate et les crêpes se déchirent moins.'],
+  ['Quel sucre donne le plus de moelleux à un cookie ?', ['Le sucre blanc', 'La cassonade', 'Le sucre glace'], 1,
+   'La cassonade retient l\u2019humidité. Le sucre blanc donne du croquant.'],
+  ['À quelle température le sucre commence-t-il à caraméliser ?', ['110°C', '160°C', '210°C'], 1,
+   'Vers 160°C il blondit, vers 180°C il est ambré, au-delà il brûle.'],
+  ['Pourquoi tamiser la farine ?', ['Pour l\u2019alléger et éviter les grumeaux', 'Pour la sécher', 'Pour la doser'], 0,
+   'Elle s\u2019incorpore mieux et sans paquets.'],
+  ['Que veut dire « chemiser un moule » ?', ['Le graisser et le fariner', 'Le remplir à moitié', 'Le préchauffer'], 0,
+   'On tapisse les parois pour que la préparation se démoule sans accroc.'],
+  ['Quelle crème peut-on monter en chantilly ?', ['Toute crème', 'Au moins 30% de matière grasse', 'La crème allégée'], 1,
+   'En dessous de 30%, il n\u2019y a pas assez de gras pour emprisonner l\u2019air.'],
+  ['Le « ruban » se vérifie sur…', ['Une pâte à choux', 'Un appareil œufs-sucre monté', 'Une pâte feuilletée'], 1,
+   'Le mélange doit retomber en formant un ruban continu.'],
+  ['Que fait le sel dans une pâte sucrée ?', ['Rien', 'Il révèle les saveurs', 'Il fait lever'], 1,
+   'Une pincée suffit à réveiller le sucre et le beurre.'],
+  ['Quel est le rôle de la maïzena dans une crème pâtissière ?', ['Sucrer', 'Épaissir', 'Colorer'], 1,
+   'Elle a besoin de deux minutes d\u2019ébullition pour agir pleinement.'],
+  ['Pourquoi congeler un fond de tarte avant cuisson ?', ['Pour gagner du temps', 'Pour qu\u2019il ne se rétracte pas', 'Pour le sucrer'], 1,
+   'Le froid fige le beurre, la pâte tient ses bords.'],
+  ['À quoi sert le rhodoïd en pâtisserie ?', ['Décorer', 'Chemiser un cercle', 'Filtrer'], 1,
+   'La bande plastique donne des bords nets au démoulage.'],
+  ['Que signifie « blanchir » des jaunes ?', ['Les cuire', 'Les fouetter avec le sucre', 'Les rincer'], 1,
+   'Le mélange pâlit et double presque de volume.'],
+  ['Combien de temps se garde une ganache montée avant d\u2019être fouettée ?', ['1 heure', 'Une nuit', '3 jours'], 1,
+   'Douze heures de repos au froid, sinon elle ne monte pas.'],
+  ['Le tant-pour-tant, c\u2019est…', ['Moitié farine moitié beurre', 'Autant de poudre d\u2019amandes que de sucre glace', 'Le double de sucre'], 1,
+   'La base des macarons et des financiers.'],
+  ['Que se passe-t-il si on ouvre le four pendant la cuisson d\u2019un soufflé ?', ['Rien', 'Il retombe', 'Il dore plus vite'], 1,
+   'Le choc thermique fait s\u2019effondrer l\u2019air emprisonné.'],
+  ['Le beurre noisette, c\u2019est du beurre…', ['Aux noisettes', 'Cuit jusqu\u2019à colorer', 'Battu'], 1,
+   'Ses protéines colorent et donnent un parfum de fruit sec.'],
+  ['Pourquoi ne faut-il pas remuer un caramel ?', ['Ça le refroidit', 'Le sucre cristallise', 'Ça le brûle'], 1,
+   'On incline la casserole plutôt que de remuer.'],
+  ['Une pâte feuilletée classique comporte combien de tours ?', ['2', '6', '12'], 1,
+   'Six tours simples donnent 729 feuilles de beurre.']
+];
+
+const VRAI_FAUX = [
+  ['On peut remplacer le beurre par de l\u2019huile dans un cookie sans rien changer.', false,
+   'La texture change beaucoup : l\u2019huile ne cristallise pas, le cookie s\u2019étale davantage.'],
+  ['Les œufs à température ambiante montent mieux que les œufs froids.', true,
+   'Ils emprisonnent l\u2019air plus facilement.'],
+  ['Il faut saler l\u2019eau des pâtes avant l\u2019ébullition.', false,
+   'On sale quand l\u2019eau bout, sinon ça marque le fond de la casserole.'],
+  ['Un gâteau se démoule mieux tiède que brûlant.', true,
+   'Dix minutes de repos suffisent, il se tient sans coller.'],
+  ['Le chocolat fond mieux avec quelques gouttes d\u2019eau.', false,
+   'L\u2019eau le fait saisir. Il devient pâteux et granuleux.'],
+  ['La levure chimique et le bicarbonate sont interchangeables.', false,
+   'Le bicarbonate a besoin d\u2019acidité pour agir.'],
+  ['On peut recongeler une préparation décongelée.', false,
+   'Ni pour la sécurité, ni pour la texture.'],
+  ['Le sucre glace contient de l\u2019amidon.', true,
+   'Environ 3%, pour éviter qu\u2019il ne s\u2019agglomère.'],
+  ['Une meringue réussit mieux par temps humide.', false,
+   'L\u2019humidité l\u2019empêche de sécher, elle devient collante.'],
+  ['On peut cuire deux plaques de macarons en même temps.', false,
+   'La chaleur circule mal, les collerettes en pâtissent.'],
+  ['Le citron aide les blancs d\u2019œufs à monter.', true,
+   'L\u2019acidité stabilise la mousse, comme une pincée de sel.'],
+  ['La vanille en gousse se conserve au réfrigérateur.', false,
+   'Elle sèche et moisit. À garder dans un bocal hermétique, à l\u2019abri de la lumière.']
+];
+
+const POIDS = [
+  ['une cuillère à soupe de farine', 15, 'g'],
+  ['une cuillère à soupe de sucre', 15, 'g'],
+  ['un œuf moyen sans coquille', 50, 'g'],
+  ['un jaune d\u2019œuf', 18, 'g'],
+  ['un blanc d\u2019œuf', 33, 'g'],
+  ['une feuille de gélatine', 2, 'g'],
+  ['un sachet de levure chimique', 11, 'g'],
+  ['une cuillère à café de sel', 5, 'g'],
+  ['une pincée de sel', 1, 'g'],
+  ['une plaquette de beurre entière', 250, 'g'],
+  ['un pot de yaourt nature', 125, 'g'],
+  ['une gousse d\u2019ail', 5, 'g']
+];
+
+// ===== LE GUIDE DU SITE =====
+// Un aperçu de tout ce qu'on peut faire ici, pour qui arrive sans rien connaître.
+const GUIDE = [
+  {
+    ico: 'M3 6.5h18M3 12h18M3 17.5h12',
+    titre: 'Trouver une recette',
+    lignes: [
+      'Les recettes sont rangées par onglet : <b>Healthy</b>, <b>Pâtisserie</b>, <b>Goûter</b>, <b>Salé</b>, <b>Viennoiserie</b>.',
+      'Trois filtres en haut de chaque onglet : le <b>prix par part</b>, le <b>temps</b>, et la <b>saison</b>. Ils se combinent, et « De saison en ce moment » vous montre ce qui se cuisine aujourd\u2019hui.',
+      'Le <b>cœur</b> sur chaque vignette met la recette de côté, dans vos favoris.'
+    ]
+  },
+  {
+    ico: 'M6 3v18M6 8h12a3 3 0 0 1 0 6H6',
+    titre: 'Dans une recette',
+    lignes: [
+      'En haut : les <b>calories</b>, le <b>coût estimé par part</b>, le temps et le nombre de parts.',
+      'Le sélecteur <b>« parts »</b> recalcule toutes les quantités. Et chaque section a son propre <b>multiplicateur</b> : vous pouvez faire une fois et demie de crème sans toucher au biscuit.',
+      'Le bouton <b>Régime</b> adapte la recette à 18 régimes et allergies : sans gluten, sans lactose, végétalien, cétogène… Les ingrédients remplacés apparaissent en vert.',
+      'Le bouton <b>Moule</b> recalcule tout selon le diamètre du vôtre. Passer de 20 à 24 cm, ce n\u2019est pas +20 % mais +44 %.'
+    ]
+  },
+  {
+    ico: 'M9.5 12a6.5 6.5 0 1 1 6.5 6.5M16 10.6l6-1.4',
+    titre: 'Le mode cuisine',
+    lignes: [
+      'La fonction la plus utile du site. <b>Une étape à la fois</b>, en plein écran, avec les <b>grammages de l\u2019étape</b> rappelés en dessous.',
+      'L\u2019<b>écran reste allumé</b>, les mains pleines de farine n\u2019ont rien à toucher.',
+      'Dès qu\u2019une étape mentionne une durée, un <b>minuteur</b> se propose. Il sonne et vibre à la fin.',
+      'La <b>lecture vocale</b> lit les étapes à voix haute.',
+      'Une bulle <b>SOS Cuisine</b> ouvre Basile sans quitter la recette, et une bulle <b>Jouer</b> propose cinq jeux pendant les longues cuissons.'
+    ]
+  },
+  {
+    ico: 'M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5zM4 21c2-5.5 5.5-9 11-11.5',
+    titre: 'Basile, l\u2019assistant',
+    lignes: [
+      '<b>Un ratage&nbsp;?</b> Dites-lui « ma ganache a tranché » ou « mon caramel est trop dur ». Il connaît 51 ratages, avec la cause, le sauvetage possible et comment l\u2019éviter.',
+      '<b>Une conversion&nbsp;?</b> « 200 ml de lait en g », « thermostat 6 », « 350°F en °C ».',
+      '<b>Un mot inconnu&nbsp;?</b> 150 termes de pâtisserie expliqués simplement.',
+      '<b>Que faire avec ce que j\u2019ai&nbsp;?</b> Donnez-lui vos ingrédients, il cherche parmi les recettes.',
+      '<b>Un budget&nbsp;?</b> « une recette à moins de 2 € la part ».'
+    ]
+  },
+  {
+    ico: 'M3 7h18l-1.7 11.3a2 2 0 0 1-2 1.7H6.7a2 2 0 0 1-2-1.7zM8.5 7V5a3.5 3.5 0 0 1 7 0v2',
+    titre: 'Courses et mise en place',
+    lignes: [
+      '<b>Ma liste</b> génère la liste de courses, ajustée à vos parts et à votre régime, à copier ou imprimer.',
+      '<b>Visualiser</b> affiche tous les ingrédients en grille dessinée. On coche au fur et à mesure qu\u2019ils arrivent sur le plan de travail, et les quantités identiques sont regroupées.'
+    ]
+  },
+  {
+    ico: 'M3.5 5h17a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5h-17M3.5 10h17M8 3v4M16 3v4',
+    titre: 'Planifier à l\u2019avance',
+    lignes: [
+      'Pour les recettes sur plusieurs jours, indiquez <b>quand vous la voulez prête</b>.',
+      'Le site calcule alors un <b>rétro-planning à l\u2019heure près</b> : à quelle heure commencer, ce qu\u2019il faut faire la veille, et où placer les temps de repos.'
+    ]
+  },
+  {
+    ico: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+    titre: 'Votre compte',
+    lignes: [
+      'Aucune inscription, aucun mot de passe : tout reste <b>dans votre navigateur</b>, rien n\u2019est envoyé.',
+      'Renseignez votre prénom et vos régimes une fois : <b>toutes les recettes s\u2019adaptent</b> ensuite automatiquement.',
+      'Vous y retrouvez vos favoris, vos recettes planifiées, et le réglage du nombre de parts habituel.'
+    ]
+  },
+  {
+    ico: 'M12 21s-7-5.6-7-10.5A7 7 0 0 1 19 10.5C19 15.4 12 21 12 21zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+    titre: 'Les bonnes adresses',
+    lignes: [
+      'Les maisons où je suis allée, notées sur 5, avec ce qu\u2019il faut y goûter et mon verdict.',
+      'Une <b>carte</b> les situe toutes, avec la photo en repère et la couleur selon la note.',
+      'Vous pouvez <b>donner votre avis</b> et votre note sur chaque adresse.'
+    ]
+  },
+  {
+    ico: 'M3 3v18h18M7 15l4-5 3 3 5-7',
+    titre: 'Le bilan calorique',
+    lignes: [
+      'Un calculateur de besoins journaliers, et un suivi de poids sur la durée.',
+      'Tout reste sur votre appareil, comme le reste.'
+    ]
+  },
+  {
+    ico: 'M12 3v12M7.5 10.5L12 15l4.5-4.5M4.5 17.5v2A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-2',
+    titre: 'Installer l\u2019application',
+    lignes: [
+      'Le site s\u2019installe sur l\u2019écran d\u2019accueil comme une vraie application, et <b>fonctionne sans connexion</b>.',
+      'Sur iPhone : bouton Partager dans Safari, puis « Sur l\u2019écran d\u2019accueil ». Sur Android : menu du navigateur, puis « Installer l\u2019application ».',
+      'Vous pouvez aussi être <b>prévenue à chaque nouvelle recette</b>.'
+    ]
+  }
+];
+
+function ouvrirGuide(){
+  const z = document.getElementById('guide-corps');
+  if(z && !z.dataset.pret){
+    z.dataset.pret = '1';
+    z.innerHTML = GUIDE.map((g, i) =>
+      '<div class="guide-bloc' + (i === 0 ? ' ouvert' : '') + '">' +
+        '<button class="guide-tete" onclick="basculerGuide(this)">' +
+          '<span class="guide-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="' + g.ico + '"/></svg></span>' +
+          '<span class="guide-titre">' + g.titre + '</span>' +
+          '<span class="guide-chevron">\u203A</span>' +
+        '</button>' +
+        '<div class="guide-detail"><ul>' +
+          g.lignes.map(l => '<li>' + l + '</li>').join('') +
+        '</ul></div>' +
+      '</div>').join('');
+  }
+  document.getElementById('guide-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  try { localStorage.setItem('elsa_guide_vu', '1'); } catch(e) {}
+  masquerInvitationGuide();
+}
+
+function basculerGuide(btn){
+  const bloc = btn.parentElement;
+  const ouvert = bloc.classList.contains('ouvert');
+  document.querySelectorAll('.guide-bloc').forEach(b => b.classList.remove('ouvert'));
+  if(!ouvert) bloc.classList.add('ouvert');
+}
+
+function fermerGuide(){
+  document.getElementById('guide-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function clicOverlayGuide(e){
+  if(e.target === document.getElementById('guide-overlay')) fermerGuide();
+}
+
+// ── L'invitation, seulement à la première visite
+function masquerInvitationGuide(){
+  const b = document.getElementById('guide-invit');
+  if(b) b.classList.remove('open');
+}
+function refuserGuide(){
+  try { localStorage.setItem('elsa_guide_vu', '1'); } catch(e) {}
+  masquerInvitationGuide();
+}
+function inviterAuGuide(){
+  let vu = false;
+  try { vu = localStorage.getItem('elsa_guide_vu') === '1'; } catch(e) {}
+  if(vu) return;
+  const b = document.getElementById('guide-invit');
+  if(b) setTimeout(() => b.classList.add('open'), 3200);
+}
+window.addEventListener('load', inviterAuGuide);
+
+// ===== DEUX JEUX CLASSIQUES =====
+
+// ── Puissance 4, contre l'ordinateur ────────────────────────────────────
+const P4_COL = 7, P4_LIG = 6;
+let p4 = null;
+
+function demarrerP4(){
+  p4 = { grille: Array.from({length: P4_LIG}, () => Array(P4_COL).fill(0)),
+         tour: 1, fini: false, message: 'À vous de jouer', gagnantes: [] };
+  rendreP4();
+}
+
+function p4Colonne(c){
+  for(let l = P4_LIG - 1; l >= 0; l--) if(!p4.grille[l][c]) return l;
+  return -1;
+}
+
+function p4Aligne(g, joueur){
+  const dirs = [[0,1],[1,0],[1,1],[1,-1]];
+  for(let l = 0; l < P4_LIG; l++)
+    for(let c = 0; c < P4_COL; c++)
+      if(g[l][c] === joueur)
+        for(const [dl, dc] of dirs){
+          const cases = [[l,c]];
+          for(let k = 1; k < 4; k++){
+            const nl = l + dl*k, nc = c + dc*k;
+            if(nl < 0 || nl >= P4_LIG || nc < 0 || nc >= P4_COL || g[nl][nc] !== joueur) break;
+            cases.push([nl, nc]);
+          }
+          if(cases.length === 4) return cases;
+        }
+  return null;
+}
+
+function p4Pleine(g){ return g[0].every(x => x); }
+
+// L'ordinateur gagne s'il peut, bloque s'il doit, et privilégie le centre.
+function p4Choix(){
+  const libres = [];
+  for(let c = 0; c < P4_COL; c++) if(p4Colonne(c) !== -1) libres.push(c);
+  if(!libres.length) return -1;
+
+  const essai = (c, joueur) => {
+    const l = p4Colonne(c);
+    p4.grille[l][c] = joueur;
+    const gagne = !!p4Aligne(p4.grille, joueur);
+    p4.grille[l][c] = 0;
+    return gagne;
+  };
+  for(const c of libres) if(essai(c, 2)) return c;        // il gagne
+  for(const c of libres) if(essai(c, 1)) return c;        // il empêche
+
+  // sinon : ne pas offrir la victoire au coup suivant, et viser le centre
+  const sûrs = libres.filter(c => {
+    const l = p4Colonne(c);
+    p4.grille[l][c] = 2;
+    const danger = p4Colonne(c) !== -1 && essai(c, 1);
+    p4.grille[l][c] = 0;
+    return !danger;
+  });
+  const choix = sûrs.length ? sûrs : libres;
+  choix.sort((a, b) => Math.abs(3 - a) - Math.abs(3 - b));
+  return choix[Math.random() < 0.75 ? 0 : Math.floor(Math.random() * choix.length)];
+}
+
+function jouerP4(c){
+  if(!p4 || p4.fini || p4.tour !== 1) return;
+  const l = p4Colonne(c);
+  if(l === -1) return;
+  p4.grille[l][c] = 1;
+  const g = p4Aligne(p4.grille, 1);
+  if(g){ p4.fini = true; p4.gagnantes = g; p4.message = 'Vous gagnez&nbsp;!'; return rendreP4(); }
+  if(p4Pleine(p4.grille)){ p4.fini = true; p4.message = 'Match nul'; return rendreP4(); }
+  p4.tour = 2; p4.message = 'Je réfléchis…'; rendreP4();
+
+  setTimeout(() => {
+    const cc = p4Choix();
+    if(cc === -1){ p4.fini = true; p4.message = 'Match nul'; return rendreP4(); }
+    const ll = p4Colonne(cc);
+    p4.grille[ll][cc] = 2;
+    const g2 = p4Aligne(p4.grille, 2);
+    if(g2){ p4.fini = true; p4.gagnantes = g2; p4.message = 'J\u2019ai gagné cette fois'; }
+    else if(p4Pleine(p4.grille)){ p4.fini = true; p4.message = 'Match nul'; }
+    else { p4.tour = 1; p4.message = 'À vous de jouer'; }
+    rendreP4();
+  }, 480);
+}
+
+function rendreP4(){
+  const dansGagnantes = (l, c) => p4.gagnantes.some(x => x[0] === l && x[1] === c);
+  document.getElementById('jeux-corps').innerHTML =
+    '<div class="jeu-entete"><button class="jeu-retour" onclick="menuJeux()">&larr; Les jeux</button>' +
+    '<span class="jeu-score">' + p4.message + '</span></div>' +
+    '<div class="p4-grille">' +
+      p4.grille.map((ligne, l) => ligne.map((v, c) =>
+        '<button class="p4-case' + (v === 1 ? ' moi' : v === 2 ? ' lui' : '') +
+        (dansGagnantes(l, c) ? ' gagnante' : '') + '" onclick="jouerP4(' + c + ')"' +
+        (p4.fini || p4.tour !== 1 ? ' disabled' : '') + '></button>').join('')).join('') +
+    '</div>' +
+    (p4.fini ? '<div class="jeu-fin"><button class="jeu-rejouer" onclick="demarrerP4()">Rejouer</button>' +
+               '<button class="jeu-retour" onclick="menuJeux()">Choisir un autre jeu</button></div>' : '');
+}
+
+// ── Le pendu, vocabulaire de cuisine ────────────────────────────────────
+const MOTS_PENDU = [
+  ['CHANTILLY', 'Crème fouettée, bien froide'],
+  ['MERINGUE', 'Blancs et sucre, cuits doucement'],
+  ['CARAMEL', 'Sucre chauffé jusqu\u2019à l\u2019ambre'],
+  ['PRALINE', 'Fruits secs et sucre, mixés'],
+  ['GANACHE', 'Chocolat et crème émulsionnés'],
+  ['SABAYON', 'Œufs et sucre montés au fouet'],
+  ['FEUILLETAGE', 'Beurre et détrempe, pliés en tours'],
+  ['TAMISER', 'Passer une poudre au chinois'],
+  ['BLANCHIR', 'Fouetter jaunes et sucre'],
+  ['FONCAGE', 'Poser la pâte dans son cercle'],
+  ['MACARONNER', 'Le geste qui donne le ruban'],
+  ['CHEMISER', 'Préparer les parois d\u2019un moule'],
+  ['TEMPERAGE', 'Courbe de température du chocolat'],
+  ['CROUTAGE', 'Laisser sécher avant d\u2019enfourner'],
+  ['DEGLACER', 'Décoller les sucs avec un liquide'],
+  ['RHODOID', 'La bande qui donne des bords nets'],
+  ['MARYSE', 'Spatule souple du pâtissier'],
+  ['ROBOT', 'Il fouette à votre place'],
+  ['VANILLE', 'Gousse fendue et grattée'],
+  ['NOISETTE', 'Le beurre qui prend cette couleur']
+];
+let pendu = null;
+const LETTRES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+function demarrerPendu(){
+  const [mot, indice] = MOTS_PENDU[Math.floor(Math.random() * MOTS_PENDU.length)];
+  pendu = { mot: mot, indice: indice, trouvees: [], ratees: [], max: 7 };
+  rendrePendu();
+}
+
+function proposerLettre(l){
+  if(!pendu) return;
+  if(pendu.trouvees.indexOf(l) !== -1 || pendu.ratees.indexOf(l) !== -1) return;
+  if(pendu.mot.indexOf(l) !== -1) pendu.trouvees.push(l);
+  else pendu.ratees.push(l);
+  rendrePendu();
+}
+
+function penduGagne(){
+  return pendu.mot.split('').every(c => pendu.trouvees.indexOf(c) !== -1);
+}
+
+function rendrePendu(){
+  const perdu = pendu.ratees.length >= pendu.max;
+  const gagne = penduGagne();
+  const affiche = pendu.mot.split('').map(c =>
+    (pendu.trouvees.indexOf(c) !== -1 || perdu) ? c : '·').join(' ');
+
+  document.getElementById('jeux-corps').innerHTML =
+    '<div class="jeu-entete"><button class="jeu-retour" onclick="menuJeux()">&larr; Les jeux</button>' +
+    '<span class="jeu-score">' + (pendu.max - pendu.ratees.length) + ' essais restants</span></div>' +
+    '<div class="pendu-indice">' + pendu.indice + '</div>' +
+    '<div class="pendu-mot' + (perdu ? ' perdu' : gagne ? ' gagne' : '') + '">' + affiche + '</div>' +
+    '<div class="pendu-vies">' + Array.from({length: pendu.max}, (_, i) =>
+      '<span class="' + (i < pendu.ratees.length ? 'perdue' : '') + '"></span>').join('') + '</div>' +
+    (gagne || perdu
+      ? '<div class="jeu-fin"><p>' + (gagne ? 'Trouvé, et sans se brûler les doigts.'
+          : 'C\u2019était <strong>' + pendu.mot + '</strong>.') + '</p>' +
+        '<button class="jeu-rejouer" onclick="demarrerPendu()">Un autre mot</button>' +
+        '<button class="jeu-retour" onclick="menuJeux()">Choisir un autre jeu</button></div>'
+      : '<div class="pendu-clavier">' + LETTRES.map(l =>
+          '<button class="' + (pendu.trouvees.indexOf(l) !== -1 ? 'juste' :
+                               pendu.ratees.indexOf(l) !== -1 ? 'rate' : '') + '"' +
+          ((pendu.trouvees.indexOf(l) !== -1 || pendu.ratees.indexOf(l) !== -1) ? ' disabled' : '') +
+          ' onclick="proposerLettre(\'' + l + '\')">' + l + '</button>').join('') + '</div>');
+}
+
+let jeuActuel = null, jeuScore = 0, jeuTour = 0, jeuSerie = [], jeuMemory = {};
+
+// Une invitation discrète, une seule fois par minuteur, et jamais si la
+// personne l'a déjà écartée pendant cette séance de cuisine.
+let jeuPropose = false, jeuRefuse = false;
+
+function proposerJeu(sec){
+  if(jeuRefuse || jeuPropose) return;
+  if(!minuteurId || minuteurRestant < 120) return;
+  const ov = document.getElementById('cuisine-overlay');
+  if(!ov || !ov.classList.contains('open')) return;
+  const p = document.getElementById('jeu-pop');
+  if(!p) return;
+  jeuPropose = true;
+  const min = Math.round(sec / 60);
+  p.querySelector('.jeu-pop-txt').innerHTML =
+    '<strong>' + min + ' minutes devant vous</strong>' +
+    '<span>Un quiz, un memory&nbsp;? Le minuteur continue de tourner.</span>';
+  p.classList.add('open');
+  setTimeout(() => { if(p.classList.contains('open')) p.classList.remove('open'); }, 14000);
+}
+
+function fermerPropositionJeu(refus){
+  const p = document.getElementById('jeu-pop');
+  if(p) p.classList.remove('open');
+  if(refus) jeuRefuse = true;
+}
+
+function jouerDepuisPop(){
+  fermerPropositionJeu();
+  ouvrirJeux();
+}
+
+function ouvrirJeux(){
+  document.getElementById('jeux-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  menuJeux();
+  majTimerJeux();
+}
+function fermerJeux(){
+  document.getElementById('jeux-overlay').classList.remove('open');
+  const cui = document.getElementById('cuisine-overlay');
+  if(!cui || !cui.classList.contains('open')) document.body.style.overflow = '';
+}
+function clicOverlayJeux(e){
+  if(e.target === document.getElementById('jeux-overlay')) fermerJeux();
+}
+
+// le minuteur reste sous les yeux pendant la partie
+function majTimerJeux(){
+  const z = document.getElementById('jeux-timer');
+  if(!z) return;
+  if(minuteurId && minuteurRestant > 0){
+    z.innerHTML = '<span class="jt-pastille"></span>' + formatDuree(minuteurRestant) + ' avant la sonnerie';
+    z.classList.add('actif');
+  } else {
+    z.textContent = '';
+    z.classList.remove('actif');
+  }
+}
+
+const JEUX = [
+  ['quiz', 'Le quiz du four', 'Vingt questions de pâtisserie, une bonne réponse sur trois propositions.'],
+  ['vraifaux', 'Vrai ou faux', 'Douze idées reçues à trancher.'],
+  ['ingredient', 'Devine l\u2019ingrédient', 'Un dessin, trois noms. À vous de voir.'],
+  ['poids', 'Le juste poids', 'Combien pèse une cuillère à soupe de farine ? Approchez au plus près.'],
+  ['memory', 'Memory des ingrédients', 'Retrouvez les paires. Six duos à apparier.'],
+  ['p4', 'Puissance 4', 'Quatre jetons alignés. Contre moi, et je ne me laisse pas faire.'],
+  ['pendu', 'Le pendu du pâtissier', 'Vingt mots de cuisine à deviner, lettre après lettre.']
+];
+
+function menuJeux(){
+  jeuActuel = null;
+  document.getElementById('jeux-corps').innerHTML =
+    '<p class="jeux-intro">Le four tourne, vous avez un moment. Cinq jeux courts, ' +
+    'qui s\u2019arrêtent dès que la sonnerie retentit.</p>' +
+    '<div class="jeux-liste">' +
+      JEUX.map(([id, titre, desc]) =>
+        '<button class="jeu-carte" onclick="lancerJeu(\'' + id + '\')">' +
+          '<strong>' + titre + '</strong><span>' + desc + '</span>' +
+        '</button>').join('') +
+    '</div>';
+}
+
+function lancerJeu(id){
+  jeuActuel = id; jeuScore = 0; jeuTour = 0;
+  if(id === 'quiz') jeuSerie = melanger(QUIZ.slice()).slice(0, 8);
+  if(id === 'vraifaux') jeuSerie = melanger(VRAI_FAUX.slice()).slice(0, 8);
+  if(id === 'poids') jeuSerie = melanger(POIDS.slice()).slice(0, 6);
+  if(id === 'ingredient') jeuSerie = melanger(ICONES_INGREDIENTS.filter(x => x[0].length > 4)).slice(0, 8);
+  if(id === 'memory') return demarrerMemory();
+  if(id === 'p4') return demarrerP4();
+  if(id === 'pendu') return demarrerPendu();
+  tourSuivant();
+}
+
+function melanger(t){
+  for(let i = t.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [t[i], t[j]] = [t[j], t[i]];
+  }
+  return t;
+}
+
+function enteteJeu(){
+  return '<div class="jeu-entete">' +
+    '<button class="jeu-retour" onclick="menuJeux()">&larr; Les jeux</button>' +
+    '<span class="jeu-score">' + jeuScore + ' / ' + jeuSerie.length + '</span>' +
+  '</div>';
+}
+
+function tourSuivant(){
+  const z = document.getElementById('jeux-corps');
+  if(jeuTour >= jeuSerie.length) return finJeu();
+  const n = jeuTour + 1, total = jeuSerie.length;
+  const barre = '<div class="jeu-barre"><i style="width:' + (jeuTour / total * 100) + '%"></i></div>';
+
+  if(jeuActuel === 'quiz'){
+    const [q, props, bonne] = jeuSerie[jeuTour];
+    z.innerHTML = enteteJeu() + barre + '<div class="jeu-num">Question ' + n + ' sur ' + total + '</div>' +
+      '<h4 class="jeu-question">' + q + '</h4>' +
+      '<div class="jeu-choix">' + props.map((p, i) =>
+        '<button onclick="repondre(' + i + ')">' + p + '</button>').join('') + '</div>' +
+      '<div class="jeu-retour-rep" id="jeu-rep"></div>';
+  }
+  if(jeuActuel === 'vraifaux'){
+    const [aff] = jeuSerie[jeuTour];
+    z.innerHTML = enteteJeu() + barre + '<div class="jeu-num">Affirmation ' + n + ' sur ' + total + '</div>' +
+      '<h4 class="jeu-question">' + aff + '</h4>' +
+      '<div class="jeu-choix deux"><button onclick="repondre(1)">Vrai</button>' +
+      '<button onclick="repondre(0)">Faux</button></div>' +
+      '<div class="jeu-retour-rep" id="jeu-rep"></div>';
+  }
+  if(jeuActuel === 'ingredient'){
+    const bon = jeuSerie[jeuTour];
+    const autres = melanger(ICONES_INGREDIENTS.filter(x => x[0] !== bon[0] && x[0].length > 4)).slice(0, 2);
+    const props = melanger([bon].concat(autres));
+    jeuMemory.bonIndex = props.findIndex(x => x[0] === bon[0]);
+    z.innerHTML = enteteJeu() + barre + '<div class="jeu-num">Dessin ' + n + ' sur ' + total + '</div>' +
+      '<div class="jeu-dessin"><svg viewBox="0 0 80 80">' + bon[1]() + '</svg></div>' +
+      '<div class="jeu-choix">' + props.map((p, i) =>
+        '<button onclick="repondre(' + i + ')">' + jolisMot(p[0]) + '</button>').join('') + '</div>' +
+      '<div class="jeu-retour-rep" id="jeu-rep"></div>';
+  }
+  if(jeuActuel === 'poids'){
+    const [quoi] = jeuSerie[jeuTour];
+    z.innerHTML = enteteJeu() + barre + '<div class="jeu-num">Pesée ' + n + ' sur ' + total + '</div>' +
+      '<h4 class="jeu-question">Combien pèse ' + quoi + '&nbsp;?</h4>' +
+      '<div class="jeu-poids"><input type="number" id="jeu-poids-champ" min="0" max="1000" placeholder="en grammes" ' +
+      'onkeydown="if(event.key===\'Enter\'){event.preventDefault();repondre(-1);}">' +
+      '<button onclick="repondre(-1)">Valider</button></div>' +
+      '<div class="jeu-retour-rep" id="jeu-rep"></div>';
+    setTimeout(() => { const c = document.getElementById('jeu-poids-champ'); if(c) c.focus(); }, 60);
+  }
+}
+
+function jolisMot(c){
+  return c.charAt(0).toUpperCase() + c.slice(1);
+}
+
+function repondre(choix){
+  const rep = document.getElementById('jeu-rep');
+  let juste = false, explication = '';
+
+  if(jeuActuel === 'quiz'){
+    const [, , bonne, exp] = jeuSerie[jeuTour];
+    juste = choix === bonne; explication = exp;
+  }
+  if(jeuActuel === 'vraifaux'){
+    const [, bonne, exp] = jeuSerie[jeuTour];
+    juste = (choix === 1) === bonne; explication = exp;
+  }
+  if(jeuActuel === 'ingredient'){
+    juste = choix === jeuMemory.bonIndex;
+    explication = juste ? '' : 'C\u2019était ' + jolisMot(jeuSerie[jeuTour][0]) + '.';
+  }
+  if(jeuActuel === 'poids'){
+    const [quoi, poids, u] = jeuSerie[jeuTour];
+    const v = parseFloat((document.getElementById('jeu-poids-champ') || {}).value);
+    if(isNaN(v)){ rep.className = 'jeu-retour-rep faux'; rep.textContent = 'Donnez un nombre, même au hasard !'; return; }
+    const ecart = Math.abs(v - poids) / poids;
+    juste = ecart <= 0.25;
+    explication = 'La bonne réponse était ' + poids + ' ' + u + '. ' +
+      (ecart <= 0.1 ? 'Vous êtes très proche.' : ecart <= 0.25 ? 'Dans la fourchette.' : 'Un peu loin.');
+  }
+
+  if(juste) jeuScore++;
+  document.querySelectorAll('.jeu-choix button, .jeu-poids button').forEach(b => b.disabled = true);
+  rep.className = 'jeu-retour-rep ' + (juste ? 'juste' : 'faux');
+  rep.innerHTML = '<strong>' + (juste ? 'Bien vu' : 'Raté') + '</strong>' +
+    (explication ? '<span>' + explication + '</span>' : '') +
+    '<button class="jeu-suivant" onclick="jeuTour++;tourSuivant();">' +
+    (jeuTour + 1 >= jeuSerie.length ? 'Voir mon score' : 'Suivant') + '</button>';
+}
+
+function finJeu(){
+  const total = jeuSerie.length;
+  const part = jeuScore / total;
+  const mot = part === 1 ? 'Sans faute. Chapeau.'
+    : part >= 0.75 ? 'Joli score, vous connaissez votre affaire.'
+    : part >= 0.5 ? 'Pas mal du tout.'
+    : 'Le four n\u2019a pas fini, vous avez le temps de retenter.';
+  document.getElementById('jeux-corps').innerHTML =
+    '<div class="jeu-fin"><div class="jeu-fin-score">' + jeuScore + '<span>/ ' + total + '</span></div>' +
+    '<p>' + mot + '</p>' +
+    '<button class="jeu-rejouer" onclick="lancerJeu(\'' + jeuActuel + '\')">Rejouer</button>' +
+    '<button class="jeu-retour" onclick="menuJeux()">Choisir un autre jeu</button></div>';
+}
+
+// ── Memory
+function demarrerMemory(){
+  const choix = melanger(ICONES_INGREDIENTS.filter(x => x[0].length > 4)).slice(0, 6);
+  const cartes = melanger(choix.concat(choix).map((x, i) => ({ cle: x[0], svg: x[1](), i: i })));
+  jeuMemory = { cartes: cartes, retournees: [], trouvees: [], coups: 0 };
+  rendreMemory();
+}
+
+function rendreMemory(){
+  const m = jeuMemory;
+  document.getElementById('jeux-corps').innerHTML =
+    '<div class="jeu-entete"><button class="jeu-retour" onclick="menuJeux()">&larr; Les jeux</button>' +
+    '<span class="jeu-score">' + m.trouvees.length / 2 + ' / 6 paires &middot; ' + m.coups + ' coups</span></div>' +
+    '<div class="memory-grille">' + m.cartes.map((c, i) => {
+      const vue = m.retournees.indexOf(i) !== -1 || m.trouvees.indexOf(i) !== -1;
+      const fini = m.trouvees.indexOf(i) !== -1;
+      return '<button class="memory-carte' + (vue ? ' vue' : '') + (fini ? ' trouvee' : '') + '" ' +
+        'onclick="retournerCarte(' + i + ')">' +
+        (vue ? '<svg viewBox="0 0 80 80">' + c.svg + '</svg>' : '<span class="memory-dos"></span>') +
+      '</button>';
+    }).join('') + '</div>';
+  if(m.trouvees.length === m.cartes.length){
+    setTimeout(() => {
+      document.getElementById('jeux-corps').innerHTML =
+        '<div class="jeu-fin"><div class="jeu-fin-score">' + m.coups + '<span>coups</span></div>' +
+        '<p>' + (m.coups <= 10 ? 'Une mémoire de chef.' : m.coups <= 16 ? 'Bien joué.' : 'Toutes les paires y sont passées !') + '</p>' +
+        '<button class="jeu-rejouer" onclick="demarrerMemory()">Rejouer</button>' +
+        '<button class="jeu-retour" onclick="menuJeux()">Choisir un autre jeu</button></div>';
+    }, 600);
+  }
+}
+
+function retournerCarte(i){
+  const m = jeuMemory;
+  if(m.retournees.indexOf(i) !== -1 || m.trouvees.indexOf(i) !== -1) return;
+  if(m.retournees.length >= 2) return;
+  m.retournees.push(i);
+  rendreMemory();
+  if(m.retournees.length === 2){
+    m.coups++;
+    const [a, b] = m.retournees;
+    const pareil = m.cartes[a].cle === m.cartes[b].cle;
+    setTimeout(() => {
+      if(pareil) m.trouvees = m.trouvees.concat(m.retournees);
+      m.retournees = [];
+      rendreMemory();
+    }, pareil ? 380 : 780);
+  }
 }
 
 // ===== COMPTEURS DES ONGLETS =====
