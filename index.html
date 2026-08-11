@@ -465,7 +465,6 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .concept-visuel{position:relative;margin:0}
 .concept-visuel::before{content:'';position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--sage);border-radius:14px;z-index:0}
 .concept-photo{position:relative;z-index:1;display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:0 10px 34px rgba(46,42,37,0.14)}
-.concept-visuel figcaption{position:relative;z-index:1;margin-top:1.3rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--brown-light);text-align:center}
 @media(max-width:820px){
   .concept-wrap.concept-avec-photo{grid-template-columns:1fr;gap:1.8rem;text-align:center}
   .concept-texte h2{text-align:center}
@@ -1686,7 +1685,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="concept-wrap concept-avec-photo">
     <figure class="concept-visuel">
       <img class="concept-photo" src="images/elsa-cuisine.jpg" alt="Elsa dans sa cuisine" loading="lazy">
-      <figcaption>Elsa, dans sa cuisine</figcaption>
     </figure>
     <div class="concept-texte">
     <h2>Bienvenue dans&nbsp;ma&nbsp;cuisine&nbsp;✨</h2>
@@ -4822,9 +4820,22 @@ function fermerCuisine(){
 }
 
 function clavierCuisine(e){
+  // Quand on écrit dans un champ — la fenêtre de Basile, par exemple —
+  // les touches appartiennent à la saisie, pas à la navigation.
+  const c = e.target;
+  const saisie = c && (c.tagName === 'INPUT' || c.tagName === 'TEXTAREA' ||
+                       c.tagName === 'SELECT' || c.isContentEditable);
+  if(saisie){
+    if(e.key === 'Escape') c.blur();
+    return;
+  }
   if(e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); etapeSuivante(); }
   if(e.key === 'ArrowLeft') { e.preventDefault(); etapePrecedente(); }
-  if(e.key === 'Escape') fermerCuisine();
+  if(e.key === 'Escape'){
+    const sos = document.getElementById('sos-panneau');
+    if(sos && sos.classList.contains('open')) fermerSOS();   // on ferme Basile d'abord
+    else fermerCuisine();
+  }
 }
 
 function afficherEtape(){
