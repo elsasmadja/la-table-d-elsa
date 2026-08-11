@@ -459,12 +459,52 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .col-ingredients .ingredient-list li.intertitre{cursor:default;text-decoration:none}
 .col-ingredients .ingredient-list li.intertitre::before{display:none}
 /* ── Portrait dans la présentation ── */
-.concept-wrap h2{text-wrap:balance}
-.concept-avec-photo{position:relative}
-.concept-photo{float:left;width:170px;height:170px;object-fit:cover;border-radius:12px;margin:0.4rem 1.6rem 0.8rem 0;shape-outside:margin-box}
-@media(max-width:640px){
-  .concept-photo{float:none;display:block;width:130px;height:130px;margin:0 auto 1.2rem;border-radius:50%}
+.concept-avec-photo{display:grid;grid-template-columns:300px 1fr;gap:3rem;align-items:center;text-align:left;max-width:1060px}
+.concept-texte h2{text-wrap:balance;text-align:left}
+.concept-visuel{position:relative;margin:0}
+.concept-visuel::before{content:'';position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--sage);border-radius:14px;z-index:0}
+.concept-photo{position:relative;z-index:1;display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:0 10px 34px rgba(46,42,37,0.14)}
+.concept-visuel figcaption{position:relative;z-index:1;margin-top:1.3rem;font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--brown-light);text-align:center}
+@media(max-width:820px){
+  .concept-avec-photo{grid-template-columns:1fr;gap:1.8rem;text-align:center}
+  .concept-texte h2{text-align:center}
+  .concept-visuel{max-width:260px;margin:0 auto}
+  .concept-visuel::before{inset:10px -10px -10px 10px}
 }
+/* ── Mode cuisine mis en avant ── */
+.cuisine-appel{display:flex;align-items:center;gap:1rem;width:100%;background:var(--sage-dark);color:var(--white);border:none;border-radius:14px;padding:1.05rem 1.3rem;cursor:pointer;text-align:left;margin:1.2rem 0 0.9rem;transition:transform 0.2s,box-shadow 0.2s}
+.cuisine-appel:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(78,110,82,0.28)}
+.cuisine-appel-ico{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(253,250,246,0.16);flex-shrink:0}
+.cuisine-appel-ico .ico{width:22px;height:22px}
+.cuisine-appel-txt{display:flex;flex-direction:column;gap:0.15rem;flex:1;min-width:0}
+.cuisine-appel-txt strong{font-family:Jost,sans-serif;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500}
+.cuisine-appel-txt em{font-style:normal;font-size:0.75rem;opacity:0.82;line-height:1.45}
+.cuisine-appel-fleche{font-size:1.1rem;opacity:0.7;flex-shrink:0}
+
+/* ── Accès direct depuis les vignettes ── */
+.carte-cuisine{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.7rem;background:none;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.4rem 0.8rem;cursor:pointer;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s}
+.carte-cuisine svg{width:14px;height:14px;flex-shrink:0}
+.carte-cuisine:hover{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+@media(max-width:640px){
+  .cuisine-appel{padding:0.9rem 1rem;gap:0.8rem}
+  .cuisine-appel-txt em{font-size:0.7rem}
+}
+/* ── Petites icônes des vignettes et de l'interface ── */
+.meta-ico{width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:0.35rem;flex-shrink:0}
+.meta-cat{font-family:Jost,sans-serif;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--sage-dark)}
+.ui-ico{width:17px;height:17px;display:inline-block;vertical-align:-3px}
+.nav-links .ui-ico,.nav-right-mobile .ui-ico{width:18px;height:18px;color:#D65C6A;vertical-align:-4px}
+.search-icon .ui-ico{width:16px;height:16px;color:var(--brown-light)}
+.card-overlay-icon .ui-ico{width:34px;height:34px}
+/* ── Icônes dessinées des boutons ── */
+.ico{width:17px;height:17px;display:block;flex-shrink:0}
+.outil{display:inline-flex;align-items:center;gap:0.5rem}
+.outil-ico{display:flex;align-items:center}
+.sos-ico{display:flex;align-items:center}
+.sos-ico .ico{width:19px;height:19px}
+.ing-actions .shop-btn,.mep-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem}
+.plan-label{display:inline-flex;align-items:center;gap:0.45rem}
+.plan-label .ico{width:15px;height:15px}
 /* ── Mise en place : la fiche visuelle ── */
 .ing-actions{display:flex;gap:0.5rem;margin:0.9rem 0 1.1rem;padding-bottom:1rem;border-bottom:1px solid var(--cream-dark)}
 .ing-actions .shop-btn,.mep-btn{flex:1;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.11em;text-transform:uppercase;font-weight:500;border-radius:24px;padding:0.8rem 0.6rem;cursor:pointer;text-align:center}
@@ -1570,7 +1610,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
     <div class="logo" onclick="(function(){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));var h=document.getElementById('tab-home');if(h)h.classList.add('active');var s=document.querySelector('.search-wrap');if(s)s.style.display='none';})()" style="cursor:pointer">La table <span>d'Elsa</span></div>
     <div class="nav-right-mobile" style="display:none">
       <button class="nav-wishlist-pill" onclick="document.querySelector('[data-tab=wishlist]').click()" id="nav-pill-wishlist" style="display:none">
-        ❤️ <span id="wishlist-count-mobile"></span>
+        <svg class="ui-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 1 0-7.6 7.6l1 1L12 21l7.8-6.8 1-1a5.4 5.4 0 0 0 0-7.6z"/></svg><span id="wishlist-count-mobile"></span>
       </button>
       <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1593,7 +1633,7 @@ footer{text-align:center;padding:2rem;font-size:0.7rem;color:var(--text-muted);l
     <li><a href="#" data-tab="adresses">Bonnes adresses</a></li>
     <li><a href="#" data-tab="feed">Partage ta réalisation</a></li>
     <li><a href="#" data-tab="calculateur" style="font-weight:600">Mon bilan calorique</a></li>
-    <li class="nav-wishlist-li" style="margin-left:auto"><a href="#" data-tab="wishlist" id="wishlist-nav" title="Mes favoris">❤️ <span id="wishlist-count"></span></a></li>
+    <li class="nav-wishlist-li" style="margin-left:auto"><a href="#" data-tab="wishlist" id="wishlist-nav" title="Mes favoris"><svg class="ui-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 1 0-7.6 7.6l1 1L12 21l7.8-6.8 1-1a5.4 5.4 0 0 0 0-7.6z"/></svg><span id="wishlist-count"></span></a></li>
     <li class="nav-compte-li"><a href="#" data-tab="compte" id="compte-nav" title="Mon compte"><span class="compte-pastille" id="compte-pastille"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="compte-libelle">Mon compte</span></a></li>
   </ul>
 </nav>
@@ -1614,7 +1654,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="search-wrap" id="search-wrap" style="display:none">
   <div class="search-input-wrap">
-    <span class="search-icon">🔍</span>
+    <span class="search-icon"><svg class="ui-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></span>
     <input
       class="search-input"
       id="search-input"
@@ -1626,7 +1666,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 <div class="search-results-info" id="search-results-info"></div>
-<div class="search-empty" id="search-empty">Aucune recette trouvée pour cette recherche 🍽️</div>
+<div class="search-empty" id="search-empty">Aucune recette trouvée pour cette recherche</div>
 
 <div class="tab-content active" id="tab-home">
 
@@ -1643,7 +1683,11 @@ document.addEventListener('DOMContentLoaded', function() {
   </section>
 
   <div class="concept-wrap concept-avec-photo">
-    <img class="concept-photo" src="images/elsa-cuisine.jpg" alt="Elsa dans sa cuisine" loading="lazy">
+    <figure class="concept-visuel">
+      <img class="concept-photo" src="images/elsa-cuisine.jpg" alt="Elsa dans sa cuisine" loading="lazy">
+      <figcaption>Elsa, dans sa cuisine</figcaption>
+    </figure>
+    <div class="concept-texte">
     <h2>Bienvenue dans&nbsp;ma&nbsp;cuisine&nbsp;✨</h2>
   <p>Tout a commencé par une question qu'on me pose sans arrêt, à chaque fois que je pose un gâteau sur la table&nbsp;: <em>« mais c'est quoi, ta recette&nbsp;? »</em></p>
   <p>Alors j'ai arrêté de répondre par messages. Ce petit coin d'internet, c'est mon carnet de recettes, celui que je griffonnais avant, avec les ratures, les quantités corrigées et les astuces trouvées au troisième essai.</p>
@@ -1652,6 +1696,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <p>Faites-les, ratez-les un peu, recommencez. C'est comme ça qu'on apprend, et c'est là tout le plaisir.</p>
   <p>Bonne cuisine&nbsp;🌿</p>
   <div class="concept-signature">— Elsa</div>
+    </div>
   </div>
 
   <div class="notif-bloc" id="notif-bloc">
@@ -1678,7 +1723,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · Protéiné</span>
         <h3>Le Flamboise</h3>
         <p>Un gâteau fromage blanc &amp; framboises qui se dévore en barres ou en minis. Léger, protéiné et terriblement addictif.</p>
-        <div class="recipe-meta"><span>⏱ 55 min</span><span>🥄 8 parts</span><span>124 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>55 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>8 parts</span><span>124 kcal/part</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('kevnutbar')">
@@ -1690,7 +1735,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · No-cuisson</span>
         <h3>La Kev'nut Bar</h3>
         <p>Barres de céréales cacahuète &amp; chocolat noir. Quatre ingrédients, zéro cuisson, une dépendance quasi immédiate.</p>
-        <div class="recipe-meta"><span>⏱ 15 min + 1h frigo</span><span>🥄 10 parts</span><span>222 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>15 min + 1h frigo</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>10 parts</span><span>222 kcal/part</span></div>
       </div>
     </div>
 
@@ -1705,7 +1750,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="tag">En-cas · Protéiné</span>
     <h3>Les Coocahuètes</h3>
     <p>Des cookies banane, beurre de cacahuète &amp; whey coco-chocolat blanc, parsemés de pépites de chocolat noir. Moelleux, protéinés et prêts en un seul saladier.</p>
-    <div class="recipe-meta"><span>⏱ 18 min</span><span>🥄 8 cookies</span><span>105 kcal/part</span></div>
+    <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>18 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>8 cookies</span><span>105 kcal/part</span></div>
   </div>
 </div>
     <div class="recipe-card" onclick="openModal('fondant')">
@@ -1717,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · Protéiné</span>
         <h3>Le fondant au chocolat</h3>
         <p>Un fondant moelleux chocolat-banane à la poudre d'amande — riche en protéines avec les œufs, une tuerie pour les amateurs de banane !</p>
-        <div class="recipe-meta"><span>⏱ 25 min</span><span>🥄 8 parts</span><span>219 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>25 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>8 parts</span><span>219 kcal/part</span></div>
       </div>
     </div>
 
@@ -1733,7 +1778,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · Pâtisserie healthy</span>
         <h3>Complètement à plat</h3>
         <p>Des « brioches » pépites de chocolat à base de fromage blanc et whey. Légères, rapides, et avec un petit secret de fabrication.</p>
-        <div class="recipe-meta"><span>⏱ 20 min</span><span>🥄 6 parts</span><span>152 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>20 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>6 parts</span><span>152 kcal/part</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('cookies')">
@@ -1741,14 +1786,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="heart-btn" onclick="toggleLike(event,'cookies')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
         <img class="recipe-card-img" src="images/int-cookies.jpg" alt="Les cookies avoine">
         <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(46,42,37,0.62);padding:5px 10px;font-size:0.58rem;color:rgba(255,255,255,0.75);letter-spacing:0.04em;font-style:italic;text-align:center">
-          📷 Impossible de retrouver mes photos — celle-ci vient d'internet
+          <svg class="ui-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h3.5L8 6h8l1.5 2.5H21a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 18v-8A1.5 1.5 0 0 1 3 8.5z"/><circle cx="12" cy="13.5" r="3.6"/></svg> Impossible de retrouver mes photos — celle-ci vient d'internet
         </div>
       </div>
       <div class="recipe-card-body">
         <span class="tag">En-cas · 3 ingrédients</span>
         <h3>Les cookies avoine</h3>
         <p>Banane, avoine, chocolat. Trois ingrédients, dix minutes, et l'une de mes recettes favorites. Ultra rapide et ultra bon.</p>
-        <div class="recipe-meta"><span>⏱ 15 min</span><span>🥄 8 cookies</span><span>115 kcal/cookie</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>15 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>8 cookies</span><span>115 kcal/cookie</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('madeleine')">
@@ -1760,7 +1805,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · Protéiné</span>
         <h3>Madeleine chocolat</h3>
         <p>Des madeleines protéinées fromage blanc & pépites de chocolat. Légères, rapides et parfaites pour un en-cas sans culpabilité.</p>
-        <div class="recipe-meta"><span>⏱ 20 min</span><span>🥄 19 pièces</span><span>43 kcal/pièce</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>20 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>19 pièces</span><span>43 kcal/pièce</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('bananabread')">
@@ -1772,7 +1817,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">Healthy · Pâtisserie</span>
         <h3>Banana Bread</h3>
         <p>Le banana bread ultime — moelleux, généreux, avec du peanut butter caché à l'intérieur. Le secret ? Le sous-cuire légèrement.</p>
-        <div class="recipe-meta"><span>⏱ 40 min</span><span>🥄 8 parts</span><span>285 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>40 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>8 parts</span><span>285 kcal/part</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('blondie')">
@@ -1784,7 +1829,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">Healthy · Sucré</span>
         <h3>Keke de Blondie</h3>
         <p>Un brownie ultra moelleux aux pois chiches, beurre de cacahuete, whey vanille et sirop d'agave — sans beurre, sans oeuf, sans culpabilite !</p>
-        <div class="recipe-meta"><span>⏱ 35 min</span><span>🥄 12 parts</span><span>120 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>35 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>12 parts</span><span>120 kcal/part</span></div>
       </div>
     </div>
     <div class="recipe-card" onclick="openModal('cake')">
@@ -1796,7 +1841,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="tag">En-cas · Protéiné</span>
         <h3>Le cake tout chocolat</h3>
         <p>Un cake chocolat ultra riche avec fromage blanc 0%, whey vanille, chocolat noir, œufs — super équilibre macro, 89g de protéines pour la recette entière !</p>
-        <div class="recipe-meta"><span>⏱ 30 min</span><span>🥄 10 parts</span><span>154 kcal/part</span></div>
+        <div class="recipe-meta"><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>30 min</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5l7.4 4.2"/></svg>10 parts</span><span>154 kcal/part</span></div>
       </div>
     </div>
   </div>
@@ -1828,7 +1873,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>La Bombe à la Fraise</h3>
-        <div class="patisserie-card-meta"><span>🍓 Entremets</span><span>⏱ 2 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremets</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>2 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'flamboise')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('flancacahuete')">
@@ -1838,7 +1884,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Flan cacahuète</h3>
-        <div class="patisserie-card-meta"><span>🥜 Flan</span><span>⏱ 1h + repos</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Flan</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>1h + repos</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'flancacahuete')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('ensoleillee')">
@@ -1848,7 +1895,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>L'ensoleillée aux abricots</h3>
-        <div class="patisserie-card-meta"><span>🍑 Tarte</span><span>⏱ 2 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>2 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'ensoleillee')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('meringue')">
@@ -1858,7 +1906,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>L'incontournable meringuée</h3>
-        <div class="patisserie-card-meta"><span>🍋 Tarte</span><span>⏱ 2 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>2 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'meringue')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('flan')">
@@ -1868,7 +1917,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Flan praliné</h3>
-        <div class="patisserie-card-meta"><span>🍮 Flan</span><span>⏱ 2 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Flan</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>2 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'flan')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('tiramisu')">
@@ -1879,7 +1929,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Le tiramisu Biscoff</h3>
-        <div class="patisserie-card-meta"><span>🍮 Dessert</span><span>⏱ 4 h + repos</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Dessert</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>4 h + repos</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'tiramisu')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('noelcheese')">
@@ -1890,7 +1941,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Noël en cheesecake</h3>
-        <div class="patisserie-card-meta"><span>🎄 Bûche</span><span>⏱ 14h</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Bûche</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>14h</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'noelcheese')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('ecarlate')">
@@ -1900,7 +1952,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>L'Écarlate</h3>
-        <div class="patisserie-card-meta"><span>🍓 Tarte</span><span>⏱ 1h30</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>1h30</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'ecarlate')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('cacahuete')">
@@ -1910,7 +1963,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>L'irrésistible cacahuète</h3>
-        <div class="patisserie-card-meta"><span>🥜 Entremet</span><span>⏱ 3 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'cacahuete')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModal('myrtille')">
@@ -1920,7 +1974,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Myrtille Sauvage</h3>
-        <div class="patisserie-card-meta"><span>🫐 Tarte</span><span>⏱ 2 jours</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>2 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'myrtille')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('abricotine', 'Abricotine Provençale')">
@@ -1935,7 +1990,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>Abricotine Provençale</h3>
-        <div class="patisserie-card-meta"><span>🍑 Tarte</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('exotique', 'L\'exotique')">
@@ -1947,7 +2002,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>L'exotique</h3>
-        <div class="patisserie-card-meta"><span>🥭 Entremet</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('noel', 'Noël en noisette')">
@@ -1959,7 +2014,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>Noël en noisette</h3>
-        <div class="patisserie-card-meta"><span>🎄 Bûche</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Bûche</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('domecara', 'Dome Cara-choco')">
@@ -1971,7 +2026,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>Dome Cara-choco</h3>
-        <div class="patisserie-card-meta"><span>🍫 Entremet</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('choconois', 'Le Choco-noisette')">
@@ -1983,7 +2038,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>Le Choco-noisette</h3>
-        <div class="patisserie-card-meta"><span>🌰 Entremet</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('framboisier', 'Le Framboisier')">
@@ -1995,7 +2050,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="patisserie-card-body">
         <span class="coming-soon-badge">Recette à venir</span>
         <h3>Le Framboisier</h3>
-        <div class="patisserie-card-meta"><span>🫐 Entremet</span><span>⏱ À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Entremet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
       </div>
     </div>
 </div>
@@ -2021,7 +2076,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Babka Méditerranée</h3>
-        <div class="patisserie-card-meta"><span>🫓 Boulangerie</span><span>⏱ 3h30</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Boulangerie</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3h30</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'babka')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2033,7 +2089,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Pasta Verde</h3>
-        <div class="patisserie-card-meta"><span>🍝 Pâtes</span><span>⏱ 25 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Pâtes</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>25 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'pastaverde')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2045,7 +2102,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Gnocchi Brocolis</h3>
-        <div class="patisserie-card-meta"><span>🥦 Pâtes</span><span>⏱ 30 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Pâtes</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>30 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'gnocchi')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2057,7 +2115,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Bouillon fourre-tout</h3>
-        <div class="patisserie-card-meta"><span>🍲 Soupe</span><span>⏱ 40 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Soupe</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>40 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'bouillon')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2069,7 +2128,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>La Forestière</h3>
-        <div class="patisserie-card-meta"><span>🍄 Plat</span><span>⏱ 35 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Plat</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>35 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'forestiere')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2089,7 +2149,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Les crêpes de Pierre Hermé</h3>
-        <div class="patisserie-card-meta"><span>🥞 Crêpes</span><span>⏱ 1h15</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Crêpes</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>1h15</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'crepes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2100,7 +2161,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Cookies Signatures</h3>
-        <div class="patisserie-card-meta"><span>🍪 Cookies</span><span>⏱ 30 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Cookies</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>30 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'cookiessig')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2111,7 +2173,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Cookie XXL</h3>
-        <div class="patisserie-card-meta"><span>🍪 Cookie</span><span>⏱ 35 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Cookie</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>35 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'cookiexxl')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2122,7 +2185,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Financiers</h3>
-        <div class="patisserie-card-meta"><span>🧁 Petit gâteau</span><span>⏱ 30 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Petit gâteau</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>30 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'financier')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2133,7 +2197,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Brownie Signature</h3>
-        <div class="patisserie-card-meta"><span>🍫 Gâteau</span><span>⏱ 45 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Gâteau</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>45 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'brownie')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2143,7 +2208,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Cookies façon Levain Bakery</h3>
-        <div class="patisserie-card-meta"><span>🍪 Cookies</span><span>⏱ 45 min</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Cookies</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>45 min</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'levain')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
   </div>
@@ -2164,7 +2230,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Le pain choc</h3>
-        <div class="patisserie-card-meta"><span>🍫 Viennoiserie</span><span>⏱ 5h</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Viennoiserie</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>5h</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'painchoc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2175,7 +2242,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>L'indécente</h3>
-        <div class="patisserie-card-meta"><span>🤤 Viennoiserie</span><span>⏱ 3h30</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Viennoiserie</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3h30</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'indecente')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2187,7 +2255,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Nutel'Ball</h3>
-        <div class="patisserie-card-meta"><span>🍩 Beignet</span><span>⏱ 1h30</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Beignet</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>1h30</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'nutelball')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2199,7 +2268,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="patisserie-card-body">
         <h3>Le suisse</h3>
-        <div class="patisserie-card-meta"><span>🥐 Viennoiserie</span><span>⏱ 3h</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Viennoiserie</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3h</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'suisse')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
 
@@ -2271,13 +2341,13 @@ document.addEventListener('DOMContentLoaded', function() {
       <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.2rem;letter-spacing:0.06em;text-transform:uppercase">Mon objectif</p>
       <div class="calc-goals">
         <button class="calc-goal-btn" onclick="selectGoal(this,'lose')">
-          <span>📉</span>Perdre<br>du poids
+          <span class="meta-cat"></span>Perdre<br>du poids
         </button>
         <button class="calc-goal-btn" onclick="selectGoal(this,'maintain')">
-          <span>⚖️</span>Maintenir<br>mon poids
+          <span class="meta-cat"></span>Maintenir<br>mon poids
         </button>
         <button class="calc-goal-btn" onclick="selectGoal(this,'gain')">
-          <span>📈</span>Prendre<br>du poids
+          <span class="meta-cat"></span>Prendre<br>du poids
         </button>
       </div>
       <div class="calc-goal-result" id="calc-goal-result">
@@ -2556,7 +2626,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="cuisine-minuteur"></div>
   </div>
   <button class="sos-bulle" onclick="ouvrirSOS()" aria-label="Demander à Basile">
-    <span class="sos-ico">&#127807;</span><span class="sos-lib">SOS Cuisine</span>
+    <span class="sos-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5z"/><path d="M4 21c2-5.5 5.5-9 11-11.5"/></svg></span><span class="sos-lib">SOS Cuisine</span>
   </button>
 
   <div class="sos-panneau" id="sos-panneau">
@@ -3682,12 +3752,17 @@ function openModal(id) {
     '</div>'+
     reperesHtml(id, r, dureeCarte)+
     // barre d'outils compacte
+    '<button class="cuisine-appel" onclick="ouvrirCuisine()">'+
+      '<span class="cuisine-appel-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg></span>'+
+      '<span class="cuisine-appel-txt"><strong>Passer en mode cuisine</strong>'+
+        '<em>Pas \u00e0 pas, minuteurs, lecture vocale, l\u2019\u00e9cran reste allum\u00e9</em></span>'+
+      '<span class="cuisine-appel-fleche">\u2192</span>'+
+    '</button>'+
     '<div class="outils">'+
-      '<button class="outil primaire" onclick="ouvrirCuisine()"><span class="outil-ico">&#127859;</span>Mode cuisine</button>'+
-      '<button class="outil" onclick="openShoppingList(\''+id+'\')"><span class="outil-ico">&#128722;</span>Courses</button>'+
-      '<button class="outil" id="outil-regime" onclick="ouvrirVolet(\'regime\',this)"><span class="outil-ico">&#129367;</span>R\u00E9gime</button>'+
-      (multiDay ? '<button class="outil" id="outil-plan" onclick="ouvrirVolet(\'plan\',this)"><span class="outil-ico">&#128197;</span>Planifier</button>' : '')+
-      (mouleRecette(id) ? '<button class="outil" id="outil-moule" onclick="ouvrirVolet(\'moule\',this)"><span class="outil-ico">&#9711;</span>Moule</button>' : '')+
+      '<button class="outil" onclick="openShoppingList(\''+id+'\')"><span class="outil-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-1.7 11.3a2 2 0 0 1-2 1.7H6.7a2 2 0 0 1-2-1.7z"/><path d="M8.5 7V5a3.5 3.5 0 0 1 7 0v2"/><path d="M9.5 11.5v4M14.5 11.5v4"/></svg></span>Courses</button>'+
+      '<button class="outil" id="outil-regime" onclick="ouvrirVolet(\'regime\',this)"><span class="outil-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5z"/><path d="M4 21c2-5.5 5.5-9 11-11.5"/></svg></span>R\u00E9gime</button>'+
+      (multiDay ? '<button class="outil" id="outil-plan" onclick="ouvrirVolet(\'plan\',this)"><span class="outil-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="9" cy="14.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="14.5" r="1.1" fill="currentColor" stroke="none"/></svg></span>Planifier</button>' : '')+
+      (mouleRecette(id) ? '<button class="outil" id="outil-moule" onclick="ouvrirVolet(\'moule\',this)"><span class="outil-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="7.5" rx="8.5" ry="3.5"/><path d="M3.5 7.5v8a8.5 3.5 0 0 0 17 0v-8"/></svg></span>Moule</button>' : '')+
     '</div>'+
     bandeauProfilHtml()+
     '<div class="volet" id="volet-regime">'+regimesHtml()+'</div>'+
@@ -3701,8 +3776,8 @@ function openModal(id) {
           portionsHtml()+
         '</div>'+
         '<div class="ing-actions">'+
-          '<button class="shop-btn" onclick="openShoppingList(\''+id+'\')">&#128722;&nbsp; Ma liste</button>'+
-          '<button class="mep-btn" onclick="ouvrirMiseEnPlace()">&#128064;&nbsp; Visualiser</button>'+
+          '<button class="shop-btn" onclick="openShoppingList(\''+id+'\')"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-1.7 11.3a2 2 0 0 1-2 1.7H6.7a2 2 0 0 1-2-1.7z"/><path d="M8.5 7V5a3.5 3.5 0 0 1 7 0v2"/><path d="M9.5 11.5v4M14.5 11.5v4"/></svg><span>Ma liste</span></button>'+
+          '<button class="mep-btn" onclick="ouvrirMiseEnPlace()"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></svg><span>Visualiser</span></button>'+
         '</div>'+
         '<div class="ing-collapse open"><ul class="ingredient-list">'+ing+'</ul></div>'+
         macrosHtml(r)+
@@ -4707,6 +4782,14 @@ function libelleDuree(sec){
   if(h) return h + ' h' + (mn ? ' ' + mn : '');
   if(sec < 60) return sec + ' s';
   return mn + ' min';
+}
+
+// Depuis une vignette : on ouvre la fiche, puis on bascule en plein écran
+// dès que son contenu est rendu.
+function lancerCuisine(e, id){
+  e.stopPropagation();
+  openModal(id);
+  setTimeout(() => { if(typeof ouvrirCuisine === 'function') ouvrirCuisine(); }, 260);
 }
 
 async function ouvrirCuisine(){
@@ -5814,6 +5897,34 @@ function voirSurCarte(id){
   carteAdresses.setView(t.m.getLatLng(), 15, { animate: true });
   setTimeout(() => t.m.openPopup(), 400);
 }
+
+// ===== COMPTEURS DES ONGLETS =====
+// Écrits à la main, ils finissaient par mentir à chaque ajout de recette.
+// On les recalcule à partir des vignettes réellement présentes.
+function majCompteurs(){
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    const cible = tab.querySelector('.section-count');
+    if(!cible || cible.dataset.fixe === '1') return;
+    const grille = tab.querySelector('.patisserie-grid, .recipe-grid, .adr-grille');
+    if(!grille) return;
+
+    if(tab.id === 'tab-adresses'){
+      const n = (typeof ADRESSES !== 'undefined') ? ADRESSES.length : 0;
+      cible.textContent = n + ' adresse' + (n > 1 ? 's' : '') + ' test\u00e9e' + (n > 1 ? 's' : '');
+      return;
+    }
+    let pretes = 0, aVenir = 0;
+    grille.querySelectorAll('.patisserie-card, .recipe-card').forEach(c => {
+      const h = c.getAttribute('onclick') || '';
+      if(h.indexOf('openModalComing') !== -1) aVenir++;
+      else if(h.indexOf('openModal') !== -1) pretes++;
+    });
+    if(!pretes && !aVenir) return;
+    cible.textContent = pretes + ' recette' + (pretes > 1 ? 's' : '') +
+      (aVenir ? ' \u00b7 ' + aVenir + ' \u00e0 venir' : '');
+  });
+}
+window.addEventListener('load', majCompteurs);
 
 // ===== AVIS DES VISITEURS SUR LES ADRESSES =====
 let avisEnCours = { id: null, note: 0 };
@@ -7232,7 +7343,7 @@ function aujourdhuiISO(){
 function planWrapHtml(id, days){
   const saved = planningDates[id] || '';
   return '<div class="plan-wrap">'+
-    '<span class="plan-label">&#128197; Je le veux pr\u00EAt le</span>'+
+    '<span class="plan-label"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="9" cy="14.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="14.5" r="1.1" fill="currentColor" stroke="none"/></svg> Je le veux pr\u00EAt le</span>'+
     '<input type="date" class="plan-date" id="plan-date" min="'+aujourdhuiISO()+'" value="'+saved+'" onchange="applyPlanning(this.value)">'+
     '<button class="plan-reset" onclick="applyPlanning(\'\')">Effacer</button>'+
     '<div class="plan-info" id="plan-info"></div>'+
@@ -7438,6 +7549,7 @@ function activateTab(t) {
   if(t==='inspiration') initInspi();
   if(t==='compte') initCompte();
   if(t==='adresses'){ initAdresses(); setTimeout(initCarte, 120); }
+  majCompteurs();
   if(['healthy','patisserie','sale','viennoiserie','gouter'].indexOf(t) !== -1){ poserFiltres(); appliquerFiltres(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -7606,7 +7718,7 @@ function renderWishlist() {
     card.onclick = () => openModal(id);
     card.innerHTML = `
       <div class="recipe-card-img-wrap" style="position:relative">
-        ${imgSrc ? `<img class="recipe-card-img" src="${imgSrc}" alt="${r.title}">` : `<div class="recipe-card-placeholder"><span>🍴</span></div>`}
+        ${imgSrc ? `<img class="recipe-card-img" src="${imgSrc}" alt="${r.title}">` : `<div class="recipe-card-placeholder"><span class="meta-cat"></span></div>`}
         <button class="heart-btn liked" onclick="toggleLike(event,'${id}')" title="Retirer des favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="#e05a7a" stroke="#e05a7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
       </div>
       <div class="recipe-card-body">
