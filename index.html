@@ -548,6 +548,35 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .gi-oui{background:var(--sage-dark);color:var(--white);border:none;border-radius:20px;padding:0.6rem 1rem;font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
 .gi-non{background:none;border:none;color:var(--brown-light);font-size:0.8rem;cursor:pointer;padding:0.3rem;flex-shrink:0}
 
+/* ── Mes créations ── */
+.creations-corps{max-width:1100px;margin:0 auto;padding:0 3rem 5rem}
+.mc-vide{text-align:center;max-width:480px;margin:2rem auto;padding:2.6rem 1.5rem;background:var(--white);border:1px solid var(--cream-dark);border-radius:14px}
+.mc-vide p{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text);margin-bottom:0.7rem}
+.mc-vide-sous{font-family:Jost,sans-serif!important;font-size:0.86rem!important;color:var(--text-muted)!important;line-height:1.75;margin-bottom:1.6rem!important}
+.mc-cta{background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:0.9rem 1.8rem;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+.mc-cta:hover{opacity:0.9}
+.mc-cta.secondaire{display:block;margin:1.6rem auto 0;background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted)}
+.mc-cta.secondaire:hover{border-color:var(--sage);color:var(--sage-dark);opacity:1}
+.mc-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem}
+.mc-carte{background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;overflow:hidden;transition:border-color 0.2s,transform 0.2s}
+.mc-carte:hover{border-color:var(--sage);transform:translateY(-3px)}
+.mc-schema{background:var(--cream);padding:0.6rem;cursor:pointer}
+.mc-schema svg{width:100%;height:auto;max-height:180px;display:block}
+.mc-corps{padding:1rem 1.1rem 1.1rem}
+.mc-corps h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--text);cursor:pointer;line-height:1.2}
+.mc-corps h3:hover{color:var(--sage-dark)}
+.mc-meta{font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.06em;color:var(--brown-light);margin:0.35rem 0 0.85rem}
+.mc-actions{display:flex;gap:0.4rem;flex-wrap:wrap}
+.mc-btn{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.5rem 0.9rem;cursor:pointer}
+.mc-btn:hover{border-color:var(--sage);color:var(--sage-dark)}
+.mc-btn.primaire{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.mc-btn.primaire:hover{opacity:0.88;color:var(--white)}
+.mc-btn.danger{margin-left:auto;padding:0.5rem 0.7rem}
+.mc-btn.danger:hover{border-color:var(--brown);color:var(--brown)}
+@media(max-width:640px){
+  .creations-corps{padding:0 1.2rem 3.5rem}
+  .mc-grille{grid-template-columns:1fr;gap:1rem}
+}
 /* ── L'atelier de création ── */
 .atelier-corps{max-width:760px;margin:0 auto;padding:0 2rem 5rem}
 .at-etape{font-family:Jost,sans-serif;font-size:0.72rem;letter-spacing:0.08em;color:var(--text-muted);text-align:center;margin-bottom:1.6rem}
@@ -1946,6 +1975,7 @@ footer{padding:0;border-top:1px solid var(--cream-dark);background:var(--white);
         <li><a href="#" data-tab="viennoiserie">Viennoiserie</a></li>
       <li><a href="#" data-tab="gouter">Goûter</a></li>
       <li><a href="#" data-tab="atelier">Créer ma recette</a></li>
+      <li><a href="#" data-tab="creations">Mes créations</a></li>
       </ul>
     </li>
     <li><a href="#" data-tab="inspiration">SOS Cuisine</a></li>
@@ -2717,6 +2747,14 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
 </div><!-- end tab-calculateur -->
+
+<div class="tab-content" id="tab-creations">
+  <div class="section-header">
+    <h2 class="section-title">Mes créations</h2>
+    <span class="section-count" data-fixe="1">Rien encore</span>
+  </div>
+  <div class="creations-corps" id="creations-corps"></div>
+</div>
 
 <div class="tab-content" id="tab-atelier">
   <div class="section-header">
@@ -6761,8 +6799,9 @@ function voirFicheCreation(){
   });
   steps.push('Jour J — Montage : empilez dans l\u2019ordre du schéma, du bas vers le haut. Réservez 4 h au frais avant de servir.');
 
-  // on enregistre la création comme une vraie recette du site
-  recipes['macreation'] = {
+  // on conserve la création dans la collection, puis on l'inscrit comme recette
+  const idCrea = conserverCreation();
+  recipes[idCrea] = {
     tag: 'Ma création',
     title: creation.titre,
     kcal: estimerKcal(ingredients, creation.portions),
@@ -6773,7 +6812,7 @@ function voirFicheCreation(){
     steps: steps,
     astuce: 'Cette recette est la vôtre : elle reste sur cet appareil et n\u2019est publiée nulle part. Vous pouvez la modifier à tout moment depuis l\u2019atelier.'
   };
-  IMGS['macreation'] = [];
+  IMGS[idCrea] = [];
 
   document.getElementById('atelier-corps').innerHTML =
     '<div class="at-etape"><span>Étape 3 sur 3</span> Votre fiche est prête</div>' +
@@ -6784,7 +6823,8 @@ function voirFicheCreation(){
       '<div><b>' + steps.length + '</b><span>étapes</span></div>' +
     '</div>' +
     '<p class="at-aide at-centre">Elle se comporte comme n\u2019importe quelle recette du site&nbsp;: régimes, liste de courses, mode cuisine, planification.</p>' +
-    '<button class="at-fiche" onclick="openModal(\'macreation\')">Ouvrir ma fiche recette</button>' +
+    '<button class="at-fiche" onclick="openModal(\'' + idCrea + '\')">Ouvrir ma fiche recette</button>' +
+    '<p class="at-aide at-centre">Elle est enregistrée dans <b>Mes créations</b>, vous la retrouverez à tout moment.</p>' +
     '<div class="at-nav">' +
       '<button class="at-prec" onclick="etapeSources()">Modifier les préparations</button>' +
       '<button class="at-prec" onclick="effacerCreation()">Recommencer</button>' +
@@ -6812,12 +6852,165 @@ function rendreAtelier(){
   etapeComposition();
 }
 
+// Recommencer n'efface que le brouillon : les créations déjà enregistrées
+// restent dans « Mes créations ».
 function effacerCreation(){
-  if(!confirm('Effacer votre création et recommencer ?')) return;
+  if(!confirm('Repartir d\u2019une page blanche ? Vos créations déjà enregistrées seront conservées.')) return;
   creation = null;
   try { localStorage.removeItem('elsa_creation'); } catch(e) {}
-  delete recipes['macreation'];
   etapeComposition();
+}
+
+// ===== MES CRÉATIONS : LA COLLECTION =====
+// Les recettes qu'on a soi-même composées, conservées sur l'appareil.
+function chargerMesCreations(){
+  try {
+    const l = JSON.parse(localStorage.getItem('elsa_mes_creations') || '[]');
+    return Array.isArray(l) ? l : [];
+  } catch(e) { return []; }
+}
+function sauverMesCreations(l){
+  try { localStorage.setItem('elsa_mes_creations', JSON.stringify(l)); } catch(e) {}
+}
+
+function idCreation(){
+  return 'crea-' + Date.now().toString(36) + Math.floor(Math.random() * 900 + 100);
+}
+
+// on enregistre la création en cours dans la collection
+function conserverCreation(){
+  if(!creation || !creation.titre) return null;
+  const liste = chargerMesCreations();
+  if(!creation.id) creation.id = idCreation();
+  const copie = JSON.parse(JSON.stringify(creation));
+  copie.date = creation.date || new Date().toISOString();
+  const i = liste.findIndex(x => x.id === copie.id);
+  if(i === -1) liste.unshift(copie); else liste[i] = copie;
+  sauverMesCreations(liste);
+  creation.date = copie.date;
+  sauverCreation();
+  return copie.id;
+}
+
+// une création enregistrée redevient une recette utilisable par le site
+function inscrireCommeRecette(c){
+  const ordre = { 'J-2': 0, 'J-1': 1, 'Jour J': 2 };
+  const preps = c.couches.map(x => c.preparations[x.type]).filter(Boolean);
+  const ingredients = [];
+  preps.forEach(p => {
+    ingredients.push('— ' + p.nom + ' (' + p.jour + ') —');
+    p.ing.forEach(x => ingredients.push(x));
+  });
+  const steps = [];
+  preps.slice().sort((a, b) => (ordre[a.jour] ?? 1) - (ordre[b.jour] ?? 1)).forEach(p => {
+    if(p.steps.length) p.steps.forEach(st => steps.push(p.jour + ' — ' + p.nom + ' : ' + st));
+    else steps.push(p.jour + ' — ' + p.nom + ' : préparez selon votre méthode habituelle.');
+  });
+  steps.push('Jour J — Montage : empilez dans l\u2019ordre du schéma, du bas vers le haut. Réservez 4 h au frais avant de servir.');
+
+  recipes[c.id] = {
+    tag: 'Ma création',
+    title: c.titre,
+    kcal: estimerKcal(ingredients, c.portions || 8),
+    proteines: '—', glucides: '—', lipides: '—',
+    portions: '1 part / ' + (c.portions || 8),
+    chapo: 'Votre création, montée couche par couche.',
+    ingredients: ingredients,
+    steps: steps,
+    astuce: 'Cette recette est la vôtre : elle reste sur cet appareil et n\u2019est publiée nulle part. Vous pouvez la modifier depuis l\u2019atelier.'
+  };
+  IMGS[c.id] = [];
+  return c.id;
+}
+
+// au chargement, on rend toutes les créations ouvrables
+function inscrireToutesLesCreations(){
+  chargerMesCreations().forEach(c => {
+    if(c && c.id && c.couches && c.preparations) inscrireCommeRecette(c);
+  });
+}
+window.addEventListener('load', inscrireToutesLesCreations);
+
+function dateCreation(iso){
+  try {
+    return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch(e) { return ''; }
+}
+
+function initMesCreations(){
+  const z = document.getElementById('creations-corps');
+  if(!z) return;
+  const liste = chargerMesCreations();
+  const compteur = document.querySelector('#tab-creations .section-count');
+  if(compteur) compteur.textContent = liste.length
+    ? liste.length + ' création' + (liste.length > 1 ? 's' : '')
+    : 'Rien encore';
+
+  if(!liste.length){
+    z.innerHTML =
+      '<div class="mc-vide">' +
+        '<p>Vous n\u2019avez pas encore créé de recette.</p>' +
+        '<p class="mc-vide-sous">L\u2019atelier vous laisse composer votre gâteau couche par couche, ' +
+        'puis en sort une fiche complète avec le mode cuisine, la liste de courses et les régimes.</p>' +
+        '<button class="mc-cta" onclick="showTab(\'atelier\')">Créer ma première recette</button>' +
+      '</div>';
+    return;
+  }
+
+  z.innerHTML =
+    '<div class="mc-grille">' + liste.map(c => {
+      const nb = Object.keys(c.preparations || {}).length;
+      return '<article class="mc-carte">' +
+        '<div class="mc-schema" onclick="ouvrirCreation(\'' + c.id + '\')">' +
+          schemaEntremets('', c.couches || []) + '</div>' +
+        '<div class="mc-corps">' +
+          '<h3 onclick="ouvrirCreation(\'' + c.id + '\')">' + echapper(c.titre) + '</h3>' +
+          '<div class="mc-meta">' + nb + ' préparation' + (nb > 1 ? 's' : '') +
+            ' &middot; ' + dateCreation(c.date) + '</div>' +
+          '<div class="mc-actions">' +
+            '<button class="mc-btn primaire" onclick="ouvrirCreation(\'' + c.id + '\')">Ouvrir la fiche</button>' +
+            '<button class="mc-btn" onclick="reprendreCreation(\'' + c.id + '\')">Modifier</button>' +
+            '<button class="mc-btn danger" onclick="supprimerCreation(\'' + c.id + '\')" title="Supprimer">&#10005;</button>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+    }).join('') + '</div>' +
+    '<button class="mc-cta secondaire" onclick="nouvelleCreation()">Créer une autre recette</button>';
+}
+
+function ouvrirCreation(id){
+  const c = chargerMesCreations().find(x => x.id === id);
+  if(!c) return;
+  inscrireCommeRecette(c);
+  openModal(id);
+}
+
+function reprendreCreation(id){
+  const c = chargerMesCreations().find(x => x.id === id);
+  if(!c) return;
+  creation = JSON.parse(JSON.stringify(c));
+  creation.etape = 2;
+  sauverCreation();
+  showTab('atelier');
+}
+
+function supprimerCreation(id){
+  const c = chargerMesCreations().find(x => x.id === id);
+  if(!c) return;
+  if(!confirm('Supprimer « ' + c.titre + ' » ? Cette action est définitive.')) return;
+  sauverMesCreations(chargerMesCreations().filter(x => x.id !== id));
+  delete recipes[id];
+  if(creation && creation.id === id){
+    creation = null;
+    try { localStorage.removeItem('elsa_creation'); } catch(e) {}
+  }
+  initMesCreations();
+}
+
+function nouvelleCreation(){
+  creation = null;
+  try { localStorage.removeItem('elsa_creation'); } catch(e) {}
+  showTab('atelier');
 }
 
 // ===== LA VISITE GUIDÉE =====
@@ -9113,6 +9306,7 @@ function activateTab(t) {
   if(t==='compte') initCompte();
   if(t==='adresses'){ initAdresses(); setTimeout(initCarte, 120); }
   if(t==='atelier') initAtelier();
+  if(t==='creations') initMesCreations();
   majCompteurs();
   if(['healthy','patisserie','sale','viennoiserie','gouter'].indexOf(t) !== -1){ poserFiltres(); appliquerFiltres(); }
   window.scrollTo({top:0,behavior:'smooth'});
