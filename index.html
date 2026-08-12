@@ -548,38 +548,166 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .gi-oui{background:var(--sage-dark);color:var(--white);border:none;border-radius:20px;padding:0.6rem 1rem;font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
 .gi-non{background:none;border:none;color:var(--brown-light);font-size:0.8rem;cursor:pointer;padding:0.3rem;flex-shrink:0}
 
-/* ── Le guide ── */
-.guide-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.78);z-index:2500;overflow-y:auto;padding:2rem 1rem}
-.guide-overlay.open{display:block}
-.guide-boite{max-width:700px;margin:0 auto;background:var(--cream);border-radius:16px;padding:1.8rem 1.8rem 2rem}
-.guide-entete{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}
-.guide-eyebrow{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--brown-light)}
-.guide-entete h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--text);margin:0.2rem 0 0.5rem}
-.guide-entete p{font-size:0.84rem;color:var(--text-muted);line-height:1.65;max-width:440px}
-.guide-close{background:var(--cream-dark);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--text);cursor:pointer;flex-shrink:0}
-.guide-close:hover{background:var(--text);color:var(--white)}
-.guide-bloc{background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;margin-bottom:0.6rem;overflow:hidden}
-.guide-tete{display:flex;align-items:center;gap:0.85rem;width:100%;background:none;border:none;padding:1rem 1.1rem;cursor:pointer;text-align:left}
-.guide-ico{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--cream);color:var(--sage-dark);flex-shrink:0}
-.guide-ico svg{width:18px;height:18px}
-.guide-titre{flex:1;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text)}
-.guide-chevron{color:var(--brown-light);font-size:1.2rem;transition:transform 0.25s}
-.guide-bloc.ouvert .guide-chevron{transform:rotate(90deg)}
-.guide-bloc.ouvert{border-color:var(--sage)}
-.guide-detail{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
-.guide-bloc.ouvert .guide-detail{max-height:640px}
-.guide-detail ul{list-style:none;padding:0 1.2rem 1.1rem 4.1rem}
-.guide-detail li{position:relative;font-size:0.86rem;color:var(--text-muted);line-height:1.75;padding:0.32rem 0}
-.guide-detail li::before{content:'';position:absolute;left:-1rem;top:1.05rem;width:5px;height:5px;border-radius:50%;background:var(--sage)}
-.guide-detail b{color:var(--text);font-weight:500}
-.guide-fin{display:block;width:100%;margin-top:1.2rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:0.95rem;font-family:Jost,sans-serif;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+/* ── L'atelier de création ── */
+.atelier-corps{max-width:760px;margin:0 auto;padding:0 2rem 5rem}
+.at-etape{font-family:Jost,sans-serif;font-size:0.72rem;letter-spacing:0.08em;color:var(--text-muted);text-align:center;margin-bottom:1.6rem}
+.at-etape span{display:inline-block;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--white);background:var(--sage-dark);border-radius:14px;padding:0.22rem 0.7rem;margin-right:0.55rem}
+.at-bloc{background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:1.4rem 1.5rem}
+.at-label{display:block;font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--sage-dark);margin:0.9rem 0 0.4rem}
+.at-label:first-child{margin-top:0}
+.at-input,.at-textarea,.at-select{width:100%;padding:0.8rem 1rem;border:1px solid var(--cream-dark);border-radius:9px;background:var(--cream);font-family:Jost,sans-serif;font-size:0.9rem;color:var(--text);line-height:1.7}
+.at-textarea{resize:vertical}
+.at-input:focus,.at-textarea:focus,.at-select:focus{outline:none;border-color:var(--sage);background:var(--white)}
+.at-aide{font-size:0.78rem;color:var(--text-muted);line-height:1.65;margin-top:0.8rem;font-style:italic}
+.at-aide.at-centre{text-align:center;max-width:520px;margin:0.6rem auto 1.4rem}
+.at-apercu{margin-top:1.4rem;background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:1rem;min-height:180px;display:flex;flex-direction:column;justify-content:center}
+.at-vide{text-align:center;color:var(--brown-light);font-size:0.84rem;font-style:italic;padding:3rem 1rem}
+.at-note{text-align:center;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown-light);margin-top:0.4rem}
+.at-alerte{background:rgba(139,99,71,0.12);color:var(--brown);border-radius:8px;padding:0.7rem 0.9rem;font-size:0.83rem;margin-bottom:0.8rem}
+.schema{width:100%;height:auto;display:block}
+.sch-txt{font-family:Jost,sans-serif;font-size:14px;fill:var(--text-muted)}
+.sch-titre{font-family:'Cormorant Garamond',serif;font-size:28px;fill:var(--text)}
+.at-schema-mini{background:var(--white);border:1px solid var(--cream-dark);border-radius:14px;padding:0.8rem;margin-bottom:1.2rem}
+
+.at-prep{background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.6rem}
+.at-prep.remplie{border-color:var(--sage);background:rgba(122,158,126,0.06)}
+.at-prep-tete{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.at-prep-nom{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--text)}
+.at-prep-ok{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--sage-dark);border-radius:12px;padding:0.2rem 0.6rem}
+.at-prep-vide{font-family:Jost,sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown-light)}
+.at-prep-apercu{font-size:0.8rem;color:var(--text-muted);margin:0.5rem 0 0.7rem;line-height:1.6}
+.at-prep-choix{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem}
+.at-prep-btn{font-family:Jost,sans-serif;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-dark);color:var(--text-muted);border-radius:18px;padding:0.5rem 0.95rem;cursor:pointer}
+.at-prep-btn:hover{border-color:var(--sage);color:var(--sage-dark)}
+.at-prep-btn.primaire{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+
+.at-sources{display:flex;flex-direction:column;gap:0.5rem}
+.at-source{display:flex;flex-direction:column;gap:0.15rem;text-align:left;background:var(--white);border:1px solid var(--cream-dark);border-radius:11px;padding:0.85rem 1rem;cursor:pointer}
+.at-source:hover{border-color:var(--sage)}
+.at-source strong{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--text)}
+.at-source span{font-size:0.76rem;color:var(--text-muted)}
+.at-source em{font-style:normal;font-size:0.64rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--brown-light)}
+
+.at-resume{display:flex;gap:0.6rem;margin:1.2rem 0}
+.at-resume>div{flex:1;background:var(--white);border:1px solid var(--cream-dark);border-radius:11px;padding:0.9rem 0.5rem;text-align:center}
+.at-resume b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--sage-dark);line-height:1}
+.at-resume span{font-size:0.66rem;letter-spacing:0.08em;color:var(--text-muted)}
+.at-fiche{display:block;width:100%;background:var(--sage-dark);color:var(--white);border:none;border-radius:26px;padding:1rem;font-family:Jost,sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;margin-bottom:1rem}
+.at-fiche:hover{opacity:0.9}
+
+.at-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.4rem;flex-wrap:wrap}
+.at-prec{background:none;border:none;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0.5rem 0}
+.at-prec:hover{color:var(--sage-dark)}
+.at-suiv{background:var(--sage-dark);color:var(--white);border:none;border-radius:24px;padding:0.8rem 1.6rem;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.11em;text-transform:uppercase;cursor:pointer}
+.at-suiv:disabled{opacity:0.4;cursor:default}
 @media(max-width:640px){
-  .guide-overlay{padding:1rem 0.6rem}
-  .guide-boite{padding:1.3rem 1.1rem 1.6rem}
-  .guide-entete h3{font-size:1.6rem}
-  .guide-detail ul{padding-left:3rem}
-  .guide-invit{left:0.8rem;right:0.8rem;bottom:0.8rem;gap:0.6rem;padding:0.85rem}
+  .atelier-corps{padding:0 1.2rem 3.5rem}
+  .at-bloc{padding:1.1rem}
+  .at-resume{flex-direction:column;gap:0.4rem}
+  .at-resume>div{display:flex;align-items:baseline;justify-content:center;gap:0.5rem;padding:0.6rem}
+  .at-resume b{font-size:1.3rem}
 }
+/* ── La visite guidée ── */
+/* ── Le curseur qui montre le geste ── */
+.vg-curseur{position:absolute;right:-12px;bottom:-14px;width:26px;height:26px;filter:drop-shadow(0 2px 5px rgba(46,42,37,0.35));animation:tapote 1.9s ease-in-out infinite;pointer-events:none}
+.vg-curseur svg{width:100%;height:100%}
+@keyframes tapote{0%,100%{transform:translate(0,0)}45%{transform:translate(-5px,-6px)}55%{transform:translate(-5px,-6px)}}
+.cible{position:relative;box-shadow:0 0 0 2px var(--sage),0 0 0 7px rgba(122,158,126,0.2);z-index:1}
+.vg-select-faux{display:flex;align-items:center;gap:0.4rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:18px;padding:0.42rem 0.85rem;font-size:0.74rem;margin-bottom:0.45rem}
+.vg-select-faux b{color:var(--text);font-weight:500}
+.vg-cartes{display:flex;gap:0.35rem;margin:0.7rem 0 0.2rem}
+.vg-cartes i{flex:1;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--cream-dark),var(--cream))}
+.vg-fiche-tete{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text);margin-bottom:0.5rem}
+.vg-bandeau{background:var(--sage-dark);color:var(--white);border-radius:10px;padding:0.6rem 0.85rem;font-size:0.74rem;letter-spacing:0.06em}
+.vg-apres{text-align:center;color:var(--brown-light);font-size:1rem;margin:0.5rem 0 0.3rem}
+.vg-plein{display:flex;flex-direction:column;gap:0.3rem;background:#F3EFE6;border-radius:10px;padding:0.7rem 0.8rem}
+.vg-plein .vg-etape{font-size:0.6rem}
+.vg-plein .vg-txt{font-size:0.98rem;margin:0}
+.vg-plein .vg-pastilles{display:flex;gap:0.3rem;flex-wrap:wrap;margin-top:0.2rem}
+.vg-plein .vg-pastilles i{font-style:normal;font-size:0.68rem;background:rgba(122,158,126,0.16);color:var(--sage-dark);border-radius:12px;padding:0.2rem 0.5rem}
+.vg-ing s{color:var(--brown-light)}
+.vg-ing b{color:var(--sage-dark);font-weight:600}
+.vg-champ{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;background:var(--cream);border:1px solid var(--cream-dark);border-radius:20px;padding:0.45rem 0.5rem 0.45rem 0.9rem;font-size:0.74rem;color:var(--brown-light);margin-top:0.5rem}
+.vg-env{background:var(--sage-dark);color:var(--white);border-radius:16px;padding:0.28rem 0.7rem;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase}
+.vg-mult.cible{display:inline-flex;align-items:center;gap:0.3rem}
+.guide-overlay{display:none;position:fixed;inset:0;background:rgba(46,42,37,0.82);z-index:2500;overflow-y:auto;padding:2rem 1rem}
+.guide-overlay.open{display:block}
+.guide-boite{position:relative;max-width:520px;margin:0 auto;background:var(--cream);border-radius:18px;padding:2.4rem 2rem 1.6rem}
+.guide-close{position:absolute;top:1rem;right:1rem;background:var(--cream-dark);border:none;width:36px;height:36px;border-radius:50%;font-size:0.9rem;color:var(--text);cursor:pointer;z-index:2}
+.guide-close:hover{background:var(--text);color:var(--white)}
+
+.vg-barre{height:3px;background:var(--cream-dark);border-radius:2px;overflow:hidden;margin-bottom:1.4rem}
+.vg-barre i{display:block;height:100%;background:var(--sage-dark);transition:width 0.4s ease}
+.vg-num{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--brown-light);text-align:center}
+.vg-ico{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:rgba(122,158,126,0.15);color:var(--sage-dark);margin:0.9rem auto 0.8rem}
+.vg-ico svg{width:26px;height:26px}
+.vg-titre{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;color:var(--text);text-align:center;line-height:1.2;margin-bottom:0.6rem}
+.vg-texte{font-size:0.9rem;color:var(--text-muted);line-height:1.75;text-align:center;max-width:400px;margin:0 auto 1.4rem}
+.vg-texte b{color:var(--text);font-weight:500}
+
+/* les aperçus */
+.vg-mock{background:var(--white);border:1px solid var(--cream-dark);border-radius:12px;padding:1rem 1.1rem;font-family:Jost,sans-serif;font-size:0.82rem;color:var(--text-muted);min-height:112px}
+.vg-mock.vg-centre{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0.3rem}
+.vg-mock.vg-sombre{background:#F3EFE6}
+.vg-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--text)}
+.vg-logo em{color:var(--sage-dark);font-style:italic}
+.vg-sous{font-size:0.76rem;color:var(--text-muted)}
+.vg-filtres{display:flex;gap:0.35rem;flex-wrap:wrap}
+.vg-filtres span{font-size:0.68rem;border:1px solid var(--cream-dark);border-radius:14px;padding:0.28rem 0.6rem}
+.vg-filtres span.actif{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.vg-note{font-size:0.72rem;color:var(--brown-light);font-style:italic;margin-top:0.6rem}
+.vg-ligne{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem}
+.vg-ligne>span:first-child{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text)}
+.vg-stepper{background:var(--cream);border-radius:14px;padding:0.25rem 0.7rem;font-size:0.78rem;color:var(--sage-dark)}
+.vg-sect{display:flex;align-items:center;gap:0.5rem;font-size:0.62rem;letter-spacing:0.12em;font-weight:600;color:var(--sage-dark);margin:0.5rem 0 0.35rem}
+.vg-mult{background:rgba(122,158,126,0.18);border-radius:12px;padding:0.1rem 0.45rem;font-size:0.62rem}
+.vg-ing{font-size:0.8rem;padding:0.16rem 0}
+.vg-ing.barre{text-decoration:line-through;color:var(--brown-light)}
+.vg-ing.vert{color:var(--sage-dark)}
+.vg-chips{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.7rem}
+.vg-chips span{font-size:0.68rem;border:1px solid var(--cream-dark);border-radius:14px;padding:0.25rem 0.6rem}
+.vg-chips span.actif{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
+.vg-prix{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--brown)}
+.vg-etape{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brown-light)}
+.vg-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text);line-height:1.4;margin:0.4rem 0 0.7rem}
+.vg-pastilles{display:flex;gap:0.35rem;flex-wrap:wrap}
+.vg-pastilles span{font-size:0.72rem;background:rgba(122,158,126,0.16);color:var(--sage-dark);border-radius:14px;padding:0.25rem 0.6rem}
+.vg-timer{display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.7rem}
+.vg-timer b{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--sage-dark);font-weight:400}
+.vg-timer span{font-size:0.74rem}
+.vg-jeux{display:flex;gap:0.35rem;flex-wrap:wrap}
+.vg-jeux span{font-size:0.7rem;border:1px solid var(--cream-dark);border-radius:14px;padding:0.25rem 0.6rem}
+.vg-bulle{border-radius:12px;padding:0.6rem 0.8rem;font-size:0.78rem;line-height:1.55;margin-bottom:0.45rem;max-width:88%}
+.vg-bulle.moi{background:var(--sage-dark);color:var(--white);margin-left:auto}
+.vg-bulle.lui{background:rgba(122,158,126,0.14);color:var(--sage-dark)}
+.vg-bulle b{display:block;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem}
+.vg-grille{display:grid;grid-template-columns:repeat(4,1fr);gap:0.4rem}
+.vg-grille span{display:flex;flex-direction:column;align-items:center;gap:0.1rem;background:var(--cream);border-radius:8px;padding:0.5rem 0.3rem;font-size:0.74rem;color:var(--text);text-align:center}
+.vg-grille span i{font-style:normal;font-size:0.64rem;color:var(--text-muted)}
+.vg-grille span.pret{background:rgba(122,158,126,0.15);color:var(--brown-light)}
+.vg-adr b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);font-weight:400}
+.vg-etoiles{color:var(--brown-light);font-size:0.78rem;letter-spacing:0.1em}
+.vg-adr i{display:block;font-size:0.76rem;margin-top:0.3rem}
+.vg-icone{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--sage-dark);color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.8rem}
+
+.vg-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.4rem}
+.vg-prec{background:none;border:none;font-family:Jost,sans-serif;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0.5rem 0}
+.vg-prec:hover{color:var(--sage-dark)}
+.vg-points{display:flex;gap:0.28rem}
+.vg-points i{width:6px;height:6px;border-radius:50%;background:var(--cream-dark);transition:all 0.25s}
+.vg-points i.faite{background:var(--sage)}
+.vg-points i.ici{background:var(--sage-dark);width:18px;border-radius:3px}
+.vg-suiv{background:var(--sage-dark);color:var(--white);border:none;border-radius:24px;padding:0.75rem 1.5rem;font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.11em;text-transform:uppercase;cursor:pointer}
+.vg-suiv:hover{opacity:0.88}
+@media(max-width:640px){
+  .guide-overlay{padding:1rem 0.7rem}
+  .guide-boite{padding:2rem 1.2rem 1.3rem}
+  .vg-titre{font-size:1.6rem}
+  .vg-texte{font-size:0.85rem}
+  .vg-grille{grid-template-columns:repeat(2,1fr)}
+  .vg-suiv{padding:0.7rem 1.1rem}
+}
+
 /* ── En attendant le four : les jeux ── */
 .jeux-bulle{position:absolute;right:1.2rem;bottom:calc(10.4rem + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:0.45rem;background:var(--white);color:var(--brown);border:1px solid var(--cream-dark);border-radius:28px;padding:0.7rem 1.05rem;cursor:pointer;box-shadow:0 4px 16px rgba(46,42,37,0.14);font-family:Jost,sans-serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
 .jeux-bulle svg{width:19px;height:19px}
@@ -1817,6 +1945,7 @@ footer{padding:0;border-top:1px solid var(--cream-dark);background:var(--white);
         <li><a href="#" data-tab="sale">Salé</a></li>
         <li><a href="#" data-tab="viennoiserie">Viennoiserie</a></li>
       <li><a href="#" data-tab="gouter">Goûter</a></li>
+      <li><a href="#" data-tab="atelier">Créer ma recette</a></li>
       </ul>
     </li>
     <li><a href="#" data-tab="inspiration">SOS Cuisine</a></li>
@@ -2589,6 +2718,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div><!-- end tab-calculateur -->
 
+<div class="tab-content" id="tab-atelier">
+  <div class="section-header">
+    <h2 class="section-title">Créer ma recette</h2>
+    <span class="section-count" data-fixe="1">Votre gâteau, de A à Z</span>
+  </div>
+  <div class="atelier-corps" id="atelier-corps"></div>
+</div>
+
 <div class="tab-content" id="tab-adresses">
   <div class="section-header">
     <h2 class="section-title">Bonnes adresses</h2>
@@ -2745,10 +2882,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="pied-col">
       <span class="pied-titre">Le site</span>
-      <a href="#" data-tab="patisserie">Les recettes</a>
+      <a href="#" onclick="event.preventDefault();allerA('patisserie')">Les recettes</a>
       <a href="recettes/">Toutes les fiches</a>
-      <a href="#" data-tab="adresses">Bonnes adresses</a>
-      <a href="#" data-tab="inspiration">SOS Cuisine</a>
+      <a href="#" onclick="event.preventDefault();allerA('adresses')">Bonnes adresses</a>
+      <a href="#" onclick="event.preventDefault();allerA('inspiration')">SOS Cuisine</a>
       <a href="#" onclick="event.preventDefault();ouvrirGuide()">Guide du site</a>
     </div>
     <div class="pied-col">
@@ -2797,16 +2934,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="guide-overlay" id="guide-overlay" onclick="clicOverlayGuide(event)">
   <div class="guide-boite">
-    <div class="guide-entete">
-      <div>
-        <span class="guide-eyebrow">Le guide</span>
-        <h3>Tout ce que ce site sait faire</h3>
-        <p>Dix minutes de lecture au maximum, et vous saurez tout. Cliquez sur une rubrique pour la déplier.</p>
-      </div>
-      <button class="guide-close" onclick="fermerGuide()">&#10005;</button>
-    </div>
+    <button class="guide-close" onclick="fermerGuide()" aria-label="Fermer le guide">&#10005;</button>
     <div class="guide-corps" id="guide-corps"></div>
-    <button class="guide-fin" onclick="fermerGuide()">C'est parti, je cuisine</button>
   </div>
 </div>
 
@@ -4054,7 +4183,8 @@ function openModal(id) {
   document.body.style.overflow='hidden';
   currentRecipeId = id;
   facteursSection = {};
-  if (regimesActifs.length) { rendreIngredients(); majNotesRegimes(); }
+  rendreIngredients();                       // pose aussi les multiplicateurs de section
+  if (regimesActifs.length) majNotesRegimes();
   if (profil.portions && portionsBase && /^(part|portion)/.test(portionsUnite)) appliquerPortions(profil.portions);
   if (profil.ingOuverts) {
     const bar = document.getElementById('ing-toggle-bar');
@@ -6268,136 +6398,567 @@ const POIDS = [
   ['une gousse d\u2019ail', 5, 'g']
 ];
 
-// ===== LE GUIDE DU SITE =====
-// Un aperçu de tout ce qu'on peut faire ici, pour qui arrive sans rien connaître.
-const GUIDE = [
+// ===== CRÉATION DE RECETTE : LE SCHÉMA EN COUPE =====
+// Chaque type de couche a son épaisseur, sa couleur et sa texture propres.
+// Le dessin se lit de bas en haut, comme on monte un entremets.
+const COUCHES = {
+  biscuit:    { nom: 'Biscuit',        h: 32, c: '#E8D3A8', bord: '#D0B583', texture: 'mie',    ordre: 1 },
+  croustille: { nom: 'Croustillant',   h: 24, c: '#B98A55', bord: '#96682F', texture: 'eclats', ordre: 2 },
+  compotee:   { nom: 'Compotée',       h: 26, c: '#C8514A', bord: '#A93B36', texture: 'fruits', ordre: 3 },
+  cremeux:    { nom: 'Crémeux',        h: 30, c: '#E0B472', bord: '#C79A55', texture: 'lisse',  ordre: 4 },
+  ganache:    { nom: 'Ganache',        h: 32, c: '#8B5E3C', bord: '#6B462B', texture: 'lisse',  ordre: 5 },
+  mousse:     { nom: 'Mousse',         h: 52, c: '#F2E7D2', bord: '#DCCBAD', texture: 'bulles', ordre: 6 },
+  chantilly:  { nom: 'Chantilly',      h: 40, c: '#FBF6EA', bord: '#E4D8C2', texture: 'bulles', ordre: 7 },
+  glacage:    { nom: 'Glaçage',        h: 10, c: '#B03A4A', bord: '#8E2C39', texture: 'brillant', ordre: 8 },
+  decor:      { nom: 'Décor',          h: 0,  c: '#D08A45', bord: '#A96A2E', texture: 'decor',  ordre: 9 }
+};
+
+// Les mots qu'on reconnaît dans une composition écrite au fil de la plume.
+const MOTS_COUCHES = [
+  [['biscuit','genoise','dacquoise','madeleine','sable','pate sucree','pate sablee','financier','joconde','streusel'], 'biscuit'],
+  [['croustillant','feuillantine','praline feuillete','crepes dentelles','crumble','eclats'], 'croustille'],
+  [['compotee','confit','coulis','gelee','insert fruit','marmelade','confiture'], 'compotee'],
+  [['cremeux','creme patissiere','curd','lemon curd','namelaka','diplomate','patissiere'], 'cremeux'],
+  [['ganache','ganache montee','chantache'], 'ganache'],
+  [['mousse','bavaroise','mousseline','chiboust'], 'mousse'],
+  [['chantilly','creme fouettee','creme montee'], 'chantilly'],
+  [['glacage','miroir','nappage','flocage'], 'glacage'],
+  [['decor','eclats de noisette','noisettes caramelisees','fruits frais','copeaux','tuile'], 'decor']
+];
+
+function detecterCouches(texte){
+  const lignes = texte.split(/[\n,;]+/).map(x => x.trim()).filter(x => x.length > 2);
+  const vues = [];
+  lignes.forEach(l => {
+    const n = inspiNorm(l);
+    let trouve = null, meilleur = 0;
+    MOTS_COUCHES.forEach(([mots, type]) => {
+      mots.forEach(m => {
+        const mn = inspiNorm(m);
+        if(n.indexOf(mn) !== -1 && mn.length > meilleur){ trouve = type; meilleur = mn.length; }
+      });
+    });
+    if(trouve) vues.push({ type: trouve, libelle: l.charAt(0).toUpperCase() + l.slice(1) });
+  });
+  // on dédoublonne en gardant le premier libellé de chaque type
+  const vus = {};
+  return vues.filter(x => { if(vus[x.type]) return false; vus[x.type] = 1; return true; })
+             .sort((a, b) => COUCHES[a.type].ordre - COUCHES[b.type].ordre);
+}
+
+function textureCouche(type, x, y, w, h){
+  const t = COUCHES[type].texture;
+  let out = '';
+  if(t === 'mie'){
+    for(let i = 0; i < 26; i++){
+      const cx = x + 8 + Math.random() * (w - 16), cy = y + 4 + Math.random() * (h - 8);
+      out += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' +
+             (1 + Math.random() * 1.6).toFixed(1) + '" fill="#FBF3E2" opacity="0.75"/>';
+    }
+  }
+  if(t === 'eclats'){
+    for(let i = 0; i < 16; i++){
+      const cx = x + 8 + Math.random() * (w - 16), cy = y + 4 + Math.random() * (h - 8);
+      const a = Math.random() * 60 - 30;
+      out += '<rect x="' + cx.toFixed(1) + '" y="' + cy.toFixed(1) + '" width="6" height="4" rx="1" ' +
+             'transform="rotate(' + a.toFixed(0) + ' ' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ')" fill="#7A4A22" opacity="0.8"/>';
+    }
+  }
+  if(t === 'fruits'){
+    for(let i = 0; i < 12; i++){
+      const cx = x + 10 + Math.random() * (w - 20), cy = y + 5 + Math.random() * (h - 10);
+      out += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' +
+             (2.4 + Math.random() * 1.8).toFixed(1) + '" fill="#8E2C39" opacity="0.7"/>';
+    }
+  }
+  if(t === 'bulles'){
+    for(let i = 0; i < 20; i++){
+      const cx = x + 8 + Math.random() * (w - 16), cy = y + 5 + Math.random() * (h - 10);
+      out += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' +
+             (1.4 + Math.random() * 2.2).toFixed(1) + '" fill="#FFFFFF" opacity="0.55"/>';
+    }
+  }
+  if(t === 'lisse'){
+    out += '<path d="M' + (x + 10) + ' ' + (y + h * 0.35) + ' Q' + (x + w / 2) + ' ' + (y + h * 0.2) +
+           ' ' + (x + w - 10) + ' ' + (y + h * 0.35) + '" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity="0.35"/>';
+  }
+  return out;
+}
+
+// Le dessin complet, en coupe, avec les légendes fléchées de part et d'autre.
+function schemaEntremets(titre, couches){
+  if(!couches.length) return '';
+  const L = 340, X = 280;                    // largeur du gâteau et marge gauche
+  const decor = couches.filter(c => c.type === 'decor');
+  const empilees = couches.filter(c => c.type !== 'decor');
+  const hauteur = empilees.reduce((a, c) => a + COUCHES[c.type].h, 0);
+  const BAS = 460;
+  const HAUT_DECOR = decor.length ? 70 : 20;
+
+  let y = BAS, corps = '', legendes = '';
+  let cote = 0;
+
+  empilees.forEach((c, i) => {
+    const d = COUCHES[c.type];
+    y -= d.h;
+    const arrondi = (i === empilees.length - 1) ? 10 : 0;
+    corps += '<path d="M' + X + ' ' + (y + arrondi) +
+             (arrondi ? ' q0 -' + arrondi + ' ' + arrondi + ' -' + arrondi + ' h' + (L - 2 * arrondi) +
+                        ' q' + arrondi + ' 0 ' + arrondi + ' ' + arrondi : ' h' + L) +
+             ' v' + d.h + ' h-' + L + ' z" fill="' + d.c + '" stroke="' + d.bord + '" stroke-width="1.4"/>';
+    corps += textureCouche(c.type, X, y, L, d.h);
+
+    // légende, alternée gauche puis droite
+    const my = y + d.h / 2;
+    const gauche = cote % 2 === 0; cote++;
+    const dep = gauche ? X - 6 : X + L + 6;
+    const arr = gauche ? X - 74 : X + L + 74;
+    legendes += '<path d="M' + dep + ' ' + my + ' C' + ((dep + arr) / 2) + ' ' + my + ',' +
+                ((dep + arr) / 2) + ' ' + (my - 14) + ',' + arr + ' ' + (my - 14) +
+                '" stroke="#8B6347" stroke-width="1.1" fill="none"/>';
+    legendes += '<circle cx="' + dep + '" cy="' + my + '" r="2.2" fill="#8B6347"/>';
+    legendes += '<text x="' + (gauche ? arr - 6 : arr + 6) + '" y="' + (my - 10) +
+                '" text-anchor="' + (gauche ? 'end' : 'start') + '" class="sch-txt">' +
+                echapper(c.libelle.length > 26 ? c.libelle.slice(0, 25) + '\u2026' : c.libelle) + '</text>';
+  });
+
+  // le décor posé sur le dessus
+  if(decor.length){
+    const sommet = BAS - hauteur;
+    for(let i = 0; i < 7; i++){
+      const cx = X + 30 + (L - 60) * (i / 6), r = 8 + (i % 3) * 2.5;
+      corps += '<circle cx="' + cx.toFixed(0) + '" cy="' + (sommet - r + 3) + '" r="' + r +
+               '" fill="' + COUCHES.decor.c + '" stroke="' + COUCHES.decor.bord + '" stroke-width="1.2"/>';
+      corps += '<path d="M' + (cx - r * 0.4) + ' ' + (sommet - r * 1.3) + ' q' + (r * 0.4) + ' -' + (r * 0.3) +
+               ' ' + (r * 0.8) + ' 0" stroke="#FBF3E2" stroke-width="1.2" fill="none" opacity="0.6"/>';
+    }
+    const my = sommet - 16;
+    legendes += '<path d="M' + (X + L / 2 + 40) + ' ' + my + ' C' + (X + L + 40) + ' ' + my + ',' +
+                (X + L + 40) + ' ' + (my - 34) + ',' + (X + L + 74) + ' ' + (my - 34) +
+                '" stroke="#8B6347" stroke-width="1.1" fill="none"/>';
+    legendes += '<text x="' + (X + L + 80) + '" y="' + (my - 30) + '" class="sch-txt">' +
+                echapper(decor[0].libelle.length > 26 ? decor[0].libelle.slice(0, 25) + '\u2026' : decor[0].libelle) + '</text>';
+  }
+
+  // le sol
+  corps += '<path d="M' + (X - 26) + ' ' + BAS + ' h' + (L + 52) + '" stroke="#2E2A25" stroke-width="2" stroke-linecap="round"/>';
+
+  return '<svg class="schema" viewBox="0 0 900 ' + (BAS + 40) + '" xmlns="http://www.w3.org/2000/svg">' +
+    '<text x="450" y="' + (Math.max(38, BAS - hauteur - HAUT_DECOR - 26)) + '" text-anchor="middle" class="sch-titre">' +
+      echapper(titre || 'Votre création') + '</text>' +
+    legendes + corps +
+  '</svg>';
+}
+
+// ===== L'ATELIER : CRÉER SA PROPRE RECETTE =====
+// Trois temps : on décrit, on remplit chaque préparation, on obtient sa fiche.
+let creation = null;
+
+function chargerCreation(){
+  try { return JSON.parse(localStorage.getItem('elsa_creation') || 'null'); } catch(e) { return null; }
+}
+function sauverCreation(){
+  try { localStorage.setItem('elsa_creation', JSON.stringify(creation)); } catch(e) {}
+}
+
+function initAtelier(){
+  const z = document.getElementById('atelier-corps');
+  if(!z) return;
+  if(!creation) creation = chargerCreation();
+  if(creation && creation.etape >= 2) return rendreAtelier();
+  etapeComposition();
+}
+
+// ── 1. On décrit son gâteau ──────────────────────────────────────────────
+function etapeComposition(){
+  const c = creation || {};
+  document.getElementById('atelier-corps').innerHTML =
+    '<div class="at-etape"><span>Étape 1 sur 3</span> Décrivez votre gâteau</div>' +
+    '<div class="at-bloc">' +
+      '<label class="at-label" for="at-titre">Le nom de votre création</label>' +
+      '<input class="at-input" id="at-titre" maxlength="48" placeholder="La Marquise, Le Praliné d\u2019automne\u2026" ' +
+        'value="' + (c.titre || '').replace(/"/g, '&quot;') + '">' +
+      '<label class="at-label" for="at-compo">Sa composition, une couche par ligne</label>' +
+      '<textarea class="at-textarea" id="at-compo" rows="8" placeholder="Biscuit vanille&#10;Croustillant chocolat-noisette&#10;Crémeux caramel&#10;Mousse vanille&#10;Glaçage miroir&#10;Éclats de noisette caramélisée" ' +
+        'oninput="apercuSchema()">' + (c.compo || '') + '</textarea>' +
+      '<p class="at-aide">Écrivez comme vous le diriez : biscuit, croustillant, compotée, crémeux, ganache, mousse, chantilly, glaçage, décor. Je reconnais les mots et j\u2019empile dans le bon ordre.</p>' +
+    '</div>' +
+    '<div class="at-apercu" id="at-apercu"></div>' +
+    '<div class="at-nav"><span></span>' +
+      '<button class="at-suiv" onclick="validerComposition()">Voir mon schéma</button></div>';
+  apercuSchema();
+}
+
+function apercuSchema(){
+  const t = (document.getElementById('at-titre') || {}).value || '';
+  const compo = (document.getElementById('at-compo') || {}).value || '';
+  const couches = detecterCouches(compo);
+  const z = document.getElementById('at-apercu');
+  if(!z) return;
+  z.innerHTML = couches.length
+    ? schemaEntremets(t, couches) +
+      '<div class="at-note">' + couches.length + ' couche' + (couches.length > 1 ? 's' : '') + ' reconnue' +
+      (couches.length > 1 ? 's' : '') + '</div>'
+    : '<div class="at-vide">Le schéma apparaîtra ici au fil de votre saisie.</div>';
+}
+
+function validerComposition(){
+  const titre = (document.getElementById('at-titre').value || '').trim();
+  const compo = (document.getElementById('at-compo').value || '').trim();
+  const couches = detecterCouches(compo);
+  if(!titre) return alerteAtelier('Donnez un nom à votre création.');
+  if(couches.length < 2) return alerteAtelier('Il me faut au moins deux couches reconnaissables.');
+  creation = { titre: titre, compo: compo, couches: couches, preparations: {}, etape: 2, portions: 8 };
+  sauverCreation();
+  etapeSources();
+}
+
+function alerteAtelier(msg){
+  const z = document.getElementById('at-apercu');
+  if(z) z.insertAdjacentHTML('afterbegin', '<div class="at-alerte">' + msg + '</div>');
+  setTimeout(() => { const a = document.querySelector('.at-alerte'); if(a) a.remove(); }, 3600);
+}
+
+// ── 2. On remplit chaque préparation ─────────────────────────────────────
+// Les préparations du site, indexées par type de couche, pour pouvoir les reprendre.
+function preparationsDuSite(type){
+  const out = [];
+  Object.keys(recipes).forEach(id => {
+    const r = recipes[id];
+    let section = null, ing = [], steps = [];
+    (r.ingredients || []).forEach(x => {
+      if(x.startsWith('— ') && x.endsWith(' —')){
+        if(section && correspondType(section, type) && ing.length) out.push({ recette: r.title, nom: section, ing: ing.slice() });
+        section = x.replace(/—/g, '').trim(); ing = [];
+      } else if(section) ing.push(x);
+    });
+    if(section && correspondType(section, type) && ing.length) out.push({ recette: r.title, nom: section, ing: ing.slice() });
+  });
+  return out;
+}
+
+function correspondType(nomSection, type){
+  const n = inspiNorm(nomSection);
+  const paire = MOTS_COUCHES.find(x => x[1] === type);
+  return paire ? paire[0].some(m => n.indexOf(inspiNorm(m)) !== -1) : false;
+}
+
+function etapeSources(){
+  creation.etape = 2; sauverCreation();
+  const z = document.getElementById('atelier-corps');
+  z.innerHTML =
+    '<div class="at-etape"><span>Étape 2 sur 3</span> Remplissez chaque préparation</div>' +
+    '<div class="at-schema-mini">' + schemaEntremets(creation.titre, creation.couches) + '</div>' +
+    '<p class="at-aide at-centre">Pour chacune, reprenez une préparation du site ou écrivez la vôtre.</p>' +
+    creation.couches.map((c, i) => {
+      const p = creation.preparations[c.type];
+      const dispo = preparationsDuSite(c.type);
+      return '<div class="at-prep' + (p ? ' remplie' : '') + '">' +
+        '<div class="at-prep-tete">' +
+          '<span class="at-prep-nom">' + echapper(c.libelle) + '</span>' +
+          (p ? '<span class="at-prep-ok">' + p.ing.length + ' ingrédients</span>' : '<span class="at-prep-vide">à remplir</span>') +
+        '</div>' +
+        (p
+          ? '<div class="at-prep-apercu">' + p.ing.slice(0, 3).map(x => echapper(x)).join(' · ') +
+            (p.ing.length > 3 ? '\u2026' : '') + '</div>' +
+            '<button class="at-prep-btn" onclick="ouvrirPrep(' + i + ')">Modifier</button>'
+          : '<div class="at-prep-choix">' +
+              (dispo.length
+                ? '<button class="at-prep-btn primaire" onclick="ouvrirPrep(' + i + ',1)">Reprendre du site (' + dispo.length + ')</button>'
+                : '') +
+              '<button class="at-prep-btn" onclick="ouvrirPrep(' + i + ',0)">Écrire la mienne</button>' +
+            '</div>') +
+      '</div>';
+    }).join('') +
+    '<div class="at-nav">' +
+      '<button class="at-prec" onclick="creation.etape=1;etapeComposition()">Retour au schéma</button>' +
+      '<button class="at-suiv" onclick="voirFicheCreation()"' +
+        (Object.keys(creation.preparations).length < creation.couches.length ? ' disabled' : '') + '>' +
+        'Voir ma fiche recette</button>' +
+    '</div>';
+}
+
+let prepIndex = 0;
+function ouvrirPrep(i, depuisSite){
+  prepIndex = i;
+  const c = creation.couches[i];
+  const p = creation.preparations[c.type];
+  const dispo = preparationsDuSite(c.type);
+  const z = document.getElementById('atelier-corps');
+
+  if(depuisSite === 1){
+    z.innerHTML =
+      '<div class="at-etape"><span>' + echapper(c.libelle) + '</span> Reprendre une préparation</div>' +
+      '<div class="at-sources">' + dispo.map((d, k) =>
+        '<button class="at-source" onclick="prendreDuSite(' + k + ')">' +
+          '<strong>' + echapper(d.nom) + '</strong>' +
+          '<span>' + echapper(d.recette) + '</span>' +
+          '<em>' + d.ing.length + ' ingrédients</em>' +
+        '</button>').join('') + '</div>' +
+      '<div class="at-nav"><button class="at-prec" onclick="etapeSources()">Retour</button>' +
+      '<button class="at-suiv" onclick="ouvrirPrep(' + i + ',0)">Écrire la mienne</button></div>';
+    window._sourcesDispo = dispo;
+    return;
+  }
+
+  z.innerHTML =
+    '<div class="at-etape"><span>' + echapper(c.libelle) + '</span> Votre préparation</div>' +
+    '<div class="at-bloc">' +
+      '<label class="at-label" for="pr-ing">Les ingrédients, un par ligne</label>' +
+      '<textarea class="at-textarea" id="pr-ing" rows="7" placeholder="250 g de farine&#10;125 g de beurre froid&#10;80 g de sucre glace">' +
+        (p ? p.ing.join('\n') : '') + '</textarea>' +
+      '<label class="at-label" for="pr-etapes">Le déroulé, une étape par ligne</label>' +
+      '<textarea class="at-textarea" id="pr-etapes" rows="6" placeholder="Sablez la farine avec le beurre froid.&#10;Ajoutez le sucre puis l\u2019œuf, sans trop travailler.">' +
+        (p ? p.steps.join('\n') : '') + '</textarea>' +
+      '<label class="at-label" for="pr-jour">Quand la préparer&nbsp;?</label>' +
+      '<select class="at-select" id="pr-jour">' +
+        ['J-2', 'J-1', 'Jour J'].map(j =>
+          '<option value="' + j + '"' + (p && p.jour === j ? ' selected' : (!p && j === 'J-1' ? ' selected' : '')) + '>' + j + '</option>').join('') +
+      '</select>' +
+    '</div>' +
+    '<div class="at-nav"><button class="at-prec" onclick="etapeSources()">Annuler</button>' +
+    '<button class="at-suiv" onclick="enregistrerPrep()">Enregistrer</button></div>';
+}
+
+function prendreDuSite(k){
+  const d = window._sourcesDispo[k];
+  const c = creation.couches[prepIndex];
+  creation.preparations[c.type] = { nom: c.libelle, ing: d.ing.slice(), steps: [], jour: 'J-1', source: d.recette };
+  sauverCreation();
+  ouvrirPrep(prepIndex, 0);
+}
+
+function enregistrerPrep(){
+  const c = creation.couches[prepIndex];
+  const ing = (document.getElementById('pr-ing').value || '').split('\n').map(x => x.trim()).filter(Boolean);
+  const steps = (document.getElementById('pr-etapes').value || '').split('\n').map(x => x.trim()).filter(Boolean);
+  const jour = document.getElementById('pr-jour').value;
+  if(!ing.length){ alerteAtelier('Il me faut au moins un ingrédient.'); return; }
+  const ancien = creation.preparations[c.type] || {};
+  creation.preparations[c.type] = { nom: c.libelle, ing: ing, steps: steps, jour: jour, source: ancien.source };
+  sauverCreation();
+  etapeSources();
+}
+
+// ── 3. La fiche recette ──────────────────────────────────────────────────
+function voirFicheCreation(){
+  creation.etape = 3; sauverCreation();
+  const ordre = { 'J-2': 0, 'J-1': 1, 'Jour J': 2 };
+  const preps = creation.couches.map(c => creation.preparations[c.type]).filter(Boolean);
+
+  // les ingrédients, groupés par préparation comme dans vos recettes
+  const ingredients = [];
+  preps.forEach(p => {
+    ingredients.push('— ' + p.nom + ' (' + p.jour + ') —');
+    p.ing.forEach(x => ingredients.push(x));
+  });
+
+  // les étapes, dans l'ordre des jours
+  const steps = [];
+  preps.slice().sort((a, b) => (ordre[a.jour] ?? 1) - (ordre[b.jour] ?? 1)).forEach(p => {
+    if(p.steps.length) p.steps.forEach(st => steps.push(p.jour + ' — ' + p.nom + ' : ' + st));
+    else steps.push(p.jour + ' — ' + p.nom + ' : préparez selon votre méthode habituelle.');
+  });
+  steps.push('Jour J — Montage : empilez dans l\u2019ordre du schéma, du bas vers le haut. Réservez 4 h au frais avant de servir.');
+
+  // on enregistre la création comme une vraie recette du site
+  recipes['macreation'] = {
+    tag: 'Ma création',
+    title: creation.titre,
+    kcal: estimerKcal(ingredients, creation.portions),
+    proteines: '—', glucides: '—', lipides: '—',
+    portions: '1 part / ' + creation.portions,
+    chapo: 'Votre création, montée couche par couche.',
+    ingredients: ingredients,
+    steps: steps,
+    astuce: 'Cette recette est la vôtre : elle reste sur cet appareil et n\u2019est publiée nulle part. Vous pouvez la modifier à tout moment depuis l\u2019atelier.'
+  };
+  IMGS['macreation'] = [];
+
+  document.getElementById('atelier-corps').innerHTML =
+    '<div class="at-etape"><span>Étape 3 sur 3</span> Votre fiche est prête</div>' +
+    '<div class="at-schema-mini">' + schemaEntremets(creation.titre, creation.couches) + '</div>' +
+    '<div class="at-resume">' +
+      '<div><b>' + preps.length + '</b><span>préparations</span></div>' +
+      '<div><b>' + ingredients.filter(x => !x.startsWith('—')).length + '</b><span>ingrédients</span></div>' +
+      '<div><b>' + steps.length + '</b><span>étapes</span></div>' +
+    '</div>' +
+    '<p class="at-aide at-centre">Elle se comporte comme n\u2019importe quelle recette du site&nbsp;: régimes, liste de courses, mode cuisine, planification.</p>' +
+    '<button class="at-fiche" onclick="openModal(\'macreation\')">Ouvrir ma fiche recette</button>' +
+    '<div class="at-nav">' +
+      '<button class="at-prec" onclick="etapeSources()">Modifier les préparations</button>' +
+      '<button class="at-prec" onclick="effacerCreation()">Recommencer</button>' +
+    '</div>';
+}
+
+// une estimation grossière, faute de table nutritionnelle par ingrédient
+function estimerKcal(ingredients, parts){
+  let g = 0;
+  ingredients.forEach(x => {
+    const m = /(\d+(?:[.,]\d+)?)\s*(g|kg|ml|cl|l)\b/i.exec(x);
+    if(!m) return;
+    let v = parseFloat(m[1].replace(',', '.'));
+    const u = m[2].toLowerCase();
+    if(u === 'kg' || u === 'l') v *= 1000;
+    if(u === 'cl') v *= 10;
+    g += v;
+  });
+  return g ? Math.round(g * 3.1 / Math.max(1, parts)) : 0;
+}
+
+function rendreAtelier(){
+  if(creation.etape === 3) return voirFicheCreation();
+  if(creation.etape === 2) return etapeSources();
+  etapeComposition();
+}
+
+function effacerCreation(){
+  if(!confirm('Effacer votre création et recommencer ?')) return;
+  creation = null;
+  try { localStorage.removeItem('elsa_creation'); } catch(e) {}
+  delete recipes['macreation'];
+  etapeComposition();
+}
+
+// ===== LA VISITE GUIDÉE =====
+// Une fonction à la fois, dans l'ordre, avec un aperçu de ce dont on parle.
+// On peut fermer à tout moment : la croix est toujours là.
+function icoG(d){
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+         'stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>';
+}
+
+const VISITE = [
   {
-    ico: 'M3 6.5h18M3 12h18M3 17.5h12',
-    titre: 'Trouver une recette',
-    lignes: [
-      'Les recettes sont rangées par onglet : <b>Healthy</b>, <b>Pâtisserie</b>, <b>Goûter</b>, <b>Salé</b>, <b>Viennoiserie</b>.',
-      'Trois filtres en haut de chaque onglet : le <b>prix par part</b>, le <b>temps</b>, et la <b>saison</b>. Ils se combinent, et « De saison en ce moment » vous montre ce qui se cuisine aujourd\u2019hui.',
-      'Le <b>cœur</b> sur chaque vignette met la recette de côté, dans vos favoris.'
-    ]
+    ico: 'M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5zM4 21c2-5.5 5.5-9 11-11.5',
+    titre: 'Bienvenue',
+    texte: 'Ce site n\u2019est pas qu\u2019une liste de recettes. En dix écrans, je vous montre ce qu\u2019il sait faire.',
+    apercu: '<div class="vg-mock vg-centre"><div class="vg-logo">La table <em>d\u2019Elsa</em></div>' +
+            '<div class="vg-sous">40 recettes, testées et retestées</div></div>'
   },
   {
-    ico: 'M6 3v18M6 8h12a3 3 0 0 1 0 6H6',
-    titre: 'Dans une recette',
-    lignes: [
-      'En haut : les <b>calories</b>, le <b>coût estimé par part</b>, le temps et le nombre de parts.',
-      'Le sélecteur <b>« parts »</b> recalcule toutes les quantités. Et chaque section a son propre <b>multiplicateur</b> : vous pouvez faire une fois et demie de crème sans toucher au biscuit.',
-      'Le bouton <b>Régime</b> adapte la recette à 18 régimes et allergies : sans gluten, sans lactose, végétalien, cétogène… Les ingrédients remplacés apparaissent en vert.',
-      'Le bouton <b>Moule</b> recalcule tout selon le diamètre du vôtre. Passer de 20 à 24 cm, ce n\u2019est pas +20 % mais +44 %.'
-    ]
+    ico: 'M4 6h16M7 12h10M10 18h4',
+    titre: 'Filtrer selon votre envie',
+    texte: 'Par <b>prix</b>, par <b>temps</b>, ou par <b>saison</b>. « De saison en ce moment » ne montre que ce qui se cuisine aujourd\u2019hui.',
+    apercu: '<div class="vg-mock"><div class="vg-select-faux">Prix par part <b>moins de 2 €</b> ⌄</div><div class="vg-select-faux cible">Saison <b>De saison en ce moment</b> ⌄<span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></div><div class="vg-cartes"><i></i><i></i><i></i></div><div class="vg-note">6 recettes sur 16</div></div>'
+  },
+  {
+    ico: 'M12 5v14M5 12h14',
+    titre: 'Les quantités s\u2019adaptent',
+    texte: 'Changez le nombre de parts, tout se recalcule. Et chaque section a son <b>multiplicateur</b> : une fois et demie de crème sans toucher au biscuit.',
+    apercu: '<div class="vg-mock"><div class="vg-sect">PÂTE SUCRÉE<span class="vg-mult cible">− <b>×2</b> +<span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></span></div><div class="vg-ing"><s>250 g</s> <b>500 g</b> de farine</div><div class="vg-ing"><s>125 g</s> <b>250 g</b> de beurre</div><div class="vg-sect">CRÈME D’AMANDE<span class="vg-mult">− <b>×1</b> +</span></div><div class="vg-ing">100 g de poudre d’amandes</div></div>'
+  },
+  {
+    ico: 'M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5zM4 21c2-5.5 5.5-9 11-11.5',
+    titre: 'Sans gluten, sans lactose, végétalien…',
+    texte: 'Dix-huit régimes et allergies. Les ingrédients remplacés apparaissent en vert, directement dans la recette.',
+    apercu: '<div class="vg-mock"><div class="vg-chips"><span>Sans gluten</span><span class="actif cible">Sans lactose<span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></span><span>Végétalien</span></div><div class="vg-apres">↓</div><div class="vg-ing barre">125 g de beurre</div><div class="vg-ing vert">↻ 125 g de margarine végétale</div><div class="vg-ing barre">500 ml de lait entier</div><div class="vg-ing vert">↻ 500 ml de boisson d’avoine</div></div>'
+  },
+  {
+    ico: 'M12 2v20M17 5.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3.2 5 1.3 5 3.3-2.2 3-5 3-5-1.1-5-3',
+    titre: 'Combien ça coûte',
+    texte: 'Chaque recette affiche son <b>prix par part</b>. Et vous pouvez demander à Basile ce qui rentre dans votre budget.',
+    apercu: '<div class="vg-mock vg-centre"><div class="vg-prix">1,04 €</div>' +
+            '<div class="vg-sous">la part \u00b7 6,24 € pour tout le gâteau</div></div>'
   },
   {
     ico: 'M9.5 12a6.5 6.5 0 1 1 6.5 6.5M16 10.6l6-1.4',
     titre: 'Le mode cuisine',
-    lignes: [
-      'La fonction la plus utile du site. <b>Une étape à la fois</b>, en plein écran, avec les <b>grammages de l\u2019étape</b> rappelés en dessous.',
-      'L\u2019<b>écran reste allumé</b>, les mains pleines de farine n\u2019ont rien à toucher.',
-      'Dès qu\u2019une étape mentionne une durée, un <b>minuteur</b> se propose. Il sonne et vibre à la fin.',
-      'La <b>lecture vocale</b> lit les étapes à voix haute.',
-      'Une bulle <b>SOS Cuisine</b> ouvre Basile sans quitter la recette, et une bulle <b>Jouer</b> propose cinq jeux pendant les longues cuissons.'
-    ]
+    texte: 'La fonction la plus utile. Une étape à la fois, en plein écran, avec les <b>grammages de l\u2019étape</b>. L\u2019écran reste allumé.',
+    apercu: '<div class="vg-mock"><div class="vg-fiche-tete">La Bombe à la Fraise</div><div class="vg-bandeau cible">▶ Passer en mode cuisine<span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></div><div class="vg-apres">↓</div><div class="vg-plein"><span class="vg-etape">Étape 5 sur 16</span><span class="vg-txt">Incorporez la farine tamisée en pluie.</span><span class="vg-pastilles"><i>100 g de farine</i><i>2 g de levure</i></span></div></div>'
+  },
+  {
+    ico: 'M12 7.2V12l3.4 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z',
+    titre: 'Des minuteurs, et de quoi patienter',
+    texte: 'Dès qu\u2019une étape annonce une durée, le minuteur se propose. Pendant les longues cuissons, cinq jeux vous attendent.',
+    apercu: '<div class="vg-mock"><div class="vg-timer"><b>12:40</b><span>avant la sonnerie</span></div>' +
+            '<div class="vg-jeux"><span>Quiz</span><span>Puissance 4</span><span>Memory</span><span>Pendu</span></div></div>'
   },
   {
     ico: 'M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5zM4 21c2-5.5 5.5-9 11-11.5',
-    titre: 'Basile, l\u2019assistant',
-    lignes: [
-      '<b>Un ratage&nbsp;?</b> Dites-lui « ma ganache a tranché » ou « mon caramel est trop dur ». Il connaît 51 ratages, avec la cause, le sauvetage possible et comment l\u2019éviter.',
-      '<b>Une conversion&nbsp;?</b> « 200 ml de lait en g », « thermostat 6 », « 350°F en °C ».',
-      '<b>Un mot inconnu&nbsp;?</b> 150 termes de pâtisserie expliqués simplement.',
-      '<b>Que faire avec ce que j\u2019ai&nbsp;?</b> Donnez-lui vos ingrédients, il cherche parmi les recettes.',
-      '<b>Un budget&nbsp;?</b> « une recette à moins de 2 € la part ».'
-    ]
+    titre: 'Basile, quand ça tourne mal',
+    texte: 'Dites-lui « ma ganache a tranché ». Il connaît <b>51 ratages</b>, leur cause, et ce qu\u2019on peut encore sauver. Il convertit aussi les mesures.',
+    apercu: '<div class="vg-mock"><div class="vg-bulle moi">Ma ganache a tranché</div><div class="vg-bulle lui"><b>Ce qu’on peut faire maintenant</b>Mixez au mixeur plongeant, tête bien immergée, sans faire entrer d’air.</div><div class="vg-champ cible">Écrivez ici…<span class="vg-env">Envoyer</span><span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></div></div>'
   },
   {
     ico: 'M3 7h18l-1.7 11.3a2 2 0 0 1-2 1.7H6.7a2 2 0 0 1-2-1.7zM8.5 7V5a3.5 3.5 0 0 1 7 0v2',
     titre: 'Courses et mise en place',
-    lignes: [
-      '<b>Ma liste</b> génère la liste de courses, ajustée à vos parts et à votre régime, à copier ou imprimer.',
-      '<b>Visualiser</b> affiche tous les ingrédients en grille dessinée. On coche au fur et à mesure qu\u2019ils arrivent sur le plan de travail, et les quantités identiques sont regroupées.'
-    ]
-  },
-  {
-    ico: 'M3.5 5h17a2.5 2.5 0 0 1 2.5 2.5v11a2.5 2.5 0 0 1-2.5 2.5h-17M3.5 10h17M8 3v4M16 3v4',
-    titre: 'Planifier à l\u2019avance',
-    lignes: [
-      'Pour les recettes sur plusieurs jours, indiquez <b>quand vous la voulez prête</b>.',
-      'Le site calcule alors un <b>rétro-planning à l\u2019heure près</b> : à quelle heure commencer, ce qu\u2019il faut faire la veille, et où placer les temps de repos.'
-    ]
-  },
-  {
-    ico: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-    titre: 'Votre compte',
-    lignes: [
-      'Aucune inscription, aucun mot de passe : tout reste <b>dans votre navigateur</b>, rien n\u2019est envoyé.',
-      'Renseignez votre prénom et vos régimes une fois : <b>toutes les recettes s\u2019adaptent</b> ensuite automatiquement.',
-      'Vous y retrouvez vos favoris, vos recettes planifiées, et le réglage du nombre de parts habituel.'
-    ]
+    texte: 'La liste de courses se génère toute seule. Et « Visualiser » affiche les ingrédients en grille, à cocher au fur et à mesure.',
+    apercu: '<div class="vg-mock"><div class="vg-grille"><span class="pret">250 g<i>farine</i></span><span class="pret">3<i>œufs</i></span><span class="cible">180 g<i>sucre</i><span class="vg-curseur"><svg viewBox="0 0 24 24" fill="var(--text)" stroke="#FDFAF6" stroke-width="1.4" stroke-linejoin="round"><path d="M5 2.5l13.5 8-5.6 1.4L15 18.5l-2.6 1L10 12.6l-5 3.6z"/></svg></span></span><span>1 gousse<i>vanille</i></span></div><div class="vg-note">2 sur 4 prêts</div></div>'
   },
   {
     ico: 'M12 21s-7-5.6-7-10.5A7 7 0 0 1 19 10.5C19 15.4 12 21 12 21zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
-    titre: 'Les bonnes adresses',
-    lignes: [
-      'Les maisons où je suis allée, notées sur 5, avec ce qu\u2019il faut y goûter et mon verdict.',
-      'Une <b>carte</b> les situe toutes, avec la photo en repère et la couleur selon la note.',
-      'Vous pouvez <b>donner votre avis</b> et votre note sur chaque adresse.'
-    ]
-  },
-  {
-    ico: 'M3 3v18h18M7 15l4-5 3 3 5-7',
-    titre: 'Le bilan calorique',
-    lignes: [
-      'Un calculateur de besoins journaliers, et un suivi de poids sur la durée.',
-      'Tout reste sur votre appareil, comme le reste.'
-    ]
+    titre: 'Mes bonnes adresses',
+    texte: 'Les maisons où je suis allée, notées sur 5, situées sur une carte. Vous pouvez y laisser votre avis.',
+    apercu: '<div class="vg-mock"><div class="vg-adr"><b>Chocolaterie Pralus</b>' +
+            '<span class="vg-etoiles">\u2605\u2605\u2605\u2605\u2605</span>' +
+            '<i>La brioche praline rose</i></div></div>'
   },
   {
     ico: 'M12 3v12M7.5 10.5L12 15l4.5-4.5M4.5 17.5v2A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-2',
-    titre: 'Installer l\u2019application',
-    lignes: [
-      'Le site s\u2019installe sur l\u2019écran d\u2019accueil comme une vraie application, et <b>fonctionne sans connexion</b>.',
-      'Sur iPhone : bouton Partager dans Safari, puis « Sur l\u2019écran d\u2019accueil ». Sur Android : menu du navigateur, puis « Installer l\u2019application ».',
-      'Vous pouvez aussi être <b>prévenue à chaque nouvelle recette</b>.'
-    ]
+    titre: 'Installez-le, et voilà',
+    texte: 'Le site s\u2019ajoute à votre écran d\u2019accueil et fonctionne <b>sans connexion</b>. Vous pouvez aussi être prévenue à chaque nouvelle recette.',
+    apercu: '<div class="vg-mock vg-centre"><div class="vg-icone">E</div>' +
+            '<div class="vg-sous">La table d\u2019Elsa</div></div>'
   }
 ];
 
-function ouvrirGuide(){
-  const z = document.getElementById('guide-corps');
-  if(z && !z.dataset.pret){
-    z.dataset.pret = '1';
-    z.innerHTML = GUIDE.map((g, i) =>
-      '<div class="guide-bloc' + (i === 0 ? ' ouvert' : '') + '">' +
-        '<button class="guide-tete" onclick="basculerGuide(this)">' +
-          '<span class="guide-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-            'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="' + g.ico + '"/></svg></span>' +
-          '<span class="guide-titre">' + g.titre + '</span>' +
-          '<span class="guide-chevron">\u203A</span>' +
-        '</button>' +
-        '<div class="guide-detail"><ul>' +
-          g.lignes.map(l => '<li>' + l + '</li>').join('') +
-        '</ul></div>' +
-      '</div>').join('');
-  }
-  document.getElementById('guide-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  try { localStorage.setItem('elsa_guide_vu', '1'); } catch(e) {}
-  masquerInvitationGuide();
+let visiteIndex = 0;
+
+// Depuis le pied de page : on ouvre l'onglet et on remonte en haut.
+function allerA(t){
+  if(typeof showTab === 'function') showTab(t);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function basculerGuide(btn){
-  const bloc = btn.parentElement;
-  const ouvert = bloc.classList.contains('ouvert');
-  document.querySelectorAll('.guide-bloc').forEach(b => b.classList.remove('ouvert'));
-  if(!ouvert) bloc.classList.add('ouvert');
+function ouvrirGuide(){
+  visiteIndex = 0;
+  document.getElementById('guide-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  rendreVisite();
+  try { localStorage.setItem('elsa_guide_vu', '1'); } catch(e) {}
+  masquerInvitationGuide();
+  document.addEventListener('keydown', clavierVisite);
+}
+
+function clavierVisite(e){
+  if(e.key === 'Escape') fermerGuide();
+  if(e.key === 'ArrowRight') visiteSuivante();
+  if(e.key === 'ArrowLeft') visitePrecedente();
+}
+
+function rendreVisite(){
+  const v = VISITE[visiteIndex];
+  const n = VISITE.length;
+  const dernier = visiteIndex === n - 1;
+  document.getElementById('guide-corps').innerHTML =
+    '<div class="vg-barre"><i style="width:' + ((visiteIndex + 1) / n * 100) + '%"></i></div>' +
+    '<div class="vg-num">Étape ' + (visiteIndex + 1) + ' sur ' + n + '</div>' +
+    '<div class="vg-ico">' + icoG('<path d="' + v.ico + '"/>') + '</div>' +
+    '<h3 class="vg-titre">' + v.titre + '</h3>' +
+    '<p class="vg-texte">' + v.texte + '</p>' +
+    v.apercu +
+    '<div class="vg-nav">' +
+      (visiteIndex > 0 ? '<button class="vg-prec" onclick="visitePrecedente()">Retour</button>' : '<span></span>') +
+      '<div class="vg-points">' + VISITE.map((_, i) =>
+        '<i class="' + (i === visiteIndex ? 'ici' : i < visiteIndex ? 'faite' : '') + '"></i>').join('') + '</div>' +
+      '<button class="vg-suiv" onclick="' + (dernier ? 'fermerGuide()' : 'visiteSuivante()') + '">' +
+        (dernier ? 'Je commence' : 'Suivant') + '</button>' +
+    '</div>';
+}
+
+function visiteSuivante(){
+  if(visiteIndex < VISITE.length - 1){ visiteIndex++; rendreVisite(); }
+  else fermerGuide();
+}
+function visitePrecedente(){
+  if(visiteIndex > 0){ visiteIndex--; rendreVisite(); }
 }
 
 function fermerGuide(){
   document.getElementById('guide-overlay').classList.remove('open');
   document.body.style.overflow = '';
+  document.removeEventListener('keydown', clavierVisite);
 }
 function clicOverlayGuide(e){
   if(e.target === document.getElementById('guide-overlay')) fermerGuide();
@@ -8551,6 +9112,7 @@ function activateTab(t) {
   if(t==='inspiration') initInspi();
   if(t==='compte') initCompte();
   if(t==='adresses'){ initAdresses(); setTimeout(initCarte, 120); }
+  if(t==='atelier') initAtelier();
   majCompteurs();
   if(['healthy','patisserie','sale','viennoiserie','gouter'].indexOf(t) !== -1){ poserFiltres(); appliquerFiltres(); }
   window.scrollTo({top:0,behavior:'smooth'});
