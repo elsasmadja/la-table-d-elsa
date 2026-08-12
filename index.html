@@ -610,6 +610,10 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .at-prep-btn:hover{border-color:var(--sage);color:var(--sage-dark)}
 .at-prep-btn.primaire{background:var(--sage-dark);border-color:var(--sage-dark);color:var(--white)}
 
+.at-groupe{font-family:Jost,sans-serif;font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;color:var(--brown-light);margin:1.2rem 0 0.5rem}
+.at-source.a-adapter{border-style:dashed}
+.at-echange{background:rgba(196,168,130,0.16);border-radius:8px;padding:0.5rem 0.7rem;font-size:0.78rem;color:var(--brown);line-height:1.55;margin:0.45rem 0 0.2rem}
+.at-echange b{color:var(--text);font-weight:600}
 .at-sources{display:flex;flex-direction:column;gap:0.5rem}
 .at-source{display:flex;flex-direction:column;gap:0.15rem;text-align:left;background:var(--white);border:1px solid var(--cream-dark);border-radius:11px;padding:0.85rem 1rem;cursor:pointer}
 .at-source:hover{border-color:var(--sage)}
@@ -824,6 +828,13 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .nav-links .ui-ico,.nav-right-mobile .ui-ico{width:18px;height:18px;color:#D65C6A;vertical-align:-4px}
 .search-icon .ui-ico{width:16px;height:16px;color:var(--brown-light)}
 .card-overlay-icon .ui-ico{width:34px;height:34px}
+/* ── Basile, la petite fraise ── */
+.basile{width:100%;height:100%;display:block}
+.inspi-ava{display:flex;align-items:center;justify-content:center;overflow:visible}
+.inspi-ava.lui{background:transparent!important;padding:0}
+.inspi-ava.moi svg{width:60%;height:60%;color:var(--white)}
+.sos-ico .basile{width:26px;height:26px}
+.sos-bulle .sos-ico{background:var(--white);border-radius:50%;width:30px;height:30px;padding:2px}
 /* ── Icônes dessinées des boutons ── */
 .ico{width:17px;height:17px;display:block;flex-shrink:0}
 .outil{display:inline-flex;align-items:center;gap:0.5rem}
@@ -3055,7 +3066,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </button>
 
   <button class="sos-bulle" onclick="ouvrirSOS()" aria-label="Demander à Basile">
-    <span class="sos-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5C13 3.5 6 7 6 14a6 6 0 0 0 6 6c7 0 8.5-7 8.5-16.5z"/><path d="M4 21c2-5.5 5.5-9 11-11.5"/></svg></span><span class="sos-lib">SOS Cuisine</span>
+    <span class="sos-ico"><svg class="basile" viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="baPeau" cx="36%" cy="30%" r="78%"><stop offset="0%" stop-color="#FFCB84"/><stop offset="52%" stop-color="#F2A253"/><stop offset="100%" stop-color="#E4842F"/></radialGradient></defs><g transform="rotate(-6 20 11)"><ellipse cx="13.6" cy="9.2" rx="4.5" ry="4.1" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><ellipse cx="26.4" cy="9.2" rx="4.5" ry="4.1" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><ellipse cx="20" cy="7" rx="5.6" ry="5" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><path d="M13.2 12.2h13.6v2.9a1.5 1.5 0 0 1-1.5 1.5H14.7a1.5 1.5 0 0 1-1.5-1.5z" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/></g><path d="M20.2 18v-2.6" stroke="#7A5636" stroke-width="1.6" stroke-linecap="round"/><path d="M20.8 16c2.2-1.8 4.6-1.5 5.5-.6-.9 2-3.3 2.5-5.5 1.5z" fill="#5F8163"/><path d="M21.4 16.3c1.4-.7 2.8-.8 3.7-.5" stroke="#4E6E52" stroke-width=".7" fill="none"/><circle cx="20" cy="29.2" r="11.8" fill="url(#baPeau)"/><path d="M20.6 19.6c-1.6 2.2-2.3 4.6-2.5 7" stroke="#D2762C" stroke-width="1.3" fill="none" opacity=".3" stroke-linecap="round"/><ellipse cx="14.2" cy="22.6" rx="2.6" ry="1.7" transform="rotate(-30 14.2 22.6)" fill="#FFF0D4" opacity=".34"/><circle cx="16.2" cy="27.4" r="2.4" fill="#3A2A1E"/><circle cx="17.1" cy="26.5" r=".85" fill="#FDFAF6"/><circle cx="15.5" cy="28.3" r=".4" fill="#FDFAF6" opacity=".8"/><circle cx="23.8" cy="27.4" r="2.4" fill="#3A2A1E"/><circle cx="24.7" cy="26.5" r=".85" fill="#FDFAF6"/><circle cx="23.1" cy="28.3" r=".4" fill="#FDFAF6" opacity=".8"/><ellipse cx="12.4" cy="31.6" rx="2.4" ry="1.6" fill="#E86A52" opacity=".38"/><ellipse cx="27.6" cy="31.6" rx="2.4" ry="1.6" fill="#E86A52" opacity=".38"/><path d="M15.8 31.8q4.2 4.6 8.4 0z" fill="#3A2A1E"/><path d="M17.6 34.3q2.4 1.6 4.8 0z" fill="#E8737F"/></svg></span><span class="sos-lib">SOS Cuisine</span>
   </button>
 
   <div class="sos-panneau" id="sos-panneau">
@@ -6442,18 +6453,28 @@ const POIDS = [
 const COUCHES = {
   biscuit:    { nom: 'Biscuit',        h: 32, c: '#E8D3A8', bord: '#D0B583', texture: 'mie',    ordre: 1 },
   croustille: { nom: 'Croustillant',   h: 24, c: '#B98A55', bord: '#96682F', texture: 'eclats', ordre: 2 },
-  compotee:   { nom: 'Compotée',       h: 26, c: '#C8514A', bord: '#A93B36', texture: 'fruits', ordre: 3 },
-  cremeux:    { nom: 'Crémeux',        h: 30, c: '#E0B472', bord: '#C79A55', texture: 'lisse',  ordre: 4 },
+  compotee:   { nom: 'Compotée',       h: 30, c: '#C8514A', bord: '#A93B36', texture: 'fruits', ordre: 3 },
+  cremeux:    { nom: 'Crémeux',        h: 34, c: '#F0DFAE', bord: '#D6C089', texture: 'lisse',  ordre: 4 },
   ganache:    { nom: 'Ganache',        h: 32, c: '#8B5E3C', bord: '#6B462B', texture: 'lisse',  ordre: 5 },
   mousse:     { nom: 'Mousse',         h: 52, c: '#F2E7D2', bord: '#DCCBAD', texture: 'bulles', ordre: 6 },
   chantilly:  { nom: 'Chantilly',      h: 40, c: '#FBF6EA', bord: '#E4D8C2', texture: 'bulles', ordre: 7 },
   glacage:    { nom: 'Glaçage',        h: 10, c: '#B03A4A', bord: '#8E2C39', texture: 'brillant', ordre: 8 },
-  decor:      { nom: 'Décor',          h: 0,  c: '#D08A45', bord: '#A96A2E', texture: 'decor',  ordre: 9 }
+  decor:      { nom: 'Décor',          h: 0,  c: '#D08A45', bord: '#A96A2E', texture: 'decor',  ordre: 9 },
+  fond:       { nom: 'Fond de tarte',  h: 22, c: '#E0C48E', bord: '#C4A566', texture: 'mie',    ordre: 0 },
+  amande:     { nom: 'Crème d’amande', h: 30, c: '#E8D3A0', bord: '#CDB57C', texture: 'mie',    ordre: 1.5 },
+  fruits:     { nom: 'Fruits frais',   h: 0,  c: '#B84A5A', bord: '#93343F', texture: 'decor',  ordre: 9.5 },
+  caramel:    { nom: 'Caramel',        h: 16, c: '#C08A3E', bord: '#9C6C29', texture: 'lisse',  ordre: 3.5 },
+  sirop:      { nom: 'Imbibage',       h: 8,  c: '#D9B478', bord: '#BC9455', texture: 'lisse',  ordre: 1.2 }
 };
 
 // Les mots qu'on reconnaît dans une composition écrite au fil de la plume.
 const MOTS_COUCHES = [
-  [['biscuit','genoise','dacquoise','madeleine','sable','pate sucree','pate sablee','financier','joconde','streusel'], 'biscuit'],
+  [['pate sucree','pate sablee','pate brisee','pate feuilletee','fond de tarte','fond sable'], 'fond'],
+  [['creme d amande','frangipane','creme amande'], 'amande'],
+  [['imbibage','sirop d imbibage','punch'], 'sirop'],
+  [['caramel','confiture de lait','dulcey coulant'], 'caramel'],
+  [['fruits frais','fraises fraiches','figues fraiches','framboises fraiches','abricots frais','fruits rouges','quartiers'], 'fruits'],
+  [['biscuit','genoise','dacquoise','madeleine','sable','financier','joconde','streusel','brownie','pain de genes','succes'], 'biscuit'],
   [['croustillant','feuillantine','praline feuillete','crepes dentelles','crumble','eclats'], 'croustille'],
   [['compotee','confit','coulis','gelee','insert fruit','marmelade','confiture'], 'compotee'],
   [['cremeux','creme patissiere','curd','lemon curd','namelaka','diplomate','patissiere'], 'cremeux'],
@@ -6478,10 +6499,23 @@ function detecterCouches(texte){
     });
     if(trouve) vues.push({ type: trouve, libelle: l.charAt(0).toUpperCase() + l.slice(1) });
   });
-  // on dédoublonne en gardant le premier libellé de chaque type
+  // Deux préparations du même type peuvent cohabiter — deux crémeux, deux
+  // biscuits. On ne dédoublonne que les libellés strictement identiques.
   const vus = {};
-  return vues.filter(x => { if(vus[x.type]) return false; vus[x.type] = 1; return true; })
-             .sort((a, b) => COUCHES[a.type].ordre - COUCHES[b.type].ordre);
+  const gardees = vues.filter(x => {
+    const cle = inspiNorm(x.libelle);
+    if(vus[cle]) return false;
+    vus[cle] = 1;
+    return true;
+  });
+  // chaque doublon de type reçoit un rang propre, pour rester à sa place
+  const rang = {};
+  gardees.forEach(x => {
+    rang[x.type] = (rang[x.type] || 0) + 1;
+    x.ordre = COUCHES[x.type].ordre + (rang[x.type] - 1) * 0.1;
+    x.id = x.type + (rang[x.type] > 1 ? '-' + rang[x.type] : '');
+  });
+  return gardees.sort((a, b) => a.ordre - b.ordre);
 }
 
 function textureCouche(type, x, y, w, h){
@@ -6527,14 +6561,14 @@ function textureCouche(type, x, y, w, h){
 function schemaEntremets(titre, couches){
   if(!couches.length) return '';
   const L = 340, X = 280;                    // largeur du gâteau et marge gauche
-  const decor = couches.filter(c => c.type === 'decor');
-  const empilees = couches.filter(c => c.type !== 'decor');
+  const decor = couches.filter(c => c.type === 'decor' || c.type === 'fruits');
+  const empilees = couches.filter(c => c.type !== 'decor' && c.type !== 'fruits');
   const hauteur = empilees.reduce((a, c) => a + COUCHES[c.type].h, 0);
   const BAS = 460;
   const HAUT_DECOR = decor.length ? 70 : 20;
 
   let y = BAS, corps = '', legendes = '';
-  let cote = 0;
+  let cote = 0, dernierG = null, dernierD = null;
 
   empilees.forEach((c, i) => {
     const d = COUCHES[c.type];
@@ -6546,9 +6580,13 @@ function schemaEntremets(titre, couches){
              ' v' + d.h + ' h-' + L + ' z" fill="' + d.c + '" stroke="' + d.bord + '" stroke-width="1.4"/>';
     corps += textureCouche(c.type, X, y, L, d.h);
 
-    // légende, alternée gauche puis droite
-    const my = y + d.h / 2;
+    // Légendes alternées. Sur une couche fine, deux textes du même côté
+    // peuvent se chevaucher : on les écarte verticalement.
     const gauche = cote % 2 === 0; cote++;
+    let my = y + d.h / 2;
+    const dernier = gauche ? dernierG : dernierD;
+    if(dernier !== null && Math.abs(my - dernier) < 30) my = dernier - 30;
+    if(gauche) dernierG = my; else dernierD = my;
     const dep = gauche ? X - 6 : X + L + 6;
     const arr = gauche ? X - 74 : X + L + 74;
     legendes += '<path d="M' + dep + ' ' + my + ' C' + ((dep + arr) / 2) + ' ' + my + ',' +
@@ -6565,8 +6603,9 @@ function schemaEntremets(titre, couches){
     const sommet = BAS - hauteur;
     for(let i = 0; i < 7; i++){
       const cx = X + 30 + (L - 60) * (i / 6), r = 8 + (i % 3) * 2.5;
+      const cd = COUCHES[decor[0].type];
       corps += '<circle cx="' + cx.toFixed(0) + '" cy="' + (sommet - r + 3) + '" r="' + r +
-               '" fill="' + COUCHES.decor.c + '" stroke="' + COUCHES.decor.bord + '" stroke-width="1.2"/>';
+               '" fill="' + cd.c + '" stroke="' + cd.bord + '" stroke-width="1.2"/>';
       corps += '<path d="M' + (cx - r * 0.4) + ' ' + (sommet - r * 1.3) + ' q' + (r * 0.4) + ' -' + (r * 0.3) +
                ' ' + (r * 0.8) + ' 0" stroke="#FBF3E2" stroke-width="1.2" fill="none" opacity="0.6"/>';
     }
@@ -6681,6 +6720,76 @@ function correspondType(nomSection, type){
   return paire ? paire[0].some(m => n.indexOf(inspiNorm(m)) !== -1) : false;
 }
 
+// ── Les raccourcis : reprendre une préparation voisine ────────────────────
+// Une compotée de fraise et une compotée de figue, c'est la même méthode.
+// On propose la recette existante en signalant ce qu'il faut remplacer.
+const INGREDIENTS_VEDETTE = [
+  ['fraise','fraises'], ['framboise','framboises'], ['myrtille','myrtilles'], ['mure','mures'],
+  ['abricot','abricots'], ['peche','peches'], ['pomme','pommes'], ['poire','poires'],
+  ['figue','figues'], ['cerise','cerises'], ['rhubarbe'], ['prune','prunes'], ['raisin','raisins'],
+  ['citron','citrons'], ['orange','oranges'], ['mangue','mangues'], ['ananas'], ['banane','bananes'],
+  ['noisette','noisettes'], ['amande','amandes'], ['pistache','pistaches'], ['cacahuete','cacahuetes'],
+  ['noix de pecan'], ['noix'], ['sesame'], ['coco'],
+  ['chocolat noir'], ['chocolat au lait'], ['chocolat blanc'], ['chocolat'],
+  ['vanille'], ['cafe'], ['caramel'], ['praline'], ['speculoos'], ['matcha'], ['citron vert']
+];
+
+// Un fruit se remplace par un fruit, un fruit sec par un fruit sec.
+// Proposer « 1 gousse de pistache » à la place de la vanille n'aurait aucun sens.
+const FAMILLE_VEDETTE = {
+  fraise:'fruit', framboise:'fruit', myrtille:'fruit', mure:'fruit', abricot:'fruit',
+  peche:'fruit', pomme:'fruit', poire:'fruit', figue:'fruit', cerise:'fruit',
+  rhubarbe:'fruit', prune:'fruit', raisin:'fruit', mangue:'fruit', ananas:'fruit', banane:'fruit',
+  citron:'agrume', orange:'agrume', 'citron vert':'agrume',
+  noisette:'sec', amande:'sec', pistache:'sec', cacahuete:'sec', 'noix de pecan':'sec',
+  noix:'sec', sesame:'sec', coco:'sec',
+  'chocolat noir':'chocolat', 'chocolat au lait':'chocolat', 'chocolat blanc':'chocolat', chocolat:'chocolat',
+  vanille:'parfum', cafe:'parfum', matcha:'parfum',
+  caramel:'gourmand', praline:'gourmand', speculoos:'gourmand'
+};
+
+function vedetteDe(texte){
+  const n = ' ' + inspiNorm(texte) + ' ';
+  for(const formes of INGREDIENTS_VEDETTE){
+    for(const f of formes){
+      const fn = inspiNorm(f);
+      if(n.indexOf(' ' + fn + ' ') !== -1 || n.indexOf(' ' + fn + 's ') !== -1 ||
+         n.indexOf(' de ' + fn) !== -1 || n.indexOf(' aux ' + fn) !== -1 || n.indexOf(' au ' + fn) !== -1)
+        return formes[0];
+    }
+  }
+  return null;
+}
+
+function joliVedette(v){
+  return v.charAt(0).toUpperCase() + v.slice(1);
+}
+
+// Pour une couche demandée, on classe les préparations du site :
+// celles qui collent exactement, puis celles à adapter.
+function propositionsPour(couche){
+  const dispo = preparationsDuSite(couche.type);
+  const voulu = vedetteDe(couche.libelle);
+  return dispo.map(d => {
+    const sienne = vedetteDe(d.nom) || vedetteDe(d.ing.join(' '));
+    let echange = null, compatible = true;
+    if(voulu && sienne && voulu !== sienne){
+      const fa = FAMILLE_VEDETTE[sienne], fb = FAMILLE_VEDETTE[voulu];
+      if(fa && fb && fa === fb) echange = { de: sienne, vers: voulu };
+      else compatible = false;                 // familles différentes : on écarte
+    }
+    return Object.assign({}, d, { echange: echange, exact: !echange, compatible: compatible });
+  }).filter(x => x.compatible)
+    .sort((a, b) => (b.exact ? 1 : 0) - (a.exact ? 1 : 0));
+}
+
+// on remplace le fruit dans chaque ligne d'ingrédient
+function adapterVedette(lignes, de, vers){
+  const re = new RegExp('(^|[^a-z0-9\u00e0-\u00ff])(' + de + 's?)($|[^a-z0-9\u00e0-\u00ff])', 'gi');
+  return lignes.map(l => l.replace(re, (m, av, mot, ap) =>
+    av + (mot.slice(-1).toLowerCase() === 's' ? vers + 's' : vers) + ap));
+}
+
 function etapeSources(){
   creation.etape = 2; sauverCreation();
   const z = document.getElementById('atelier-corps');
@@ -6725,17 +6834,28 @@ function ouvrirPrep(i, depuisSite){
   const z = document.getElementById('atelier-corps');
 
   if(depuisSite === 1){
+    const props = propositionsPour(c);
+    const exacts = props.filter(x => x.exact);
+    const adapter = props.filter(x => !x.exact);
+    const carte = (d, k) =>
+      '<button class="at-source' + (d.echange ? ' a-adapter' : '') + '" onclick="prendreDuSite(' + k + ')">' +
+        '<strong>' + echapper(d.nom) + '</strong>' +
+        '<span>' + echapper(d.recette) + '</span>' +
+        (d.echange
+          ? '<div class="at-echange">Remplacez <b>' + joliVedette(d.echange.de) + '</b> par <b>' +
+            joliVedette(d.echange.vers) + '</b>, le reste ne bouge pas.</div>'
+          : '') +
+        '<em>' + d.ing.length + ' ingrédients</em>' +
+      '</button>';
     z.innerHTML =
       '<div class="at-etape"><span>' + echapper(c.libelle) + '</span> Reprendre une préparation</div>' +
-      '<div class="at-sources">' + dispo.map((d, k) =>
-        '<button class="at-source" onclick="prendreDuSite(' + k + ')">' +
-          '<strong>' + echapper(d.nom) + '</strong>' +
-          '<span>' + echapper(d.recette) + '</span>' +
-          '<em>' + d.ing.length + ' ingrédients</em>' +
-        '</button>').join('') + '</div>' +
+      (exacts.length ? '<div class="at-groupe">Telles quelles</div>' +
+        '<div class="at-sources">' + exacts.map(d => carte(d, props.indexOf(d))).join('') + '</div>' : '') +
+      (adapter.length ? '<div class="at-groupe">À adapter, même méthode</div>' +
+        '<div class="at-sources">' + adapter.map(d => carte(d, props.indexOf(d))).join('') + '</div>' : '') +
       '<div class="at-nav"><button class="at-prec" onclick="etapeSources()">Retour</button>' +
       '<button class="at-suiv" onclick="ouvrirPrep(' + i + ',0)">Écrire la mienne</button></div>';
-    window._sourcesDispo = dispo;
+    window._sourcesDispo = props;
     return;
   }
 
@@ -6761,7 +6881,9 @@ function ouvrirPrep(i, depuisSite){
 function prendreDuSite(k){
   const d = window._sourcesDispo[k];
   const c = creation.couches[prepIndex];
-  creation.preparations[c.type] = { nom: c.libelle, ing: d.ing.slice(), steps: [], jour: 'J-1', source: d.recette };
+  const ing = d.echange ? adapterVedette(d.ing, d.echange.de, d.echange.vers) : d.ing.slice();
+  creation.preparations[c.type] = { nom: c.libelle, ing: ing, steps: [], jour: 'J-1',
+                                    source: d.recette + (d.echange ? ' (adaptée)' : '') };
   sauverCreation();
   ouvrirPrep(prepIndex, 0);
 }
@@ -11081,7 +11203,10 @@ function inspiBulle(html, moi){
   if(!chat) return;
   const d = document.createElement('div');
   d.className = 'inspi-msg' + (moi ? ' moi' : '');
-  d.innerHTML = '<div class="inspi-ava">' + (moi ? '\u{1F464}' : '\u{1F33F}') + '</div><div class="inspi-bulle">' + html + '</div>';
+  const ava = moi
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    : '<svg class="basile" viewBox="0 0 40 44" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="baPeau" cx="36%" cy="30%" r="78%"><stop offset="0%" stop-color="#FFCB84"/><stop offset="52%" stop-color="#F2A253"/><stop offset="100%" stop-color="#E4842F"/></radialGradient></defs><g transform="rotate(-6 20 11)"><ellipse cx="13.6" cy="9.2" rx="4.5" ry="4.1" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><ellipse cx="26.4" cy="9.2" rx="4.5" ry="4.1" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><ellipse cx="20" cy="7" rx="5.6" ry="5" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/><path d="M13.2 12.2h13.6v2.9a1.5 1.5 0 0 1-1.5 1.5H14.7a1.5 1.5 0 0 1-1.5-1.5z" fill="#FDFAF6" stroke="#D8CEBB" stroke-width=".9"/></g><path d="M20.2 18v-2.6" stroke="#7A5636" stroke-width="1.6" stroke-linecap="round"/><path d="M20.8 16c2.2-1.8 4.6-1.5 5.5-.6-.9 2-3.3 2.5-5.5 1.5z" fill="#5F8163"/><path d="M21.4 16.3c1.4-.7 2.8-.8 3.7-.5" stroke="#4E6E52" stroke-width=".7" fill="none"/><circle cx="20" cy="29.2" r="11.8" fill="url(#baPeau)"/><path d="M20.6 19.6c-1.6 2.2-2.3 4.6-2.5 7" stroke="#D2762C" stroke-width="1.3" fill="none" opacity=".3" stroke-linecap="round"/><ellipse cx="14.2" cy="22.6" rx="2.6" ry="1.7" transform="rotate(-30 14.2 22.6)" fill="#FFF0D4" opacity=".34"/><circle cx="16.2" cy="27.4" r="2.4" fill="#3A2A1E"/><circle cx="17.1" cy="26.5" r=".85" fill="#FDFAF6"/><circle cx="15.5" cy="28.3" r=".4" fill="#FDFAF6" opacity=".8"/><circle cx="23.8" cy="27.4" r="2.4" fill="#3A2A1E"/><circle cx="24.7" cy="26.5" r=".85" fill="#FDFAF6"/><circle cx="23.1" cy="28.3" r=".4" fill="#FDFAF6" opacity=".8"/><ellipse cx="12.4" cy="31.6" rx="2.4" ry="1.6" fill="#E86A52" opacity=".38"/><ellipse cx="27.6" cy="31.6" rx="2.4" ry="1.6" fill="#E86A52" opacity=".38"/><path d="M15.8 31.8q4.2 4.6 8.4 0z" fill="#3A2A1E"/><path d="M17.6 34.3q2.4 1.6 4.8 0z" fill="#E8737F"/></svg>';
+  d.innerHTML = '<div class="inspi-ava' + (moi ? ' moi' : ' lui') + '">' + ava + '</div><div class="inspi-bulle">' + html + '</div>';
   chat.appendChild(d);
   chat.scrollTop = chat.scrollHeight;
 }
