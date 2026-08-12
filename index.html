@@ -6931,6 +6931,13 @@ function inscrireToutesLesCreations(){
 }
 window.addEventListener('load', inscrireToutesLesCreations);
 
+// Une notification peut désigner un onglet précis : latabledelsa.fr/#atelier
+window.addEventListener('load', () => {
+  const cible = (location.hash || '').replace('#', '').trim();
+  if(!cible) return;
+  if(document.getElementById('tab-' + cible)) setTimeout(() => showTab(cible), 120);
+});
+
 function dateCreation(iso){
   try {
     return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });

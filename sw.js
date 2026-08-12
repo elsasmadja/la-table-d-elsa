@@ -1,7 +1,7 @@
 /* La Table d'Elsa — fonctionnement hors ligne
    Pour publier une mise à jour du site, incrémentez le numéro de version
    ci-dessous : les anciens fichiers mis en cache seront alors supprimés. */
-const VERSION = 'elsa-v2';
+const VERSION = 'elsa-v3';
 const BASE = new URL('./', self.location).pathname;
 
 self.addEventListener('install', e => {
@@ -66,12 +66,14 @@ self.addEventListener('push', e => {
   e.waitUntil((async () => {
     let titre = 'La Table d\u2019Elsa';
     let corps = 'Une nouvelle recette vient d\u2019arriver.';
+    let cible = BASE;
     try {
       const rep = await fetch(BASE + 'derniere-recette.json?t=' + Date.now(), { cache: 'no-store' });
       if (rep.ok) {
         const info = await rep.json();
         if (info.titre) titre = info.titre;
         if (info.texte) corps = info.texte;
+        if (info.onglet) cible = BASE + '#' + info.onglet;
       }
     } catch (err) {}
     await self.registration.showNotification(titre, {
@@ -80,7 +82,7 @@ self.addEventListener('push', e => {
       badge: BASE + 'images/icon-192.png',
       tag: 'nouvelle-recette',
       renotify: true,
-      data: { url: BASE }
+      data: { url: cible }
     });
   })());
 });
