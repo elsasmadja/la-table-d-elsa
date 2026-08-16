@@ -2360,19 +2360,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="carte-cuisine" onclick="lancerCuisine(event,'myrtille')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
-    <div class="patisserie-card" onclick="openModalComing('abricotine', 'Abricotine Provençale')">
-      <div class="patisserie-card-img-wrap">
-        <button class="heart-btn" onclick="toggleLike(event,'cookies')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-        <button class="heart-btn" onclick="toggleLike(event,'madeleine')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-        <button class="heart-btn" onclick="toggleLike(event,'bananabread')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+    <div class="patisserie-card" onclick="openModal('abricotine')">
+      <div class="patisserie-card-img-wrap" style="position:relative;overflow:hidden">
         <button class="heart-btn" onclick="toggleLike(event,'abricotine')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+        <span class="new-badge">Nouveauté</span>
         <img class="patisserie-card-img" src="images/int-abricotine-provencale.jpg" alt="Abricotine Provençale">
-              <div class="patisserie-card-overlay"><div class="patisserie-card-overlay-icon">🍰</div><div class="patisserie-card-overlay-text">La recette arrive bientôt...<br>En attendant, régalez-vous des yeux !</div></div>
       </div>
       <div class="patisserie-card-body">
-        <span class="coming-soon-badge">Recette à venir</span>
         <h3>Abricotine Provençale</h3>
-        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>À venir</span></div>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'abricotine')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
       </div>
     </div>
     <div class="patisserie-card" onclick="openModalComing('exotique', 'L\'exotique')">
@@ -3133,6 +3130,7 @@ const IMGS = {
 bombefraise: ["images/part-fraise.jpg", "images/bombe-fraise.jpg"],
 tartefiguesnoix: ["images/figues.jpg"],
 bellepeche: ["images/peche.jpg"],
+abricotine: ["images/int-abricotine-provencale.jpg"],
 crepes: ["images/crepes.jpg", "images/crepes-pile.jpg"],
 flamboise: ["images/flamboise.jpg"],
 ensoleillee: ["images/ensoleillee%20aux%20abricots.jpg", "images/part%20abricot.jpg"],
@@ -3169,6 +3167,49 @@ noelcheese: ["images/cheesecake.jpg"],
 coocahuetes: ["images/coocahuete.jpg"],
 };
 const recipes = {
+  abricotine:{tag:"Pâtisserie · Tarte",title:"Abricotine Provençale",kcal:524,proteines:"8,2",glucides:"54,6",lipides:"29,4",portions:"1 part / 8",
+    chapo:"Une tarte aux abricots, fond amande garni de fruits frais, sous une crème montée infusée au thym.",
+    ingredients:[
+      "— Pâte sucrée (J-2) —",
+      "250 g de farine",
+      "125 g de beurre froid en dés",
+      "80 g de sucre glace",
+      "1 œuf",
+      "1 pincée de sel",
+      "— Fond de tarte amande (J-1) —",
+      "100 g de poudre d'amandes",
+      "80 g de beurre mou",
+      "80 g de sucre",
+      "2 œufs",
+      "3 abricots frais",
+      "— Compotée d'abricots (J-1) —",
+      "200 g d'abricots",
+      "60 g de sucre",
+      "1 c.à.s de jus de citron",
+      "— Crème montée au thym (J-1) —",
+      "400 g de crème liquide 33% MG",
+      "40 g de sucre glace",
+      "4 branches de thym frais",
+      "— Finition (Jour J) —",
+      "4 abricots bien mûrs",
+      "Quelques sommités de thym"
+    ],
+    steps:[
+      "J-2 — Pâte sucrée : sablez la farine, le sucre glace et le sel avec le beurre froid du bout des doigts. Ajoutez l'œuf sans trop travailler, formez un disque, filmez et laissez reposer 2 heures au frais.",
+      "J-2 — Étalez la pâte sur 2-3 mm, foncez votre cercle et piquez le fond. Réservez toute la nuit au congélateur : c'est ce qui l'empêche de se rétracter à la cuisson.",
+      "J-1 — Crème montée au thym : portez 150 g de crème à frémissement, retirez du feu et plongez-y le thym. Couvrez et laissez infuser 20 minutes, puis passez au chinois en pressant bien les branches.",
+      "J-1 — Ajoutez le reste de crème froide à l'infusion refroidie, filmez au contact et réservez une nuit au frais. Une crème bien froide monte beaucoup mieux.",
+      "J-1 — Fond de tarte amande : crémez le beurre mou avec le sucre, ajoutez les œufs un par un puis la poudre d'amandes.",
+      "J-1 — Sortez le fond de tarte du congélateur et garnissez-le aussitôt de crème d'amande. Coupez les 3 abricots en quartiers et enfoncez-les légèrement dans la crème.",
+      "J-1 — Enfournez 30 à 35 minutes à 170°C, jusqu'à ce que la crème soit prise et dorée. Laissez refroidir sur grille.",
+      "J-1 — Compotée d'abricots : coupez les abricots en morceaux, ajoutez le sucre et le jus de citron, et faites compoter 20 minutes à feu doux. Mixez grossièrement, filmez au contact et réservez au frais.",
+      "Jour J — Montez la crème au thym avec le sucre glace, dans une cuve bien froide. Arrêtez au bec d'oiseau : trop montée, elle graine.",
+      "Jour J — Montage : étalez la compotée d'abricots sur le fond de tarte refroidi, jusqu'aux bords.",
+      "Jour J — Pochez la crème montée au thym sur toute la surface, en quenelles ou en rosace selon votre envie.",
+      "Jour J — Finition : détaillez les abricots en quartiers et disposez-les sur la crème. Parsemez de quelques sommités de thym et réservez au frais 2 heures avant de servir."
+    ],
+    astuce:"Le thym et l'abricot vont ensemble depuis toujours en Provence, mais l'infusion doit rester discrète : 20 minutes suffisent, au-delà la crème devient herbacée. Goûtez avant de passer au chinois, c'est le seul moyen de savoir."
+  },
   bellepeche:{tag:"Pâtisserie · Tarte",title:"La Belle Pêche",kcal:548,proteines:"8,6",glucides:"57,4",lipides:"30,2",portions:"1 part / 8",
     chapo:"Une pâte sucrée, un fond amande et une compotée de pêche prise à la gélatine, sous un nuage de vanille.",
     ingredients:[
