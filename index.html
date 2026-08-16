@@ -2224,10 +2224,21 @@ document.addEventListener('DOMContentLoaded', function() {
     <span class="section-count">16 recettes</span>
   </div>
   <div class="patisserie-grid">
+    <div class="patisserie-card" onclick="openModal('tartefiguesnoix')">
+      <div class="patisserie-card-img-wrap" style="position:relative;overflow:hidden">
+        <button class="heart-btn" onclick="toggleLike(event,'tartefiguesnoix')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+        <span class="new-badge">Nouveauté</span>
+        <img class="patisserie-card-img" src="images/figues.jpg" alt="La Tarte Figues Noix">
+      </div>
+      <div class="patisserie-card-body">
+        <h3>La Tarte Figues Noix</h3>
+        <div class="patisserie-card-meta"><span class="meta-cat">Tarte</span><span><svg class="meta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.4 2"/></svg>3 jours</span></div>
+        <button class="carte-cuisine" onclick="lancerCuisine(event,'tartefiguesnoix')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="12" r="6.5"/><path d="M16 10.6l6 -1.4"/><path d="M6.5 12a3 3 0 0 1 6 0"/></svg><span>Mode cuisine</span></button>
+      </div>
+    </div>
     <div class="patisserie-card" onclick="openModal('bombefraise')">
       <div class="patisserie-card-img-wrap" style="position:relative;overflow:hidden">
         <button class="heart-btn" onclick="toggleLike(event,'bombefraise')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-        <span class="new-badge">Nouveauté</span>
         <img class="patisserie-card-img" src="images/bombe-fraise.jpg" alt="La Bombe à la Fraise">
       </div>
       <div class="patisserie-card-body">
@@ -3108,6 +3119,7 @@ const PATE_DECOUPE = "images/int-accueil-4.jpg";
 const PATE_FONCAGE = "images/int-accueil-3.jpg";
 const IMGS = {
 bombefraise: ["images/part-fraise.jpg", "images/bombe-fraise.jpg"],
+tartefiguesnoix: ["images/figues.jpg"],
 crepes: ["images/crepes.jpg", "images/crepes-pile.jpg"],
 flamboise: ["images/flamboise.jpg"],
 ensoleillee: ["images/ensoleillee%20aux%20abricots.jpg", "images/part%20abricot.jpg"],
@@ -3144,6 +3156,65 @@ noelcheese: ["images/cheesecake.jpg"],
 coocahuetes: ["images/coocahuete.jpg"],
 };
 const recipes = {
+  tartefiguesnoix:{tag:"Pâtisserie · Tarte",title:"La Tarte Figues Noix",kcal:612,proteines:"9,4",glucides:"58,2",lipides:"37,6",portions:"1 part / 8",
+    chapo:"Une pâte sucrée, un fond amande, un praliné aux noix et des figues compotées, sous un nuage de vanille.",
+    ingredients:[
+      "— Pâte sucrée (J-2) —",
+      "250 g de farine",
+      "125 g de beurre froid en dés",
+      "80 g de sucre glace",
+      "1 œuf",
+      "1 pincée de sel",
+      "— Praliné noix (J-2) —",
+      "165 g de cerneaux de noix",
+      "80 g de sucre semoule",
+      "25 g d'eau",
+      "3 g de fleur de sel",
+      "— Fond de tarte amande (J-1) —",
+      "100 g de poudre d'amandes",
+      "80 g de beurre mou",
+      "80 g de sucre",
+      "2 œufs",
+      "— Compotée de figues (J-1) —",
+      "200 g de figues fraîches",
+      "60 g de sucre",
+      "1 c.à.s de jus de citron",
+      "— Crème pâtissière (J-1) —",
+      "500 ml de lait entier",
+      "4 jaunes d'œufs",
+      "100 g de sucre",
+      "40 g de maïzena",
+      "1 gousse de vanille",
+      "— Chantache (J-1) —",
+      "100 g de crème chaude 33% MG",
+      "300 g de crème froide 33% MG",
+      "20 g de sucre glace",
+      "20 g de chocolat blanc",
+      "1/2 gousse de vanille",
+      "4 g de gélatine feuille 200 bloom",
+      "— Crème nuage (Jour J) —",
+      "390 g de crème pâtissière",
+      "120 g de chantache",
+      "— Finition (Jour J) —",
+      "3 à 4 figues fraîches",
+      "Quelques cerneaux de noix"
+    ],
+    steps:[
+      "J-2 — Pâte sucrée : sablez la farine, le sucre glace et le sel avec le beurre froid du bout des doigts. Ajoutez l'œuf sans trop travailler, formez une boule, filmez et laissez reposer une nuit au frais.",
+      "J-2 — Praliné noix : si vos noix sont crues, torréfiez-les 12 minutes à 150°C. Versez le sucre et l'eau dans une casserole et portez à 118°C, ajoutez les noix et faites sabler puis caraméliser à feu moyen.",
+      "J-2 — Débarrassez sur un tapis silicone et laissez refroidir complètement. Mixez avec la fleur de sel, par à-coups, jusqu'à obtenir une pâte fluide. Comptez 5 à 10 minutes en raclant les bords.",
+      "J-1 — Étalez la pâte sur 2-3 mm, foncez votre cercle et piquez le fond. Remettez 30 minutes au frais avant d'enfourner.",
+      "J-1 — Fond de tarte amande : crémez le beurre mou avec le sucre, ajoutez les œufs un par un puis la poudre d'amandes. Garnissez le fond de tarte et enfournez 25 à 30 minutes à 170°C, jusqu'à coloration dorée.",
+      "J-1 — Compotée de figues : coupez les figues en morceaux, ajoutez le sucre et le jus de citron, et faites compoter 20 minutes à feu doux. Mixez grossièrement si vous préférez une texture lisse, puis réservez au frais.",
+      "J-1 — Crème pâtissière : chauffez le lait avec la gousse de vanille fendue et grattée. Fouettez les jaunes avec le sucre jusqu'à blanchissement, incorporez la maïzena. Versez le lait chaud en filet, reversez dans la casserole et faites épaissir 2 minutes en fouettant sans arrêt. Filmez au contact et réservez au frigo.",
+      "J-1 — Chantache : faites chauffer les 100 g de crème. Dans un cul-de-poule, déposez le chocolat blanc, le sucre glace, la vanille et la gélatine égouttée. Versez la crème chaude dessus et mixez, puis ajoutez les 300 g de crème froide. Filmez au contact et laissez reposer une nuit au frais.",
+      "Jour J — Crème nuage : lissez les 390 g de crème pâtissière au fouet. Montez la chantache dans une cuve bien froide, puis mélangez délicatement les deux masses.",
+      "Jour J — Montage : étalez une fine couche de praliné noix sur le fond de tarte refroidi, puis répartissez la compotée de figues par-dessus.",
+      "Jour J — Pochez la crème nuage sur toute la surface et lissez ou pochez selon le décor qui vous plaît.",
+      "Jour J — Finition : disposez les figues fraîches coupées en quartiers et quelques cerneaux de noix. Réservez au frais au moins 2 heures avant de servir."
+    ],
+    astuce:"Le praliné noix est plus amer que le praliné noisette : c'est ce qui équilibre la douceur de la figue et de la crème nuage. Torréfiez bien les cerneaux, l'huile sort plus vite au mixage et le praliné devient fluide sans forcer."
+  },
   bombefraise:{tag:"Pâtisserie · Entremets",title:"La Bombe à la Fraise",kcal:640,proteines:"8,1",glucides:"73,8",lipides:"32,4",portions:"1 part / 8",
     chapo:"Un gâteau madeleine, une crème nuage vanille et des fraises fraîches, montés en cercle de 23 cm.",
     ingredients:[
