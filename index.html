@@ -91,7 +91,7 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .recipe-card{background:var(--white);border-radius:4px;overflow:hidden;cursor:pointer;border:1px solid var(--cream-dark);transition:transform 0.22s,box-shadow 0.22s;display:flex;flex-direction:column;position:relative}
 .recipe-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(46,42,37,0.1)}
 .recipe-card-img-wrap{overflow:hidden;position:relative}
-.recipe-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform 0.35s}
+.recipe-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:var(--crop,center);display:block;transition:transform 0.35s}
 
 
 
@@ -150,8 +150,10 @@ nav{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:0 
 .patisserie-card{background:var(--white);border-radius:4px;overflow:hidden;cursor:pointer;border:1px solid var(--cream-dark);transition:transform 0.22s,box-shadow 0.22s;display:flex;flex-direction:column}
 .patisserie-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(46,42,37,0.1)}
 .patisserie-card-img-wrap{overflow:hidden;position:relative}
-.patisserie-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform 0.35s}
+.patisserie-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:var(--crop,center);display:block;transition:transform 0.35s}
 .patisserie-card:hover .patisserie-card-img{transform:scale(1.04)}
+/* Photo trop serrée : on affiche le gâteau entier, centré, sur fond crème */
+.patisserie-card-img.img-entier,.recipe-card-img.img-entier{object-fit:contain;background:var(--white)}
 .patisserie-card-overlay{
   position:absolute;inset:0;
   background:rgba(247,243,236,0.92);
@@ -2262,7 +2264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="patisserie-card" onclick="openModal('flancacahuete')">
       <div class="patisserie-card-img-wrap" style="position:relative;overflow:hidden">
         <button class="heart-btn" onclick="toggleLike(event,'flancacahuete')" title="Ajouter aux favoris"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-        <img class="patisserie-card-img" src="images/flan%20cacahuete.jpg" alt="Flan cacahuète">
+        <img class="patisserie-card-img img-entier" src="images/flan%20cacahuete.jpg" alt="Flan cacahuète">
       </div>
       <div class="patisserie-card-body">
         <h3>Flan cacahuète</h3>
